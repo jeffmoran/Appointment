@@ -14,6 +14,7 @@ and optimizing speed.
 - Use autolayout throughout app so elements properly scale.
 - Remove traces of "BrokersLab" name.
 - Remove "GoogleMapsKit" pod and use native Apple Maps solution.
+- Set Deployment Target to iOS 9.0 and update code accordingly.
 
 ## Known bugs:
 - When clicking "Find on map" in the appointment detail view, the view is pushed twice.
