@@ -1,1 +1,0 @@
-../../../TapkuLibrary/src/TapkuLibrary/UIGestureRecognizer+TKCategory.h
