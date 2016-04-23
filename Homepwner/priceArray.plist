@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>$500</string>
+	<string>$1000</string>
+	<string>$1500</string>
+	<string>$2000</string>
+	<string>$2500</string>
+	<string>$3000</string>
+	<string>$3500</string>
+	<string>$4000</string>
+	<string>$4500</string>
+	<string>$5000</string>
+	<string>$5500</string>
+	<string>$6000</string>
+	<string>$6500</string>
+	<string>$7000</string>
+	<string>$7500</string>
+	<string>$8000</string>
+	<string>$8500</string>
+	<string>$9000</string>
+	<string>$9500</string>
+	<string>$10000</string>
+</array>
+</plist>

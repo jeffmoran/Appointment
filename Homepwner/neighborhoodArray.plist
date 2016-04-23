@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<string>Annadale</string>
+	<string>Arden Heights</string>
+	<string>Arlington</string>
+	<string>Arrochar</string>
+	<string>Arverne</string>
+	<string>Astoria Heights</string>
+	<string>Astoria</string>
+	<string>Auburndale</string>
+	<string>Bath Beach</string>
+	<string>Bathgate</string>
+	<string>Battery Park City</string>
+	<string>Bay Ridge</string>
+	<string>Bay Terrace</string>
+	<string>Bay Terrace</string>
+	<string>Baychester</string>
+	<string>Bayside</string>
+	<string>Bayswater</string>
+	<string>Bedford Park</string>
+	<string>Bedford Stuyvesant</string>
+	<string>Beechhurst</string>
+	<string>Beekman Place</string>
+	<string>Bellaire</string>
+	<string>Belle Harbor</string>
+	<string>Bellerose</string>
+	<string>Belmont</string>
+	<string>Bensonhurst</string>
+	<string>Bergen Beach</string>
+	<string>Blissville</string>
+	<string>Bloomfield</string>
+	<string>Boerum Hill</string>
+	<string>Borough Park</string>
+	<string>Breezy Point</string>
+	<string>Briarwood</string>
+	<string>Brighton Beach</string>
+	<string>Broad Channel</string>
+	<string>Broadway Junction</string>
+	<string>Bronx Park South</string>
+	<string>Bronx River</string>
+	<string>Bronxdale</string>
+	<string>Brooklyn Heights</string>
+	<string>Brooklyn Navy Yard</string>
+	<string>Brookville</string>
+	<string>Brownsville</string>
+	<string>Bulls Head</string>
+	<string>Bushwick</string>
+	<string>Butler Manor</string>
+	<string>Cambria Heights</string>
+	<string>Canarsie</string>
+	<string>Carnegie Hill</string>
+	<string>Carroll Gardens</string>
+	<string>Castle Hill</string>
+	<string>Castleton Corners</string>
+	<string>Charleston</string>
+	<string>Chelsea</string>
+	<string>Chelsea</string>
+	<string>Chinatown</string>
+	<string>City Island</string>
+	<string>City Line</string>
+	<string>Civic Center</string>
+	<string>Claremont Village</string>
+	<string>Clason Point</string>
+	<string>Clearview</string>
+	<string>Clifton</string>
+	<string>Clinton Hill</string>
+	<string>Clinton</string>
+	<string>Co-op City</string>
+	<string>Cobble Hill</string>
+	<string>College Point</string>
+	<string>Concord</string>
+	<string>Concourse Village</string>
+	<string>Concourse</string>
+	<string>Coney Island</string>
+	<string>Country Club</string>
+	<string>Crown Heights South</string>
+	<string>Crown Heights</string>
+	<string>Cypress Hills</string>
+	<string>Ditmas Park</string>
+	<string>Dongan Hills</string>
+	<string>Douglaston</string>
+	<string>Downtown</string>
+	<string>DUMBO</string>
+	<string>Dutch Kills</string>
+	<string>Dyker Heights</string>
+	<string>East Concourse</string>
+	<string>East Elmhurst</string>
+	<string>East Flatbush</string>
+	<string>East Harlem</string>
+	<string>East New York</string>
+	<string>East Tremont</string>
+	<string>East Village</string>
+	<string>East Williamsburg</string>
+	<string>Eastchester</string>
+	<string>Edenwald</string>
+	<string>Edgemere</string>
+	<string>Edgewater Park</string>
+	<string>Egbertville</string>
+	<string>Elm Park</string>
+	<string>Elmhurst</string>
+	<string>Eltingville</string>
+	<string>Emerson Hill</string>
+	<string>Far Rockaway</string>
+	<string>Farragut</string>
+	<string>Fieldston</string>
+	<string>Financial District</string>
+	<string>Flatbush</string>
+	<string>Flatiron</string>
+	<string>Flatlands</string>
+	<string>Floral Park</string>
+	<string>Flushing</string>
+	<string>Fordham</string>
+	<string>Forest Hills Gardens</string>
+	<string>Forest Hills</string>
+	<string>Fort Greene</string>
+	<string>Fort Hamilton</string>
+	<string>Fox Hills</string>
+	<string>Fresh Meadows</string>
+	<string>Fulton Ferry</string>
+	<string>Georgetown</string>
+	<string>Gerritsen Beach</string>
+	<string>Glen Oaks</string>
+	<string>Glendale</string>
+	<string>Gowanus</string>
+	<string>Gramercy</string>
+	<string>Graniteville</string>
+	<string>Grant City</string>
+	<string>Grasmere</string>
+	<string>Gravesend</string>
+	<string>Great Kills</string>
+	<string>Greenpoint</string>
+	<string>Greenridge</string>
+	<string>Greenwich Village</string>
+	<string>Grymes Hill</string>
+	<string>Hamilton Heights</string>
+	<string>Hammels</string>
+	<string>Harlem</string>
+	<string>Heartland Village</string>
+	<string>Herald Square</string>
+	<string>High Bridge</string>
+	<string>Highland Park</string>
+	<string>Hillcrest</string>
+	<string>Hollis</string>
+	<string>Holliswood</string>
+	<string>Homecrest</string>
+	<string>Howard Beach</string>
+	<string>Howland Hook</string>
+	<string>Hudson Square</string>
+	<string>Huguenot</string>
+	<string>Hunters Point</string>
+	<string>Hunts Point</string>
+	<string>Inwood</string>
+	<string>Jackson Heights</string>
+	<string>Jamaica</string>
+	<string>Jamaica Center</string>
+	<string>Jamaica Estates</string>
+	<string>Jamaica Hills</string>
+	<string>Kensington</string>
+	<string>Kew Gardens Hills</string>
+	<string>Kew Gardens</string>
+	<string>Kings Highway</string>
+	<string>Kingsbridge Heights</string>
+	<string>Kingsbridge</string>
+	<string>Laconia</string>
+	<string>Laurelton</string>
+	<string>Lefrak City</string>
+	<string>Lenox Hill</string>
+	<string>Lighthouse Hill</string>
+	<string>Lincoln Square</string>
+	<string>Lindenwood</string>
+	<string>Little Italy</string>
+	<string>Little Neck</string>
+	<string>Livingston</string>
+	<string>Long Island City</string>
+	<string>Longwood</string>
+	<string>Lower East Side</string>
+	<string>Malba</string>
+	<string>Manhattan Beach</string>
+	<string>Manhattan Terrace</string>
+	<string>Manhattan Valley</string>
+	<string>Manhattanville</string>
+	<string>Manor Heights</string>
+	<string>Mapleton</string>
+	<string>Marble Hill</string>
+	<string>Marine Park</string>
+	<string>Mariner's Harbor</string>
+	<string>Maspeth</string>
+	<string>Melrose</string>
+	<string>Middle Village</string>
+	<string>Midland Beach</string>
+	<string>Midtown South</string>
+	<string>Midtown</string>
+	<string>Midwood</string>
+	<string>Mill Basin</string>
+	<string>Mill Island</string>
+	<string>Morningside Heights</string>
+	<string>Morris Heights</string>
+	<string>Morris Park</string>
+	<string>Morrisania</string>
+	<string>Mott Haven</string>
+	<string>Mount Eden</string>
+	<string>Mount Hope</string>
+	<string>Murray Hill</string>
+	<string>Murray Hill</string>
+	<string>Neponsit</string>
+	<string>New Brighton</string>
+	<string>New Dorp Beach</string>
+	<string>New Dorp</string>
+	<string>New Hyde Park</string>
+	<string>New Lots</string>
+	<string>New Springville</string>
+	<string>NoHo</string>
+	<string>North Corona</string>
+	<string>North Riverdale</string>
+	<string>North Side</string>
+	<string>North Springfield Gardens</string>
+	<string>Northeast Flatbush</string>
+	<string>Norwood</string>
+	<string>Oakland Gardens</string>
+	<string>Oakwood Beach</string>
+	<string>Oakwood</string>
+	<string>Ocean Hill</string>
+	<string>Ocean Parkway</string>
+	<string>Old Howard Beach</string>
+	<string>Old Place</string>
+	<string>Old Town</string>
+	<string>Olinville</string>
+	<string>Ozone Park</string>
+	<string>Paerdegat Basin</string>
+	<string>Park Hill</string>
+	<string>Park Slope</string>
+	<string>Parkchester</string>
+	<string>Pelham Bay</string>
+	<string>Pelham Gardens</string>
+	<string>Pelham Parkway</string>
+	<string>Pleasant Plains</string>
+	<string>Plumb Beach</string>
+	<string>Pomonok</string>
+	<string>Port Ivory</string>
+	<string>Port Morris</string>
+	<string>Port Richmond</string>
+	<string>Prince's Bay</string>
+	<string>Prospect Heights</string>
+	<string>Prospect Lefferts Gardens</string>
+	<string>Prospect Park South</string>
+	<string>Queens Village</string>
+	<string>Queensboro Hill</string>
+	<string>Randall Manor</string>
+	<string>Ravenswood</string>
+	<string>Red Hook</string>
+	<string>Rego Park</string>
+	<string>Remsen Village</string>
+	<string>Richmond Hill</string>
+	<string>Richmond Town</string>
+	<string>Richmond Valley</string>
+	<string>Ridgewood</string>
+	<string>Riverdale</string>
+	<string>Rochdale</string>
+	<string>Rockaway Park</string>
+	<string>Roosevelt Island</string>
+	<string>Rosebank</string>
+	<string>Rosedale</string>
+	<string>Rossville</string>
+	<string>Roxbury</string>
+	<string>Rugby</string>
+	<string>Sandy Ground </string>
+	<string>Schuylerville</string>
+	<string>Sea Gate</string>
+	<string>Seaside</string>
+	<string>Sheepshead Bay</string>
+	<string>Shore Acres</string>
+	<string>Silver Lake</string>
+	<string>SoHo</string>
+	<string>Somerville</string>
+	<string>Soundview</string>
+	<string>South Beach</string>
+	<string>South Corona</string>
+	<string>South Jamaica</string>
+	<string>South Ozone Park</string>
+	<string>South Side</string>
+	<string>South Village</string>
+	<string>Spring Creek</string>
+	<string>Springfield Gardens</string>
+	<string>Spuyten Duyvil</string>
+	<string>St. Albans</string>
+	<string>St. George</string>
+	<string>Stapleton</string>
+	<string>Starrett City</string>
+	<string>Steinway</string>
+	<string>Stuyvesant Heights</string>
+	<string>Stuyvesant Town</string>
+	<string>Sunnyside Gardens</string>
+	<string>Sunnyside</string>
+	<string>Sunnyside</string>
+	<string>Sunset Park</string>
+	<string>Sutton Place</string>
+	<string>Throgs Neck</string>
+	<string>Times Square</string>
+	<string>Todt Hill</string>
+	<string>Tompkins Park North</string>
+	<string>Tompkinsville</string>
+	<string>Tottenville</string>
+	<string>Travis</string>
+	<string>Tribeca</string>
+	<string>Tudor City</string>
+	<string>Turtle Bay</string>
+	<string>Union Square</string>
+	<string>Unionport</string>
+	<string>University Heights</string>
+	<string>Upper East Side</string>
+	<string>Upper West Side</string>
+	<string>Utopia</string>
+	<string>Van Nest</string>
+	<string>Vinegar Hill</string>
+	<string>Wakefield</string>
+	<string>Wall Street</string>
+	<string>Ward Hill </string>
+	<string>Washington Heights</string>
+	<string>Weeksville</string>
+	<string>West Brighton</string>
+	<string>West Brighton</string>
+	<string>West Concourse</string>
+	<string>West Farms</string>
+	<string>West Village</string>
+	<string>Westchester Square</string>
+	<string>Westerleigh</string>
+	<string>Whitestone</string>
+	<string>Williamsbridge</string>
+	<string>Williamsburg</string>
+	<string>Willowbrook SI2</string>
+	<string>Windsor Terrace</string>
+	<string>Wingate</string>
+	<string>Woodhaven</string>
+	<string>Woodlawn</string>
+	<string>Woodrow</string>
+	<string>Woodside</string>
+	<string>Yorkville</string>
+</array>
+</plist>
