@@ -8,14 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		0247086A393E4FE8AD112494 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AF69B4E11164A7C9E56CA10 /* libPods.a */; };
-		6028EC99194CB7B0005A8946 /* JVFloatLabeledTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028EC96194CB7B0005A8946 /* JVFloatLabeledTextField.m */; };
-		6028EC9A194CB7B0005A8946 /* JVFloatLabeledTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 6028EC98194CB7B0005A8946 /* JVFloatLabeledTextView.m */; };
 		6028EC9C194CBA4A005A8946 /* Homepwner.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 6028EC9B194CBA4A005A8946 /* Homepwner.xcdatamodel */; };
 		605B90C11BC066D500AEA285 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 605B90C01BC066D500AEA285 /* Launch Screen.storyboard */; };
+		605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F92C51CCC142B00F4FC1C /* Images.xcassets */; };
 		606D4BED1940131000451389 /* priceArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 606D4BEC1940131000451389 /* priceArray.plist */; };
 		6084E05C1940195B008D8599 /* aptSizeArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6084E05B1940195B008D8599 /* aptSizeArray.plist */; };
 		6084E05E1940220A008D8599 /* neighborhoodArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6084E05D1940220A008D8599 /* neighborhoodArray.plist */; };
-		60F2221318302D610004B4A1 /* white.png in Resources */ = {isa = PBXBuildFile; fileRef = 60F2221218302D610004B4A1 /* white.png */; };
 		BE0E4E9D14323F6D00F05B13 /* BrokersLabItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0E4E9C14323F6D00F05B13 /* BrokersLabItemCell.m */; };
 		BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0E4EB2143262F700F05B13 /* CoreData.framework */; };
 		BE0E4EB91432646C00F05B13 /* BrokersLabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0E4EB81432646C00F05B13 /* BrokersLabItem.m */; };
@@ -33,7 +31,6 @@
 		CA0F3EA417E25B3C003FE3BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */; };
 		CA0F3EA617E25B45003FE3BE /* libz.1.1.3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA517E25B45003FE3BE /* libz.1.1.3.dylib */; };
 		CA0F3EAC17E25B88003FE3BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EAB17E25B88003FE3BE /* StoreKit.framework */; };
-		CA14F5D1180CF5B10085C707 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA14F5D0180CF5B10085C707 /* Images.xcassets */; };
 		CA71FDCA17DD25F000E1BFB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */; };
 		CA9CCCD017DD6AF100F1BF90 /* AppointmentCleanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA9CCCCF17DD6AF100F1BF90 /* AppointmentCleanViewController.m */; };
 		CA9CCD1017DE3FDF00F1BF90 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */; };
@@ -51,18 +48,14 @@
 /* Begin PBXFileReference section */
 		4046D4AAC06203D05876DDB5 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		4AF69B4E11164A7C9E56CA10 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		6028EC95194CB7B0005A8946 /* JVFloatLabeledTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextField.h; sourceTree = "<group>"; };
-		6028EC96194CB7B0005A8946 /* JVFloatLabeledTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextField.m; sourceTree = "<group>"; };
-		6028EC97194CB7B0005A8946 /* JVFloatLabeledTextView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JVFloatLabeledTextView.h; sourceTree = "<group>"; };
-		6028EC98194CB7B0005A8946 /* JVFloatLabeledTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JVFloatLabeledTextView.m; sourceTree = "<group>"; };
 		6028EC9B194CBA4A005A8946 /* Homepwner.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Homepwner.xcdatamodel; sourceTree = "<group>"; };
 		605B90C01BC066D500AEA285 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
+		605F92C51CCC142B00F4FC1C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Appointment/Images.xcassets; sourceTree = "<group>"; };
 		606D4BEC1940131000451389 /* priceArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = priceArray.plist; sourceTree = "<group>"; };
 		6084E05B1940195B008D8599 /* aptSizeArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = aptSizeArray.plist; sourceTree = "<group>"; };
 		6084E05D1940220A008D8599 /* neighborhoodArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = neighborhoodArray.plist; sourceTree = "<group>"; };
 		60CA32F219529279006E222B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		60CA32F4195294A4006E222B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Pods/TestFlightSDK/libTestFlight.a; sourceTree = "<group>"; };
-		60F2221218302D610004B4A1 /* white.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = white.png; sourceTree = "<group>"; };
 		BE0E4E9B14323F6D00F05B13 /* BrokersLabItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrokersLabItemCell.h; sourceTree = "<group>"; };
 		BE0E4E9C14323F6D00F05B13 /* BrokersLabItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokersLabItemCell.m; sourceTree = "<group>"; };
 		BE0E4EB2143262F700F05B13 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -90,7 +83,6 @@
 		CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CA0F3EA517E25B45003FE3BE /* libz.1.1.3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.1.3.dylib; path = usr/lib/libz.1.1.3.dylib; sourceTree = SDKROOT; };
 		CA0F3EAB17E25B88003FE3BE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		CA14F5D0180CF5B10085C707 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = BrokersLab/Images.xcassets; sourceTree = SOURCE_ROOT; };
 		CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CA9CCCCE17DD6AF100F1BF90 /* AppointmentCleanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppointmentCleanViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CA9CCCCF17DD6AF100F1BF90 /* AppointmentCleanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentCleanViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
@@ -136,17 +128,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6028EC94194CB7B0005A8946 /* JVFloatLabeledTextField */ = {
-			isa = PBXGroup;
-			children = (
-				6028EC95194CB7B0005A8946 /* JVFloatLabeledTextField.h */,
-				6028EC96194CB7B0005A8946 /* JVFloatLabeledTextField.m */,
-				6028EC97194CB7B0005A8946 /* JVFloatLabeledTextView.h */,
-				6028EC98194CB7B0005A8946 /* JVFloatLabeledTextView.m */,
-			);
-			path = JVFloatLabeledTextField;
-			sourceTree = "<group>";
-		};
 		605627DC19456EEE00904307 /* Plists */ = {
 			isa = PBXGroup;
 			children = (
@@ -216,7 +197,6 @@
 			children = (
 				605627DC19456EEE00904307 /* Plists */,
 				CA72EC5E17D2982F00E7E595 /* Images */,
-				CA6D7AAA17D6FEE90018CD80 /* Controls */,
 				CA6D7AA917D6F6870018CD80 /* App Delegate */,
 				CAD8427017D4484800A584E9 /* MainStoryboard.storyboard */,
 				CAAD83A4180A4B5A000EB5FB /* Appointments Tab */,
@@ -259,19 +239,10 @@
 			name = "App Delegate";
 			sourceTree = "<group>";
 		};
-		CA6D7AAA17D6FEE90018CD80 /* Controls */ = {
-			isa = PBXGroup;
-			children = (
-				6028EC94194CB7B0005A8946 /* JVFloatLabeledTextField */,
-			);
-			name = Controls;
-			sourceTree = "<group>";
-		};
 		CA72EC5E17D2982F00E7E595 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				CA14F5D0180CF5B10085C707 /* Images.xcassets */,
-				60F2221218302D610004B4A1 /* white.png */,
+				605F92C51CCC142B00F4FC1C /* Images.xcassets */,
 			);
 			name = Images;
 			path = ..;
@@ -349,14 +320,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA14F5D1180CF5B10085C707 /* Images.xcassets in Resources */,
+				605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */,
 				CAD8427117D4484800A584E9 /* MainStoryboard.storyboard in Resources */,
 				CAD8427517D4505D00A584E9 /* BrokersLabItemCell.xib in Resources */,
 				CAD8427F17D54D0400A584E9 /* AppointmentInputViewController.xib in Resources */,
 				CABEA7F5180B8D3C008C705B /* Settings.plist in Resources */,
 				605B90C11BC066D500AEA285 /* Launch Screen.storyboard in Resources */,
 				606D4BED1940131000451389 /* priceArray.plist in Resources */,
-				60F2221318302D610004B4A1 /* white.png in Resources */,
 				6084E05C1940195B008D8599 /* aptSizeArray.plist in Resources */,
 				6084E05E1940220A008D8599 /* neighborhoodArray.plist in Resources */,
 			);
@@ -388,10 +358,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				BE4E18F2140D9EB80007F01B /* main.m in Sources */,
-				6028EC99194CB7B0005A8946 /* JVFloatLabeledTextField.m in Sources */,
 				BE4E18F6140D9EB80007F01B /* BrokersLabAppDelegate.m in Sources */,
 				BE4E18FE140D9EE70007F01B /* AppointmentsViewController.m in Sources */,
-				6028EC9A194CB7B0005A8946 /* JVFloatLabeledTextView.m in Sources */,
 				BE4E1904140DA6EC0007F01B /* BrokersLabItemStore.m in Sources */,
 				BE58F4A5141011C300C6D116 /* AppointmentInputViewController.m in Sources */,
 				BE0E4E9D14323F6D00F05B13 /* BrokersLabItemCell.m in Sources */,

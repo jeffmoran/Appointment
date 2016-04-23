@@ -86,22 +86,11 @@
     
     [self.tableView setAllowsSelection:NO];
     
-    UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"back.png"]
-                                                             style:UIBarButtonItemStyleBordered
-                                                            target:self
-                                                            action:@selector(back:)];
-    
-    
     UIBarButtonItem *menu = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStyleBordered
                                                             target:self
                                                             action:@selector(menu)];
-    [[self navigationItem] setLeftBarButtonItem:back];
-    [[self navigationItem] setRightBarButtonItem:menu];
+	[[self navigationItem] setRightBarButtonItem:menu];
     [[self navigationItem] setTitle:@"BrokersLab"];
-}
-
-- (IBAction)back:(id)sender {
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void) menu {
