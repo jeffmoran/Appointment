@@ -142,10 +142,8 @@
 - (BrokersLabItem *)createItem {
     BrokersLabItem *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"BrokersLabItem"
                                                 inManagedObjectContext:context];
-    
-   
-
-    [allItems addObject:newItem];
+	
+	[allItems addObject:newItem];
    
     return newItem;
 }

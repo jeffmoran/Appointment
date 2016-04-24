@@ -36,5 +36,7 @@
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>
 	</array>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Give permission for location.</string>
 </dict>
 </plist>

@@ -38,7 +38,6 @@
 		CAD8426317D4294200A584E9 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD8426117D4294200A584E9 /* MapViewController.m */; };
 		CAD8426817D42EDC00A584E9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8426717D42EDC00A584E9 /* CoreLocation.framework */; };
 		CAD8426A17D42EE100A584E9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8426917D42EE100A584E9 /* MapKit.framework */; };
-		CAD8426D17D42F2600A584E9 /* MapPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = CAD8426C17D42F2600A584E9 /* MapPoint.m */; };
 		CAD8427117D4484800A584E9 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAD8427017D4484800A584E9 /* MainStoryboard.storyboard */; };
 		CAD8427517D4505D00A584E9 /* BrokersLabItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD8427417D4505C00A584E9 /* BrokersLabItemCell.xib */; };
 		CAD8427F17D54D0400A584E9 /* AppointmentInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAD8427E17D54D0400A584E9 /* AppointmentInputViewController.xib */; };
@@ -92,8 +91,6 @@
 		CAD8426117D4294200A584E9 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		CAD8426717D42EDC00A584E9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CAD8426917D42EE100A584E9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
-		CAD8426B17D42F2600A584E9 /* MapPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapPoint.h; sourceTree = "<group>"; };
-		CAD8426C17D42F2600A584E9 /* MapPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapPoint.m; sourceTree = "<group>"; };
 		CAD8427017D4484800A584E9 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		CAD8427417D4505C00A584E9 /* BrokersLabItemCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BrokersLabItemCell.xib; sourceTree = "<group>"; };
 		CAD8427E17D54D0400A584E9 /* AppointmentInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentInputViewController.xib; sourceTree = "<group>"; };
@@ -206,8 +203,6 @@
 				CAD8427417D4505C00A584E9 /* BrokersLabItemCell.xib */,
 				CAD8426017D4294200A584E9 /* MapViewController.h */,
 				CAD8426117D4294200A584E9 /* MapViewController.m */,
-				CAD8426B17D42F2600A584E9 /* MapPoint.h */,
-				CAD8426C17D42F2600A584E9 /* MapPoint.m */,
 				BE0E4EB71432646C00F05B13 /* BrokersLabItem.h */,
 				BE0E4EB81432646C00F05B13 /* BrokersLabItem.m */,
 				BE4E1902140DA6EC0007F01B /* BrokersLabItemStore.h */,
@@ -366,7 +361,6 @@
 				6028EC9C194CBA4A005A8946 /* Homepwner.xcdatamodel in Sources */,
 				BE0E4EB91432646C00F05B13 /* BrokersLabItem.m in Sources */,
 				CAD8426317D4294200A584E9 /* MapViewController.m in Sources */,
-				CAD8426D17D42F2600A584E9 /* MapPoint.m in Sources */,
 				CA9CCCD017DD6AF100F1BF90 /* AppointmentCleanViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -469,7 +463,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = "Homepwner/Appointment-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
@@ -505,7 +499,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = "Homepwner/Appointment-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;

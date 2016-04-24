@@ -13,16 +13,19 @@ and optimizing speed.
 ## To do:
 - Use autolayout throughout app so elements properly scale.
 - Remove traces of "BrokersLab" name.
-- Remove "GoogleMapsKit" pod and use native Apple Maps solution.
+- ~~Remove "GoogleMapsKit" pod and use native Apple Maps solution.~~
 - Set Deployment Target to iOS 9.0 and update code accordingly.
+- Need to have Maps function zoom in to search request, annotation needs to have accessory button that will take user to another app for directions. 
+- Need to change info.plist string for location permissions.
 
 ## Known bugs:
-- When clicking "Find on map" in the appointment detail view, the view is pushed twice.
-- Location isn't properly displayed on map (Google Maps API).
+- ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
+- ~~Location isn't properly displayed on map (Google Maps API).~~
 - Slight lag when creating new appointment.
+- Calendar event isn’t added properly — need to get Calendar permissions.
+- Need new Reachability library
 
 ## Dependencies
-- [GoogleMapsKit](https://github.com/fawkeswei/GoogleMapsKit)
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
 - [MCTReachability](https://github.com/ministrycentered/MCTReachability)
 - [RNGridMenu](https://github.com/rnystrom/RNGridMenu)

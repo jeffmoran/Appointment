@@ -400,12 +400,12 @@ const static CGFloat kJVFieldHeight = 40.0f;
     [self.scrollView setContentSize:CGSizeMake(320, 682)];
     
     UIBarButtonItem *done = [[UIBarButtonItem alloc] initWithTitle:@"Save"
-                                                             style:UIBarButtonItemStyleBordered
+                                                             style:UIBarButtonItemStylePlain
                                                             target:self
                                                             action:@selector(save:)];
     
     UIBarButtonItem *back = [[UIBarButtonItem alloc] initWithTitle:@"Close"
-                                                             style:UIBarButtonItemStyleBordered
+                                                             style:UIBarButtonItemStylePlain
                                                             target:self
                                                             action:@selector(goBack)];
     [[self navigationItem] setLeftBarButtonItem:back];

@@ -12,7 +12,6 @@
 #import "RNGridMenu.h"
 #import "MCTReachability.h"
 #import "Constants.h"
-#import <EventKit/EventKit.h>
 
 @interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate, RNGridMenuDelegate>
 
@@ -34,8 +33,8 @@
 @property (nonatomic, strong) NSString  *timeString;
 @property (nonatomic, strong) NSString  *addressString;
 
-@property (nonatomic, strong) NSString *mapNumber;
-
 @property (nonatomic, strong) MCTReachability *reach;
+
+@property (nonatomic, strong) NSString *calendarNotesString;
 
 @end

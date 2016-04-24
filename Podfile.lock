@@ -1,19 +1,16 @@
 PODS:
-  - GoogleMapsKit (1.0.5)
   - JVFloatLabeledTextField (1.1.0)
   - MCTReachability (1.0.0)
   - RNGridMenu (0.1.3)
   - TapkuLibrary (0.3.8)
 
 DEPENDENCIES:
-  - GoogleMapsKit
   - JVFloatLabeledTextField
   - MCTReachability
   - RNGridMenu
   - TapkuLibrary
 
 SPEC CHECKSUMS:
-  GoogleMapsKit: b5630c6678909797fc6169d7edda63cb9050d7e9
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   MCTReachability: 72b106b23826164280b6e03bc8cbd8eec47aa3df
   RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
