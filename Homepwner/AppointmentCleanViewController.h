@@ -11,7 +11,6 @@
 #import <MessageUI/MessageUI.h>
 #import "RNGridMenu.h"
 #import "MCTReachability.h"
-#import "Constants.h"
 
 @interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate, RNGridMenuDelegate>
 

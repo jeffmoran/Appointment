@@ -79,7 +79,6 @@
 															target:self
 															action:@selector(menu)];
 	[[self navigationItem] setRightBarButtonItem:menu];
-	[[self navigationItem] setTitle:@"BrokersLab"];
 	
 	_calendarNotesString = [NSString stringWithFormat:@"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\nApartment Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 }

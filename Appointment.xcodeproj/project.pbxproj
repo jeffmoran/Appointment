@@ -74,7 +74,6 @@
 		BE4E1903140DA6EC0007F01B /* BrokersLabItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokersLabItemStore.m; sourceTree = "<group>"; };
 		BE58F4A2141011C300C6D116 /* AppointmentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppointmentInputViewController.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		BE58F4A3141011C300C6D116 /* AppointmentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentInputViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		CA0F3E9117E257EE003FE3BE /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = Constants.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		CA0F3E9B17E25B0D003FE3BE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		CA0F3E9D17E25B1A003FE3BE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CA0F3E9F17E25B22003FE3BE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
@@ -197,7 +196,6 @@
 				CA6D7AA917D6F6870018CD80 /* App Delegate */,
 				CAD8427017D4484800A584E9 /* MainStoryboard.storyboard */,
 				CAAD83A4180A4B5A000EB5FB /* Appointments Tab */,
-				CA0F3E9117E257EE003FE3BE /* Constants.h */,
 				BE0E4E9B14323F6D00F05B13 /* BrokersLabItemCell.h */,
 				BE0E4E9C14323F6D00F05B13 /* BrokersLabItemCell.m */,
 				CAD8427417D4505C00A584E9 /* BrokersLabItemCell.xib */,

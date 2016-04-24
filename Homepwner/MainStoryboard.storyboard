@@ -26,7 +26,7 @@
             </objects>
             <point key="canvasLocation" x="-2911" y="-1927"/>
         </scene>
-        <!--BrokersLab-->
+        <!--Appointments View Controller-->
         <scene sceneID="NQi-qB-Gwp">
             <objects>
                 <tableViewController id="m5z-Mh-nPP" customClass="AppointmentsViewController" sceneMemberID="viewController">
@@ -50,7 +50,7 @@
                             <outlet property="delegate" destination="m5z-Mh-nPP" id="DMZ-aK-2rs"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="BrokersLab" id="xJQ-5v-jwH"/>
+                    <navigationItem key="navigationItem" id="xJQ-5v-jwH"/>
                     <connections>
                         <segue destination="QHq-wQ-Wsc" kind="push" identifier="Clean" id="PMj-mD-OLl"/>
                     </connections>
