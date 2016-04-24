@@ -25,7 +25,7 @@ and optimizing speed.
 - Calendar event isn’t added properly — need to get Calendar permissions.
 - Need new Reachability library
 
-## Dependencies
+## Open Source Libraries
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
 - [MCTReachability](https://github.com/ministrycentered/MCTReachability)
 - [RNGridMenu](https://github.com/rnystrom/RNGridMenu)

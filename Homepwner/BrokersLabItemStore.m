@@ -29,14 +29,11 @@
 {
     self = [super init];
     if(self) {                
-        // Read in Homepwner.xcdatamodeld
         model = [NSManagedObjectModel mergedModelFromBundles:nil];
-        // NSLog(@"model = %@", model);
-        
+		
         NSPersistentStoreCoordinator *psc = 
         [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
         
-        // Where does the SQLite file go?    
         NSString *path = [self itemArchivePath];
         NSURL *storeURL = [NSURL fileURLWithPath:path]; 
         
@@ -64,7 +61,6 @@
     return self;
 }
 
-
 - (void)loadAllItems 
 {
     if (!allItems) {
@@ -87,8 +83,6 @@
         
         allItems = [[NSMutableArray alloc] initWithArray:result];
     }
-    
-    
 }
 
 - (NSString *)itemArchivePath

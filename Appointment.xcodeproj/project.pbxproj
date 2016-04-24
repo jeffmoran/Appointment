@@ -14,6 +14,7 @@
 		606D4BED1940131000451389 /* priceArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 606D4BEC1940131000451389 /* priceArray.plist */; };
 		6084E05C1940195B008D8599 /* aptSizeArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6084E05B1940195B008D8599 /* aptSizeArray.plist */; };
 		6084E05E1940220A008D8599 /* neighborhoodArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6084E05D1940220A008D8599 /* neighborhoodArray.plist */; };
+		60D4836D1CCD873C00C6A294 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 60D4836C1CCD873C00C6A294 /* Info.plist */; };
 		BE0E4E9D14323F6D00F05B13 /* BrokersLabItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0E4E9C14323F6D00F05B13 /* BrokersLabItemCell.m */; };
 		BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0E4EB2143262F700F05B13 /* CoreData.framework */; };
 		BE0E4EB91432646C00F05B13 /* BrokersLabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = BE0E4EB81432646C00F05B13 /* BrokersLabItem.m */; };
@@ -55,6 +56,7 @@
 		6084E05D1940220A008D8599 /* neighborhoodArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = neighborhoodArray.plist; sourceTree = "<group>"; };
 		60CA32F219529279006E222B /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		60CA32F4195294A4006E222B /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTestFlight.a; path = Pods/TestFlightSDK/libTestFlight.a; sourceTree = "<group>"; };
+		60D4836C1CCD873C00C6A294 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		BE0E4E9B14323F6D00F05B13 /* BrokersLabItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrokersLabItemCell.h; sourceTree = "<group>"; };
 		BE0E4E9C14323F6D00F05B13 /* BrokersLabItemCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokersLabItemCell.m; sourceTree = "<group>"; };
 		BE0E4EB2143262F700F05B13 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -63,7 +65,6 @@
 		BE4E18E3140D9EB80007F01B /* Appointment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appointment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE4E18E7140D9EB80007F01B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BE4E18E9140D9EB80007F01B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
-		BE4E18ED140D9EB80007F01B /* Appointment-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Appointment-Info.plist"; sourceTree = "<group>"; };
 		BE4E18F1140D9EB80007F01B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		BE4E18F3140D9EB80007F01B /* Appointment-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appointment-Prefix.pch"; sourceTree = "<group>"; };
 		BE4E18F4140D9EB80007F01B /* BrokersLabAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BrokersLabAppDelegate.h; sourceTree = "<group>"; };
@@ -214,8 +215,8 @@
 		BE4E18EC140D9EB80007F01B /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				60D4836C1CCD873C00C6A294 /* Info.plist */,
 				6028EC9B194CBA4A005A8946 /* Homepwner.xcdatamodel */,
-				BE4E18ED140D9EB80007F01B /* Appointment-Info.plist */,
 				BE4E18F1140D9EB80007F01B /* main.m */,
 				BE4E18F3140D9EB80007F01B /* Appointment-Prefix.pch */,
 			);
@@ -321,6 +322,7 @@
 				605B90C11BC066D500AEA285 /* Launch Screen.storyboard in Resources */,
 				606D4BED1940131000451389 /* priceArray.plist in Resources */,
 				6084E05C1940195B008D8599 /* aptSizeArray.plist in Resources */,
+				60D4836D1CCD873C00C6A294 /* Info.plist in Resources */,
 				6084E05E1940220A008D8599 /* neighborhoodArray.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -460,7 +462,7 @@
 					/usr/include/libxml2,
 					"\"$(SRCROOT)\"",
 				);
-				INFOPLIST_FILE = "Homepwner/Appointment-Info.plist";
+				INFOPLIST_FILE = Homepwner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
@@ -496,7 +498,7 @@
 					/usr/include/libxml2,
 					"\"$(SRCROOT)\"",
 				);
-				INFOPLIST_FILE = "Homepwner/Appointment-Info.plist";
+				INFOPLIST_FILE = Homepwner/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;

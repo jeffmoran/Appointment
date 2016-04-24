@@ -2,7 +2,7 @@
 #import "MapViewController.h"
 
 @import AddressBook;
-
+@import Contacts;
 
 @implementation AppointmentCleanViewController
 
@@ -100,7 +100,7 @@
 		[self map];
 	}
 	if (itemIndex == 3) {
-		[self contact];
+		[self newContact];
 	}
 	if (itemIndex == 4) {
 		[self calendar];
@@ -228,94 +228,33 @@
 	[weakSelf performSegueWithIdentifier:@"map" sender:weakSelf];
 }
 
-- (void)contact{
-	if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusDenied ||
-		ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusRestricted){
-		//1
-		NSLog(@"Denied");
-		UIAlertView *cantAddContactAlert = [[UIAlertView alloc] initWithTitle: @"Cannot Add Contact" message: @"You must give the app permission to add the contact first." delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
-		[cantAddContactAlert show];
-	} else if (ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusAuthorized){
-		//2
-		NSLog(@"Authorized");
-		[self newContact];
-	} else{ //ABAddressBookGetAuthorizationStatus() == kABAuthorizationStatusNotDetermined
-		//3
-		NSLog(@"Not determined");
-		ABAddressBookRequestAccessWithCompletion(ABAddressBookCreateWithOptions(NULL, nil), ^(bool granted, CFErrorRef error) {
-			dispatch_async(dispatch_get_main_queue(), ^{
-				if (!granted){
-					//4
-					UIAlertView *cantAddContactAlert = [[UIAlertView alloc] initWithTitle: @"Cannot Add Contact" message: @"You must give the app permission to add the contact first." delegate:nil cancelButtonTitle: @"OK" otherButtonTitles: nil];
-					[cantAddContactAlert show];
-					return;
-				}
-				//5
-				[self newContact];
-			});
-		});
-	}
-}
-
 - (void)newContact {
-	NSString *firstName;
-	//NSString *lastName;
-	NSString *phoneNumber;
-	NSString *emailAddress;
-	
-	firstName = self.nameString;
-	//lastName = @"Cat";
-	phoneNumber = self.phoneString;
-	emailAddress = self.emailString;
-	
-	ABAddressBookRef addressBookRef = ABAddressBookCreateWithOptions(NULL, nil);
-	ABRecordRef contact = ABPersonCreate();
-	ABRecordSetValue(contact, kABPersonFirstNameProperty, (__bridge CFStringRef)firstName, nil);
-	//ABRecordSetValue(contact, kABPersonLastNameProperty, (__bridge CFStringRef)lastName, nil);
-	
-	
-	ABMutableMultiValueRef phoneNumbers = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-	ABMultiValueAddValueAndLabel(phoneNumbers, (__bridge CFStringRef)phoneNumber, kABPersonPhoneMobileLabel, NULL);
-	ABRecordSetValue(contact, kABPersonPhoneProperty, phoneNumbers, nil);
-	
-	ABMutableMultiValueRef emailAddresses = ABMultiValueCreateMutable(kABMultiStringPropertyType);
-	ABMultiValueAddValueAndLabel(emailAddresses, (__bridge CFStringRef)emailAddress, kABWorkLabel, NULL);
-	
-	ABRecordSetValue(contact, kABPersonEmailProperty, emailAddresses, nil);
-	
-	ABAddressBookAddRecord(addressBookRef, contact, nil);
-	
-	// Check for duplicates
-	NSArray *allContacts = (__bridge NSArray *)ABAddressBookCopyArrayOfAllPeople(addressBookRef);
-	for (id record in allContacts){
-		ABRecordRef thisContact = (__bridge ABRecordRef)record;
-		if (CFStringCompare(ABRecordCopyCompositeName(thisContact),
-							ABRecordCopyCompositeName(contact), 0) == kCFCompareEqualTo){
-			//The contact already exists!
-			UIAlertView *contactExistsAlert = [[UIAlertView alloc]initWithTitle:[NSString stringWithFormat:@"%@ already exists! Please delete or update.", firstName]
-																		message:nil
-																	   delegate:nil cancelButtonTitle:@"OK"
-															  otherButtonTitles: nil];
-			[contactExistsAlert show];
-			return;
-		}
-	}
-	
-	ABAddressBookSave(addressBookRef, nil);
-	UIAlertView *contactAddedAlert = [[UIAlertView alloc]initWithTitle:@"Contact Added" message:nil delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
-	[contactAddedAlert show];
-	
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	if (buttonIndex == 0)
-	{
-		NSLog(@"LEAD SHARED (OPEN LEADS MAIN)");
-		
-	}
-	if (buttonIndex == 1)
-	{
-		NSLog(@"LEAD NOT SHARED (OPEN LEADS MAIN)");
+	if( [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusNotDetermined) {
+		CNContactStore *contactStore = [[CNContactStore alloc] init];
+		[contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL accessGranted, NSError *_Nullable error) {
+			NSLog(@"Error: %@",error);
+			dispatch_async(dispatch_get_main_queue(), ^{
+				NSLog(@"requestAccessForEntityType");
+				CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+				switch (authorizationStatus) {
+					case CNAuthorizationStatusNotDetermined:
+						NSLog(@"The user has not yet made a choice regarding whether the application may access contact data.");
+						NSLog(@"%@", error);
+						break;
+					case CNAuthorizationStatusRestricted:
+						NSLog(@"The application is not authorized to access contact data. The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.");
+						break;
+					case CNAuthorizationStatusAuthorized:
+						NSLog(@"The application is authorized to access contact data.");
+						break;
+					case CNAuthorizationStatusDenied:
+						NSLog(@"The user explicitly denied access to contact data for the application.");
+						break;
+					default:
+						break;
+				}
+			});
+		}];
 	}
 }
 
