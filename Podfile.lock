@@ -1,16 +1,24 @@
 PODS:
+  - ChameleonFramework (2.1.0):
+    - ChameleonFramework/Default (= 2.1.0)
+  - ChameleonFramework/Default (2.1.0)
+  - DZNEmptyDataSet (1.8)
   - JVFloatLabeledTextField (1.1.0)
   - MCTReachability (1.0.0)
   - RNGridMenu (0.1.3)
   - TapkuLibrary (0.3.8)
 
 DEPENDENCIES:
+  - ChameleonFramework
+  - DZNEmptyDataSet
   - JVFloatLabeledTextField
   - MCTReachability
   - RNGridMenu
   - TapkuLibrary
 
 SPEC CHECKSUMS:
+  ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
+  DZNEmptyDataSet: d2351b2e8daefa40433ef292e246e21f6be31a7b
   JVFloatLabeledTextField: ea4a3d8387ddd43724c472bb2b8ab39b79af05d4
   MCTReachability: 72b106b23826164280b6e03bc8cbd8eec47aa3df
   RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d

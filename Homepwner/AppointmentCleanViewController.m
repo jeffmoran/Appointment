@@ -2,7 +2,7 @@
 #import "MapViewController.h"
 
 @implementation AppointmentCleanViewController
-@synthesize contact, contactStore;
+@synthesize contact, contactStore, event, eventStore;
 
 #pragma mark View Lifecycle
 
@@ -167,9 +167,7 @@
 		
 		[controller setToRecipients:toRecipients];
 		
-		NSString *emailBody = @"";
-		
-		//        NSString *emailBody = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/> <b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/> <b>Property Price:</b><br/>%@<br/><br/> <b>Neighborhood:</b><br/>%@  <br/><br/> <b>Apartment Size:</b><br/>%@ <br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.timeString, self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
+		NSString *emailBody = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/> <b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/> <b>Property Price:</b><br/>%@<br/><br/> <b>Neighborhood:</b><br/>%@  <br/><br/> <b>Apartment Size:</b><br/>%@ <br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.timeString, self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 		
 		[controller setMessageBody:emailBody isHTML:YES];
 		
@@ -196,28 +194,159 @@
 }
 
 -(void)calendar{
+	eventStore = [[EKEventStore alloc] init];
+	
+	
 	UIAlertController *alertController = [UIAlertController
-										  alertControllerWithTitle:@"Add to calendar?"
-										  message:@"Would you like to add this appointment to your calendar"
+										  alertControllerWithTitle:[NSString stringWithFormat:@"%@ appointment with %@",self.timeString, self.nameString]
+										  message:@"Add this appointment to your calendar?"
 										  preferredStyle:UIAlertControllerStyleAlert];
 	
 	UIAlertAction *cancelAction = [UIAlertAction
-								   actionWithTitle:@"Maybe later."
+								   actionWithTitle:@"Maybe later"
 								   style:UIAlertActionStyleCancel
 								   handler:^(UIAlertAction *action) {
 									   NSLog(@"Cancel action");
 								   }];
 	
 	UIAlertAction *yesAction = [UIAlertAction
-								actionWithTitle:@"Yes."
+								actionWithTitle:@"Yes"
 								style:UIAlertActionStyleDefault
 								handler:^(UIAlertAction *action) {
-									NSLog(@"yesAction");
+									[eventStore requestAccessToEntityType:EKEntityTypeEvent completion:^(BOOL granted, NSError * _Nullable error) {
+										EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
+										dispatch_async(dispatch_get_main_queue(), ^{
+											switch (authorizationStatus) {
+												case EKAuthorizationStatusNotDetermined: {
+													NSLog(@"The user has not yet made a choice regarding whether the app may access the service.");
+												}
+													break;
+												case EKAuthorizationStatusRestricted: {
+													NSLog(@"The app is not authorized to access the service. The user cannot change this app’s authorization status, possibly due to active restrictions such as parental controls being in place.");
+													
+													UIAlertController *alertController = [UIAlertController
+																						  alertControllerWithTitle:@"Unable to add event"
+																						  message:@"Please check your Calendar Permissions in Settings and try again."
+																						  preferredStyle:UIAlertControllerStyleAlert];
+													
+													UIAlertAction *cancelAction = [UIAlertAction
+																				   actionWithTitle:@"OK"
+																				   style:UIAlertActionStyleCancel
+																				   handler:^(UIAlertAction *action) {
+																					   NSLog(@"Cancel action");
+																				   }];
+													
+													[alertController addAction:cancelAction];
+													
+													[self presentViewController:alertController animated:YES completion:nil];
+												}
+													break;
+												case EKAuthorizationStatusAuthorized: {
+													NSLog(@"The app is authorized to access the service.");
+													
+													event  = [EKEvent eventWithEventStore:eventStore];
+													event.title = [NSString stringWithFormat:@"%@ appointment with %@",self.timeString, self.nameString];
+													event.location = [NSString stringWithFormat:@"%@", self.addressString];
+													event.notes = _calendarNotesString;
+													
+													NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+													
+													[dateFormatter setDateFormat:@"MMMM d yyyy h:mm aa"];
+													NSDate *dateFromString = [[NSDate alloc] init];
+													
+													dateFromString = [dateFormatter dateFromString:self.timeString];
+													
+													event.startDate = dateFromString;
+													event.endDate = [NSDate dateWithTimeInterval:3600 sinceDate:dateFromString];
+													
+													NSLog(@"%@", dateFromString);
+													NSLog(@"%@", self.timeString);
+													
+													NSArray *alarms = @[
+																		[EKAlarm alarmWithRelativeOffset:-3600], // 1 hour
+																		[EKAlarm alarmWithRelativeOffset:-86400] // 1 day
+																		];
+													
+													event.alarms = alarms;
+													[event setCalendar:[eventStore defaultCalendarForNewEvents]];
+													
+													[self saveNewEvent];
+												}
+													break;
+												case EKAuthorizationStatusDenied: {
+													NSLog(@"The user explicitly denied access to the service for the app.");
+													
+													UIAlertController *alertController = [UIAlertController
+																						  alertControllerWithTitle:@"Unable to add event"
+																						  message:@"Please check your Calendar Permissions in Settings and try again."
+																						  preferredStyle:UIAlertControllerStyleAlert];
+													
+													UIAlertAction *cancelAction = [UIAlertAction
+																				   actionWithTitle:@"OK"
+																				   style:UIAlertActionStyleCancel
+																				   handler:^(UIAlertAction *action) {
+																					   NSLog(@"Cancel action");
+																				   }];
+													
+													[alertController addAction:cancelAction];
+													
+													[self presentViewController:alertController animated:YES completion:nil];
+												}
+													break;
+												default:
+													break;
+											}
+										});
+									}];
 								}];
 	
 	[alertController addAction:cancelAction];
 	[alertController addAction:yesAction];
 	[self presentViewController:alertController animated:YES completion:nil];
+}
+
+- (void)saveNewEvent {
+	NSError *saveError;
+	
+	if ([eventStore saveEvent:event span:EKSpanThisEvent error:&saveError]) {
+		NSLog(@"Event saved.");
+		
+		UIAlertController *alertController = [UIAlertController
+											  alertControllerWithTitle:[NSString stringWithFormat:@"Appointment added to your calendar successfully."]
+											  message:nil
+											  preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *cancelAction = [UIAlertAction
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
+									   handler:^(UIAlertAction *action) {
+										   
+									   }];
+		
+		[alertController addAction:cancelAction];
+		
+		[self presentViewController:alertController animated:YES completion:nil];
+	}
+	
+	else {
+		NSLog(@"Event not saved. %@", saveError);
+		
+		UIAlertController *alertController = [UIAlertController
+											  alertControllerWithTitle:[NSString stringWithFormat:@"Appointment not added to your calendar."]
+											  message:@"Please check your Calendar Permissions in Settings and try again."
+											  preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *cancelAction = [UIAlertAction
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
+									   handler:^(UIAlertAction *action) {
+										   NSLog(@"Cancel action");
+									   }];
+		
+		[alertController addAction:cancelAction];
+		
+		[self presentViewController:alertController animated:YES completion:nil];
+	}
 }
 
 - (void)map {
@@ -230,14 +359,13 @@
 	//Initialize contactStore and contact
 	contactStore = [[CNContactStore alloc] init];
 	contact = [[CNMutableContact alloc] init];
-
+	
 	//Request access from contactStore
 	[contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL accessGranted, NSError *_Nullable error) {
 		
 		//Create authorizationStatus and assign it to CNContactStore
 		CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
 		dispatch_async(dispatch_get_main_queue(), ^{
-			
 			
 			switch (authorizationStatus) {
 				case CNAuthorizationStatusNotDetermined:
@@ -332,7 +460,7 @@
 		NSLog(@"Contact not saved. %@", saveError);
 		
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle:[NSString stringWithFormat:@"%@ contact not saved successfully.", _nameString]
+											  alertControllerWithTitle:[NSString stringWithFormat:@"%@ contact not saved.", _nameString]
 											  message:@"Please check your Contact Permissions in Settings and try again."
 											  preferredStyle:UIAlertControllerStyleAlert];
 		
@@ -375,10 +503,8 @@
 }
 
 #pragma mark - MFMailComposeViewController Delegate
-- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error
-{
-	switch (result)
-	{
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+	switch (result) {
 		case MFMailComposeResultCancelled:
 			NSLog(@"Mail cancelled: you cancelled the operation and no email message was queued");
 			break;
@@ -386,7 +512,6 @@
 			NSLog(@"Mail saved: you saved the email message in the Drafts folder");
 			break;
 		case MFMailComposeResultSent:
-			
 			NSLog(@"Mail send: the email message is queued in the outbox. It is ready to send the next time the user connects to email");
 			break;
 		case MFMailComposeResultFailed:

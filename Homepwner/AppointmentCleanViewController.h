@@ -1,11 +1,13 @@
 #import <UIKit/UIKit.h>
 #import <TapkuLibrary/TapkuLibrary.h>
-#import <MessageUI/MessageUI.h>
 #import "RNGridMenu.h"
 #import "MCTReachability.h"
 
 @import Contacts;
-@interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate, RNGridMenuDelegate>
+@import EventKit;
+@import MessageUI;
+
+@interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, RNGridMenuDelegate>
 
 @property (nonatomic,strong) NSArray *cells;
 
@@ -29,9 +31,10 @@
 
 @property (nonatomic, strong) NSString *calendarNotesString;
 
-@property (nonatomic, strong) CNContactStore *contactStore;// = [[CNContactStore alloc] init];
-@property (nonatomic, strong) CNMutableContact *contact;//  = [[CNMutableContact alloc] init];
+@property (nonatomic, strong) CNContactStore *contactStore;
+@property (nonatomic, strong) CNMutableContact *contact;
 
-
+@property (nonatomic, strong) EKEventStore *eventStore;
+@property (nonatomic, strong) EKEvent *event;
 
 @end
