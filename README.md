@@ -18,13 +18,14 @@ and optimizing speed.
 - Need to have Maps function zoom in to search request, annotation needs to have accessory button that will take user to another app for directions. 
 - Need to change info.plist string for location permissions.
 - Implement DZNEmptyDataSet
-- Implement Chameleon
+- ~~Implement Chameleon~~
 
 ## Known bugs:
 - ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
 - ~~Location isn't properly displayed on map (Google Maps API).~~
 - Slight lag when creating new appointment.
-- Calendar event isn’t added properly — need to get Calendar permissions.
+- ~~Calendar event isn’t added properly — need to get Calendar permissions.~~
+- ~~Contact isn’t added properly — need to get Contact permissions.~~
 - Need new Reachability library
 
 ## Open Source Libraries
