@@ -14,7 +14,7 @@ and optimizing speed.
 - Use autolayout throughout app so elements properly scale.
 - Remove traces of "BrokersLab" name.
 - ~~Remove "GoogleMapsKit" pod and use native Apple Maps solution.~~
-- Set Deployment Target to iOS 9.0 and update code accordingly.
+- ~~Set Deployment Target to iOS 9.0 and update code accordingly.~~
 - Need to have Maps function zoom in to search request, annotation needs to have accessory button that will take user to another app for directions. 
 - Need to change info.plist string for location permissions.
 

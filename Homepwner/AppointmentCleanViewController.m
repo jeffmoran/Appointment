@@ -1,10 +1,8 @@
 #import "AppointmentCleanViewController.h"
 #import "MapViewController.h"
 
-@import AddressBook;
-@import Contacts;
-
 @implementation AppointmentCleanViewController
+@synthesize contact, contactStore;
 
 #pragma mark View Lifecycle
 
@@ -229,32 +227,125 @@
 }
 
 - (void)newContact {
-	if( [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts] == CNAuthorizationStatusNotDetermined) {
-		CNContactStore *contactStore = [[CNContactStore alloc] init];
-		[contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL accessGranted, NSError *_Nullable error) {
-			NSLog(@"Error: %@",error);
-			dispatch_async(dispatch_get_main_queue(), ^{
-				NSLog(@"requestAccessForEntityType");
-				CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
-				switch (authorizationStatus) {
-					case CNAuthorizationStatusNotDetermined:
-						NSLog(@"The user has not yet made a choice regarding whether the application may access contact data.");
-						NSLog(@"%@", error);
-						break;
-					case CNAuthorizationStatusRestricted:
-						NSLog(@"The application is not authorized to access contact data. The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.");
-						break;
-					case CNAuthorizationStatusAuthorized:
-						NSLog(@"The application is authorized to access contact data.");
-						break;
-					case CNAuthorizationStatusDenied:
-						NSLog(@"The user explicitly denied access to contact data for the application.");
-						break;
-					default:
-						break;
+	//Initialize contactStore and contact
+	contactStore = [[CNContactStore alloc] init];
+	contact = [[CNMutableContact alloc] init];
+
+	//Request access from contactStore
+	[contactStore requestAccessForEntityType:CNEntityTypeContacts completionHandler:^(BOOL accessGranted, NSError *_Nullable error) {
+		
+		//Create authorizationStatus and assign it to CNContactStore
+		CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
+		dispatch_async(dispatch_get_main_queue(), ^{
+			
+			
+			switch (authorizationStatus) {
+				case CNAuthorizationStatusNotDetermined:
+					NSLog(@"The user has not yet made a choice regarding whether the application may access contact data.");
+					NSLog(@"%@", error);
+					break;
+				case CNAuthorizationStatusRestricted: {
+					NSLog(@"The application is not authorized to access contact data. The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.");
+					
+					UIAlertController *alertController = [UIAlertController
+														  alertControllerWithTitle:@"Unable to add contact"
+														  message:@"Please check your Contact Permissions in Settings and try again."
+														  preferredStyle:UIAlertControllerStyleAlert];
+					
+					UIAlertAction *cancelAction = [UIAlertAction
+												   actionWithTitle:@"OK"
+												   style:UIAlertActionStyleCancel
+												   handler:^(UIAlertAction *action) {
+													   NSLog(@"Cancel action");
+												   }];
+					
+					[alertController addAction:cancelAction];
+					
+					[self presentViewController:alertController animated:YES completion:nil];
+					
+					break;
 				}
-			});
-		}];
+				case CNAuthorizationStatusAuthorized:
+					NSLog(@"The application is authorized to access contact data.");
+					contact.givenName = _nameString;
+					contact.phoneNumbers = [[NSArray alloc]initWithObjects:[CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:_phoneString]], nil];
+					contact.emailAddresses = [[NSArray alloc] initWithObjects:[CNLabeledValue labeledValueWithLabel:CNLabelHome value:_emailString], nil];
+					
+					[self saveNewContact];
+					
+					break;
+				case CNAuthorizationStatusDenied: {
+					NSLog(@"The user explicitly denied access to contact data for the application.");
+					
+					UIAlertController *alertController = [UIAlertController
+														  alertControllerWithTitle:@"Unable to add contact"
+														  message:@"Please check your Contact Permissions in Settings and try again."
+														  preferredStyle:UIAlertControllerStyleAlert];
+					
+					UIAlertAction *cancelAction = [UIAlertAction
+												   actionWithTitle:@"OK"
+												   style:UIAlertActionStyleCancel
+												   handler:^(UIAlertAction *action) {
+													   NSLog(@"Cancel action");
+												   }];
+					
+					[alertController addAction:cancelAction];
+					
+					[self presentViewController:alertController animated:YES completion:nil];
+					
+					break;
+				}
+				default:
+					break;
+			}
+		});
+	}];
+}
+
+- (void)saveNewContact {
+	CNSaveRequest *saveRequest = [[CNSaveRequest alloc] init];
+	[saveRequest addContact:contact toContainerWithIdentifier:nil];
+	
+	NSError *saveError = nil;
+	
+	if ([contactStore executeSaveRequest:saveRequest error:&saveError]){
+		NSLog(@"Contact saved.");
+		
+		UIAlertController *alertController = [UIAlertController
+											  alertControllerWithTitle:[NSString stringWithFormat:@"%@ contact saved successfully.", _nameString]
+											  message:nil
+											  preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *cancelAction = [UIAlertAction
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
+									   handler:^(UIAlertAction *action) {
+										   NSLog(@"Cancel action");
+									   }];
+		
+		[alertController addAction:cancelAction];
+		
+		[self presentViewController:alertController animated:YES completion:nil];
+	}
+	
+	else{
+		NSLog(@"Contact not saved. %@", saveError);
+		
+		UIAlertController *alertController = [UIAlertController
+											  alertControllerWithTitle:[NSString stringWithFormat:@"%@ contact not saved successfully.", _nameString]
+											  message:@"Please check your Contact Permissions in Settings and try again."
+											  preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *cancelAction = [UIAlertAction
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
+									   handler:^(UIAlertAction *action) {
+										   NSLog(@"Cancel action");
+									   }];
+		
+		[alertController addAction:cancelAction];
+		
+		[self presentViewController:alertController animated:YES completion:nil];
 	}
 }
 

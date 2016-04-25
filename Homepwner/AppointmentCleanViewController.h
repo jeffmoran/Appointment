@@ -1,17 +1,10 @@
-//
-//  AppointmentCleanViewController.h
-//  BrokersLab
-//
-//  Created by Jeffrey Moran on 9/8/13.
-//  Copyright (c) 2013 Kreftwerks, LLC. All rights reserved.
-//
-
 #import <UIKit/UIKit.h>
 #import <TapkuLibrary/TapkuLibrary.h>
 #import <MessageUI/MessageUI.h>
 #import "RNGridMenu.h"
 #import "MCTReachability.h"
 
+@import Contacts;
 @interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, UIActionSheetDelegate, UIAlertViewDelegate, RNGridMenuDelegate>
 
 @property (nonatomic,strong) NSArray *cells;
@@ -35,5 +28,10 @@
 @property (nonatomic, strong) MCTReachability *reach;
 
 @property (nonatomic, strong) NSString *calendarNotesString;
+
+@property (nonatomic, strong) CNContactStore *contactStore;// = [[CNContactStore alloc] init];
+@property (nonatomic, strong) CNMutableContact *contact;//  = [[CNMutableContact alloc] init];
+
+
 
 @end

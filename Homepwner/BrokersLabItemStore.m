@@ -49,9 +49,8 @@
         }
         
         // Create the managed object context
-        context = [[NSManagedObjectContext alloc] init];
-        [context setPersistentStoreCoordinator:psc];
-        
+		context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
+        [context setPersistentStoreCoordinator:psc];        
         
         // The managed object context can manage undo, but we don't need it
         [context setUndoManager:nil];
