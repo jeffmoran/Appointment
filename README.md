@@ -19,14 +19,15 @@ and optimizing speed.
 - Need to change info.plist string for location permissions.
 - Implement DZNEmptyDataSet
 - ~~Implement Chameleon~~
+- Implement new Reachability library
 
 ## Known bugs:
-- ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
-- ~~Location isn't properly displayed on map (Google Maps API).~~
 - Slight lag when creating new appointment.
+- ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
+- ~~Location isn't properly displayed on map.~~
 - ~~Calendar event isn’t added properly — need to get Calendar permissions.~~
 - ~~Contact isn’t added properly — need to get Contact permissions.~~
-- Need new Reachability library
+- ~~“Unbalanced calls to begin/end appearance transitions for” bug~~
 
 ## Open Source Libraries
 - [Chameleon](https://github.com/ViccAlexander/Chameleon)

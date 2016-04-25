@@ -2,15 +2,16 @@
 #import "BrokersLabItem.h"
 #import "BrokersLabItemStore.h"
 #import "AppointmentsViewController.h"
-#import <QuartzCore/QuartzCore.h>
 
-@interface AppointmentInputViewController()<UITextFieldDelegate, UITextViewDelegate>
+@interface AppointmentInputViewController()
 
 @end
+
 @implementation AppointmentInputViewController
 @synthesize item, dismissBlock;
 
 const static CGFloat kJVFieldHeight = 40.0f;
+const static CGFloat kJVFieldWidth = 300.0f;
 #define fontface [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
 #define fontface2 [UIFont fontWithName:@"HelveticaNeue-Light" size:11];
 
@@ -20,7 +21,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     UIColor *floatingLabelColor = [UIColor grayColor];
     [self.view setTintColor:[UIColor colorWithRed:0.502 green:0.000 blue:0.000 alpha:1.000]];
     
-    self.nameField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 22, 237, kJVFieldHeight)];
+    self.nameField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 22, kJVFieldWidth, kJVFieldHeight)];
     self.nameField.placeholder = NSLocalizedString(@"Client Name", @"");
     self.nameField.font = fontface;
     self.nameField.floatingLabel.font = fontface2;
@@ -41,7 +42,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputName];
     
-    self.emailField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 68, 237, kJVFieldHeight)];
+    self.emailField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 68, kJVFieldWidth, kJVFieldHeight)];
     self.emailField.placeholder = NSLocalizedString(@"Client Email Address", @"");
     self.emailField.font = fontface;
     self.emailField.floatingLabel.font = fontface2;
@@ -63,7 +64,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputEmail];
     
-    self.phoneField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 114, 237, kJVFieldHeight)];
+    self.phoneField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 114, kJVFieldWidth, kJVFieldHeight)];
     self.phoneField.placeholder = NSLocalizedString(@"Client Phone Number", @"");
     self.phoneField.font = fontface;
     self.phoneField.floatingLabel.font = fontface2;
@@ -85,7 +86,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputPhone];
     
-    self.timeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 160, 237, kJVFieldHeight)];
+    self.timeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 160, kJVFieldWidth, kJVFieldHeight)];
     self.timeField.placeholder = NSLocalizedString(@"Appointment Time", @"");
     self.timeField.font = fontface;
     self.timeField.floatingLabel.font = fontface2;
@@ -106,8 +107,8 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputTime];
     
-    self.addressField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 206, 237, kJVFieldHeight)];
-    self.addressField.placeholder = NSLocalizedString(@"Property Address", @"");
+    self.addressField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 206, kJVFieldWidth, kJVFieldHeight)];
+    self.addressField.placeholder = @"Property Address";
     self.addressField.font = fontface;
     self.addressField.floatingLabel.font = fontface2;
     self.addressField.floatingLabelTextColor = floatingLabelColor;
@@ -127,7 +128,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputAddress];
     
-    self.moveindateField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 252, 237, kJVFieldHeight)];
+    self.moveindateField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 252, kJVFieldWidth, kJVFieldHeight)];
     self.moveindateField.placeholder = NSLocalizedString(@"Move-In Date", @"");
     self.moveindateField.font = fontface;
     self.moveindateField.floatingLabel.font = fontface2;
@@ -148,7 +149,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputMoveInDate];
     
-    self.petsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 298, 237, kJVFieldHeight)];
+    self.petsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 298, kJVFieldWidth, kJVFieldHeight)];
     self.petsField.placeholder = NSLocalizedString(@"Pets", @"");
     self.petsField.font = fontface;
     self.petsField.floatingLabel.font = fontface2;
@@ -169,7 +170,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputPets];
     
-    self.priceField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 344, 237, kJVFieldHeight)];
+    self.priceField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 344, kJVFieldWidth, kJVFieldHeight)];
     self.priceField.placeholder = NSLocalizedString(@"Price", @"");
     self.priceField.font = fontface;
     self.priceField.floatingLabel.font = fontface2;
@@ -190,7 +191,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputPrice];
     
-    self.neighborhoodField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 390, 237, kJVFieldHeight)];
+    self.neighborhoodField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 390, kJVFieldWidth, kJVFieldHeight)];
     self.neighborhoodField.placeholder = NSLocalizedString(@"Neighborhood", @"");
     self.neighborhoodField.font = fontface;
     self.neighborhoodField.floatingLabel.font = fontface2;
@@ -211,7 +212,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputNeighborhood];
     
-    self.aptsizeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 436, 237, kJVFieldHeight)];
+    self.aptsizeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 436, kJVFieldWidth, kJVFieldHeight)];
     self.aptsizeField.placeholder = NSLocalizedString(@"Apartment Size", @"");
     self.aptsizeField.font = fontface;
     self.aptsizeField.floatingLabel.font = fontface2;
@@ -232,7 +233,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputAptSize];
     
-    self.roomsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 482, 237, kJVFieldHeight)];
+    self.roomsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 482, kJVFieldWidth, kJVFieldHeight)];
     self.roomsField.placeholder = NSLocalizedString(@"Bedrooms", @"");
     self.roomsField.font = fontface;
     self.roomsField.floatingLabel.font = fontface2;
@@ -253,7 +254,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputRooms];
     
-    self.bathsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 528, 237, kJVFieldHeight)];
+    self.bathsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 528, kJVFieldWidth, kJVFieldHeight)];
     self.bathsField.placeholder = NSLocalizedString(@"Bathrooms", @"");
     self.bathsField.font = fontface;
     self.bathsField.floatingLabel.font = fontface2;
@@ -274,7 +275,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputBaths];
     
-    self.accessField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 574, 237, kJVFieldHeight)];
+    self.accessField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 574, kJVFieldWidth, kJVFieldHeight)];
     self.accessField.placeholder = NSLocalizedString(@"Access", @"");
     self.accessField.font = fontface;
     self.accessField.floatingLabel.font = fontface2;
@@ -295,7 +296,7 @@ const static CGFloat kJVFieldHeight = 40.0f;
     //add the image view to the current view
     [self.scrollView addSubview:self.inputAccess];
     
-    self.guarantorField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 620, 237, kJVFieldHeight)];
+    self.guarantorField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 620, kJVFieldWidth, kJVFieldHeight)];
     self.guarantorField.placeholder = NSLocalizedString(@"Guarantor", @"");
     self.guarantorField.font = fontface;
     self.guarantorField.floatingLabel.font = fontface2;

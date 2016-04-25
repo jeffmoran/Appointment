@@ -4,7 +4,7 @@
 
 @class BrokersLabItem;
 
-@interface AppointmentInputViewController : UIViewController <UINavigationControllerDelegate, UITextFieldDelegate, UIPopoverControllerDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
+@interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     
     NSArray *bedsBathsArray;
     NSArray *aptSizeArray;
@@ -15,7 +15,6 @@
     NSArray *guarantorArray;
 }
 
-//@property(strong, nonatomic) MVTextInputsScroller *inputsScroller;
 @property(strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *nameField;

@@ -11,7 +11,6 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
 	[[self tableView] reloadData];
 }
 
@@ -33,6 +32,9 @@
 	self.tableView.allowsSelectionDuringEditing = YES;
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+	
+}
 #pragma mark - Add new appointment
 - (IBAction)addNewItem:(id)sender {
 	BrokersLabItem *newItem = [[BrokersLabItemStore sharedStore] createItem];

@@ -1,5 +1,6 @@
 #import "AppointmentCleanViewController.h"
 #import "MapViewController.h"
+#import <ChameleonFramework/Chameleon.h>
 
 @implementation AppointmentCleanViewController
 @synthesize contact, contactStore, event, eventStore;
@@ -69,42 +70,72 @@
 	self.cells = @[nameField,emailField,phoneNumberField,timeField,addressField,moveInDateField,petsField, priceField, neighborhoodField, aptsizeField, roomsField,bathsField, accessField, guarantorField];
 }
 
+#pragma mark - UIViewController Lifecycle
+
 - (void)viewDidLoad {
-	
+	[super viewDidLoad];
+
 	[self.tableView setAllowsSelection:NO];
 	
 	UIBarButtonItem *menu = [[UIBarButtonItem alloc] initWithTitle:@"Menu" style:UIBarButtonItemStylePlain
 															target:self
-															action:@selector(menu)];
+															action:@selector(showGrid)];
 	[[self navigationItem] setRightBarButtonItem:menu];
 	
 	_calendarNotesString = [NSString stringWithFormat:@"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\nApartment Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 }
 
-- (void) menu {
-	[self showGrid];
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+}
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
 }
 
 #pragma mark - RNGridMenuDelegate
 
 - (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
-	if (itemIndex == 0) {
-		[self call];
-	}
-	if (itemIndex == 1) {
-		[self email];
-	}
-	if (itemIndex == 2) {
-		[self map];
-	}
-	if (itemIndex == 3) {
-		[self newContact];
-	}
-	if (itemIndex == 4) {
-		[self calendar];
-	}
-	if (itemIndex == 5) {
-		NSLog(@"Menu cancelled.");
+	switch (itemIndex) {
+		case 0:
+			[self call];
+			break;
+		case 1:
+			[self email];
+			break;
+		case 2:
+			//[self map];
+			//NSTimer is temporary solution to "Unbalanced calls to begin/end appearance transitions" bug
+			//NSTimer is set to wait .26 seconds for RNGridMenu to completely dismiss.
+			[NSTimer scheduledTimerWithTimeInterval:.26
+											 target:self
+										   selector:@selector(map)
+										   userInfo:nil
+											repeats:NO];
+			break;
+		case 3:
+			[self newContact];
+			break;
+		case 4:
+			[self calendar];
+			break;
+		case 5:
+			NSLog(@"Cancelled");
+			break;
+		default:
+			break;
 	}
 }
 
@@ -121,11 +152,11 @@
 					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed:@"cancel"] title:@"Cancel"],
 					   ];
 	
-	RNGridMenu *av = [[RNGridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
-	av.delegate = self;
-	av.highlightColor = [UIColor colorWithRed:0.502 green:0.000 blue:0.000 alpha:1.000];
-	//    av.bounces = NO;
-	[av showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
+	RNGridMenu *menu = [[RNGridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
+	menu.delegate = self;
+	menu.highlightColor = [UIColor flatRedColor];
+	menu.itemSize = CGSizeMake(128, 128);
+	[menu showInViewController:self center:CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
 }
 
 #pragma mark - Grid methods
@@ -350,9 +381,10 @@
 }
 
 - (void)map {
-	__weak AppointmentCleanViewController *weakSelf = self;
 	NSLog(@"Maps segue");
-	[weakSelf performSegueWithIdentifier:@"map" sender:weakSelf];
+	if (self.navigationController.visibleViewController == self){
+	[self performSegueWithIdentifier:@"map" sender:self];
+	}
 }
 
 - (void)newContact {
