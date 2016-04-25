@@ -17,6 +17,8 @@ and optimizing speed.
 - ~~Set Deployment Target to iOS 9.0 and update code accordingly.~~
 - Need to have Maps function zoom in to search request, annotation needs to have accessory button that will take user to another app for directions. 
 - Need to change info.plist string for location permissions.
+- Implement DZNEmptyDataSet
+- Implement Chameleon
 
 ## Known bugs:
 - ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
@@ -26,6 +28,8 @@ and optimizing speed.
 - Need new Reachability library
 
 ## Open Source Libraries
+- [Chameleon](https://github.com/ViccAlexander/Chameleon)
+- [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet)
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
 - [MCTReachability](https://github.com/ministrycentered/MCTReachability)
 - [RNGridMenu](https://github.com/rnystrom/RNGridMenu)
