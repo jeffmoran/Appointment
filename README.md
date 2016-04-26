@@ -10,16 +10,23 @@ As this project is almost three years old at the time of me writing
 this, I will be updating old libraries, removing unused/deprecated code,
 and optimizing speed.
 
+Provided that you have [CocoaPods](http://cocoapods.org) installed, please be sure to run
+```bash
+$ pod install
+```
+to install the libraries used in this project.
+
 ## To do:
 - Use autolayout throughout app so elements properly scale.
 - Remove traces of "BrokersLab" name.
-- ~~Remove "GoogleMapsKit" pod and use native Apple Maps solution.~~
+- ~~Remove "```GoogleMapsKit```" pod and use native Apple Maps solution.~~
 - ~~Set Deployment Target to iOS 9.0 and update code accordingly.~~
 - Need to have Maps function zoom in to search request, annotation needs to have accessory button that will take user to another app for directions. 
 - Need to change info.plist string for location permissions.
-- Implement DZNEmptyDataSet
-- ~~Implement Chameleon~~
-- Implement new Reachability library
+- Implement ```DZNEmptyDataSet```.
+- ~~Implement ```Chameleon```~~
+- Implement new Reachability library.
+- Redesign ```AppointmentCleanViewController```
 
 ## Known bugs:
 - Slight lag when creating new appointment.
