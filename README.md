@@ -16,6 +16,8 @@ $ pod install
 ```
 to install the libraries used in this project.
 
+## Screenshots
+
 ## To do:
 - Use autolayout throughout app so elements properly scale.
 - Remove traces of "BrokersLab" name.
