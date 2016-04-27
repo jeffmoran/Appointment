@@ -17,7 +17,10 @@ $ pod install
 to install the libraries used in this project.
 
 ## Screenshots
-
+![Alt text](/Screenshots/1.jpg?raw=true "Optional Title")
+![Alt text](/Screenshots/2.jpg?raw=true "Optional Title")
+![Alt text](/Screenshots/3.jpg?raw=true "Optional Title")
+![Alt text](/Screenshots/4.jpg?raw=true "Optional Title")
 ## To do:
 - Use autolayout throughout app so elements properly scale.
 - Remove traces of "BrokersLab" name.
