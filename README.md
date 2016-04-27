@@ -17,21 +17,24 @@ $ pod install
 to install the libraries used in this project.
 
 ## Screenshots
-![Alt text](/Screenshots/1.jpg?raw=true "Optional Title")
-![Alt text](/Screenshots/2.jpg?raw=true "Optional Title")
-![Alt text](/Screenshots/3.jpg?raw=true "Optional Title")
-![Alt text](/Screenshots/4.jpg?raw=true "Optional Title")
+![Main screen](/Screenshots/1.jpg?raw=true)
+![Detail view](/Screenshots/2.jpg?raw=true)
+![Menu](/Screenshots/3.jpg?raw=true)
+![Maps view](/Screenshots/4.jpg?raw=true)
+
 ## To do:
 - Use autolayout throughout app so elements properly scale.
+- Implement new Reachability library.
+- Redesign ```AppointmentCleanViewController```
+- Need to be able to update appointment from detail view.
+- New menu button.
+- Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.
+- Need to change info.plist string for location permissions.
+- Implement ```DZNEmptyDataSet``` on main screen.
 - Remove traces of "BrokersLab" name.
 - ~~Remove "```GoogleMapsKit```" pod and use native Apple Maps solution.~~
 - ~~Set Deployment Target to iOS 9.0 and update code accordingly.~~
-- Need to have Maps function zoom in to search request, annotation needs to have accessory button that will take user to another app for directions. 
-- Need to change info.plist string for location permissions.
-- Implement ```DZNEmptyDataSet```.
 - ~~Implement ```Chameleon```~~
-- Implement new Reachability library.
-- Redesign ```AppointmentCleanViewController```
 
 ## Known bugs:
 - Slight lag when creating new appointment.

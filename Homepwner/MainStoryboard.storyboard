@@ -72,7 +72,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ymk-0X-4eD">
-                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="559"/>
                                 <connections>
                                     <outlet property="delegate" destination="Ts9-kO-ERw" id="yNJ-tc-gyS"/>
                                 </connections>
@@ -80,21 +80,22 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="ymk-0X-4eD" firstAttribute="leading" secondItem="0Lv-1a-PDD" secondAttribute="leading" id="UHg-Pb-HvB"/>
-                            <constraint firstAttribute="trailing" secondItem="ymk-0X-4eD" secondAttribute="trailing" id="jrZ-K5-nCm"/>
-                            <constraint firstItem="ymk-0X-4eD" firstAttribute="top" secondItem="idq-Fp-GiY" secondAttribute="bottom" id="kQt-s7-BlA"/>
-                            <constraint firstItem="ymk-0X-4eD" firstAttribute="bottom" secondItem="dwe-PS-Jhd" secondAttribute="top" id="pEo-T7-22S"/>
+                            <constraint firstItem="ymk-0X-4eD" firstAttribute="top" secondItem="idq-Fp-GiY" secondAttribute="bottom" id="Ilx-Ka-cny"/>
+                            <constraint firstItem="ymk-0X-4eD" firstAttribute="bottom" secondItem="dwe-PS-Jhd" secondAttribute="top" id="NeV-hy-7eo"/>
+                            <constraint firstItem="ymk-0X-4eD" firstAttribute="leading" secondItem="0Lv-1a-PDD" secondAttribute="leading" id="u6c-gE-mFu"/>
+                            <constraint firstAttribute="trailing" secondItem="ymk-0X-4eD" secondAttribute="trailing" id="w82-U8-M5Y"/>
                         </constraints>
                     </view>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="OAu-BT-tdd"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="mapView" destination="ymk-0X-4eD" id="r9g-fW-Jr0"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VDn-vR-bZL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1655" y="-1927"/>
+            <point key="canvasLocation" x="-1655.5" y="-1927.5"/>
         </scene>
         <!--Appointment Clean View Controller-->
         <scene sceneID="rb6-7E-rlq">

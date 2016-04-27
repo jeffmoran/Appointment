@@ -4,9 +4,9 @@
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
     CLLocationManager *locationManager;
+	BOOL firstLaunch;
 }
 
 @property (strong, nonatomic) IBOutlet MKMapView *mapView;
 @property (nonatomic, strong) NSString *addressName;
-
 @end
