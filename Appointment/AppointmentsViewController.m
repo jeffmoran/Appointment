@@ -32,9 +32,6 @@
 	self.tableView.allowsSelectionDuringEditing = YES;
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-	
-}
 #pragma mark - Add new appointment
 - (IBAction)addNewItem:(id)sender {
 	BrokersLabItem *newItem = [[BrokersLabItemStore sharedStore] createItem];
@@ -167,7 +164,6 @@
 		[self.tableView beginUpdates];
 		[self.tableView reloadData];
 		[self.tableView endUpdates];
-			
 	}
 }
 

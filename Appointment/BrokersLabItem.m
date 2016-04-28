@@ -1,11 +1,3 @@
-//
-//  BrokersLabItem.m
-//  BrokersLab
-//
-//  Created by Jeffrey Moran on 8/31/13.
-//
-//
-
 #import "BrokersLabItem.h"
 
 @implementation BrokersLabItem

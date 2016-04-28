@@ -4,20 +4,14 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <scenes>
-        <!--Appointments-->
+        <!--Navigation Controller-->
         <scene sceneID="buD-js-JGN">
             <objects>
                 <navigationController definesPresentationContext="YES" id="78O-fx-zz8" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Appointments" image="appointments" id="P6m-8Z-83G"/>
-                    <navigationItem key="navigationItem" id="3vk-H6-pmc"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="xhI-Ql-6Bx">
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="7lb-13-2m2">
-                        <rect key="frame" x="0.0" y="524" width="320" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </toolbar>
                     <connections>
                         <segue destination="m5z-Mh-nPP" kind="relationship" relationship="rootViewController" id="CL3-k7-513"/>
                     </connections>
@@ -120,7 +114,4 @@
             <point key="canvasLocation" x="-2100.5" y="-1927.5"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="appointments" width="25" height="25"/>
-    </resources>
 </document>

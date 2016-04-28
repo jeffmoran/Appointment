@@ -60,8 +60,7 @@
 	return self;
 }
 
-- (void)loadAllItems
-{
+- (void)loadAllItems {
 	if (!allItems) {
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		
@@ -84,8 +83,7 @@
 	}
 }
 
-- (NSString *)itemArchivePath
-{
+- (NSString *)itemArchivePath {
 	NSArray *documentDirectories =
 	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
 										NSUserDomainMask, YES);
@@ -96,8 +94,7 @@
 	return [documentDirectory stringByAppendingPathComponent:@"store.data"];
 }
 
-- (BOOL)saveChanges
-{
+- (BOOL)saveChanges {
 	NSError *err = nil;
 	BOOL successful = [context save:&err];
 	
@@ -115,13 +112,11 @@
 	[allItems removeObjectIdenticalTo:p];
 }
 
-- (NSArray *)allItems
-{
+- (NSArray *)allItems {
 	return allItems;
 }
 
-- (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to
-{
+- (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to {
 	if (from == to) {
 		return;
 	}

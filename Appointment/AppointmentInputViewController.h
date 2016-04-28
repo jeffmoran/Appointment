@@ -52,25 +52,16 @@
 @property (nonatomic, strong) IBOutlet UIPickerView *bathroom_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *access_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *price_picker;
-@property (nonatomic, strong) IBOutlet UIDatePicker *time_picker;
-@property (nonatomic, strong) IBOutlet UIDatePicker *movein_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *aptSize_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *pets_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *guarantor_picker;
-
-@property(strong, nonatomic) IBOutlet UIButton *confirmButton;
-
-- (IBAction)backToTopButtonPressed:(id)sender;
-- (IBAction)clearButtonPressed:(id)sender;
-- (IBAction)doneButtonPressed:(id)sender;
+@property (nonatomic, strong) IBOutlet UIDatePicker *time_picker;
+@property (nonatomic, strong) IBOutlet UIDatePicker *movein_picker;
 
 - (id)initForNewItem:(BOOL)isNew;
 
 @property (nonatomic, strong) BrokersLabItem *item;
 
 @property (nonatomic, copy) void (^dismissBlock)(void);
-
--(IBAction)displayDate:(id)sender;
--(IBAction)displayMoveIn:(id)sender;
 
 @end
