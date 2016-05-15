@@ -12,7 +12,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-	[Chameleon setGlobalThemeUsingPrimaryColor:FlatRed withContentStyle:UIContentStyleContrast];
+	[Chameleon setGlobalThemeUsingPrimaryColor: FlatRed withContentStyle:UIContentStyleContrast];
+	
 	return YES;
 }
 
@@ -26,9 +27,11 @@
 	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 	
 	BOOL success = [[BrokersLabItemStore sharedStore] saveChanges];
-	if(success) {
+	
+	if (success) {
 		NSLog(@"Saved all of the BrokersLabItems");
-	} else {
+	}
+	else {
 		NSLog(@"Could not save any of the BrokersLabItems");
 	}
 }

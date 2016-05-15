@@ -1,62 +1,55 @@
-//
-//  BrokersLabItemStore.m
-//  BrokersLab
-//
-//  Created by Jeffrey Moran on 8/31/13.
-//
-//
-
 #import "BrokersLabItemStore.h"
 #import "BrokersLabItem.h"
 
 @implementation BrokersLabItemStore
 
-+ (BrokersLabItemStore *)sharedStore
-{
++ (BrokersLabItemStore *)sharedStore {
 	static BrokersLabItemStore *sharedStore = nil;
-	if(!sharedStore)
-		sharedStore = [[super allocWithZone:nil] init];
+	
+	if (!sharedStore) {
+		sharedStore = [[super allocWithZone: nil] init];
+	}
 	
 	return sharedStore;
 }
 
-+ (id)allocWithZone:(NSZone *)zone
-{
++ (id)allocWithZone:(NSZone *)zone {
 	return [self sharedStore];
 }
 
-- (id)init
-{
+- (id)init {
 	self = [super init];
-	if(self) {
-		model = [NSManagedObjectModel mergedModelFromBundles:nil];
+	
+	if (self) {
+		model = [NSManagedObjectModel mergedModelFromBundles: nil];
 		
 		NSPersistentStoreCoordinator *psc =
-		[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
+		[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: model];
 		
 		NSString *path = [self itemArchivePath];
-		NSURL *storeURL = [NSURL fileURLWithPath:path];
+		NSURL *storeURL = [NSURL fileURLWithPath: path];
 		
 		NSError *error = nil;
 		
 		if (![psc addPersistentStoreWithType:NSSQLiteStoreType
-							   configuration:nil
-										 URL:storeURL
-									 options:nil
-									   error:&error]) {
-			[NSException raise:@"Open failed"
+							   configuration: nil
+										 URL: storeURL
+									 options: nil
+									   error: &error]) {
+			[NSException raise: @"Open failed"
 						format:@"Reason: %@", [error localizedDescription]];
 		}
 		
 		// Create the managed object context
-		context = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
-		[context setPersistentStoreCoordinator:psc];
+		context = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSMainQueueConcurrencyType];
+		[context setPersistentStoreCoordinator: psc];
 		
 		// The managed object context can manage undo, but we don't need it
-		[context setUndoManager:nil];
+		[context setUndoManager: nil];
 		
 		[self loadAllItems];
 	}
+	
 	return self;
 }
 
@@ -64,22 +57,23 @@
 	if (!allItems) {
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		
-		NSEntityDescription *entity = [[model entitiesByName] objectForKey:@"BrokersLabItem"];
-		[request setEntity:entity];
+		NSEntityDescription *entity = [[model entitiesByName] objectForKey: @"BrokersLabItem"];
+		[request setEntity: entity];
 		
 		NSSortDescriptor *sortDescriptor = [NSSortDescriptor
-											sortDescriptorWithKey:@"orderingValue"
-											ascending:YES];
-		[request setSortDescriptors:[NSArray arrayWithObject:sortDescriptor]];
+											sortDescriptorWithKey: @"orderingValue"
+											ascending: YES];
+		[request setSortDescriptors: [NSArray arrayWithObject:sortDescriptor]];
 		
 		NSError *error;
-		NSArray *result = [context executeFetchRequest:request error:&error];
+		NSArray *result = [context executeFetchRequest: request error:&error];
+		
 		if (!result) {
-			[NSException raise:@"Fetch failed"
+			[NSException raise: @"Fetch failed"
 						format:@"Reason: %@", [error localizedDescription]];
 		}
 		
-		allItems = [[NSMutableArray alloc] initWithArray:result];
+		allItems = [[NSMutableArray alloc] initWithArray: result];
 	}
 }
 
@@ -89,16 +83,16 @@
 										NSUserDomainMask, YES);
  
 	// Get one and only document directory from that list
-	NSString *documentDirectory = [documentDirectories objectAtIndex:0];
+	NSString *documentDirectory = [documentDirectories objectAtIndex: 0];
 	
 	return [documentDirectory stringByAppendingPathComponent:@"store.data"];
 }
 
 - (BOOL)saveChanges {
 	NSError *err = nil;
-	BOOL successful = [context save:&err];
+	BOOL successful = [context save: &err];
 	
-	[context performBlockAndWait:^{
+	[context performBlockAndWait: ^{
 		if (!successful) {
 			NSLog(@"Error saving: %@", [err localizedDescription]);
 		}
@@ -108,8 +102,8 @@
 }
 
 - (void)removeItem:(BrokersLabItem *)p {
-	[context deleteObject:p];
-	[allItems removeObjectIdenticalTo:p];
+	[context deleteObject: p];
+	[allItems removeObjectIdenticalTo: p];
 }
 
 - (NSArray *)allItems {
@@ -121,20 +115,20 @@
 		return;
 	}
 	// Get pointer to object being moved so we can re-insert it
-	BrokersLabItem *p = [allItems objectAtIndex:from];
+	BrokersLabItem *p = [allItems objectAtIndex: from];
 	
 	// Remove p from array
-	[allItems removeObjectAtIndex:from];
+	[allItems removeObjectAtIndex: from];
 	
 	// Insert p in array at new location
-	[allItems insertObject:p atIndex:to];
+	[allItems insertObject: p atIndex:to];
 }
 
 - (BrokersLabItem *)createItem {
-	BrokersLabItem *newItem = [NSEntityDescription insertNewObjectForEntityForName:@"BrokersLabItem"
-															inManagedObjectContext:context];
+	BrokersLabItem *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"BrokersLabItem"
+															inManagedObjectContext: context];
 	
-	[allItems addObject:newItem];
+	[allItems addObject: newItem];
 	
 	return newItem;
 }

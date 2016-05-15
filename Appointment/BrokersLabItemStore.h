@@ -1,11 +1,3 @@
-//
-//  BrokersLabItemStore.h
-//  BrokersLab
-//
-//  Created by Jeffrey Moran on 8/31/13.
-//
-//
-
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
@@ -31,7 +23,6 @@
 - (NSString *)itemArchivePath;
 
 - (BOOL)saveChanges;
-
 
 - (void)loadAllItems;
 

@@ -6,12 +6,12 @@
 @end
 
 @implementation MapViewController
+
 @synthesize mapView, addressName;
 
 #pragma mark - Lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
 	[super viewDidLoad];
 	
 	// Do any additional setup after loading the view, typically from a nib.
@@ -20,11 +20,11 @@
 	locationManager = [[CLLocationManager alloc] init];
 	
 	//Make this controller the delegate for the location manager.
-	[locationManager setDelegate:self];
+	[locationManager setDelegate: self];
 	
 	//Set some paramater for the location object.
-	[locationManager setDistanceFilter:kCLDistanceFilterNone];
-	[locationManager setDesiredAccuracy:kCLLocationAccuracyBest];
+	[locationManager setDistanceFilter: kCLDistanceFilterNone];
+	[locationManager setDesiredAccuracy: kCLLocationAccuracyBest];
 	
 	[locationManager requestWhenInUseAuthorization];
 	[locationManager requestLocation];
@@ -33,8 +33,8 @@
 	request.naturalLanguageQuery = addressName;
 	request.region = mapView.region;
 	
-	MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:request];
-	[localSearch startWithCompletionHandler:^(MKLocalSearchResponse *response, NSError *error) {
+	MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest: request];
+	[localSearch startWithCompletionHandler: ^(MKLocalSearchResponse *response, NSError *error) {
 		if (!error) {
 			for (MKMapItem *mapItem in [response mapItems]) {
 				//NSLog(@"Name: %@, Placemark title: %@", [mapItem name], [[mapItem placemark] title]);
@@ -42,9 +42,9 @@
 				MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
 				annotation.coordinate = mapItem.placemark.coordinate;
 				annotation.title = mapItem.name;
-				[self.mapView addAnnotation:annotation];
+				[self.mapView addAnnotation: annotation];
 				//NSLog(@"%@", mapItem);
-				[self getDirections:mapItem];
+				[self getDirections: mapItem];
 			}
 		} else {
 			NSLog(@"Search Request Error: %@", [error localizedDescription]);
@@ -57,52 +57,53 @@
 }
 
 - (void)viewDidUnload {
-	[self setMapView:nil];
+	[self setMapView: nil];
 	[super viewDidUnload];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [super viewWillAppear:animated];
+    [super viewWillAppear: animated];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-	[self.navigationController setToolbarHidden:NO animated:YES];
+    [super viewDidAppear: animated];
+	[self.navigationController setToolbarHidden: NO animated: YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-    [super viewWillDisappear:animated];
+    [super viewWillDisappear: animated];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-    [super viewDidDisappear:animated];
+    [super viewDidDisappear: animated];
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
 
-- (void)getDirections: (MKMapItem *) destination {
+- (void)getDirections:(MKMapItem *)destination {
 	MKDirectionsRequest *request = [[MKDirectionsRequest alloc] init];
 	
 	request.source = [MKMapItem mapItemForCurrentLocation];
 	
 	request.destination = destination;
 	request.requestsAlternateRoutes = NO;
-	MKDirections *directions = [[MKDirections alloc] initWithRequest:request];
+	MKDirections *directions = [[MKDirections alloc] initWithRequest: request];
 	
 	[directions calculateDirectionsWithCompletionHandler: ^(MKDirectionsResponse *response, NSError *error) {
 		 if (error) {
 			 NSLog(@"BIG ERROR %@", error);
-		 } else {
-			 [self showRoute:response];
+		 }
+		 else {
+			 [self showRoute: response];
 		 }
 	 }];
 }
 
--(void)showRoute:(MKDirectionsResponse *)response {
+- (void)showRoute:(MKDirectionsResponse *)response {
 	for (MKRoute *route in response.routes) {
-		[self.mapView addOverlay:route.polyline level:MKOverlayLevelAboveRoads];
+		[self.mapView addOverlay: route.polyline level: MKOverlayLevelAboveRoads];
 		
 		for (MKRouteStep *step in route.steps) {
 			NSLog(@"%@", step.instructions);
@@ -111,9 +112,10 @@
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay {
-	MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
+	MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay: overlay];
 	renderer.strokeColor = [UIColor flatRedColor];
 	renderer.lineWidth = 5.0;
+	
 	return renderer;
 }
 
@@ -130,14 +132,14 @@
 		location.longitude = aUserLocation.coordinate.longitude;
 		region.span = span;
 		region.center = location;
-		[aMapView setRegion:region animated:YES];
+		[aMapView setRegion: region animated: YES];
 		NSLog(@"Zooming");
 	}
 	
 	firstLaunch = false;
 }
 
-# pragma mark - CLLocationManager Delegate Methods
+# pragma mark-CLLocationManager Delegate Methods
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 	if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {

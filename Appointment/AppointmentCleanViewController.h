@@ -9,7 +9,7 @@
 
 @interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, RNGridMenuDelegate>
 
-@property (nonatomic,strong) NSArray *cells;
+@property (nonatomic, strong) NSArray *cells;
 
 @property (nonatomic, strong) NSString  *nameString;
 @property (nonatomic, strong) NSString  *emailString;

@@ -15,22 +15,22 @@
     NSArray *guarantorArray;
 }
 
-@property(strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *nameField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *phoneField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *timeField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *addressField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *moveindateField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *priceField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *neighborhoodField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *aptsizeField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *roomsField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *bathsField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *accessField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *petsField;
-@property(strong, nonatomic) IBOutlet JVFloatLabeledTextField *guarantorField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *nameField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *phoneField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *timeField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *addressField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *moveindateField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *priceField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *neighborhoodField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *aptsizeField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *roomsField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *bathsField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *accessField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *petsField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *guarantorField;
 
 @property (nonatomic, strong) UIImageView *inputName;
 @property (nonatomic, strong) UIImageView *inputEmail;

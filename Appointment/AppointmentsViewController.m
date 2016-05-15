@@ -10,7 +10,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+	[super viewWillAppear: animated];
 	[[self tableView] reloadData];
 }
 
@@ -18,46 +18,47 @@
 	[super viewDidLoad];
 	self.title = @"Appointments";
 	
-	UINib *nib = [UINib nibWithNibName:@"BrokersLabItemCell" bundle:nil];
+	UINib *nib = [UINib nibWithNibName: @"BrokersLabItemCell" bundle: nil];
 	
-	[[self tableView] registerNib:nib forCellReuseIdentifier:@"BrokersLabItemCell"];
+	[[self tableView] registerNib: nib forCellReuseIdentifier: @"BrokersLabItemCell"];
 	
-	UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-																		 target:self
-																		 action:@selector(addNewItem:)];
+	UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
+																		 target: self
+																		 action: @selector(addNewItem: )];
 	
-	[[self navigationItem] setLeftBarButtonItem:[self editButtonItem]];
-	[[self navigationItem] setRightBarButtonItem:add];
+	[[self navigationItem] setLeftBarButtonItem: [self editButtonItem]];
+	[[self navigationItem] setRightBarButtonItem: add];
 	
 	self.tableView.allowsSelectionDuringEditing = YES;
 }
 
 #pragma mark - Add new appointment
+
 - (IBAction)addNewItem:(id)sender {
 	BrokersLabItem *newItem = [[BrokersLabItemStore sharedStore] createItem];
 	
-	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem:YES];
+	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: YES];
 	
-	[detailViewController setItem:newItem];
+	[detailViewController setItem: newItem];
 	
-	[detailViewController setDismissBlock:^{
+	[detailViewController setDismissBlock: ^{
 		[[self tableView] reloadData];
 	}];
 	
 	// Push it onto the top of the navigation controller's stack
-	[[self navigationController] pushViewController:detailViewController animated:YES];
+	[[self navigationController] pushViewController: detailViewController animated: YES];
 }
 
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString:@"Clean"]) {
+	if ([segue.identifier isEqualToString: @"Clean"]) {
 		
 		AppointmentCleanViewController *destViewController = segue.destinationViewController;
 		
-		NSIndexPath *indexPath = [[self tableView]  indexPathForCell:sender];
+		NSIndexPath *indexPath = [[self tableView]  indexPathForCell: sender];
 		BrokersLabItem *s = [[[BrokersLabItemStore sharedStore] allItems]
-							 objectAtIndex:[indexPath row]];
+							 objectAtIndex: [indexPath row]];
 		
 		destViewController.nameString = [s itemName];
 		destViewController.timeString = [s timeName];
@@ -80,16 +81,16 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.tableView.editing == YES) {
-		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem:NO];
+		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: NO];
 		
 		NSArray *items = [[BrokersLabItemStore sharedStore] allItems];
-		BrokersLabItem *selectedItem = [items objectAtIndex:[indexPath row]];
+		BrokersLabItem *selectedItem = [items objectAtIndex: [indexPath row]];
 		
 		// Give detail view controller a pointer to the item object in row
-		[detailViewController setItem:selectedItem];
+		[detailViewController setItem: selectedItem];
 		
 		// Push it onto the top of the navigation controller's stack
-		[[self navigationController] pushViewController:detailViewController animated:YES];
+		[[self navigationController] pushViewController: detailViewController animated: YES];
 	}
 	else {
 		[self performSegueWithIdentifier: @"Clean" sender: [tableView cellForRowAtIndexPath: indexPath]];
@@ -108,8 +109,8 @@
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-	[[BrokersLabItemStore sharedStore] moveItemAtIndex:[fromIndexPath row]
-											   toIndex:[toIndexPath row]];
+	[[BrokersLabItemStore sharedStore] moveItemAtIndex: [fromIndexPath row]
+											   toIndex: [toIndexPath row]];
 	
 	[self.tableView beginUpdates];
 	[self.tableView reloadData];
@@ -118,31 +119,31 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	BrokersLabItem *s = [[[BrokersLabItemStore sharedStore] allItems]
-						 objectAtIndex:[indexPath row]];
+						 objectAtIndex: [indexPath row]];
 	
-	BrokersLabItemCell *cell = [tableView dequeueReusableCellWithIdentifier:@"BrokersLabItemCell"];
+	BrokersLabItemCell *cell = [tableView dequeueReusableCellWithIdentifier: @"BrokersLabItemCell"];
 	
-	[cell setController:self];
-	[cell setTableView:tableView];
-	
-	[[cell nameLabel] setText:[s itemName]];
-	[[cell addressLabel] setText:[s addressName]];
-	[[cell timeLabel] setText:[s timeName]];
+//	[cell setController: self];
+//	[cell setTableView: tableView];
+//	
+	[[cell nameLabel] setText: [s itemName]];
+	[[cell addressLabel] setText: [s addressName]];
+	[[cell timeLabel] setText: [s timeName]];
 	cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	
 	return cell;
 }
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath*)indexPath {
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
 	return 75;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     switch (section) {
-        case 0:
+        case 0: 
             return @"My Appointments";
             break;
-        default:
+        default: 
             return @"";
             break;
     }
@@ -150,16 +151,15 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	// If the table view is asking to commit a delete command...
-	if (editingStyle == UITableViewCellEditingStyleDelete)
-	{
+	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		BrokersLabItemStore *ps = [BrokersLabItemStore sharedStore];
 		NSArray *items = [ps allItems];
-		BrokersLabItem *p = [items objectAtIndex:[indexPath row]];
-		[ps removeItem:p];
+		BrokersLabItem *p = [items objectAtIndex: [indexPath row]];
+		[ps removeItem: p];
 		
 		// We also remove that row from the table view with an animation
-		[tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath]
-						 withRowAnimation:UITableViewRowAnimationFade];
+		[tableView deleteRowsAtIndexPaths: [NSArray arrayWithObject: indexPath]
+						 withRowAnimation: UITableViewRowAnimationFade];
 		
 		[self.tableView beginUpdates];
 		[self.tableView reloadData];
