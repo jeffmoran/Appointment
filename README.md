@@ -8,13 +8,23 @@ only the appointment making function of the app.
 
 As this project is almost three years old at the time of me writing
 this, I will be updating old libraries, removing unused/deprecated code,
-and optimizing speed.
+and optimizing performance.
 
+## Installation
 Provided that you have [CocoaPods](http://cocoapods.org) installed, please be sure to run
+
 ```bash
 $ pod install
 ```
 to install the libraries used in this project.
+
+A Google Maps Geocoding API key is needed for automatically obtaining city information from a postal code.
+
+Once obtained, create a header file titled `Config.h` and create a `NSString *const` like so.
+
+```Objective-C
+NSString *const googleAPIKey = @"API_KEY_HERE";
+```
 
 ## Screenshots
 ![Main screen](/Screenshots/1.jpg?raw=true)
@@ -23,6 +33,7 @@ to install the libraries used in this project.
 ![Maps view](/Screenshots/4.jpg?raw=true)
 
 ## To do:
+- Need to implement API to detect zip code and automatically fill out city/state info.
 - Use autolayout throughout app so elements properly scale.
 - Implement new Reachability library.
 - Redesign ```AppointmentCleanViewController```
