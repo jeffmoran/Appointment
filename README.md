@@ -18,7 +18,7 @@ $ pod install
 ```
 to install the libraries used in this project.
 
-A Google Maps Geocoding API key is needed for automatically obtaining city information from a postal code.
+A Google Maps Geocoding API key is needed for automatically obtaining city information from a postal code. You can get one [here](https://developers.google.com/maps/documentation/geocoding/start).
 
 Once obtained, create a header file titled `Config.h` and create a `NSString *const` like so.
 
