@@ -30,6 +30,7 @@
 @property (nonatomic, strong) MCTReachability *reach;
 
 @property (nonatomic, strong) NSString *calendarNotesString;
+@property (nonatomic, strong) NSString *emailBodyString;
 
 @property (nonatomic, strong) CNContactStore *contactStore;
 @property (nonatomic, strong) CNMutableContact *contact;

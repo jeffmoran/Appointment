@@ -12,15 +12,15 @@
 	[super loadView];
 	
 	TKLabelFieldCell *nameField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	nameField.label.text = @"Client\nName";
+	nameField.label.text = @"Client Name";
 	nameField.field.text = self.nameString;
 	
 	TKLabelFieldCell *emailField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	emailField.label.text = @"Client\nEmail";
+	emailField.label.text = @"Client Email";
 	emailField.field.text = self.emailString;
 	
 	TKLabelFieldCell *phoneNumberField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	phoneNumberField.label.text = @"Client\nNumber";
+	phoneNumberField.label.text = @"Client Number";
 	phoneNumberField.field.text = self.phoneString;
 	
 	TKLabelFieldCell *timeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
@@ -28,12 +28,12 @@
 	timeField.field.text = self.timeString;
 	
 	TKLabelFieldCell *addressField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	addressField.label.text = @"Property\nAddress";
+	addressField.label.text = @"Property Address";
 	addressField.field.text = self.addressString;
 	addressField.field.adjustsFontSizeToFitWidth = YES;
 	
 	TKLabelFieldCell *moveInDateField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	moveInDateField.label.text = @"Move-In\nDate";
+	moveInDateField.label.text = @"Move-In Date";
 	moveInDateField.field.text = self.moveInDateString;
 	
 	TKLabelFieldCell *petsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
@@ -49,7 +49,7 @@
 	neighborhoodField.field.text = self.neighborhoodString;
 	
 	TKLabelFieldCell *aptsizeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	aptsizeField.label.text = @"Apartment\nSize";
+	aptsizeField.label.text = @"Apartment Size";
 	aptsizeField.field.text = self.aptsizeString;
 	
 	TKLabelFieldCell *roomsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
@@ -83,9 +83,11 @@
 															target: self
 															action: @selector(showGrid)];
 	
-	[[self navigationItem] setRightBarButtonItem: menu];
+	self.navigationItem.rightBarButtonItem = menu;
 	
 	_calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\nApartment Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
+	
+	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/> <b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/> <b>Property Price:</b><br/>%@<br/><br/> <b>Neighborhood:</b><br/>%@  <br/><br/> <b>Apartment Size:</b><br/>%@ <br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.timeString, self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,26 +116,26 @@
 - (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
 	switch (itemIndex) {
 		case 0:
-			[self call];
+			[self makeCallWithString:self.phoneString];
 			break;
 		case 1:
-			[self email];
+			[self makeEmailWithEmailString:self.emailString andTimeString:self.timeString andNameString:self.nameString];
 			break;
 		case 2:
-			//[self map];
+			//[self segueIntoMapView];
 			//NSTimer is temporary solution to "Unbalanced calls to begin/end appearance transitions" bug
 			//NSTimer is set to wait .26 seconds for RNGridMenu to completely dismiss.
 			[NSTimer scheduledTimerWithTimeInterval: .26
 											 target: self
-										   selector: @selector(map)
+										   selector: @selector(segueIntoMapView)
 										   userInfo: nil
 											repeats: NO];
 			break;
 		case 3:
-			[self newContact];
+			[self createNewContact];
 			break;
 		case 4:
-			[self calendar];
+			[self createNewCalendarEvent];
 			break;
 		case 5:
 			NSLog(@"Cancelled");
@@ -146,7 +148,6 @@
 #pragma mark - Grid
 
 - (void)showGrid {
-	NSInteger numberOfOptions = 6;
 	NSArray *items = @[
 					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"phone128"] title: @"Call client"],
 					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"email128"] title: @"Email client"],
@@ -156,20 +157,20 @@
 					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"cancel"] title: @"Cancel"],
 					   ];
 	
-	RNGridMenu *menu = [[RNGridMenu alloc] initWithItems:[items subarrayWithRange:NSMakeRange(0, numberOfOptions)]];
+	RNGridMenu *menu = [[RNGridMenu alloc] initWithItems:items];
 	menu.delegate = self;
 	menu.highlightColor = [UIColor flatRedColor];
 	menu.itemSize = CGSizeMake(128, 128);
-	[menu showInViewController: self center: CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
+	[menu showInViewController: self.navigationController center: CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
 }
 
 #pragma mark - Grid methods
 
-- (void)call {
+- (void)makeCallWithString:(NSString *)number {
 	UIDevice *device = [UIDevice currentDevice];
 	
-	if ([[device model] isEqualToString: @"iPhone"] ) {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"telprompt:%@", self.phoneString]]];
+	if ([device.model isEqualToString: @"iPhone"] ) {
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"telprompt:%@", number]]];
 	}
 	else {
 		
@@ -191,22 +192,20 @@
 	}
 }
 
-- (void)email {
+- (void)makeEmailWithEmailString:(NSString *)email andTimeString:(NSString *)time andNameString:(NSString *)name {
 	
 	if ([MFMailComposeViewController canSendMail]) {
 		MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
 		
 		controller.mailComposeDelegate = self;
 		
-		[controller setSubject: [NSString stringWithFormat: @"%@ Appointment With %@", self.timeString, self.nameString]];
+		[controller setSubject: [NSString stringWithFormat: @"%@ Appointment With %@", time, name]];
 		
-		NSArray *toRecipients = [NSArray arrayWithObjects: self.emailString, nil];
+		NSArray *toRecipients = @[email];
 		
 		[controller setToRecipients: toRecipients];
 		
-		NSString *emailBody = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/> <b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/> <b>Property Price:</b><br/>%@<br/><br/> <b>Neighborhood:</b><br/>%@  <br/><br/> <b>Apartment Size:</b><br/>%@ <br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.timeString, self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
-		
-		[controller setMessageBody: emailBody isHTML:YES];
+		[controller setMessageBody: _emailBodyString isHTML:YES];
 		
 		[self presentViewController: controller animated:YES completion: nil];
 	}
@@ -229,7 +228,7 @@
 	}
 }
 
-- (void)calendar {
+- (void)createNewCalendarEvent {
 	eventStore = [[EKEventStore alloc] init];
 	
 	UIAlertController *alertController = [UIAlertController
@@ -286,7 +285,7 @@
 													
 													NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
 													
-													[dateFormatter setDateFormat: @"MMMM d yyyy h: mm aa"];
+													dateFormatter.dateFormat = @"MMMM d yyyy h: mm aa";
 												
 													NSDate *dateFromString = [dateFormatter dateFromString: self.timeString];
 													
@@ -302,7 +301,7 @@
 																		];
 													
 													event.alarms = alarms;
-													[event setCalendar: [eventStore defaultCalendarForNewEvents]];
+													event.calendar = eventStore.defaultCalendarForNewEvents;
 													
 													[self saveNewEvent];
 												}
@@ -382,7 +381,7 @@ else {
 	}
 }
 
-- (void)map {
+- (void)segueIntoMapView {
 	NSLog(@"Maps segue");
 	
 	if (self.navigationController.visibleViewController == self) {
@@ -390,7 +389,7 @@ else {
 	}
 }
 
-- (void)newContact {
+- (void)createNewContact {
 	//Initialize contactStore and contact
 	contactStore = [[CNContactStore alloc] init];
 	contact = [[CNMutableContact alloc] init];
@@ -446,8 +445,8 @@ else {
 												case CNAuthorizationStatusAuthorized:
 													NSLog(@"The application is authorized to access contact data.");
 													contact.givenName = self.nameString;
-													contact.phoneNumbers = [[NSArray alloc]initWithObjects:[CNLabeledValue labeledValueWithLabel: CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:_phoneString]], nil];
-													contact.emailAddresses = [[NSArray alloc] initWithObjects:[CNLabeledValue labeledValueWithLabel: CNLabelHome value:_emailString], nil];
+													contact.phoneNumbers = @[[CNLabeledValue labeledValueWithLabel: CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:_phoneString]]];
+													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel: CNLabelHome value:_emailString]];
 													
 													[self saveNewContact];
 													break;
@@ -542,7 +541,7 @@ else {
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [self.cells count];
+	return (self.cells).count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

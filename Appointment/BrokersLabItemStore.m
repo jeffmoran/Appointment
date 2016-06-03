@@ -17,7 +17,7 @@
 	return [self sharedStore];
 }
 
-- (id)init {
+- (instancetype)init {
 	self = [super init];
 	
 	if (self) {
@@ -37,12 +37,12 @@
 									 options: nil
 									   error: &error]) {
 			[NSException raise: @"Open failed"
-						format:@"Reason: %@", [error localizedDescription]];
+						format:@"Reason: %@", error.localizedDescription];
 		}
 		
 		// Create the managed object context
 		context = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSMainQueueConcurrencyType];
-		[context setPersistentStoreCoordinator: psc];
+		context.persistentStoreCoordinator = psc;
 		
 		// The managed object context can manage undo, but we don't need it
 		[context setUndoManager: nil];
@@ -57,20 +57,20 @@
 	if (!allItems) {
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		
-		NSEntityDescription *entity = [[model entitiesByName] objectForKey: @"BrokersLabItem"];
-		[request setEntity: entity];
+		NSEntityDescription *entity = model.entitiesByName[@"BrokersLabItem"];
+		request.entity = entity;
 		
 		NSSortDescriptor *sortDescriptor = [NSSortDescriptor
 											sortDescriptorWithKey: @"orderingValue"
 											ascending: YES];
-		[request setSortDescriptors: [NSArray arrayWithObject:sortDescriptor]];
+		request.sortDescriptors = @[sortDescriptor];
 		
 		NSError *error;
 		NSArray *result = [context executeFetchRequest: request error:&error];
 		
 		if (!result) {
 			[NSException raise: @"Fetch failed"
-						format:@"Reason: %@", [error localizedDescription]];
+						format:@"Reason: %@", error.localizedDescription];
 		}
 		
 		allItems = [[NSMutableArray alloc] initWithArray: result];
@@ -83,7 +83,7 @@
 										NSUserDomainMask, YES);
  
 	// Get one and only document directory from that list
-	NSString *documentDirectory = [documentDirectories objectAtIndex: 0];
+	NSString *documentDirectory = documentDirectories[0];
 	
 	return [documentDirectory stringByAppendingPathComponent:@"store.data"];
 }
@@ -94,7 +94,7 @@
 	
 	[context performBlockAndWait: ^{
 		if (!successful) {
-			NSLog(@"Error saving: %@", [err localizedDescription]);
+			NSLog(@"Error saving: %@", err.localizedDescription);
 		}
 	}];
 	
@@ -115,7 +115,7 @@
 		return;
 	}
 	// Get pointer to object being moved so we can re-insert it
-	BrokersLabItem *p = [allItems objectAtIndex: from];
+	BrokersLabItem *p = allItems[from];
 	
 	// Remove p from array
 	[allItems removeObjectAtIndex: from];

@@ -20,11 +20,11 @@
 	locationManager = [[CLLocationManager alloc] init];
 	
 	//Make this controller the delegate for the location manager.
-	[locationManager setDelegate: self];
+	locationManager.delegate = self;
 	
 	//Set some paramater for the location object.
-	[locationManager setDistanceFilter: kCLDistanceFilterNone];
-	[locationManager setDesiredAccuracy: kCLLocationAccuracyBest];
+	locationManager.distanceFilter = kCLDistanceFilterNone;
+	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	
 	[locationManager requestWhenInUseAuthorization];
 	[locationManager requestLocation];
@@ -36,7 +36,7 @@
 	MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest: request];
 	[localSearch startWithCompletionHandler: ^(MKLocalSearchResponse *response, NSError *error) {
 		if (!error) {
-			for (MKMapItem *mapItem in [response mapItems]) {
+			for (MKMapItem *mapItem in response.mapItems) {
 				//NSLog(@"Name: %@, Placemark title: %@", [mapItem name], [[mapItem placemark] title]);
 				
 				MKPointAnnotation *annotation = [[MKPointAnnotation alloc]init];
@@ -47,7 +47,7 @@
 				[self getDirections: mapItem];
 			}
 		} else {
-			NSLog(@"Search Request Error: %@", [error localizedDescription]);
+			NSLog(@"Search Request Error: %@", error.localizedDescription);
 		}
 	}];
 	

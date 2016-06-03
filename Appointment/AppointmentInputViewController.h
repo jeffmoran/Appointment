@@ -58,7 +58,7 @@
 @property (nonatomic, strong) IBOutlet UIDatePicker *time_picker;
 @property (nonatomic, strong) IBOutlet UIDatePicker *movein_picker;
 
-- (id)initForNewItem:(BOOL)isNew;
+- (instancetype)initForNewItem:(BOOL)isNew;
 
 @property (nonatomic, strong) BrokersLabItem *item;
 

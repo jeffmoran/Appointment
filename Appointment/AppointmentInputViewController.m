@@ -18,15 +18,15 @@ const static CGFloat kJVFieldWidth = 300.0f;
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	[self.view setTintColor: [UIColor flatRedColor]];
+	(self.view).tintColor = [UIColor flatRedColor];
 	
-	bedsBathsArray = [NSArray arrayWithObjects: @"0", @".5", @"1",@"1.5", @"2", @"2.5",@"3", @"3.5", @"4",@"4.5", @"5", @"5.5",@"6", @"6.5", @"7",@"7.5", @"8", @"8.5",@"9", @"9.5", @"10+", nil];
-	accessArray = [NSArray arrayWithObjects: @"Doorman", @"Elevator", @"Walkup", nil];
+	bedsBathsArray = @[@"0", @".5", @"1",@"1.5", @"2", @"2.5",@"3", @"3.5", @"4",@"4.5", @"5", @"5.5",@"6", @"6.5", @"7",@"7.5", @"8", @"8.5",@"9", @"9.5", @"10+"];
+	accessArray = @[@"Doorman", @"Elevator", @"Walkup"];
 	priceArray = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle]pathForResource: @"priceArray" ofType: @"plist"]];
 	neighborhoodArray = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle]pathForResource: @"neighborhoodArray" ofType: @"plist"]];
 	aptSizeArray = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle]pathForResource: @"aptSizeArray" ofType: @"plist"]];
-	petsArray = [NSArray arrayWithObjects: @"Yes", @"No", @"Some", nil];
-	guarantorArray = [NSArray arrayWithObjects: @"Yes", @"No", nil];
+	petsArray = @[@"Yes", @"No", @"Some"];
+	guarantorArray = @[@"Yes", @"No"];
 	
 	//Set the frame for each textfield
 	self.nameField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 22, kJVFieldWidth, kJVFieldHeight)];
@@ -77,20 +77,20 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	self.inputGuarantor = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputGuarantor"]];
 	
 	//Set the frame for each image view
-	[self.inputName setFrame: CGRectMake(20.0f, 26.0f, 32, 32)];
-	[self.inputEmail setFrame: CGRectMake(20.0f, self.inputName.frame.origin.y+46, 32, 32)];
-	[self.inputPhone setFrame: CGRectMake(20.0f, self.inputEmail.frame.origin.y+46, 32, 32)];
-	[self.inputTime setFrame: CGRectMake(20.0f, self.inputPhone.frame.origin.y+46, 32, 32)];
-	[self.inputAddress setFrame: CGRectMake(20.0f, self.inputTime.frame.origin.y+46, 32, 32)];
-	[self.inputMoveInDate setFrame: CGRectMake(20.0f, self.inputAddress.frame.origin.y+46, 32, 32)];
-	[self.inputPets setFrame: CGRectMake(20.0f, self.inputMoveInDate.frame.origin.y+46, 32, 32)];
-	[self.inputPrice setFrame: CGRectMake(20.0f, self.inputPets.frame.origin.y+46, 32, 32)];
-	[self.inputNeighborhood setFrame: CGRectMake(20.0f, self.inputPrice.frame.origin.y+46, 32, 32)];
-	[self.inputAptSize setFrame: CGRectMake(20.0f, self.inputNeighborhood.frame.origin.y+46, 32, 32)];
-	[self.inputRooms setFrame: CGRectMake(20.0f, self.inputAptSize.frame.origin.y+46, 32, 32)];
-	[self.inputBaths setFrame: CGRectMake(20.0f, self.inputRooms.frame.origin.y+46, 32, 32)];
-	[self.inputAccess setFrame: CGRectMake(20.0f, self.inputBaths.frame.origin.y+46, 32, 32)];
-	[self.inputGuarantor setFrame: CGRectMake(20.0f, self.inputAccess.frame.origin.y+46, 32, 32)];
+	(self.inputName).frame = CGRectMake(20.0f, 26.0f, 32, 32);
+	(self.inputEmail).frame = CGRectMake(20.0f, self.inputName.frame.origin.y+46, 32, 32);
+	(self.inputPhone).frame = CGRectMake(20.0f, self.inputEmail.frame.origin.y+46, 32, 32);
+	(self.inputTime).frame = CGRectMake(20.0f, self.inputPhone.frame.origin.y+46, 32, 32);
+	(self.inputAddress).frame = CGRectMake(20.0f, self.inputTime.frame.origin.y+46, 32, 32);
+	(self.inputMoveInDate).frame = CGRectMake(20.0f, self.inputAddress.frame.origin.y+46, 32, 32);
+	(self.inputPets).frame = CGRectMake(20.0f, self.inputMoveInDate.frame.origin.y+46, 32, 32);
+	(self.inputPrice).frame = CGRectMake(20.0f, self.inputPets.frame.origin.y+46, 32, 32);
+	(self.inputNeighborhood).frame = CGRectMake(20.0f, self.inputPrice.frame.origin.y+46, 32, 32);
+	(self.inputAptSize).frame = CGRectMake(20.0f, self.inputNeighborhood.frame.origin.y+46, 32, 32);
+	(self.inputRooms).frame = CGRectMake(20.0f, self.inputAptSize.frame.origin.y+46, 32, 32);
+	(self.inputBaths).frame = CGRectMake(20.0f, self.inputRooms.frame.origin.y+46, 32, 32);
+	(self.inputAccess).frame = CGRectMake(20.0f, self.inputBaths.frame.origin.y+46, 32, 32);
+	(self.inputGuarantor).frame = CGRectMake(20.0f, self.inputAccess.frame.origin.y+46, 32, 32);
 	
 	//Set the frame for each pickerview/datepicker
 	self.bathroom_picker = [[UIPickerView alloc] initWithFrame: CGRectMake(0, 200, 320, 200)];
@@ -105,16 +105,16 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame: CGRectMake(0, 200, 320, 200)];
 	
 	//Set the inputView for textFields
-	[self.neighborhoodField setInputView: self.neighborhood_picker];
-	[self.bathsField setInputView: self.bathroom_picker];
-	[self.roomsField setInputView: self.bedroom_picker];
-	[self.timeField setInputView: self.time_picker];
-	[self.moveindateField setInputView: self.movein_picker];
-	[self.accessField setInputView: self.access_picker];
-	[self.priceField setInputView: self.price_picker];
-	[self.aptsizeField setInputView: self.aptSize_picker];
-	[self.petsField setInputView: self.pets_picker];
-	[self.guarantorField setInputView: self.guarantor_picker];
+	(self.neighborhoodField).inputView = self.neighborhood_picker;
+	(self.bathsField).inputView = self.bathroom_picker;
+	(self.roomsField).inputView = self.bedroom_picker;
+	(self.timeField).inputView = self.time_picker;
+	(self.moveindateField).inputView = self.movein_picker;
+	(self.accessField).inputView = self.access_picker;
+	(self.priceField).inputView = self.price_picker;
+	(self.aptsizeField).inputView = self.aptSize_picker;
+	(self.petsField).inputView = self.pets_picker;
+	(self.guarantorField).inputView = self.guarantor_picker;
 	
 	// Dismiss keyboard on scrollview drag
 	self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
@@ -124,12 +124,12 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	
 	self.time_picker.datePickerMode = UIDatePickerModeDateAndTime;
 	self.time_picker.minuteInterval = 5;
-	[self.time_picker addTarget: self action: @selector(displayDate: ) forControlEvents: UIControlEventValueChanged];
+	[self.time_picker addTarget: self action: @selector(setAppointmentTime) forControlEvents: UIControlEventValueChanged];
 	
 	self.movein_picker.datePickerMode = UIDatePickerModeDate;
-	[self.movein_picker addTarget: self action: @selector(displayMoveIn: ) forControlEvents: UIControlEventValueChanged];
+	[self.movein_picker addTarget: self action: @selector(setMoveInDate) forControlEvents: UIControlEventValueChanged];
 	
-	[self.scrollView setContentSize: CGSizeMake(320, 682)];
+	(self.scrollView).contentSize = CGSizeMake(320, 682);
 	
 	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemSave
 																		  target: self
@@ -143,8 +143,8 @@ const static CGFloat kJVFieldWidth = 300.0f;
 																		   target: self
 																		   action: @selector(backToTopButtonPressed: )];
 	
-	[[self navigationItem] setLeftBarButtonItem: back];
-	[[self navigationItem] setRightBarButtonItems: [NSArray arrayWithObjects: save, clear, nil]];
+	self.navigationItem.leftBarButtonItem = back;
+	self.navigationItem.rightBarButtonItems = @[save, clear];
 	
 	//Styling and profiling
 	[self textFieldStylingAndProperties];
@@ -166,40 +166,40 @@ const static CGFloat kJVFieldWidth = 300.0f;
 
 - (void)textFieldStylingAndProperties {
 	for (UIView *view in [self allInputFields]) {
-		view.layer.borderColor = [[UIColor darkGrayColor] CGColor];
+		view.layer.borderColor = [UIColor darkGrayColor].CGColor;
 		view.layer.borderWidth = .7;
 		view.layer.cornerRadius = 5;
-		view.layer.backgroundColor = [[UIColor whiteColor] CGColor];
+		view.layer.backgroundColor = [UIColor whiteColor].CGColor;
 	}
 	
 	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
-		[textField setFont: [UIFont fontWithName: @"HelveticaNeue-Light" size: 16]];
-		[textField setFloatingLabelFont: [UIFont fontWithName: @"HelveticaNeue-Light" size: 11]];
-		[textField setFloatingLabelTextColor: [UIColor grayColor]];
-		[textField setClearButtonMode: UITextFieldViewModeWhileEditing];
-		[textField setAutocapitalizationType: UITextAutocapitalizationTypeWords];
-		[textField setReturnKeyType: UIReturnKeyNext];
-		[textField setAutocorrectionType: UITextAutocorrectionTypeNo];
+		textField.font = [UIFont fontWithName: @"HelveticaNeue-Light" size: 16];
+		textField.floatingLabelFont = [UIFont fontWithName: @"HelveticaNeue-Light" size: 11];
+		textField.floatingLabelTextColor = [UIColor grayColor];
+		textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+		textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
+		textField.returnKeyType = UIReturnKeyNext;
+		textField.autocorrectionType = UITextAutocorrectionTypeNo;
 		[self.scrollView addSubview: textField];
-		[textField setDelegate: self];
+		textField.delegate = self;
 		
 		if (textField == self.nameField) {
 			[textField becomeFirstResponder];
 		}
 		
 		if (textField == self.emailField) {
-			[textField setKeyboardType: UIKeyboardTypeEmailAddress];
+			textField.keyboardType = UIKeyboardTypeEmailAddress;
 		}
 		
 		if (textField == self.phoneField) {
-			[textField setKeyboardType: UIKeyboardTypePhonePad];
+			textField.keyboardType = UIKeyboardTypePhonePad;
 		}
 	}
 }
 
 - (void)pickerStylingAndProperties {
 	for (UIPickerView *picker in [self allInputPickers]) {
-		[picker setDelegate: self];
+		picker.delegate = self;
 		[picker setShowsSelectionIndicator: YES];
 	}
 }
@@ -250,7 +250,7 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"-" withString: @""];
 	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"+" withString: @""];
 	
-	NSUInteger length = [mobileNumber length];
+	NSUInteger length = mobileNumber.length;
 	
 	if (length > 10) {
 		mobileNumber = [mobileNumber substringFromIndex: length-10];
@@ -267,14 +267,14 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"-" withString: @""];
 	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"+" withString: @""];
 	
-	NSUInteger length = [mobileNumber length];
+	NSUInteger length = mobileNumber.length;
 	
 	return length;
 }
 
 - (IBAction)backToTopButtonPressed:(id)sender {
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
-		[textfield setText: @""];
+		textfield.text = @"";
 	}
 	[self.nameField becomeFirstResponder];
 }
@@ -283,60 +283,67 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	[self.view endEditing: YES];
 }
 
-- (IBAction)displayDate:(id)sender {
-	NSDate *myDate = self.time_picker.date;
-	NSLog(@"%@", self.time_picker.date);
-	NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-	[dateFormat setDateFormat: @"MMMM d yyyy h: mm aa"];
+- (void)setAppointmentTime{
+	NSDate *date = self.time_picker.date;
 	
-	NSString *dateAsString = [dateFormat stringFromDate: myDate];
-	[self.timeField setText: dateAsString];
+	static NSDateFormatter *dateFormatterAppointmentTime = nil;
+	
+	if (!dateFormatterAppointmentTime) {
+		dateFormatterAppointmentTime =	 [[NSDateFormatter alloc] init];
+		dateFormatterAppointmentTime.dateFormat = @"MMMM d, yyyy h:mm aa";
+	}
+	
+	(self.timeField).text = [dateFormatterAppointmentTime stringFromDate: date];
 }
 
-- (IBAction)displayMoveIn:(id)sender {
-	NSDate *myDate = self.movein_picker.date;
+- (void)setMoveInDate {
+	NSDate *date = self.movein_picker.date;
+
+	static NSDateFormatter *dateFormatterMoveIn = nil;
 	
-	NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-	[dateFormatter setDateStyle: NSDateFormatterLongStyle];
-	NSString *dateAsString = [dateFormatter stringFromDate: myDate];
-	[self.moveindateField setText: dateAsString];
+	if (!dateFormatterMoveIn) {
+		dateFormatterMoveIn =	 [[NSDateFormatter alloc] init];
+		dateFormatterMoveIn.dateStyle = NSDateFormatterLongStyle;
+	}
+
+	(self.moveindateField).text = [dateFormatterMoveIn stringFromDate: date];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear: animated];
 	
-	[self.nameField setText: [item itemName]];
-	[self.phoneField setText: [item phoneName]];
-	[self.moveindateField setText: [item moveindateName]];
-	[self.priceField setText: [item priceName]];
-	[self.neighborhoodField setText: [item neighborhoodName]];
-	[self.aptsizeField setText: [item aptsizeName]];
-	[self.roomsField setText: [item roomsName]];
-	[self.bathsField setText: [item bathsName]];
-	[self.accessField setText: [item accessName]];
-	[self.timeField setText: [item timeName]];
-	[self.addressField setText: [item addressName]];
-	[self.petsField setText: [item petsName]];
-	[self.guarantorField setText: [item guarantorName]];
-	[self.emailField setText: [item emailName]];
+	(self.nameField).text = item.itemName;
+	(self.phoneField).text = item.phoneName;
+	(self.moveindateField).text = item.moveindateName;
+	(self.priceField).text = item.priceName;
+	(self.neighborhoodField).text = item.neighborhoodName;
+	(self.aptsizeField).text = item.aptsizeName;
+	(self.roomsField).text = item.roomsName;
+	(self.bathsField).text = item.bathsName;
+	(self.accessField).text = item.accessName;
+	(self.timeField).text = item.timeName;
+	(self.addressField).text = item.addressName;
+	(self.petsField).text = item.petsName;
+	(self.guarantorField).text = item.guarantorName;
+	(self.emailField).text = item.emailName;
 	
 	// Change the navigation item to display name of item
-	[[self navigationItem] setTitle: [item itemName]];
+	self.navigationItem.title = item.itemName;
 }
 
 - (IBAction)saveFields:(id)sender {
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
-		if (!([textfield.text length] > 0)) {
-			[textfield setText: @"Unavailable"];
+		if (!((textfield.text).length > 0)) {
+			textfield.text = @"Unavailable";
 		}
 	}
 	
-	[[self navigationController] popViewControllerAnimated: YES];
+	[self.navigationController popViewControllerAnimated: YES];
 }
 
 - (void)doNotSave {
 	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
-		if (!([textField.text length] > 0)) {
+		if (!((textField.text).length > 0)) {
 			[[BrokersLabItemStore sharedStore] removeItem: item];
 			[self.navigationController popViewControllerAnimated: YES];
 			NSLog(@"Not saving appointment.");
@@ -348,19 +355,19 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	}
 }
 
-- (id)initForNewItem:(BOOL)isNew {
+- (instancetype)initForNewItem:(BOOL)isNew {
 	self = [super initWithNibName: @"AppointmentInputViewController" bundle: nil];
 	
 	if (self) {
 		if (isNew) {
-			
+			NSLog(@"NEW ITEM");
 		}
 	}
 	
 	return self;
 }
 
-- (id)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
+- (instancetype)initWithNibName:(NSString *)nibName bundle:(NSBundle *)bundle {
 	@throw [NSException exceptionWithName: @"Wrong initializer"
 								   reason: @"Use initForNewItem: "
 								 userInfo: nil];
@@ -370,30 +377,30 @@ const static CGFloat kJVFieldWidth = 300.0f;
 
 - (void)setItem:(BrokersLabItem *)i {
 	item = i;
-	[[self navigationItem] setTitle: [item itemName]];
+	self.navigationItem.title = item.itemName;
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear: animated];
 	
 	// Clear first responder
-	[[self view] endEditing: YES];
+	[self.view endEditing: YES];
 	
 	// "Save" changes to item
-	[item setItemName: [self.nameField text]];
-	[item setPhoneName: [self.phoneField text]];
-	[item setMoveindateName: [self.moveindateField text]];
-	[item setPriceName: [self.priceField text]];
-	[item setNeighborhoodName: [self.neighborhoodField text]];
-	[item setAptsizeName: [self.aptsizeField text]];
-	[item setRoomsName: [self.roomsField text]];
-	[item setBathsName: [self.bathsField text]];
-	[item setAccessName: [self.accessField text]];
-	[item setTimeName: [self.timeField text]];
-	[item setAddressName: [self.addressField text]];
-	[item setPetsName: [self.petsField text]];
-	[item setGuarantorName: [self.guarantorField text]];
-	[item setEmailName: [self.emailField text]];
+	item.itemName = (self.nameField).text;
+	item.phoneName = (self.phoneField).text;
+	item.moveindateName = (self.moveindateField).text;
+	item.priceName = (self.priceField).text;
+	item.neighborhoodName = (self.neighborhoodField).text;
+	item.aptsizeName = (self.aptsizeField).text;
+	item.roomsName = (self.roomsField).text;
+	item.bathsName = (self.bathsField).text;
+	item.accessName = (self.accessField).text;
+	item.timeName = (self.timeField).text;
+	item.addressName = (self.addressField).text;
+	item.petsName = (self.petsField).text;
+	item.guarantorName = (self.guarantorField).text;
+	item.emailName = (self.emailField).text;
 }
 
 #pragma mark - UIPickerView datasource
@@ -442,35 +449,35 @@ const static CGFloat kJVFieldWidth = 300.0f;
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	
 	if (pickerView == self.bathroom_picker) {
-		return [bedsBathsArray objectAtIndex: row];
+		return bedsBathsArray[row];
 	}
 	
 	if (pickerView == self.bedroom_picker) {
-		return [bedsBathsArray objectAtIndex: row];
+		return bedsBathsArray[row];
 	}
 	
 	if (pickerView == self.access_picker) {
-		return [accessArray objectAtIndex: row];
+		return accessArray[row];
 	}
 	
 	if (pickerView == self.price_picker) {
-		return [priceArray objectAtIndex: row];
+		return priceArray[row];
 	}
 	
 	if (pickerView == self.neighborhood_picker) {
-		return [neighborhoodArray objectAtIndex: row];
+		return neighborhoodArray[row];
 	}
 	
 	if (pickerView == self.aptSize_picker) {
-		return [aptSizeArray objectAtIndex: row];
+		return aptSizeArray[row];
 	}
 	
 	if (pickerView == self.pets_picker) {
-		return [petsArray objectAtIndex: row];
+		return petsArray[row];
 	}
 	
 	if (pickerView == self.guarantor_picker) {
-		return [guarantorArray objectAtIndex: row];
+		return guarantorArray[row];
 	}
 	else {
 		return 0;
@@ -479,35 +486,35 @@ const static CGFloat kJVFieldWidth = 300.0f;
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
 	if (pickerView == self.bathroom_picker) {
-		self.bathsField.text = [bedsBathsArray objectAtIndex: row];
+		self.bathsField.text = bedsBathsArray[row];
 	}
 	
 	if (pickerView == self.bedroom_picker) {
-		self.roomsField.text = [bedsBathsArray objectAtIndex: row];
+		self.roomsField.text = bedsBathsArray[row];
 	}
 	
 	if (pickerView == self.access_picker) {
-		self.accessField.text = [accessArray objectAtIndex: row];
+		self.accessField.text = accessArray[row];
 	}
 	
 	if (pickerView == self.price_picker) {
-		self.priceField.text = [priceArray objectAtIndex: row];
+		self.priceField.text = priceArray[row];
 	}
 	
 	if (pickerView == self.aptSize_picker) {
-		self.aptsizeField.text = [aptSizeArray objectAtIndex: row];
+		self.aptsizeField.text = aptSizeArray[row];
 	}
 	
 	if (pickerView == self.pets_picker) {
-		self.petsField.text = [petsArray objectAtIndex: row];
+		self.petsField.text = petsArray[row];
 	}
 	
 	if (pickerView == self.guarantor_picker) {
-		self.guarantorField.text = [guarantorArray objectAtIndex: row];
+		self.guarantorField.text = guarantorArray[row];
 	}
 	
 	if (pickerView == self.neighborhood_picker) {
-		self.neighborhoodField.text = [neighborhoodArray objectAtIndex: row];
+		self.neighborhoodField.text = neighborhoodArray[row];
 	}
 }
 
@@ -525,7 +532,7 @@ const static CGFloat kJVFieldWidth = 300.0f;
 	NSInteger indexOfInput = [[self allInputFields] indexOfObject: textField];
 	
 	if (indexOfInput != NSNotFound && indexOfInput < [self allInputFields].count-1) {
-		UIResponder *next = [[self allInputFields] objectAtIndex: (NSUInteger)(indexOfInput+1)];
+		UIResponder *next = [self allInputFields][(NSUInteger)(indexOfInput+1)];
 		
 		if ([next canBecomeFirstResponder]) {
 			[next becomeFirstResponder];

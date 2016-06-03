@@ -11,7 +11,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear: animated];
-	[[self tableView] reloadData];
+	[self.tableView reloadData];
 }
 
 - (void)viewDidLoad {
@@ -20,14 +20,14 @@
 	
 	UINib *nib = [UINib nibWithNibName: @"BrokersLabItemCell" bundle: nil];
 	
-	[[self tableView] registerNib: nib forCellReuseIdentifier: @"BrokersLabItemCell"];
+	[self.tableView registerNib: nib forCellReuseIdentifier: @"BrokersLabItemCell"];
 	
 	UIBarButtonItem *add = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
 																		 target: self
 																		 action: @selector(addNewItem: )];
 	
-	[[self navigationItem] setLeftBarButtonItem: [self editButtonItem]];
-	[[self navigationItem] setRightBarButtonItem: add];
+	self.navigationItem.leftBarButtonItem = [self editButtonItem];
+	self.navigationItem.rightBarButtonItem = add;
 	
 	self.tableView.allowsSelectionDuringEditing = YES;
 }
@@ -39,14 +39,14 @@
 	
 	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: YES];
 	
-	[detailViewController setItem: newItem];
+	detailViewController.item = newItem;
 	
-	[detailViewController setDismissBlock: ^{
-		[[self tableView] reloadData];
-	}];
+	detailViewController.dismissBlock = ^{
+		[self.tableView reloadData];
+	};
 	
 	// Push it onto the top of the navigation controller's stack
-	[[self navigationController] pushViewController: detailViewController animated: YES];
+	[self.navigationController pushViewController: detailViewController animated: YES];
 }
 
 #pragma mark - Segue
@@ -56,24 +56,23 @@
 		
 		AppointmentCleanViewController *destViewController = segue.destinationViewController;
 		
-		NSIndexPath *indexPath = [[self tableView]  indexPathForCell: sender];
-		BrokersLabItem *s = [[[BrokersLabItemStore sharedStore] allItems]
-							 objectAtIndex: [indexPath row]];
+		NSIndexPath *indexPath = [self.tableView  indexPathForCell: sender];
+		BrokersLabItem *s = [[BrokersLabItemStore sharedStore] allItems][indexPath.row];
 		
-		destViewController.nameString = [s itemName];
-		destViewController.timeString = [s timeName];
-		destViewController.addressString = [s addressName];
-		destViewController.phoneString = [s phoneName];
-		destViewController.moveInDateString = [s moveindateName];
-		destViewController.priceString = [s priceName];
-		destViewController.neighborhoodString = [s neighborhoodName];
-		destViewController.aptsizeString = [s aptsizeName];
-		destViewController.roomsString = [s roomsName];
-		destViewController.bathsString = [s bathsName];
-		destViewController.accessString = [s accessName];
-		destViewController.petsString = [s petsName];
-		destViewController.guarantorString = [s guarantorName];
-		destViewController.emailString = [s emailName];
+		destViewController.nameString = s.itemName;
+		destViewController.timeString = s.timeName;
+		destViewController.addressString = s.addressName;
+		destViewController.phoneString = s.phoneName;
+		destViewController.moveInDateString = s.moveindateName;
+		destViewController.priceString = s.priceName;
+		destViewController.neighborhoodString = s.neighborhoodName;
+		destViewController.aptsizeString = s.aptsizeName;
+		destViewController.roomsString = s.roomsName;
+		destViewController.bathsString = s.bathsName;
+		destViewController.accessString = s.accessName;
+		destViewController.petsString = s.petsName;
+		destViewController.guarantorString = s.guarantorName;
+		destViewController.emailString = s.emailName;
 	}
 }
 
@@ -84,13 +83,9 @@
 		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: NO];
 		
 		NSArray *items = [[BrokersLabItemStore sharedStore] allItems];
-		BrokersLabItem *selectedItem = [items objectAtIndex: [indexPath row]];
-		
-		// Give detail view controller a pointer to the item object in row
-		[detailViewController setItem: selectedItem];
-		
-		// Push it onto the top of the navigation controller's stack
-		[[self navigationController] pushViewController: detailViewController animated: YES];
+		BrokersLabItem *selectedItem = items[indexPath.row];
+		detailViewController.item = selectedItem;
+		[self.navigationController pushViewController: detailViewController animated: YES];
 	}
 	else {
 		[self performSegueWithIdentifier: @"Clean" sender: [tableView cellForRowAtIndexPath: indexPath]];
@@ -105,12 +100,12 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [[[BrokersLabItemStore sharedStore] allItems] count];
+	return [[BrokersLabItemStore sharedStore] allItems].count;
 }
 
 - (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-	[[BrokersLabItemStore sharedStore] moveItemAtIndex: [fromIndexPath row]
-											   toIndex: [toIndexPath row]];
+	[[BrokersLabItemStore sharedStore] moveItemAtIndex: fromIndexPath.row
+											   toIndex: toIndexPath.row];
 	
 	[self.tableView beginUpdates];
 	[self.tableView reloadData];
@@ -118,17 +113,16 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	BrokersLabItem *s = [[[BrokersLabItemStore sharedStore] allItems]
-						 objectAtIndex: [indexPath row]];
+	BrokersLabItem *s = [[BrokersLabItemStore sharedStore] allItems][indexPath.row];
 	
 	BrokersLabItemCell *cell = [tableView dequeueReusableCellWithIdentifier: @"BrokersLabItemCell"];
 	
-//	[cell setController: self];
-//	[cell setTableView: tableView];
-//	
-	[[cell nameLabel] setText: [s itemName]];
-	[[cell addressLabel] setText: [s addressName]];
-	[[cell timeLabel] setText: [s timeName]];
+	//	[cell setController: self];
+	//	[cell setTableView: tableView];
+	
+	cell.nameLabel.text = s.itemName;
+	cell.addressLabel.text = s.addressName;
+	cell.timeLabel.text = s.timeName;
 	cell.selectionStyle = UITableViewCellSelectionStyleGray;
 	
 	return cell;
@@ -139,14 +133,14 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-    switch (section) {
-        case 0: 
-            return @"My Appointments";
-            break;
-        default: 
-            return @"";
-            break;
-    }
+	switch (section) {
+		case 0:
+			return @"My Appointments";
+			break;
+		default:
+			return @"";
+			break;
+	}
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -154,11 +148,11 @@
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
 		BrokersLabItemStore *ps = [BrokersLabItemStore sharedStore];
 		NSArray *items = [ps allItems];
-		BrokersLabItem *p = [items objectAtIndex: [indexPath row]];
+		BrokersLabItem *p = items[indexPath.row];
 		[ps removeItem: p];
 		
 		// We also remove that row from the table view with an animation
-		[tableView deleteRowsAtIndexPaths: [NSArray arrayWithObject: indexPath]
+		[tableView deleteRowsAtIndexPaths: @[indexPath]
 						 withRowAnimation: UITableViewRowAnimationFade];
 		
 		[self.tableView beginUpdates];
