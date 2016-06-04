@@ -33,7 +33,6 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 ![Maps view](/Screenshots/4.jpg?raw=true)
 
 ## To do:
-- Need to implement API to detect zip code and automatically fill out city/state info.
 - Use autolayout throughout app so elements properly scale.
 - Implement new Reachability library.
 - Redesign ```AppointmentCleanViewController```
@@ -41,14 +40,17 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 - New menu button.
 - Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.
 - Need to change info.plist string for location permissions.
-- Implement ```DZNEmptyDataSet``` on main screen.
 - Remove traces of "BrokersLab" name.
+- Need to add icon for zip/postal code
+- ~~Implement ```DZNEmptyDataSet``` on main screen.!!
+- ~~Need to implement API to detect zip code and automatically fill out city/state info.~~
 - ~~Remove "```GoogleMapsKit```" pod and use native Apple Maps solution.~~
 - ~~Set Deployment Target to iOS 9.0 and update code accordingly.~~
 - ~~Implement ```Chameleon```~~
 
 ## Known bugs:
 - Slight lag when creating new appointment.
+- DZNEmptyDateSet is not centered when first opening the application.
 - ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
 - ~~Location isn't properly displayed on map.~~
 - ~~Calendar event isn’t added properly — need to get Calendar permissions.~~

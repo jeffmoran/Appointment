@@ -17,5 +17,6 @@
 @property (nonatomic, retain) NSString *petsName;
 @property (nonatomic, retain) NSString *guarantorName;
 @property (nonatomic, retain) NSString *emailName;
+@property (nonatomic, retain) NSString *zipName;
 
 @end

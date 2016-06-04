@@ -11,7 +11,6 @@
 		6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 601423811CD098FF0089E278 /* Appointment.xcdatamodel */; };
 		6014239D1CD098FF0089E278 /* AppointmentCleanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423831CD098FF0089E278 /* AppointmentCleanViewController.m */; };
 		6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423851CD098FF0089E278 /* AppointmentInputViewController.m */; };
-		6014239F1CD098FF0089E278 /* AppointmentInputViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601423861CD098FF0089E278 /* AppointmentInputViewController.xib */; };
 		601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423881CD098FF0089E278 /* AppointmentsViewController.m */; };
 		601423A11CD098FF0089E278 /* aptSizeArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601423891CD098FF0089E278 /* aptSizeArray.plist */; };
 		601423A21CD098FF0089E278 /* BrokersLabAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238B1CD098FF0089E278 /* BrokersLabAppDelegate.m */; };
@@ -23,7 +22,6 @@
 		601423A91CD098FF0089E278 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423951CD098FF0089E278 /* main.m */; };
 		601423AA1CD098FF0089E278 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601423961CD098FF0089E278 /* MainStoryboard.storyboard */; };
 		601423AB1CD098FF0089E278 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423981CD098FF0089E278 /* MapViewController.m */; };
-		601423AC1CD098FF0089E278 /* neighborhoodArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601423991CD098FF0089E278 /* neighborhoodArray.plist */; };
 		601423AD1CD098FF0089E278 /* priceArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 6014239A1CD098FF0089E278 /* priceArray.plist */; };
 		605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F92C51CCC142B00F4FC1C /* Images.xcassets */; };
 		BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0E4EB2143262F700F05B13 /* CoreData.framework */; };
@@ -51,7 +49,6 @@
 		601423831CD098FF0089E278 /* AppointmentCleanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentCleanViewController.m; sourceTree = "<group>"; };
 		601423841CD098FF0089E278 /* AppointmentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentInputViewController.h; sourceTree = "<group>"; };
 		601423851CD098FF0089E278 /* AppointmentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentInputViewController.m; sourceTree = "<group>"; };
-		601423861CD098FF0089E278 /* AppointmentInputViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AppointmentInputViewController.xib; sourceTree = "<group>"; };
 		601423871CD098FF0089E278 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		601423881CD098FF0089E278 /* AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
 		601423891CD098FF0089E278 /* aptSizeArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = aptSizeArray.plist; sourceTree = "<group>"; };
@@ -70,9 +67,9 @@
 		601423961CD098FF0089E278 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		601423971CD098FF0089E278 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		601423981CD098FF0089E278 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		601423991CD098FF0089E278 /* neighborhoodArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = neighborhoodArray.plist; sourceTree = "<group>"; };
 		6014239A1CD098FF0089E278 /* priceArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = priceArray.plist; sourceTree = "<group>"; };
 		605F92C51CCC142B00F4FC1C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		60AA2D361D01104000125451 /* Config.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
 		718DDDF45C8F963CEB3D4D11 /* Pods_Appointment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appointment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2FFF213473ED0E1479D86F /* Pods-Appointment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appointment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appointment/Pods-Appointment.release.xcconfig"; sourceTree = "<group>"; };
 		BE0E4EB2143262F700F05B13 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
@@ -130,10 +127,8 @@
 			isa = PBXGroup;
 			children = (
 				601423891CD098FF0089E278 /* aptSizeArray.plist */,
-				601423991CD098FF0089E278 /* neighborhoodArray.plist */,
 				6014239A1CD098FF0089E278 /* priceArray.plist */,
 				601423801CD098FF0089E278 /* Appointment-Prefix.pch */,
-				601423811CD098FF0089E278 /* Appointment.xcdatamodel */,
 				601423951CD098FF0089E278 /* main.m */,
 				601423931CD098FF0089E278 /* Info.plist */,
 			);
@@ -152,6 +147,7 @@
 		601423B11CD0994B0089E278 /* Core Data */ = {
 			isa = PBXGroup;
 			children = (
+				601423811CD098FF0089E278 /* Appointment.xcdatamodel */,
 				6014238C1CD098FF0089E278 /* BrokersLabItem.h */,
 				6014238D1CD098FF0089E278 /* BrokersLabItem.m */,
 				601423911CD098FF0089E278 /* BrokersLabItemStore.h */,
@@ -163,11 +159,11 @@
 		601423B21CD0998F0089E278 /* Appointment */ = {
 			isa = PBXGroup;
 			children = (
+				60AA2D361D01104000125451 /* Config.h */,
 				601423871CD098FF0089E278 /* AppointmentsViewController.h */,
 				601423881CD098FF0089E278 /* AppointmentsViewController.m */,
 				601423841CD098FF0089E278 /* AppointmentInputViewController.h */,
 				601423851CD098FF0089E278 /* AppointmentInputViewController.m */,
-				601423861CD098FF0089E278 /* AppointmentInputViewController.xib */,
 				601423821CD098FF0089E278 /* AppointmentCleanViewController.h */,
 				601423831CD098FF0089E278 /* AppointmentCleanViewController.m */,
 				601423971CD098FF0089E278 /* MapViewController.h */,
@@ -304,13 +300,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				601423AC1CD098FF0089E278 /* neighborhoodArray.plist in Resources */,
 				601423A81CD098FF0089E278 /* Launch Screen.storyboard in Resources */,
 				605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */,
 				601423A51CD098FF0089E278 /* BrokersLabItemCell.xib in Resources */,
 				601423AD1CD098FF0089E278 /* priceArray.plist in Resources */,
 				601423AA1CD098FF0089E278 /* MainStoryboard.storyboard in Resources */,
-				6014239F1CD098FF0089E278 /* AppointmentInputViewController.xib in Resources */,
 				601423A11CD098FF0089E278 /* aptSizeArray.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,18 +1,21 @@
 #import <UIKit/UIKit.h>
 #import "JVFloatLabeledTextField.h"
 #import "JVFloatLabeledTextView.h"
+#import "BrokersLabItem.h"
+#import "BrokersLabItemStore.h"
+#import "AppointmentsViewController.h"
 
-@class BrokersLabItem;
+@import ChameleonFramework;
+//@class BrokersLabItem;
 
 @interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     
     NSArray *bedsBathsArray;
     NSArray *aptSizeArray;
     NSArray *accessArray;
-    NSArray *neighborhoodArray;
     NSArray *priceArray;
     NSArray *petsArray;
-    NSArray *guarantorArray;
+    NSArray *guarantorArray;    
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -22,6 +25,7 @@
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *phoneField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *timeField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *addressField;
+@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *zipCodeField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *moveindateField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *priceField;
 @property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *neighborhoodField;
@@ -47,7 +51,6 @@
 @property (nonatomic, strong) UIImageView *inputPets;
 @property (nonatomic, strong) UIImageView *inputGuarantor;
 
-@property (nonatomic, strong) IBOutlet UIPickerView *neighborhood_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *bedroom_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *bathroom_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *access_picker;

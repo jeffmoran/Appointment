@@ -13,7 +13,7 @@
 
 @property (nonatomic, strong) NSString  *nameString;
 @property (nonatomic, strong) NSString  *emailString;
-
+@property (nonatomic, strong) NSString  *zipString;
 @property (nonatomic, strong) NSString  *phoneString;
 @property (nonatomic, strong) NSString  *moveInDateString;
 @property (nonatomic, strong) NSString  *petsString;

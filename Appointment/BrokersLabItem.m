@@ -16,5 +16,6 @@
 @dynamic petsName;
 @dynamic guarantorName;
 @dynamic emailName;
+@dynamic zipName;
 
 @end

@@ -1,8 +1,7 @@
 #import <Foundation/Foundation.h>
 #import "AppointmentInputViewController.h"
+#import "UIScrollView+EmptyDataSet.h"
 
-@interface AppointmentsViewController : UITableViewController <UIAlertViewDelegate>
-
-- (IBAction)addNewItem:(id)sender;
+@interface AppointmentsViewController : UITableViewController <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate>
 
 @end
