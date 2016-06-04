@@ -15,7 +15,7 @@
     NSArray *accessArray;
     NSArray *priceArray;
     NSArray *petsArray;
-    NSArray *guarantorArray;    
+    NSArray *guarantorArray;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -60,6 +60,8 @@
 @property (nonatomic, strong) IBOutlet UIPickerView *guarantor_picker;
 @property (nonatomic, strong) IBOutlet UIDatePicker *time_picker;
 @property (nonatomic, strong) IBOutlet UIDatePicker *movein_picker;
+
+@property (nonatomic) BOOL isEditing;
 
 - (instancetype)initForNewItem:(BOOL)isNew;
 

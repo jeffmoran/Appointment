@@ -17,8 +17,8 @@
 
 - (BrokersLabItem *)createItem;
 
-- (void)moveItemAtIndex:(NSInteger)from
-                toIndex:(NSInteger)to;
+//- (void)moveItemAtIndex:(NSInteger)from
+//                toIndex:(NSInteger)to;
 
 - (NSString *)itemArchivePath;
 

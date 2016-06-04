@@ -110,19 +110,25 @@
 	return allItems;
 }
 
-- (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to {
-	if (from == to) {
-		return;
-	}
-	// Get pointer to object being moved so we can re-insert it
-	BrokersLabItem *p = allItems[from];
-	
-	// Remove p from array
-	[allItems removeObjectAtIndex: from];
-	
-	// Insert p in array at new location
-	[allItems insertObject: p atIndex:to];
-}
+//- (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to {
+//	if (from == to) {
+//		return;
+//	}
+//	
+//	NSLog(@"Reordering");
+//	// Get pointer to object being moved so we can re-insert it
+//	BrokersLabItem *p = allItems[from];
+//	
+//	// Remove p from array
+//	[allItems removeObjectAtIndex: from];
+//	
+//	// Insert p in array at new location
+//	[allItems insertObject: p atIndex:to];
+//	
+//	NSLog(@"Saving");
+//	NSError *err = nil;
+//	[context save:&err];
+//}
 
 - (BrokersLabItem *)createItem {
 	BrokersLabItem *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"BrokersLabItem"

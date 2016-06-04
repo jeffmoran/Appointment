@@ -42,7 +42,7 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 - Need to change info.plist string for location permissions.
 - Remove traces of "BrokersLab" name.
 - Need to add icon for zip/postal code
-- ~~Implement ```DZNEmptyDataSet``` on main screen.!!
+- ~~Implement ```DZNEmptyDataSet``` on main screen.~~
 - ~~Need to implement API to detect zip code and automatically fill out city/state info.~~
 - ~~Remove "```GoogleMapsKit```" pod and use native Apple Maps solution.~~
 - ~~Set Deployment Target to iOS 9.0 and update code accordingly.~~
@@ -50,7 +50,7 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 
 ## Known bugs:
 - Slight lag when creating new appointment.
-- DZNEmptyDateSet is not centered when first opening the application.
+- ~~DZNEmptyDateSet is not centered when first opening the application.~~
 - ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
 - ~~Location isn't properly displayed on map.~~
 - ~~Calendar event isn’t added properly — need to get Calendar permissions.~~

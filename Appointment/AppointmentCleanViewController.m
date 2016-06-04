@@ -6,89 +6,82 @@
 
 @synthesize contact, contactStore, event, eventStore;
 
-#pragma mark View Lifecycle
-
-- (void)loadView {
-    [super loadView];
-    
-    TKLabelFieldCell *nameField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    nameField.label.text = @"Client Name";
-    nameField.field.text = self.nameString;
-    
-    TKLabelFieldCell *emailField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    emailField.label.text = @"Client Email";
-    emailField.field.text = self.emailString;
-    
-    TKLabelFieldCell *phoneNumberField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    phoneNumberField.label.text = @"Client Number";
-    phoneNumberField.field.text = self.phoneString;
-    
-    TKLabelFieldCell *timeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    timeField.label.text = @"Time";
-    timeField.field.text = self.timeString;
-    
-    TKLabelFieldCell *addressField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    addressField.label.text = @"Property Address";
-    addressField.field.text = self.addressString;
-    addressField.field.adjustsFontSizeToFitWidth = YES;
-    
-    TKLabelFieldCell *zipField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    zipField.label.text = @"Zip/Postal Code";
-    zipField.field.text = self.zipString;
-    
-    TKLabelFieldCell *moveInDateField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    moveInDateField.label.text = @"Move-In Date";
-    moveInDateField.field.text = self.moveInDateString;
-    
-    TKLabelFieldCell *petsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    petsField.label.text = @"Pets";
-    petsField.field.text = self.petsString;
-    
-    TKLabelFieldCell *priceField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    priceField.label.text = @"Rent";
-    priceField.field.text = self.priceString;
-    
-    TKLabelFieldCell *neighborhoodField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    neighborhoodField.label.text = @"Location";
-    neighborhoodField.field.text = self.neighborhoodString;
-    
-    TKLabelFieldCell *aptsizeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    aptsizeField.label.text = @"Apartment Size";
-    aptsizeField.field.text = self.aptsizeString;
-    
-    TKLabelFieldCell *roomsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    roomsField.label.text = @"Bedrooms";
-    roomsField.field.text = self.roomsString;
-    
-    TKLabelFieldCell *bathsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    bathsField.label.text = @"Bathrooms";
-    bathsField.field.text = self.bathsString;
-    
-    TKLabelFieldCell *accessField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    accessField.label.text = @"Access";
-    accessField.field.text = self.accessString;
-    
-    TKLabelFieldCell *guarantorField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-    guarantorField.label.text = @"Guarantor";
-    guarantorField.field.text = self.guarantorString;
-    
-    self.cells = @[nameField, emailField, phoneNumberField, timeField, addressField, zipField, moveInDateField, petsField, priceField, neighborhoodField, aptsizeField, roomsField, bathsField, accessField, guarantorField];
-}
-
-#pragma mark - UIViewController Lifecycle
+#pragma mark -  Lifecycle
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+	
+	TKLabelFieldCell *nameField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	nameField.label.text = @"Client Name";
+	nameField.field.text = self.nameString;
+	
+	TKLabelFieldCell *emailField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	emailField.label.text = @"Client Email";
+	emailField.field.text = self.emailString;
+	
+	TKLabelFieldCell *phoneNumberField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	phoneNumberField.label.text = @"Client Number";
+	phoneNumberField.field.text = self.phoneString;
+	
+	TKLabelFieldCell *timeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	timeField.label.text = @"Time";
+	timeField.field.text = self.timeString;
+	
+	TKLabelFieldCell *addressField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	addressField.label.text = @"Property Address";
+	addressField.field.text = self.addressString;
+	addressField.field.adjustsFontSizeToFitWidth = YES;
+	
+	TKLabelFieldCell *zipField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	zipField.label.text = @"Zip/Postal Code";
+	zipField.field.text = self.zipString;
+	
+	TKLabelFieldCell *moveInDateField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	moveInDateField.label.text = @"Move-In Date";
+	moveInDateField.field.text = self.moveInDateString;
+	
+	TKLabelFieldCell *petsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	petsField.label.text = @"Pets";
+	petsField.field.text = self.petsString;
+	
+	TKLabelFieldCell *priceField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	priceField.label.text = @"Rent";
+	priceField.field.text = self.priceString;
+	
+	TKLabelFieldCell *neighborhoodField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	neighborhoodField.label.text = @"Neighborhood";
+	neighborhoodField.field.text = self.neighborhoodString;
+	
+	TKLabelFieldCell *aptsizeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	aptsizeField.label.text = @"Apartment Size";
+	aptsizeField.field.text = self.aptsizeString;
+	
+	TKLabelFieldCell *roomsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	roomsField.label.text = @"Bedrooms";
+	roomsField.field.text = self.roomsString;
+	
+	TKLabelFieldCell *bathsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	bathsField.label.text = @"Bathrooms";
+	bathsField.field.text = self.bathsString;
+	
+	TKLabelFieldCell *accessField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	accessField.label.text = @"Access";
+	accessField.field.text = self.accessString;
+	
+	TKLabelFieldCell *guarantorField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
+	guarantorField.label.text = @"Guarantor";
+	guarantorField.field.text = self.guarantorString;
+	
+	self.cells = @[nameField, emailField, phoneNumberField, timeField, addressField, zipField, neighborhoodField, moveInDateField, petsField, priceField, aptsizeField, roomsField, bathsField, accessField, guarantorField];
+	
     [self.tableView setAllowsSelection: NO];
-    UIImage *menuImage = [UIImage imageNamed: @"Menu"];
-    UIBarButtonItem *menu = [[UIBarButtonItem alloc] initWithImage: menuImage
-                                                             style: UIBarButtonItemStylePlain
-                                                            target: self
-                                                            action: @selector(showGrid)];
-    
-    self.navigationItem.rightBarButtonItem = menu;
-    
+	
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"Menu"]
+																			  style: UIBarButtonItemStylePlain
+																			 target: self
+																			 action: @selector(showGrid)];
+
+	
     _calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\nApartment Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
     
     _emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/> <b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/> <b>Property Price:</b><br/>%@<br/><br/> <b>Neighborhood:</b><br/>%@  <br/><br/> <b>Apartment Size:</b><br/>%@ <br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.timeString, self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
@@ -157,7 +150,7 @@
                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"email128"] title: @"Email client"],
                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"map128"] title: @"Find on map"],
                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"contact128"] title: @"Add contact"],
-                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"calendar128"] title: @"Calendar"],
+                       [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"calendar"] title: @"Calendar"],
                        [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"cancel"] title: @"Cancel"],
                        ];
     
@@ -290,17 +283,16 @@
                                                     static NSDateFormatter *dateFormatter = nil;
                                                     
                                                     if (!dateFormatter){
+														NSLog(@"dateFormatter alloc");
                                                         dateFormatter = [[NSDateFormatter alloc] init];
-                                                        dateFormatter.dateFormat = @"MMMM d yyyy h: mm aa";
+                                                        dateFormatter.dateFormat = @"MMMM d, yyyy h:mm aa";
                                                     }
+
+                                                    event.startDate = [dateFormatter dateFromString: self.timeString];
+                                                    event.endDate = [NSDate dateWithTimeInterval: 3600 sinceDate:[dateFormatter dateFromString: self.timeString]];
                                                     
-                                                    NSDate *dateFromString = [dateFormatter dateFromString: self.timeString];
-                                                    
-                                                    event.startDate = dateFromString;
-                                                    event.endDate = [NSDate dateWithTimeInterval: 3600 sinceDate:dateFromString];
-                                                    
-                                                    NSLog(@"%@", dateFromString);
-                                                    NSLog(@"%@", self.timeString);
+                                                    NSLog(@"Event startDate %@", event.startDate);
+                                                    NSLog(@"Event endDate%@",  event.endDate);
                                                     
                                                     NSArray *alarms = @[
                                                                         [EKAlarm alarmWithRelativeOffset:-3600], // 1 hour
