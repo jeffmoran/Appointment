@@ -33,15 +33,14 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 ![Maps view](/Screenshots/4.jpg?raw=true)
 
 ## To do:
-- Use autolayout throughout app so elements properly scale.
 - Implement new Reachability library.
 - Redesign ```AppointmentCleanViewController```
 - Need to be able to update appointment from detail view.
-- New menu button.
 - Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.
-- Need to change info.plist string for location permissions.
 - Remove traces of "BrokersLab" name.
-- Need to add icon for zip/postal code
+- ~~Need to change info.plist string for location permissions.~~
+- ~~New menu button.~~
+- ~~Need to add icon for zip/postal code.~~
 - ~~Implement ```DZNEmptyDataSet``` on main screen.~~
 - ~~Need to implement API to detect zip code and automatically fill out city/state info.~~
 - ~~Remove "```GoogleMapsKit```" pod and use native Apple Maps solution.~~
