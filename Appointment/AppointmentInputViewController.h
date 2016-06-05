@@ -42,6 +42,7 @@
 @property (nonatomic, strong) UIImageView *inputMoveInDate;
 @property (nonatomic, strong) UIImageView *inputPrice;
 @property (nonatomic, strong) UIImageView *inputNeighborhood;
+@property (nonatomic, strong) UIImageView *inputZip;
 @property (nonatomic, strong) UIImageView *inputAptSize;
 @property (nonatomic, strong) UIImageView *inputRooms;
 @property (nonatomic, strong) UIImageView *inputBaths;

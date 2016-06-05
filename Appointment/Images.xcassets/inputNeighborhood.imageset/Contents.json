@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "City Square-32.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "inputNeighborhood@2x.png",
+      "idiom" : "iphone",
+      "filename" : "City Square-64.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "City Square-96.png",
       "scale" : "3x"
     }
   ],

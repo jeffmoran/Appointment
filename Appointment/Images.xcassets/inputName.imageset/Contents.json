@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Circled User Male-32.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "inputName@2x.png",
+      "idiom" : "iphone",
+      "filename" : "Circled User Male-64.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Circled User Male-96.png",
       "scale" : "3x"
     }
   ],

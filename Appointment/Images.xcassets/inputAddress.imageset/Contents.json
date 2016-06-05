@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Home-32.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "inputAddress@2x.png",
+      "idiom" : "iphone",
+      "filename" : "Home-64.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Home-96.png",
       "scale" : "3x"
     }
   ],

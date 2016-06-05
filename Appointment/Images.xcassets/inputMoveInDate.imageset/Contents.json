@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Calendar 1-32.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "inputMoveInDate@2x.png",
+      "idiom" : "iphone",
+      "filename" : "Calendar 1-64.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Calendar 1-96.png",
       "scale" : "3x"
     }
   ],

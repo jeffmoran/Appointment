@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "iphone",
-      "filename" : "calendar-5.png",
+      "filename" : "Calendar-128-2.png",
       "scale" : "1x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "calendar-8.png",
+      "filename" : "Calendar-256-2.png",
       "scale" : "2x"
     },
     {
       "idiom" : "iphone",
-      "filename" : "calendar-7.png",
+      "filename" : "Calendar-384-2.png",
       "scale" : "3x"
     }
   ],

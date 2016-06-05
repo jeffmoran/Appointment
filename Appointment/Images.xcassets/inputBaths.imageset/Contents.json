@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Shower-32.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "inputBaths@2x.png",
+      "idiom" : "iphone",
+      "filename" : "Shower-64.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "Shower-96.png",
       "scale" : "3x"
     }
   ],

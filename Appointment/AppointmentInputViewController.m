@@ -33,7 +33,7 @@
 	const static CGFloat kJVFieldHeight = 40.0f;
 	const CGFloat kJVFieldWidth = self.view.frame.size.width - 83.0f;
 	
-	(self.view).tintColor = [UIColor flatRedColor];
+	self.view.tintColor = [UIColor flatRedColor];
 	
 	bedsBathsArray = @[@"0", @".5", @"1",@"1.5", @"2", @"2.5",@"3", @"3.5", @"4",@"4.5", @"5", @"5.5",@"6", @"6.5", @"7",@"7.5", @"8", @"8.5",@"9", @"9.5", @"10+"];
 	accessArray = @[@"Doorman", @"Elevator", @"Walkup"];
@@ -60,21 +60,21 @@
 	self.guarantorField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 666, kJVFieldWidth, kJVFieldHeight)];
 	
 	//Set placeholder text for each textfield
-	self.nameField.placeholder = @"Client Name";
-	self.emailField.placeholder = @"Client Email Address";
-	self.phoneField.placeholder = @"Client Phone Number";
-	self.timeField.placeholder = @"Appointment Time";
-	self.addressField.placeholder = @"Property Address";
-	self.zipCodeField.placeholder = @"Zip/Postal Code";
-	self.neighborhoodField.placeholder = @"Neighborhood";
-	self.moveindateField.placeholder = @"Move-In Date";
-	self.petsField.placeholder = @"Pets";
-	self.priceField.placeholder = @"Price";
-	self.aptsizeField.placeholder = @"Apartment Size";
-	self.roomsField.placeholder = @"Bedrooms";
-	self.bathsField.placeholder = @"Bathrooms";
-	self.accessField.placeholder = @"Access";
-	self.guarantorField.placeholder = @"Guarantor";
+	self.nameField.placeholder = @" Client Name";
+	self.emailField.placeholder = @" Client Email Address";
+	self.phoneField.placeholder = @" Client Phone Number";
+	self.timeField.placeholder = @" Appointment Time";
+	self.addressField.placeholder = @" Property Address";
+	self.zipCodeField.placeholder = @" Zip/Postal Code";
+	self.neighborhoodField.placeholder = @" City";
+	self.moveindateField.placeholder = @" Move-In Date";
+	self.petsField.placeholder = @" Pets";
+	self.priceField.placeholder = @" Price";
+	self.aptsizeField.placeholder = @" Size";
+	self.roomsField.placeholder = @" Bedrooms";
+	self.bathsField.placeholder = @" Bathrooms";
+	self.accessField.placeholder = @" Access";
+	self.guarantorField.placeholder = @" Guarantor";
 	
 	//Image view instances
 	self.inputName = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputName"]];
@@ -82,7 +82,7 @@
 	self.inputPhone = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputPhone"]];
 	self.inputTime = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputTime"]];
 	self.inputAddress = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputAddress"]];
-	
+	self.inputZip = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputZip"]];
 	self.inputNeighborhood = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputNeighborhood"]];
 	self.inputMoveInDate = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputMoveInDate"]];
 	self.inputPets = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputPets"]];
@@ -94,20 +94,21 @@
 	self.inputGuarantor = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputGuarantor"]];
 	
 	//Set the frame for each image view
-	(self.inputName).frame = CGRectMake(20.0f, self.nameField.frame.origin.y + 4, 32, 32);
-	(self.inputEmail).frame = CGRectMake(20.0f, self.emailField.frame.origin.y + 4, 32, 32);
-	(self.inputPhone).frame = CGRectMake(20.0f, self.phoneField.frame.origin.y + 4, 32, 32);
-	(self.inputTime).frame = CGRectMake(20.0f, self.timeField.frame.origin.y + 4, 32, 32);
-	(self.inputAddress).frame = CGRectMake(20.0f, self.addressField.frame.origin.y + 4, 32, 32);
-	(self.inputMoveInDate).frame = CGRectMake(20.0f, self.moveindateField.frame.origin.y + 4, 32, 32);
-	(self.inputPets).frame = CGRectMake(20.0f, self.petsField.frame.origin.y + 4, 32, 32);
-	(self.inputPrice).frame = CGRectMake(20.0f, self.priceField.frame.origin.y + 4, 32, 32);
-	(self.inputNeighborhood).frame = CGRectMake(20.0f, self.neighborhoodField.frame.origin.y + 4, 32, 32);
-	(self.inputAptSize).frame = CGRectMake(20.0f, self.aptsizeField.frame.origin.y + 4, 32, 32);
-	(self.inputRooms).frame = CGRectMake(20.0f, self.roomsField.frame.origin.y + 4, 32, 32);
-	(self.inputBaths).frame = CGRectMake(20.0f, self.bathsField.frame.origin.y + 4, 32, 32);
-	(self.inputAccess).frame = CGRectMake(20.0f, self.accessField.frame.origin.y + 4, 32, 32);
-	(self.inputGuarantor).frame = CGRectMake(20.0f, self.guarantorField.frame.origin.y + 4, 32, 32);
+	self.inputName.frame = CGRectMake(20.0f, self.nameField.frame.origin.y + 4, 32, 32);
+	self.inputEmail.frame = CGRectMake(20.0f, self.emailField.frame.origin.y + 4, 32, 32);
+	self.inputPhone.frame = CGRectMake(20.0f, self.phoneField.frame.origin.y + 4, 32, 32);
+	self.inputTime.frame = CGRectMake(20.0f, self.timeField.frame.origin.y + 4, 32, 32);
+	self.inputAddress.frame = CGRectMake(20.0f, self.addressField.frame.origin.y + 4, 32, 32);
+	self.inputZip.frame = CGRectMake(20.0f, self.zipCodeField.frame.origin.y + 4, 32, 32);
+	self.inputMoveInDate.frame = CGRectMake(20.0f, self.moveindateField.frame.origin.y + 4, 32, 32);
+	self.inputPets.frame = CGRectMake(20.0f, self.petsField.frame.origin.y + 4, 32, 32);
+	self.inputPrice.frame = CGRectMake(20.0f, self.priceField.frame.origin.y + 4, 32, 32);
+	self.inputNeighborhood.frame = CGRectMake(20.0f, self.neighborhoodField.frame.origin.y + 4, 32, 32);
+	self.inputAptSize.frame = CGRectMake(20.0f, self.aptsizeField.frame.origin.y + 4, 32, 32);
+	self.inputRooms.frame = CGRectMake(20.0f, self.roomsField.frame.origin.y + 4, 32, 32);
+	self.inputBaths.frame = CGRectMake(20.0f, self.bathsField.frame.origin.y + 4, 32, 32);
+	self.inputAccess.frame = CGRectMake(20.0f, self.accessField.frame.origin.y + 4, 32, 32);
+	self.inputGuarantor.frame = CGRectMake(20.0f, self.guarantorField.frame.origin.y + 4, 32, 32);
 	
 	//Set the frame for each pickerview/datepicker
 	CGRect pickerFrame = CGRectMake(0, 200, 320, 200);
@@ -122,15 +123,15 @@
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	
 	//Set the inputView for textFields
-	(self.bathsField).inputView = self.bathroom_picker;
-	(self.roomsField).inputView = self.bedroom_picker;
-	(self.timeField).inputView = self.time_picker;
-	(self.moveindateField).inputView = self.movein_picker;
-	(self.accessField).inputView = self.access_picker;
-	(self.priceField).inputView = self.price_picker;
-	(self.aptsizeField).inputView = self.aptSize_picker;
-	(self.petsField).inputView = self.pets_picker;
-	(self.guarantorField).inputView = self.guarantor_picker;
+	self.bathsField.inputView = self.bathroom_picker;
+	self.roomsField.inputView = self.bedroom_picker;
+	self.timeField.inputView = self.time_picker;
+	self.moveindateField.inputView = self.movein_picker;
+	self.accessField.inputView = self.access_picker;
+	self.priceField.inputView = self.price_picker;
+	self.aptsizeField.inputView = self.aptSize_picker;
+	self.petsField.inputView = self.pets_picker;
+	self.guarantorField.inputView = self.guarantor_picker;
 	
 	// Dismiss keyboard on scrollview drag
 	self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
@@ -176,21 +177,21 @@
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear: animated];
 	
-	(self.nameField).text = item.itemName;
-	(self.phoneField).text = item.phoneName;
-	(self.moveindateField).text = item.moveindateName;
-	(self.priceField).text = item.priceName;
-	(self.neighborhoodField).text = item.neighborhoodName;
-	(self.aptsizeField).text = item.aptsizeName;
-	(self.roomsField).text = item.roomsName;
-	(self.bathsField).text = item.bathsName;
-	(self.accessField).text = item.accessName;
-	(self.timeField).text = item.timeName;
-	(self.addressField).text = item.addressName;
-	(self.petsField).text = item.petsName;
-	(self.guarantorField).text = item.guarantorName;
-	(self.emailField).text = item.emailName;
-	(self.zipCodeField).text = item.zipName;
+	self.nameField.text = item.itemName;
+	self.phoneField.text = item.phoneName;
+	self.moveindateField.text = item.moveindateName;
+	self.priceField.text = item.priceName;
+	self.neighborhoodField.text = item.neighborhoodName;
+	self.aptsizeField.text = item.aptsizeName;
+	self.roomsField.text = item.roomsName;
+	self.bathsField.text = item.bathsName;
+	self.accessField.text = item.accessName;
+	self.timeField.text = item.timeName;
+	self.addressField.text = item.addressName;
+	self.petsField.text = item.petsName;
+	self.guarantorField.text = item.guarantorName;
+	self.emailField.text = item.emailName;
+	self.zipCodeField.text = item.zipName;
 	
 	// Change the navigation item to display name of item
 	self.navigationItem.title = item.itemName;
@@ -232,7 +233,7 @@
 }
 
 - (NSArray *)allImageViews {
-	return @[self.inputName, self.inputEmail, self.inputPhone, self.inputTime, self.inputAddress, self.inputMoveInDate, self.inputPets, self.inputPrice, self.inputNeighborhood, self.inputAptSize, self.inputRooms, self.inputBaths, self.inputAccess, self.inputGuarantor];
+	return @[self.inputName, self.inputEmail, self.inputPhone, self.inputTime, self.inputAddress, self.inputZip, self.inputMoveInDate, self.inputPets, self.inputPrice, self.inputNeighborhood, self.inputAptSize, self.inputRooms, self.inputBaths, self.inputAccess, self.inputGuarantor];
 }
 
 - (void)textFieldStylingAndProperties {
@@ -305,7 +306,7 @@
 		dateFormatterAppointmentTime.dateFormat = @"MMMM d, yyyy h:mm aa";
 	}
 	
-	(self.timeField).text = [dateFormatterAppointmentTime stringFromDate: date];
+	self.timeField.text = [dateFormatterAppointmentTime stringFromDate: date];
 }
 
 - (void)setMoveInDate {
@@ -318,7 +319,7 @@
 		dateFormatterMoveIn.dateStyle = NSDateFormatterLongStyle;
 	}
 	
-	(self.moveindateField).text = [dateFormatterMoveIn stringFromDate: date];
+	self.moveindateField.text = [dateFormatterMoveIn stringFromDate: date];
 }
 
 #pragma mark - Save Methods
@@ -330,21 +331,21 @@
 		}
 	}
 	
-	item.itemName = (self.nameField).text;
-	item.phoneName = (self.phoneField).text;
-	item.moveindateName = (self.moveindateField).text;
-	item.priceName = (self.priceField).text;
-	item.neighborhoodName = (self.neighborhoodField).text;
-	item.aptsizeName = (self.aptsizeField).text;
-	item.roomsName = (self.roomsField).text;
-	item.bathsName = (self.bathsField).text;
-	item.accessName = (self.accessField).text;
-	item.timeName = (self.timeField).text;
-	item.addressName = (self.addressField).text;
-	item.petsName = (self.petsField).text;
-	item.guarantorName = (self.guarantorField).text;
-	item.emailName = (self.emailField).text;
-	item.zipName = (self.zipCodeField).text;
+	item.itemName = self.nameField.text;
+	item.phoneName = self.phoneField.text;
+	item.moveindateName = self.moveindateField.text;
+	item.priceName = self.priceField.text;
+	item.neighborhoodName = self.neighborhoodField.text;
+	item.aptsizeName = self.aptsizeField.text;
+	item.roomsName = self.roomsField.text;
+	item.bathsName = self.bathsField.text;
+	item.accessName = self.accessField.text;
+	item.timeName = self.timeField.text;
+	item.addressName = self.addressField.text;
+	item.petsName = self.petsField.text;
+	item.guarantorName = self.guarantorField.text;
+	item.emailName = self.emailField.text;
+	item.zipName = self.zipCodeField.text;
 	
 	NSLog(@"Saving appointment.");
 	[self.navigationController popViewControllerAnimated: YES];

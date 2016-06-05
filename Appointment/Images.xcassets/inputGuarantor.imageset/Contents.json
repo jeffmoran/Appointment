@@ -1,16 +1,18 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "User Group Man Man-32.png",
       "scale" : "1x"
     },
     {
-      "idiom" : "universal",
-      "filename" : "inputGuarantor@2x.png",
+      "idiom" : "iphone",
+      "filename" : "User Group Man Man-64.png",
       "scale" : "2x"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "iphone",
+      "filename" : "User Group Man Man-96.png",
       "scale" : "3x"
     }
   ],

@@ -13,7 +13,7 @@
 		6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423851CD098FF0089E278 /* AppointmentInputViewController.m */; };
 		601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423881CD098FF0089E278 /* AppointmentsViewController.m */; };
 		601423A11CD098FF0089E278 /* aptSizeArray.plist in Resources */ = {isa = PBXBuildFile; fileRef = 601423891CD098FF0089E278 /* aptSizeArray.plist */; };
-		601423A21CD098FF0089E278 /* BrokersLabAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238B1CD098FF0089E278 /* BrokersLabAppDelegate.m */; };
+		601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */; };
 		601423A31CD098FF0089E278 /* BrokersLabItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238D1CD098FF0089E278 /* BrokersLabItem.m */; };
 		601423A41CD098FF0089E278 /* BrokersLabItemCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238F1CD098FF0089E278 /* BrokersLabItemCell.m */; };
 		601423A51CD098FF0089E278 /* BrokersLabItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 601423901CD098FF0089E278 /* BrokersLabItemCell.xib */; };
@@ -52,8 +52,8 @@
 		601423871CD098FF0089E278 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		601423881CD098FF0089E278 /* AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentsViewController.m; sourceTree = "<group>"; };
 		601423891CD098FF0089E278 /* aptSizeArray.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = aptSizeArray.plist; sourceTree = "<group>"; };
-		6014238A1CD098FF0089E278 /* BrokersLabAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrokersLabAppDelegate.h; sourceTree = "<group>"; };
-		6014238B1CD098FF0089E278 /* BrokersLabAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokersLabAppDelegate.m; sourceTree = "<group>"; };
+		6014238A1CD098FF0089E278 /* AppointmentAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppointmentAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
+		6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6014238C1CD098FF0089E278 /* BrokersLabItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrokersLabItem.h; sourceTree = "<group>"; };
 		6014238D1CD098FF0089E278 /* BrokersLabItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokersLabItem.m; sourceTree = "<group>"; };
 		6014238E1CD098FF0089E278 /* BrokersLabItemCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BrokersLabItemCell.h; sourceTree = "<group>"; };
@@ -63,7 +63,7 @@
 		601423921CD098FF0089E278 /* BrokersLabItemStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BrokersLabItemStore.m; sourceTree = "<group>"; };
 		601423931CD098FF0089E278 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		601423941CD098FF0089E278 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		601423951CD098FF0089E278 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		601423951CD098FF0089E278 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		601423961CD098FF0089E278 /* MainStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MainStoryboard.storyboard; sourceTree = "<group>"; };
 		601423971CD098FF0089E278 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		601423981CD098FF0089E278 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
@@ -138,8 +138,8 @@
 		601423B01CD0992F0089E278 /* App Delegate */ = {
 			isa = PBXGroup;
 			children = (
-				6014238A1CD098FF0089E278 /* BrokersLabAppDelegate.h */,
-				6014238B1CD098FF0089E278 /* BrokersLabAppDelegate.m */,
+				6014238A1CD098FF0089E278 /* AppointmentAppDelegate.h */,
+				6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */,
 			);
 			name = "App Delegate";
 			sourceTree = "<group>";
@@ -373,7 +373,7 @@
 				6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */,
 				601423AB1CD098FF0089E278 /* MapViewController.m in Sources */,
 				601423A91CD098FF0089E278 /* main.m in Sources */,
-				601423A21CD098FF0089E278 /* BrokersLabAppDelegate.m in Sources */,
+				601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

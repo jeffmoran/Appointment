@@ -7,10 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BrokersLabAppDelegate.h"
+#import "AppointmentAppDelegate.h"
 
 int main(int argc, char *argv[]) {
     @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([BrokersLabAppDelegate class]));
+        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppointmentAppDelegate class]));
     }
 }

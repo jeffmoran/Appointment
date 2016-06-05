@@ -49,11 +49,11 @@
 	priceField.field.text = self.priceString;
 	
 	TKLabelFieldCell *neighborhoodField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	neighborhoodField.label.text = @"Neighborhood";
+	neighborhoodField.label.text = @"City";
 	neighborhoodField.field.text = self.neighborhoodString;
 	
 	TKLabelFieldCell *aptsizeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	aptsizeField.label.text = @"Apartment Size";
+	aptsizeField.label.text = @"Size";
 	aptsizeField.field.text = self.aptsizeString;
 	
 	TKLabelFieldCell *roomsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
@@ -82,9 +82,9 @@
 																			 action: @selector(showGrid)];
 
 	
-    _calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\nApartment Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
+    _calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\n Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
     
-    _emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/> <b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/> <b>Property Price:</b><br/>%@<br/><br/> <b>Neighborhood:</b><br/>%@  <br/><br/> <b>Apartment Size:</b><br/>%@ <br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.timeString, self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
+    _emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/> <b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/> <b>Property Price:</b><br/>%@<br/><br/> <b>Neighborhood:</b><br/>%@  <br/><br/> <b>Size:</b><br/>%@ <br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.timeString, self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
