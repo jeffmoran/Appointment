@@ -1,6 +1,8 @@
 #import "AppointmentAppDelegate.h"
 #import "BrokersLabItemStore.h"
 #import <ChameleonFramework/Chameleon.h>
+#import <Fabric/Fabric.h>
+#import <Crashlytics/Crashlytics.h>
 
 @interface AppointmentAppDelegate ()
 
@@ -11,6 +13,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
 	[Chameleon setGlobalThemeUsingPrimaryColor: FlatRed withContentStyle:UIContentStyleContrast];
+	
+	[Fabric with:@[[Crashlytics class]]];
 	
 	return YES;
 }

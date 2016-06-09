@@ -41,11 +41,11 @@
 		}
 		
 		// Create the managed object context
-		context = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSMainQueueConcurrencyType];
-		context.persistentStoreCoordinator = psc;
+		objectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSMainQueueConcurrencyType];
+		objectContext.persistentStoreCoordinator = psc;
 		
 		// The managed object context can manage undo, but we don't need it
-		[context setUndoManager: nil];
+		[objectContext setUndoManager: nil];
 		
 		[self loadAllItems];
 	}
@@ -66,7 +66,7 @@
 		request.sortDescriptors = @[sortDescriptor];
 		
 		NSError *error;
-		NSArray *result = [context executeFetchRequest: request error:&error];
+		NSArray *result = [objectContext executeFetchRequest: request error:&error];
 		
 		if (!result) {
 			[NSException raise: @"Fetch failed"
@@ -90,9 +90,9 @@
 
 - (BOOL)saveChanges {
 	NSError *err = nil;
-	BOOL successful = [context save: &err];
+	BOOL successful = [objectContext save: &err];
 	
-	[context performBlockAndWait: ^{
+	[objectContext performBlockAndWait: ^{
 		if (!successful) {
 			NSLog(@"Error saving: %@", err.localizedDescription);
 		}
@@ -102,7 +102,7 @@
 }
 
 - (void)removeItem:(BrokersLabItem *)p {
-	[context deleteObject: p];
+	[objectContext deleteObject: p];
 	[allItems removeObjectIdenticalTo: p];
 }
 
@@ -132,7 +132,7 @@
 
 - (BrokersLabItem *)createItem {
 	BrokersLabItem *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"BrokersLabItem"
-															inManagedObjectContext: context];
+															inManagedObjectContext: objectContext];
 	
 	[allItems addObject: newItem];
 	

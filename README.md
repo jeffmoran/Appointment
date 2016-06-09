@@ -58,6 +58,7 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 
 ## Open Source Libraries
 - [Chameleon](https://github.com/ViccAlexander/Chameleon)
+- [Crashlytics](https://fabric.io/kits/ios/crashlytics)
 - [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet)
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
 - [MCTReachability](https://github.com/ministrycentered/MCTReachability)

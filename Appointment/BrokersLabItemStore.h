@@ -5,7 +5,7 @@
 
 @interface BrokersLabItemStore : NSObject {
     NSMutableArray *allItems;
-    NSManagedObjectContext *context;
+    NSManagedObjectContext *objectContext;
     NSManagedObjectModel *model;
 }
 

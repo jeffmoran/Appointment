@@ -252,6 +252,7 @@
 				BE4E18E1140D9EB80007F01B /* Resources */,
 				204F53FC071543748F33CAC8 /* 📦 Embed Pods Frameworks */,
 				368A817E3E7621DAC90442BA /* 📦 Copy Pods Resources */,
+				606D8A2E1D07DB530079D412 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -341,6 +342,19 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Appointment/Pods-Appointment-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		606D8A2E1D07DB530079D412 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 105613d639ae9dec1d50a8217a823c6ce25fb075 660b1243d10174e71aee847d514ccc80cbeda3f25a8928f35e3d4c0d6ae5f4d2";
 		};
 		75A858E8A47948056084A926 /* 📦 Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
