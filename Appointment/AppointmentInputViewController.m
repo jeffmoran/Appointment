@@ -109,7 +109,7 @@
 	self.inputGuarantor.frame = CGRectMake(20.0f, self.guarantorField.frame.origin.y + 4, 32, 32);
 	
 	//Set the frame for each pickerview/datepicker
-	CGRect pickerFrame = CGRectMake(0, 200, 320, 200);
+	CGRect pickerFrame = CGRectMake(0, 200, self.view.frame.size.width, 200);
 	self.bathroom_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.pets_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.access_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
@@ -142,8 +142,7 @@
 	
 	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
 	
-	self.scrollView.contentSize = CGSizeMake(320, 728);
-	
+	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 728);
 	self.scrollView.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1.0];
 	
 	[self.view addSubview:self.scrollView];
@@ -158,7 +157,7 @@
 	
 	UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemTrash
 																		   target: self
-																		   action: @selector(backToTopButtonPressed: )];
+																		   action: @selector(backToTopButtonPressed)];
 	
 	self.navigationItem.rightBarButtonItems = @[save, clear];
 	
@@ -219,7 +218,7 @@
 #pragma mark - Element Arrays and styling
 
 - (NSArray *)allInputFields {
-	return @[self.nameField, self.emailField, self.phoneField, self.timeField, self.addressField, self.zipCodeField, self.moveindateField, self.petsField, self.priceField, self.neighborhoodField, self.aptsizeField, self.roomsField, self.bathsField, self.accessField, self.guarantorField];
+	return @[self.nameField, self.emailField, self.phoneField, self.timeField, self.addressField, self.zipCodeField, self.neighborhoodField, self.moveindateField, self.petsField, self.priceField, self.aptsizeField, self.roomsField, self.bathsField, self.accessField, self.guarantorField];
 }
 
 - (NSArray *)allInputPickers {
@@ -231,6 +230,32 @@
 }
 
 - (void)textFieldStylingAndProperties {
+	UIToolbar *toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
+	NSMutableArray *toolbarItems = [[NSMutableArray alloc] init];
+	
+	UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
+																		   target:self
+																		   action:nil];
+	
+	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(backButtonPressed)];
+	
+	UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain
+																  target:self
+																  action:@selector(nextButtonPressed)];
+	
+	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
+																				target:self
+																				action:@selector(dismissKeyboardGesture)];
+	
+	[toolbarItems addObject:backButton];
+	[toolbarItems addObject:nextButton];
+	[toolbarItems addObject:space];
+	[toolbarItems addObject:doneButton];
+	
+	[toolbar setItems:toolbarItems];
+	
 	for (UIView *view in [self allInputFields]) {
 		view.layer.borderColor = [UIColor darkGrayColor].CGColor;
 		view.layer.borderWidth = .7;
@@ -244,9 +269,10 @@
 		textField.floatingLabelTextColor = [UIColor grayColor];
 		textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 		textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-		textField.returnKeyType = UIReturnKeyNext;
-		textField.autocorrectionType = UITextAutocorrectionTypeNo;
+		textField.autocorrectionType = UITextAutocorrectionTypeYes;
 		textField.delegate = self;
+		
+		textField.inputAccessoryView = toolbar;
 		
 		[self.scrollView addSubview: textField];
 		
@@ -277,15 +303,44 @@
 	}
 }
 
-- (IBAction)backToTopButtonPressed:(id)sender {
+#pragma mark - Methods
+
+- (void)backToTopButtonPressed {
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
 		textfield.text = @"";
 	}
+	
 	[self.nameField becomeFirstResponder];
 }
 
 - (void)dismissKeyboardGesture {
 	[self.view endEditing: YES];
+}
+
+- (void)backButtonPressed {
+	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
+		if (textField.isFirstResponder) {
+			fieldIndex = [[self allInputFields] indexOfObject:textField];
+			//NSLog(@"%ld", (long)fieldIndex);
+		}
+	}
+	
+	if (!(fieldIndex == 0)) {
+		[[[self allInputFields]objectAtIndex:fieldIndex - 1] becomeFirstResponder];
+	}
+}
+
+- (void)nextButtonPressed {
+	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
+		if (textField.isFirstResponder) {
+			fieldIndex = [[self allInputFields] indexOfObject:textField];
+			//NSLog(@"%ld", (long)fieldIndex);
+		}
+	}
+	
+	if (!(fieldIndex == 14)) {
+		[[[self allInputFields]objectAtIndex:fieldIndex + 1] becomeFirstResponder];
+	}
 }
 
 #pragma mark - Picker Methods
@@ -523,6 +578,20 @@
 	return [self setNextResponder: textField] ? NO : YES;
 }
 
+- (void)textFieldDidBeginEditing:(UITextField *)textField {
+	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
+		if (textField.isFirstResponder) {
+			//works nicely (except iPhone 4S screen size) but needs to be less hardcoded
+			if (textField.frame.origin.y >= self.view.frame.size.height - 400) {
+				//same here
+				CGPoint point = CGPointMake(0, textField.frame.origin.y - 300);
+				NSLog(@"Point Height: %f", point.y);
+				[self.scrollView setContentOffset:point animated:YES];
+			}
+		}
+	}
+}
+
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	if (textField == self.zipCodeField) {
 		if (!([self.zipCodeField.text isEqual: @""] || [self.zipCodeField.text isEqualToString:@"Unavailable"])) {
@@ -537,6 +606,8 @@
 			NSLog(@"Zip code field is blank or unavailable, no JSON request");
 		}
 	}
+	
+	[self.scrollView setContentOffset: CGPointMake(0, -self.scrollView.contentInset.top) animated:YES];
 }
 
 - (BOOL)setNextResponder:(UITextField *)textField {

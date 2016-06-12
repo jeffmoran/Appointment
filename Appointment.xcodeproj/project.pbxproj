@@ -30,7 +30,6 @@
 		CA0F3EA017E25B22003FE3BE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3E9F17E25B22003FE3BE /* CFNetwork.framework */; };
 		CA0F3EA217E25B30003FE3BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA117E25B30003FE3BE /* Security.framework */; };
 		CA0F3EA417E25B3C003FE3BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */; };
-		CA0F3EAC17E25B88003FE3BE /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EAB17E25B88003FE3BE /* StoreKit.framework */; };
 		CA71FDCA17DD25F000E1BFB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */; };
 		CA9CCD1017DE3FDF00F1BF90 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */; };
 		CAD8426817D42EDC00A584E9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8426717D42EDC00A584E9 /* CoreLocation.framework */; };
@@ -77,7 +76,6 @@
 		CA0F3E9F17E25B22003FE3BE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CA0F3EA117E25B30003FE3BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
-		CA0F3EAB17E25B88003FE3BE /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CAD8426717D42EDC00A584E9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -90,7 +88,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA0F3EAC17E25B88003FE3BE /* StoreKit.framework in Frameworks */,
 				CA0F3EA417E25B3C003FE3BE /* AudioToolbox.framework in Frameworks */,
 				CA0F3EA217E25B30003FE3BE /* Security.framework in Frameworks */,
 				CA0F3EA017E25B22003FE3BE /* CFNetwork.framework in Frameworks */,
@@ -207,7 +204,6 @@
 				CA0F3E9D17E25B1A003FE3BE /* MobileCoreServices.framework */,
 				CADF935B17D4147B00DEE67D /* QuartzCore.framework */,
 				CA0F3EA117E25B30003FE3BE /* Security.framework */,
-				CA0F3EAB17E25B88003FE3BE /* StoreKit.framework */,
 				CA0F3E9B17E25B0D003FE3BE /* SystemConfiguration.framework */,
 				BE4E18E7140D9EB80007F01B /* UIKit.framework */,
 				5941E395F53C4C37110ED0EA /* Pods.framework */,
@@ -240,12 +236,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE4E18F9140D9EB80007F01B /* Build configuration list for PBXNativeTarget "Appointment" */;
 			buildPhases = (
-				75A858E8A47948056084A926 /* 📦 Check Pods Manifest.lock */,
+				75A858E8A47948056084A926 /* [CP] Check Pods Manifest.lock */,
 				BE4E18DF140D9EB80007F01B /* Sources */,
 				BE4E18E0140D9EB80007F01B /* Frameworks */,
 				BE4E18E1140D9EB80007F01B /* Resources */,
-				204F53FC071543748F33CAC8 /* 📦 Embed Pods Frameworks */,
-				368A817E3E7621DAC90442BA /* 📦 Copy Pods Resources */,
+				204F53FC071543748F33CAC8 /* [CP] Embed Pods Frameworks */,
+				368A817E3E7621DAC90442BA /* [CP] Copy Pods Resources */,
 				606D8A2E1D07DB530079D412 /* ShellScript */,
 			);
 			buildRules = (
@@ -269,6 +265,11 @@
 				TargetAttributes = {
 					BE4E18E2140D9EB80007F01B = {
 						DevelopmentTeam = TR5WFN5468;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -305,14 +306,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		204F53FC071543748F33CAC8 /* 📦 Embed Pods Frameworks */ = {
+		204F53FC071543748F33CAC8 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,14 +321,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Appointment/Pods-Appointment-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		368A817E3E7621DAC90442BA /* 📦 Copy Pods Resources */ = {
+		368A817E3E7621DAC90442BA /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -348,14 +349,14 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Fabric/run\" 105613d639ae9dec1d50a8217a823c6ce25fb075 660b1243d10174e71aee847d514ccc80cbeda3f25a8928f35e3d4c0d6ae5f4d2";
 		};
-		75A858E8A47948056084A926 /* 📦 Check Pods Manifest.lock */ = {
+		75A858E8A47948056084A926 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -481,7 +482,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
@@ -517,7 +518,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;

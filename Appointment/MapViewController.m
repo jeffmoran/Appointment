@@ -30,6 +30,7 @@
 				locationAnnotation.coordinate = locationMapItem.placemark.coordinate;
 				locationAnnotation.title = [NSString stringWithFormat:@"%@ %@ %@", locationMapItem.placemark.name, locationMapItem.placemark.locality, locationMapItem.placemark.postalCode];
 				[self.mapView addAnnotation: locationAnnotation];
+				[self zoomToFitMapAnnotations];
 				//	[self getDirectionsToMapItem:mapItem];
 			}
 		} else {
@@ -65,7 +66,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
 	[super viewDidAppear: animated];
+	
 	[self.navigationController setToolbarHidden:NO animated:YES];
+	
 	NSMutableArray *barItems = [[NSMutableArray alloc] init];
 	
 	UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
@@ -182,7 +185,7 @@
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSLog(@"Zoom to fit map annotations");
 		
-		if([aMapView.annotations count] == 0) {
+		if(aMapView.annotations.count == 0) {
 			return;
 		}
 		
@@ -221,19 +224,19 @@
 	UIAlertAction *standard = [UIAlertAction actionWithTitle:@"Standard"
 													   style:UIAlertActionStyleDefault
 													 handler:^(UIAlertAction *action){
-														 [mapView setMapType:MKMapTypeStandard];
+														 mapView.mapType = MKMapTypeStandard;
 													 }];
 	
 	UIAlertAction *satellite = [UIAlertAction actionWithTitle:@"Satellite"
 														style:UIAlertActionStyleDefault
 													  handler:^(UIAlertAction *action){
-														  [mapView setMapType:MKMapTypeSatellite];
+														  mapView.mapType = MKMapTypeSatellite;
 													  }];
 	
 	UIAlertAction *hybrid = [UIAlertAction actionWithTitle:@"Hybrid"
 													 style:UIAlertActionStyleDefault
 												   handler:^(UIAlertAction *action){
-													   [mapView setMapType:MKMapTypeHybrid];
+													   mapView.mapType = MKMapTypeHybrid;
 												   }];
 	
 	UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"

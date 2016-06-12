@@ -37,6 +37,8 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 - Redesign ```AppointmentCleanViewController```
 - Need to be able to update appointment from detail view.
 - Remove traces of "BrokersLab" name.
+- ~~Need to add back/next/done buttons on input textfields~~
+- ~~Scroll view should automatically scroll based on textfield~~
 - ~~Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.~~
 - ~~Need to change info.plist string for location permissions.~~
 - ~~New menu button.~~
@@ -61,6 +63,5 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 - [Crashlytics](https://fabric.io/kits/ios/crashlytics)
 - [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet)
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
-- [MCTReachability](https://github.com/ministrycentered/MCTReachability)
 - [RNGridMenu](https://github.com/rnystrom/RNGridMenu)
 - [TapkuLibrary](https://github.com/devinross/tapkulibrary)

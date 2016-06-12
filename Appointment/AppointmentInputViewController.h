@@ -14,6 +14,7 @@
     NSArray *accessArray;
     NSArray *petsArray;
     NSArray *guarantorArray;
+	NSInteger fieldIndex;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;

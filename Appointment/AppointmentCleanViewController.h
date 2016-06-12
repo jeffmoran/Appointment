@@ -1,7 +1,6 @@
 #import <UIKit/UIKit.h>
 #import <TapkuLibrary/TapkuLibrary.h>
 #import "RNGridMenu.h"
-#import "MCTReachability.h"
 
 @import Contacts;
 @import EventKit;
@@ -26,8 +25,6 @@
 @property (nonatomic, strong) NSString  *guarantorString;
 @property (nonatomic, strong) NSString  *timeString;
 @property (nonatomic, strong) NSString  *addressString;
-
-@property (nonatomic, strong) MCTReachability *reach;
 
 @property (nonatomic, strong) NSString *calendarNotesString;
 @property (nonatomic, strong) NSString *emailBodyString;
