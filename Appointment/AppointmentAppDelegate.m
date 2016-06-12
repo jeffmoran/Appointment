@@ -12,8 +12,17 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
 
-	[Chameleon setGlobalThemeUsingPrimaryColor: FlatRed withContentStyle:UIContentStyleContrast];
+	//[Chameleon setGlobalThemeUsingPrimaryColor: FlatRed withContentStyle:UIContentStyleContrast];
 	
+	[UINavigationBar appearance].barTintColor = FlatTeal;
+	[UINavigationBar appearance].tintColor = [UIColor whiteColor];
+	[UIToolbar appearance].barTintColor =  FlatTeal;
+	[UIToolbar appearance].tintColor = [UIColor whiteColor];
+	
+	NSDictionary *attributesDict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+	
+	[UINavigationBar appearance].titleTextAttributes = attributesDict;
+
 	[Fabric with:@[[Crashlytics class]]];
 	
 	return YES;

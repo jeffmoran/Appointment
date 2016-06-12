@@ -33,12 +33,10 @@
 	const static CGFloat kJVFieldHeight = 40.0f;
 	const CGFloat kJVFieldWidth = self.view.frame.size.width - 83.0f;
 	
-	self.view.tintColor = [UIColor flatRedColor];
+	self.view.tintColor = FlatTeal;
 	
 	bedsBathsArray = @[@"0", @".5", @"1",@"1.5", @"2", @"2.5",@"3", @"3.5", @"4",@"4.5", @"5", @"5.5",@"6", @"6.5", @"7",@"7.5", @"8", @"8.5",@"9", @"9.5", @"10+"];
 	accessArray = @[@"Doorman", @"Elevator", @"Walkup"];
-	priceArray = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle]pathForResource: @"priceArray" ofType: @"plist"]];
-	aptSizeArray = [NSArray arrayWithContentsOfFile: [[NSBundle mainBundle]pathForResource: @"aptSizeArray" ofType: @"plist"]];
 	petsArray = @[@"Yes", @"No", @"Some"];
 	guarantorArray = @[@"Yes", @"No"];
 	
@@ -69,8 +67,8 @@
 	self.neighborhoodField.placeholder = @" City";
 	self.moveindateField.placeholder = @" Move-In Date";
 	self.petsField.placeholder = @" Pets";
-	self.priceField.placeholder = @" Price";
-	self.aptsizeField.placeholder = @" Size";
+	self.priceField.placeholder = @" Price ($ Per Month)";
+	self.aptsizeField.placeholder = @" Size (Sq. Ft.)";
 	self.roomsField.placeholder = @" Bedrooms";
 	self.bathsField.placeholder = @" Bathrooms";
 	self.accessField.placeholder = @" Access";
@@ -114,11 +112,9 @@
 	CGRect pickerFrame = CGRectMake(0, 200, 320, 200);
 	self.bathroom_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.pets_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-	self.price_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.access_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.bedroom_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.guarantor_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-	self.aptSize_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.time_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	
@@ -128,8 +124,6 @@
 	self.timeField.inputView = self.time_picker;
 	self.moveindateField.inputView = self.movein_picker;
 	self.accessField.inputView = self.access_picker;
-	self.priceField.inputView = self.price_picker;
-	self.aptsizeField.inputView = self.aptSize_picker;
 	self.petsField.inputView = self.pets_picker;
 	self.guarantorField.inputView = self.guarantor_picker;
 	
@@ -229,7 +223,7 @@
 }
 
 - (NSArray *)allInputPickers {
-	return @[self.bathroom_picker, self.pets_picker, self.price_picker, self.access_picker, self.bedroom_picker, self.guarantor_picker, self.aptSize_picker];
+	return @[self.bathroom_picker, self.pets_picker, self.access_picker, self.bedroom_picker, self.guarantor_picker];
 }
 
 - (NSArray *)allImageViews {
@@ -264,7 +258,7 @@
 			textField.keyboardType = UIKeyboardTypePhonePad;
 		}
 		
-		if (textField == self.zipCodeField) {
+		if (textField == self.zipCodeField || textField == self.aptsizeField || textField == self.priceField) {
 			textField.keyboardType = UIKeyboardTypeNumberPad;
 		}
 	}
@@ -327,7 +321,7 @@
 - (IBAction)saveFields:(id)sender {
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
 		if (!((textfield.text).length > 0)) {
-			textfield.text = @"Unavailable";
+			//textfield.text = @"Unavailable";
 		}
 	}
 	
@@ -457,14 +451,6 @@
 		return accessArray.count;
 	}
 	
-	if (pickerView == self.price_picker) {
-		return priceArray.count;
-	}
-	
-	if (pickerView == self.aptSize_picker) {
-		return aptSizeArray.count;
-	}
-	
 	if (pickerView == self.pets_picker) {
 		return petsArray.count;
 	}
@@ -492,14 +478,6 @@
 		return accessArray[row];
 	}
 	
-	if (pickerView == self.price_picker) {
-		return priceArray[row];
-	}
-	
-	if (pickerView == self.aptSize_picker) {
-		return aptSizeArray[row];
-	}
-	
 	if (pickerView == self.pets_picker) {
 		return petsArray[row];
 	}
@@ -524,14 +502,6 @@
 	
 	if (pickerView == self.access_picker) {
 		self.accessField.text = accessArray[row];
-	}
-	
-	if (pickerView == self.price_picker) {
-		self.priceField.text = priceArray[row];
-	}
-	
-	if (pickerView == self.aptSize_picker) {
-		self.aptsizeField.text = aptSizeArray[row];
 	}
 	
 	if (pickerView == self.pets_picker) {

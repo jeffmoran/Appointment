@@ -46,7 +46,7 @@
 	
 	TKLabelFieldCell *priceField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	priceField.label.text = @"Rent";
-	priceField.field.text = self.priceString;
+	priceField.field.text = [NSString stringWithFormat:@"$%@ Per Month", self.priceString];
 	
 	TKLabelFieldCell *neighborhoodField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	neighborhoodField.label.text = @"City";
@@ -54,7 +54,7 @@
 	
 	TKLabelFieldCell *aptsizeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	aptsizeField.label.text = @"Size";
-	aptsizeField.field.text = self.aptsizeString;
+	aptsizeField.field.text = [NSString stringWithFormat:@"%@ Sq. Ft.", self.aptsizeString];
 	
 	TKLabelFieldCell *roomsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	roomsField.label.text = @"Bedrooms";
@@ -93,7 +93,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear: animated];
-    [self.navigationController setToolbarHidden: YES animated:YES];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
@@ -156,7 +155,7 @@
     
     RNGridMenu *menu = [[RNGridMenu alloc] initWithItems:items];
     menu.delegate = self;
-    menu.highlightColor = [UIColor flatRedColor];
+    menu.highlightColor = FlatTeal;
     menu.itemSize = CGSizeMake(128, 128);
     [menu showInViewController: self.navigationController center: CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
 }
@@ -526,7 +525,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.identifier isEqualToString: @"map"]) {
         MapViewController *destViewController = segue.destinationViewController;
-        destViewController.addressName = self.addressString;
+        destViewController.address = [NSString stringWithFormat:@"%@ %@", self.addressString, self.zipString];
     }
 }
 

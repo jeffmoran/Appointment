@@ -27,16 +27,16 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 ```
 
 ## Screenshots
-![Main screen](/Screenshots/1.jpg?raw=true)
-![Detail view](/Screenshots/2.jpg?raw=true)
-![Menu](/Screenshots/3.jpg?raw=true)
-![Maps view](/Screenshots/4.jpg?raw=true)
+<img src="/Screenshots/1.png" width="324px" height="576px" />
+<img src="/Screenshots/2.png" width="324px" height="576px" />
+<img src="/Screenshots/3.png" width="324px" height="576px" />
+<img src="/Screenshots/4.png" width="324px" height="576px" />
 
 ## To do:
 - Implement new Reachability library.
 - Redesign ```AppointmentCleanViewController```
 - Need to be able to update appointment from detail view.
-- Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.
+- ~~Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.~~
 - Remove traces of "BrokersLab" name.
 - ~~Need to change info.plist string for location permissions.~~
 - ~~New menu button.~~

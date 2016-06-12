@@ -2,11 +2,6 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>Fabric</key>
-	<dict>
-		<key>APIKey</key>
-		<string>105613d639ae9dec1d50a8217a823c6ce25fb075</string>
-	</dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDocumentTypes</key>
@@ -77,5 +72,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<true/>
+	<key>Fabric</key>
+	<dict>
+		<key>APIKey</key>
+		<string>105613d639ae9dec1d50a8217a823c6ce25fb075</string>
+		<key>Kits</key>
+		<array/>
+	</dict>
 </dict>
 </plist>
