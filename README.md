@@ -36,8 +36,8 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 - Implement new Reachability library.
 - Redesign ```AppointmentCleanViewController```
 - Need to be able to update appointment from detail view.
-- ~~Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.~~
 - Remove traces of "BrokersLab" name.
+- ~~Need to have Maps function zoom in to search request, annotation needs to have accessory button that will allow user to get overlay of route as well as step-by-step directions.~~
 - ~~Need to change info.plist string for location permissions.~~
 - ~~New menu button.~~
 - ~~Need to add icon for zip/postal code.~~
