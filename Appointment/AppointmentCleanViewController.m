@@ -181,9 +181,7 @@
 		UIAlertAction *cancelAction = [UIAlertAction
 									   actionWithTitle: @"OK"
 									   style: UIAlertActionStyleCancel
-									   handler: ^(UIAlertAction *action) {
-										   NSLog(@"Cancel action");
-									   }];
+									   handler:nil];
 		
 		[notPermitted addAction: cancelAction];
 		
@@ -219,9 +217,7 @@
 		UIAlertAction *cancelAction = [UIAlertAction
 									   actionWithTitle: @"OK"
 									   style: UIAlertActionStyleCancel
-									   handler: ^(UIAlertAction *action) {
-										   NSLog(@"Cancel action");
-									   }];
+									   handler:nil];
 		
 		[alertController addAction: cancelAction];
 		
@@ -240,9 +236,7 @@
 	UIAlertAction *cancelAction = [UIAlertAction
 								   actionWithTitle: @"Maybe later"
 								   style: UIAlertActionStyleCancel
-								   handler: ^(UIAlertAction *action) {
-									   NSLog(@"Cancel action");
-								   }];
+								   handler:nil];
 	
 	UIAlertAction *yesAction = [UIAlertAction
 								actionWithTitle: @"Yes"
@@ -267,9 +261,7 @@
 													UIAlertAction *cancelAction = [UIAlertAction
 																				   actionWithTitle: @"OK"
 																				   style: UIAlertActionStyleCancel
-																				   handler: ^(UIAlertAction *action) {
-																					   NSLog(@"Cancel action");
-																				   }];
+																				   handler:nil];
 													
 													[alertController addAction: cancelAction];
 													
@@ -320,9 +312,7 @@
 													UIAlertAction *cancelAction = [UIAlertAction
 																				   actionWithTitle: @"OK"
 																				   style: UIAlertActionStyleCancel
-																				   handler: ^(UIAlertAction *action) {
-																					   NSLog(@"Cancel action");
-																				   }];
+																				   handler:nil];
 													
 													[alertController addAction: cancelAction];
 													
@@ -355,8 +345,7 @@
 		UIAlertAction *cancelAction = [UIAlertAction
 									   actionWithTitle: @"OK"
 									   style: UIAlertActionStyleCancel
-									   handler: ^(UIAlertAction *action) {
-									   }];
+									   handler:nil];
 		
 		[alertController addAction: cancelAction];
 		
@@ -373,9 +362,7 @@
 		UIAlertAction *cancelAction = [UIAlertAction
 									   actionWithTitle: @"OK"
 									   style: UIAlertActionStyleCancel
-									   handler: ^(UIAlertAction *action) {
-										   NSLog(@"Cancel action");
-									   }];
+									   handler:nil];
 		
 		[alertController addAction: cancelAction];
 		
@@ -402,9 +389,7 @@
 	UIAlertAction *cancelAction = [UIAlertAction
 								   actionWithTitle: @"Maybe later"
 								   style: UIAlertActionStyleCancel
-								   handler: ^(UIAlertAction *action) {
-									   NSLog(@"Cancel action");
-								   }];
+								   handler:nil];
 	
 	UIAlertAction *yesAction = [UIAlertAction
 								actionWithTitle: @"Yes"
@@ -433,9 +418,7 @@
 													UIAlertAction *cancelAction = [UIAlertAction
 																				   actionWithTitle: @"OK"
 																				   style: UIAlertActionStyleCancel
-																				   handler: ^(UIAlertAction *action) {
-																					   NSLog(@"Cancel action");
-																				   }];
+																				   handler:nil];
 													
 													[alertController addAction: cancelAction];
 													
@@ -461,9 +444,7 @@
 													UIAlertAction *cancelAction = [UIAlertAction
 																				   actionWithTitle: @"OK"
 																				   style: UIAlertActionStyleCancel
-																				   handler: ^(UIAlertAction *action) {
-																					   NSLog(@"Cancel action");
-																				   }];
+																				   handler:nil];
 													
 													[alertController addAction: cancelAction];
 													
@@ -499,9 +480,7 @@
 		UIAlertAction *cancelAction = [UIAlertAction
 									   actionWithTitle: @"OK"
 									   style: UIAlertActionStyleCancel
-									   handler: ^(UIAlertAction *action) {
-										   NSLog(@"Cancel action");
-									   }];
+									   handler:nil];
 		
 		[alertController addAction: cancelAction];
 		[self presentViewController: alertController animated:YES completion: nil];
@@ -517,9 +496,7 @@
 		UIAlertAction *cancelAction = [UIAlertAction
 									   actionWithTitle: @"OK"
 									   style: UIAlertActionStyleCancel
-									   handler: ^(UIAlertAction *action) {
-										   NSLog(@"Cancel action");
-									   }];
+									   handler:nil];
 		
 		[alertController addAction: cancelAction];
 		

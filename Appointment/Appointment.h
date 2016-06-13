@@ -1,7 +1,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@interface BrokersLabItem : NSManagedObject
+@interface Appointment : NSManagedObject
 
 @property (nonatomic, retain) NSString *itemName;
 @property (nonatomic, retain) NSString *phoneName;

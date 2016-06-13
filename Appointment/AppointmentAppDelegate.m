@@ -1,5 +1,5 @@
 #import "AppointmentAppDelegate.h"
-#import "BrokersLabItemStore.h"
+#import "AppointmentStore.h"
 #import <ChameleonFramework/Chameleon.h>
 #import <Fabric/Fabric.h>
 #import <Crashlytics/Crashlytics.h>
@@ -37,13 +37,13 @@
 	// Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
 	// If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 	
-	BOOL success = [[BrokersLabItemStore sharedStore] saveChanges];
+	BOOL success = [[AppointmentStore sharedStore] saveChanges];
 	
 	if (success) {
-		NSLog(@"Saved all of the BrokersLabItems");
+		NSLog(@"Saved all of the Appointments");
 	}
 	else {
-		NSLog(@"Could not save any of the BrokersLabItems");
+		NSLog(@"Could not save any of the Appointments");
 	}
 }
 

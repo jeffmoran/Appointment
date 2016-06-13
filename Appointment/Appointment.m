@@ -1,6 +1,6 @@
-#import "BrokersLabItem.h"
+#import "Appointment.h"
 
-@implementation BrokersLabItem
+@implementation Appointment
 
 @dynamic itemName;
 @dynamic phoneName;

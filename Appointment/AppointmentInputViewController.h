@@ -1,20 +1,20 @@
 #import <UIKit/UIKit.h>
 #import "JVFloatLabeledTextField.h"
 #import "JVFloatLabeledTextView.h"
-#import "BrokersLabItem.h"
-#import "BrokersLabItemStore.h"
+#import "Appointment.h"
+#import "AppointmentStore.h"
 #import "AppointmentsViewController.h"
 
 @import ChameleonFramework;
-//@class BrokersLabItem;
 
 @interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
-    
-    NSArray *bedsBathsArray;
     NSArray *accessArray;
     NSArray *petsArray;
     NSArray *guarantorArray;
 	NSInteger fieldIndex;
+	UIStepper *bedroomsStepper;
+	UIStepper *bathroomsStepper;
+	BOOL emptyFields;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -51,8 +51,6 @@
 @property (nonatomic, strong) UIImageView *inputPets;
 @property (nonatomic, strong) UIImageView *inputGuarantor;
 
-@property (nonatomic, strong) IBOutlet UIPickerView *bedroom_picker;
-@property (nonatomic, strong) IBOutlet UIPickerView *bathroom_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *access_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *pets_picker;
 @property (nonatomic, strong) IBOutlet UIPickerView *guarantor_picker;
@@ -63,8 +61,6 @@
 
 - (instancetype)initForNewItem:(BOOL)isNew;
 
-@property (nonatomic, strong) BrokersLabItem *item;
-
-@property (nonatomic, copy) void (^dismissBlock)(void);
+@property (nonatomic, strong) Appointment *item;
 
 @end

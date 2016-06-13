@@ -241,9 +241,7 @@
 	
 	UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
 													 style:UIAlertActionStyleCancel
-												   handler:^(UIAlertAction *action){
-													   NSLog(@"Dismissed");
-												   }];
+												   handler:nil];
 	
 	[actionView addAction:standard];
 	[actionView addAction:satellite];
@@ -306,9 +304,7 @@
 	
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"No"
 														   style:UIAlertActionStyleCancel
-														 handler: ^(UIAlertAction *action) {
-															 NSLog(@"Cancel action");
-														 }];
+														 handler:nil];
 	
 	[alert addAction:yesAction];
 	[alert addAction:cancelAction];
@@ -375,9 +371,7 @@
 																preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *action = [UIAlertAction actionWithTitle:@"Dismiss" style:UIAlertActionStyleDefault
-													   handler:^(UIAlertAction *action){
-														   
-													   }];
+													   handler:nil];
 		
 		[alert addAction:action];
 		

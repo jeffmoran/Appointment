@@ -1,6 +1,6 @@
 #import <Foundation/Foundation.h>
 
-@interface BrokersLabItemCell : UITableViewCell
+@interface AppointmentCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
 @property (weak, nonatomic) IBOutlet UILabel *addressLabel;

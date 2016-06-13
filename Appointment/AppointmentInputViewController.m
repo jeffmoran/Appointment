@@ -11,7 +11,7 @@
 
 @implementation AppointmentInputViewController
 
-@synthesize item, dismissBlock;
+@synthesize item;
 
 - (instancetype)initForNewItem:(BOOL)isNew {
 	self = [super init];
@@ -30,32 +30,44 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	const static CGFloat kJVFieldHeight = 40.0f;
+	const static CGFloat fieldHeight = 40.0f;
 	const CGFloat kJVFieldWidth = self.view.frame.size.width - 83.0f;
+	const static CGFloat fieldX = 63.0f;
 	
 	self.view.tintColor = FlatTeal;
 	
-	bedsBathsArray = @[@"0", @".5", @"1",@"1.5", @"2", @"2.5",@"3", @"3.5", @"4",@"4.5", @"5", @"5.5",@"6", @"6.5", @"7",@"7.5", @"8", @"8.5",@"9", @"9.5", @"10+"];
 	accessArray = @[@"Doorman", @"Elevator", @"Walkup"];
 	petsArray = @[@"Yes", @"No", @"Some"];
 	guarantorArray = @[@"Yes", @"No"];
 	
 	//Set the frame for each textfield
-	self.nameField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 22, kJVFieldWidth, kJVFieldHeight)];
-	self.emailField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 68, kJVFieldWidth, kJVFieldHeight)];
-	self.phoneField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 114, kJVFieldWidth, kJVFieldHeight)];
-	self.timeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 160, kJVFieldWidth, kJVFieldHeight)];
-	self.addressField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 206, kJVFieldWidth, kJVFieldHeight)];
-	self.zipCodeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 252, kJVFieldWidth, kJVFieldHeight)];
-	self.neighborhoodField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 298, kJVFieldWidth, kJVFieldHeight)];
-	self.moveindateField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 344, kJVFieldWidth, kJVFieldHeight)];
-	self.petsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 390, kJVFieldWidth, kJVFieldHeight)];
-	self.priceField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 436, kJVFieldWidth, kJVFieldHeight)];
-	self.aptsizeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 482, kJVFieldWidth, kJVFieldHeight)];
-	self.roomsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 528, kJVFieldWidth, kJVFieldHeight)];
-	self.bathsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 574, kJVFieldWidth, kJVFieldHeight)];
-	self.accessField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 620, kJVFieldWidth, kJVFieldHeight)];
-	self.guarantorField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(63, 666, kJVFieldWidth, kJVFieldHeight)];
+	self.nameField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 22, kJVFieldWidth, fieldHeight)];
+	self.emailField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 68, kJVFieldWidth, fieldHeight)];
+	self.phoneField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 114, kJVFieldWidth, fieldHeight)];
+	self.timeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 160, kJVFieldWidth, fieldHeight)];
+	self.addressField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 206, kJVFieldWidth, fieldHeight)];
+	self.zipCodeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 252, kJVFieldWidth, fieldHeight)];
+	self.neighborhoodField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 298, kJVFieldWidth, fieldHeight)];
+	self.moveindateField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 344, kJVFieldWidth, fieldHeight)];
+	self.petsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 390, kJVFieldWidth, fieldHeight)];
+	self.priceField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 436, kJVFieldWidth, fieldHeight)];
+	self.aptsizeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 482, kJVFieldWidth, fieldHeight)];
+	self.roomsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 528, kJVFieldWidth - 104.0 , fieldHeight)];
+	self.bathsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 574, kJVFieldWidth - 104.0 , fieldHeight)];
+	self.accessField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 620, kJVFieldWidth, fieldHeight)];
+	self.guarantorField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 666, kJVFieldWidth, fieldHeight)];
+	
+	bedroomsStepper = [[UIStepper alloc] initWithFrame:CGRectMake(kJVFieldWidth - 31.0, self.roomsField.frame.origin.y + 20 - 14.5, 0, 0)];
+	bedroomsStepper.stepValue = 0.5;
+	bedroomsStepper.minimumValue = 0.0;
+	
+	[bedroomsStepper addTarget:self action:@selector(bedBathStepper:) forControlEvents:UIControlEventValueChanged];
+	
+	bathroomsStepper = [[UIStepper alloc] initWithFrame:CGRectMake(kJVFieldWidth - 31.0, self.bathsField.frame.origin.y + 20 - 14.5, 0, 0)];
+	bathroomsStepper.stepValue = 0.5;
+	bathroomsStepper.minimumValue = 0.0;
+	
+	[bathroomsStepper addTarget:self action:@selector(bedBathStepper:) forControlEvents:UIControlEventValueChanged];
 	
 	//Set placeholder text for each textfield
 	self.nameField.placeholder = @" Client Name";
@@ -110,28 +122,18 @@
 	
 	//Set the frame for each pickerview/datepicker
 	CGRect pickerFrame = CGRectMake(0, 200, self.view.frame.size.width, 200);
-	self.bathroom_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.pets_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.access_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-	self.bedroom_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.guarantor_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.time_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	
 	//Set the inputView for textFields
-	self.bathsField.inputView = self.bathroom_picker;
-	self.roomsField.inputView = self.bedroom_picker;
 	self.timeField.inputView = self.time_picker;
 	self.moveindateField.inputView = self.movein_picker;
 	self.accessField.inputView = self.access_picker;
 	self.petsField.inputView = self.pets_picker;
 	self.guarantorField.inputView = self.guarantor_picker;
-	
-	// Dismiss keyboard on scrollview drag
-	self.scrollView.keyboardDismissMode = UIScrollViewKeyboardDismissModeOnDrag;
-	
-	// Dismiss keyboard on tap
-	[self.view addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(dismissKeyboardGesture)]];
 	
 	self.time_picker.datePickerMode = UIDatePickerModeDateAndTime;
 	self.time_picker.minuteInterval = 5;
@@ -142,7 +144,7 @@
 	
 	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
 	
-	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 728);
+	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.guarantorField.frame.origin.y + self.guarantorField.frame.size.height + 22);
 	self.scrollView.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1.0];
 	
 	[self.view addSubview:self.scrollView];
@@ -153,7 +155,7 @@
 	
 	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemSave
 																		  target: self
-																		  action: @selector(saveFields: )];
+																		  action: @selector(saveButtonPressed)];
 	
 	UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemTrash
 																		   target: self
@@ -161,14 +163,21 @@
 	
 	self.navigationItem.rightBarButtonItems = @[save, clear];
 	
-	//Styling and profiling
+	//	Styling and profiling
 	[self textFieldStylingAndProperties];
 	[self pickerStylingAndProperties];
 	[self imageViewStylingAndProperties];
+	
+	[self.scrollView addSubview: bedroomsStepper];
+	[self.scrollView addSubview: bathroomsStepper];
+	
+	//	 Dismiss keyboard on tap
+	[self.view addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(dismissKeyboardGesture)]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear: animated];
+	
 	
 	self.nameField.text = item.itemName;
 	self.phoneField.text = item.phoneName;
@@ -185,6 +194,9 @@
 	self.guarantorField.text = item.guarantorName;
 	self.emailField.text = item.emailName;
 	self.zipCodeField.text = item.zipName;
+	
+	bedroomsStepper.value = [self.roomsField.text doubleValue];
+	bathroomsStepper.value = [self.bathsField.text doubleValue];
 	
 	// Change the navigation item to display name of item
 	self.navigationItem.title = item.itemName;
@@ -222,7 +234,7 @@
 }
 
 - (NSArray *)allInputPickers {
-	return @[self.bathroom_picker, self.pets_picker, self.access_picker, self.bedroom_picker, self.guarantor_picker];
+	return @[self.pets_picker, self.access_picker, self.guarantor_picker];
 }
 
 - (NSArray *)allImageViews {
@@ -267,7 +279,7 @@
 		textField.font = [UIFont fontWithName: @"HelveticaNeue-Light" size: 16];
 		textField.floatingLabelFont = [UIFont fontWithName: @"HelveticaNeue-Light" size: 11];
 		textField.floatingLabelTextColor = [UIColor grayColor];
-		textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+		textField.clearButtonMode = UITextFieldViewModeAlways;
 		textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 		textField.autocorrectionType = UITextAutocorrectionTypeYes;
 		textField.delegate = self;
@@ -286,6 +298,10 @@
 		
 		if (textField == self.zipCodeField || textField == self.aptsizeField || textField == self.priceField) {
 			textField.keyboardType = UIKeyboardTypeNumberPad;
+		}
+		
+		if (textField == self.roomsField || textField == self.bathsField){
+			textField.keyboardType = UIKeyboardTypeDecimalPad;
 		}
 	}
 }
@@ -307,8 +323,11 @@
 
 - (void)backToTopButtonPressed {
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
-		textfield.text = @"";
+		textfield.text = nil;
 	}
+	
+	bedroomsStepper.value = 0.0;
+	bathroomsStepper.value = 0.0;
 	
 	[self.nameField becomeFirstResponder];
 }
@@ -321,7 +340,6 @@
 	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
 		if (textField.isFirstResponder) {
 			fieldIndex = [[self allInputFields] indexOfObject:textField];
-			//NSLog(@"%ld", (long)fieldIndex);
 		}
 	}
 	
@@ -334,12 +352,20 @@
 	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
 		if (textField.isFirstResponder) {
 			fieldIndex = [[self allInputFields] indexOfObject:textField];
-			//NSLog(@"%ld", (long)fieldIndex);
 		}
 	}
 	
 	if (!(fieldIndex == 14)) {
 		[[[self allInputFields]objectAtIndex:fieldIndex + 1] becomeFirstResponder];
+	}
+}
+
+- (void)bedBathStepper:(UIStepper *)stepper {
+	if (stepper == bedroomsStepper) {
+		self.roomsField.text = [NSString stringWithFormat:@"%.1f", bedroomsStepper.value];
+	}
+	if (stepper == bathroomsStepper) {
+		self.bathsField.text = [NSString stringWithFormat:@"%.1f", bathroomsStepper.value];
 	}
 }
 
@@ -373,13 +399,57 @@
 
 #pragma mark - Save Methods
 
-- (IBAction)saveFields:(id)sender {
+- (void)saveButtonPressed {
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
 		if (!((textfield.text).length > 0)) {
 			//textfield.text = @"Unavailable";
+			emptyFields = YES;
 		}
 	}
 	
+	if (emptyFields) {
+		NSLog(@"Empty fields");
+		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"You left one or more fields empty." preferredStyle:UIAlertControllerStyleAlert];
+		
+		UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save"
+													   style:UIAlertActionStyleDefault
+													 handler:^(UIAlertAction *action){
+														 [self save];
+													 }];
+		
+		UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+														 style:UIAlertActionStyleCancel
+													   handler:nil];
+		
+		[alert addAction:save];
+		[alert addAction:cancel];
+		
+		[self presentViewController:alert animated:YES completion:nil];
+	}
+	else {
+		NSLog(@"No empty fields");
+		item.itemName = self.nameField.text;
+		item.phoneName = self.phoneField.text;
+		item.moveindateName = self.moveindateField.text;
+		item.priceName = self.priceField.text;
+		item.neighborhoodName = self.neighborhoodField.text;
+		item.aptsizeName = self.aptsizeField.text;
+		item.roomsName = self.roomsField.text;
+		item.bathsName = self.bathsField.text;
+		item.accessName = self.accessField.text;
+		item.timeName = self.timeField.text;
+		item.addressName = self.addressField.text;
+		item.petsName = self.petsField.text;
+		item.guarantorName = self.guarantorField.text;
+		item.emailName = self.emailField.text;
+		item.zipName = self.zipCodeField.text;
+		
+		NSLog(@"Saving appointment.");
+		[self.navigationController popViewControllerAnimated: YES];
+	}
+}
+
+- (void)save {
 	item.itemName = self.nameField.text;
 	item.phoneName = self.phoneField.text;
 	item.moveindateName = self.moveindateField.text;
@@ -403,7 +473,7 @@
 - (void)doNotSave {
 	if (!self.isEditing) {
 		NSLog(@"New appointment, not saving");
-		[[BrokersLabItemStore sharedStore] removeItem: item];
+		[[AppointmentStore sharedStore] removeItem: item];
 		[self.navigationController popViewControllerAnimated: YES];
 	}
 	else {
@@ -435,9 +505,7 @@
 					UIAlertAction *action = [UIAlertAction
 											 actionWithTitle: @"OK"
 											 style: UIAlertActionStyleCancel
-											 handler: ^(UIAlertAction *action) {
-												 NSLog(@"Dismissed");
-											 }];
+											 handler:nil];
 					
 					[errorAlert addAction: action];
 					
@@ -471,9 +539,7 @@
 		UIAlertAction *action = [UIAlertAction
 								 actionWithTitle: @"OK"
 								 style: UIAlertActionStyleCancel
-								 handler: ^(UIAlertAction *action) {
-									 NSLog(@"Dismissed");
-								 }];
+								 handler:nil];
 		
 		[errorAlert addAction: action];
 		
@@ -493,15 +559,6 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	
-	if (pickerView == self.bathroom_picker) {
-		return bedsBathsArray.count;
-	}
-	
-	if (pickerView == self.bedroom_picker) {
-		return bedsBathsArray.count;
-	}
-	
 	if (pickerView == self.access_picker) {
 		return accessArray.count;
 	}
@@ -520,15 +577,6 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	
-	if (pickerView == self.bathroom_picker) {
-		return bedsBathsArray[row];
-	}
-	
-	if (pickerView == self.bedroom_picker) {
-		return bedsBathsArray[row];
-	}
-	
 	if (pickerView == self.access_picker) {
 		return accessArray[row];
 	}
@@ -547,14 +595,6 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	if (pickerView == self.bathroom_picker) {
-		self.bathsField.text = bedsBathsArray[row];
-	}
-	
-	if (pickerView == self.bedroom_picker) {
-		self.roomsField.text = bedsBathsArray[row];
-	}
-	
 	if (pickerView == self.access_picker) {
 		self.accessField.text = accessArray[row];
 	}

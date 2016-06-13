@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="10171" systemVersion="15F34" minimumToolsVersion="Automatic">
-    <entity name="BrokersLabItem" representedClassName="BrokersLabItem" syncable="YES">
+    <entity name="Appointment" representedClassName="Appointment" syncable="YES">
         <attribute name="accessName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="addressName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="aptsizeName" optional="YES" attributeType="String" syncable="YES"/>
@@ -10,7 +10,6 @@
         <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="moveindateName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="neighborhoodName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="orderingValue" optional="YES" attributeType="Double" defaultValueString="0.0" syncable="YES"/>
         <attribute name="petsName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="phoneName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="priceName" optional="YES" attributeType="String" syncable="YES"/>
@@ -19,6 +18,6 @@
         <attribute name="zipName" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="BrokersLabItem" positionX="0" positionY="0" width="128" height="285"/>
+        <element name="Appointment" positionX="0" positionY="0" width="128" height="270"/>
     </elements>
 </model>

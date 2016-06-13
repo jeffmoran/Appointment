@@ -1,6 +1,5 @@
 //
 //  AppointmentAppDelegate.h
-//  BrokersLab
 //
 //  Created by Jeffrey Moran on 8/31/13.
 //

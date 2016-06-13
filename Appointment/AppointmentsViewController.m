@@ -1,7 +1,7 @@
 #import "AppointmentsViewController.h"
-#import "BrokersLabItemStore.h"
-#import "BrokersLabItem.h"
-#import "BrokersLabItemCell.h"
+#import "AppointmentStore.h"
+#import "Appointment.h"
+#import "AppointmentCell.h"
 #import "MapViewController.h"
 #import "AppointmentCleanViewController.h"
 
@@ -13,15 +13,11 @@
 	[super viewDidLoad];
 	
 	self.title = @"Appointments";
-	
-	UINib *nib = [UINib nibWithNibName: @"BrokersLabItemCell" bundle: nil];
-	
-	[self.tableView registerNib: nib forCellReuseIdentifier: @"BrokersLabItemCell"];
-	
+
 	self.navigationItem.leftBarButtonItem = [self editButtonItem];
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
 																						   target: self
-																						   action: @selector(addNewAppointment: )];
+																						   action: @selector(addNewAppointment)];
 	
 	self.tableView.allowsSelectionDuringEditing = YES;
 	
@@ -52,20 +48,15 @@
 
 #pragma mark - Add new appointment
 
-- (IBAction)addNewAppointment:(id)sender {
-	BrokersLabItem *newAppointment = [[BrokersLabItemStore sharedStore] createItem];
+- (void)addNewAppointment {
+	Appointment *newAppointment = [[AppointmentStore sharedStore] createItem];
 	
 	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: YES];
 	
 	detailViewController.item = newAppointment;
 	
-	detailViewController.dismissBlock = ^{
-		[self.tableView reloadData];
-	};
-	
 	detailViewController.isEditing = NO;
 	
-	// Push it onto the top of the navigation controller's stack
 	[self.navigationController pushViewController: detailViewController animated: YES];
 }
 
@@ -77,7 +68,7 @@
 		AppointmentCleanViewController *destViewController = segue.destinationViewController;
 		
 		NSIndexPath *indexPath = [self.tableView  indexPathForCell: sender];
-		BrokersLabItem *appointment = [[BrokersLabItemStore sharedStore] allItems][indexPath.row];
+		Appointment *appointment = [[AppointmentStore sharedStore] allItems][indexPath.row];
 		
 		destViewController.nameString = appointment.itemName;
 		destViewController.timeString = appointment.timeName;
@@ -103,11 +94,11 @@
 	if (self.tableView.editing == YES) {
 		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: NO];
 		
-		NSArray *items = [[BrokersLabItemStore sharedStore] allItems];
-		BrokersLabItem *selectedItem = items[indexPath.row];
+		NSArray *items = [[AppointmentStore sharedStore] allItems];
+		Appointment *selectedItem = items[indexPath.row];
 		detailViewController.item = selectedItem;
 		detailViewController.isEditing = YES;
-		[self.navigationController  pushViewController: detailViewController animated: YES];
+		[self.navigationController pushViewController: detailViewController animated: YES];
 	}
 	else {
 		[self performSegueWithIdentifier: @"Clean" sender: [tableView cellForRowAtIndexPath: indexPath]];
@@ -125,39 +116,48 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [[BrokersLabItemStore sharedStore] allItems].count;
+	return [[AppointmentStore sharedStore] allItems].count;
 }
 
-//- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-//	[[BrokersLabItemStore sharedStore] moveItemAtIndex: fromIndexPath.row
-//											   toIndex: toIndexPath.row];
-//	
-//	[self.tableView beginUpdates];
-//	[self.tableView reloadData];
-//	[self.tableView endUpdates];
-//}
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	BrokersLabItem *s = [[BrokersLabItemStore sharedStore] allItems][indexPath.row];
+	static NSString *CellIdentifier = @"CellIdentifier";
+
+	Appointment *s = [[AppointmentStore sharedStore] allItems][indexPath.row];
 	
-	BrokersLabItemCell *cell = [tableView dequeueReusableCellWithIdentifier: @"BrokersLabItemCell"];
+	AppointmentCell *cell = (AppointmentCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+
+	NSLog(@"NEW CELL");
 	
-	//	[cell setController: self];
-	//	[cell setTableView: tableView];
+	if (!([s.itemName isEqualToString: @""])){
+		cell.nameLabel.text = s.itemName;
+	}
+	else {
+		cell.nameLabel.text = @"Client name unavailable";
+	}
 	
-	cell.nameLabel.text = s.itemName;
-	cell.addressLabel.text = s.addressName;
-	cell.timeLabel.text = s.timeName;
+	if (!([s.timeName isEqualToString: @""])){
+		cell.timeLabel.text = s.timeName;
+	}
+	else {
+		cell.timeLabel.text = @"Appointment time unavailable";
+	}
+	
+	if (!([s.addressName isEqualToString: @""])) {
+		cell.addressLabel.text = [NSString stringWithFormat:@"%@ %@", s.addressName, s.zipName];
+	}
+	else {
+		cell.addressLabel.text = @"Property address unavailable";
+	}
 	
 	return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
-	if ([[BrokersLabItemStore sharedStore] allItems].count == 0) {
+	if ([[AppointmentStore sharedStore] allItems].count == 0) {
 		return 0;
 	}
-	else if ([[BrokersLabItemStore sharedStore] allItems].count == 1) {
+	else if ([[AppointmentStore sharedStore] allItems].count == 1) {
 		switch (section) {
 			case 0:
 				return @"1 Appointment";
@@ -170,7 +170,7 @@
 	else {
 		switch (section) {
 			case 0:
-				return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)[[BrokersLabItemStore sharedStore] allItems].count];
+				return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)[[AppointmentStore sharedStore] allItems].count];
 				break;
 			default:
 				return @"";
@@ -181,9 +181,9 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		BrokersLabItemStore *itemStore = [BrokersLabItemStore sharedStore];
+		AppointmentStore *itemStore = [AppointmentStore sharedStore];
 		NSArray *items = [itemStore allItems];
-		BrokersLabItem *appointment = items[indexPath.row];
+		Appointment *appointment = items[indexPath.row];
 		[itemStore removeItem: appointment];
 		
 		[tableView deleteRowsAtIndexPaths: @[indexPath]

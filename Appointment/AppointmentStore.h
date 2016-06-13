@@ -1,21 +1,21 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
-@class BrokersLabItem;
+@class Appointment;
 
-@interface BrokersLabItemStore : NSObject {
+@interface AppointmentStore : NSObject {
     NSMutableArray *allItems;
     NSManagedObjectContext *objectContext;
     NSManagedObjectModel *model;
 }
 
-+ (BrokersLabItemStore *)sharedStore;
++ (AppointmentStore *)sharedStore;
 
-- (void)removeItem:(BrokersLabItem *)p;
+- (void)removeItem:(Appointment *)p;
 
 - (NSArray *)allItems;
 
-- (BrokersLabItem *)createItem;
+- (Appointment *)createItem;
 
 //- (void)moveItemAtIndex:(NSInteger)from
 //                toIndex:(NSInteger)to;

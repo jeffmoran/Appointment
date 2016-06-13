@@ -1,10 +1,10 @@
-#import "BrokersLabItemStore.h"
-#import "BrokersLabItem.h"
+#import "AppointmentStore.h"
+#import "Appointment.h"
 
-@implementation BrokersLabItemStore
+@implementation AppointmentStore
 
-+ (BrokersLabItemStore *)sharedStore {
-	static BrokersLabItemStore *sharedStore = nil;
++ (AppointmentStore *)sharedStore {
+	static AppointmentStore *sharedStore = nil;
 	
 	if (!sharedStore) {
 		sharedStore = [[super allocWithZone: nil] init];
@@ -23,18 +23,16 @@
 	if (self) {
 		model = [NSManagedObjectModel mergedModelFromBundles: nil];
 		
-		NSPersistentStoreCoordinator *psc =
-		[[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: model];
+		NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: model];
 		
-		NSString *path = [self itemArchivePath];
-		NSURL *storeURL = [NSURL fileURLWithPath: path];
+		NSURL *storeURL = [NSURL fileURLWithPath: [self itemArchivePath]];
 		
 		NSError *error = nil;
 		
 		if (![psc addPersistentStoreWithType:NSSQLiteStoreType
 							   configuration: nil
 										 URL: storeURL
-									 options: nil
+									 options:@{NSMigratePersistentStoresAutomaticallyOption:@ YES, NSInferMappingModelAutomaticallyOption:@ YES}
 									   error: &error]) {
 			[NSException raise: @"Open failed"
 						format:@"Reason: %@", error.localizedDescription];
@@ -57,13 +55,13 @@
 	if (!allItems) {
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		
-		NSEntityDescription *entity = model.entitiesByName[@"BrokersLabItem"];
+		NSEntityDescription *entity = model.entitiesByName[@"Appointment"];
 		request.entity = entity;
 		
-		NSSortDescriptor *sortDescriptor = [NSSortDescriptor
-											sortDescriptorWithKey: @"orderingValue"
-											ascending: YES];
-		request.sortDescriptors = @[sortDescriptor];
+		//	NSSortDescriptor *sortDescriptor = [NSSortDescriptor
+		//										sortDescriptorWithKey: @"orderingValue"
+		//										ascending: YES];
+		//request.sortDescriptors = @[sortDescriptor];
 		
 		NSError *error;
 		NSArray *result = [objectContext executeFetchRequest: request error:&error];
@@ -101,37 +99,17 @@
 	return successful;
 }
 
-- (void)removeItem:(BrokersLabItem *)p {
-	[objectContext deleteObject: p];
-	[allItems removeObjectIdenticalTo: p];
+- (void)removeItem:(Appointment *)appt {
+	[objectContext deleteObject: appt];
+	[allItems removeObjectIdenticalTo: appt];
 }
 
 - (NSArray *)allItems {
 	return allItems;
 }
 
-//- (void)moveItemAtIndex:(NSInteger)from toIndex:(NSInteger)to {
-//	if (from == to) {
-//		return;
-//	}
-//	
-//	NSLog(@"Reordering");
-//	// Get pointer to object being moved so we can re-insert it
-//	BrokersLabItem *p = allItems[from];
-//	
-//	// Remove p from array
-//	[allItems removeObjectAtIndex: from];
-//	
-//	// Insert p in array at new location
-//	[allItems insertObject: p atIndex:to];
-//	
-//	NSLog(@"Saving");
-//	NSError *err = nil;
-//	[context save:&err];
-//}
-
-- (BrokersLabItem *)createItem {
-	BrokersLabItem *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"BrokersLabItem"
+- (Appointment *)createItem {
+	Appointment *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"Appointment"
 															inManagedObjectContext: objectContext];
 	
 	[allItems addObject: newItem];
