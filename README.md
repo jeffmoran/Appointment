@@ -51,6 +51,7 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 
 ## Known bugs:
 - Slight lag when creating new appointment.
+- App crashes if zip code isn't valid
 - ~~DZNEmptyDateSet is not centered when first opening the application.~~
 - ~~When clicking "Find on map" in the appointment detail view, the view is pushed twice.~~
 - ~~Location isn't properly displayed on map.~~
