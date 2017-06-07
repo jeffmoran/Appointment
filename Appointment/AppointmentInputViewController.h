@@ -59,7 +59,7 @@
 
 @property (nonatomic) BOOL isEditing;
 
-- (instancetype)initForNewItem:(BOOL)isNew;
+- (instancetype)initForNewAppointment:(BOOL)isNew;
 
 @property (nonatomic, strong) Appointment *item;
 

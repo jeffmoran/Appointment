@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1442BB0D678D1E33C0B996B6 /* Pods_Appointment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 718DDDF45C8F963CEB3D4D11 /* Pods_Appointment.framework */; };
+		49A7D4A5527ECCFF07109C64 /* Pods_Appointment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */; };
 		6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 601423811CD098FF0089E278 /* Appointment.xcdatamodel */; };
 		6014239D1CD098FF0089E278 /* AppointmentCleanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423831CD098FF0089E278 /* AppointmentCleanViewController.m */; };
 		6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423851CD098FF0089E278 /* AppointmentInputViewController.m */; };
@@ -21,7 +21,6 @@
 		601423AA1CD098FF0089E278 /* MainStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601423961CD098FF0089E278 /* MainStoryboard.storyboard */; };
 		601423AB1CD098FF0089E278 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423981CD098FF0089E278 /* MapViewController.m */; };
 		605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F92C51CCC142B00F4FC1C /* Images.xcassets */; };
-		606D8A3C1D0E65610079D412 /* AppointmentTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 606D8A3B1D0E65610079D412 /* AppointmentTests.m */; };
 		BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0E4EB2143262F700F05B13 /* CoreData.framework */; };
 		BE4E18E8140D9EB80007F01B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E7140D9EB80007F01B /* UIKit.framework */; };
 		BE4E18EA140D9EB80007F01B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E9140D9EB80007F01B /* Foundation.framework */; };
@@ -36,16 +35,6 @@
 		CAD8426A17D42EE100A584E9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8426917D42EE100A584E9 /* MapKit.framework */; };
 		CADF935C17D4147C00DEE67D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADF935B17D4147B00DEE67D /* QuartzCore.framework */; };
 /* End PBXBuildFile section */
-
-/* Begin PBXContainerItemProxy section */
-		606D8A3E1D0E65610079D412 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BE4E18DA140D9EB80007F01B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BE4E18E2140D9EB80007F01B;
-			remoteInfo = Appointment;
-		};
-/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		3B1EF0D9AD42CD1E7D5F413A /* Pods-Appointment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appointment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Appointment/Pods-Appointment.debug.xcconfig"; sourceTree = "<group>"; };
@@ -73,11 +62,8 @@
 		601423971CD098FF0089E278 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		601423981CD098FF0089E278 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		605F92C51CCC142B00F4FC1C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		606D8A391D0E65610079D412 /* AppointmentTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppointmentTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		606D8A3B1D0E65610079D412 /* AppointmentTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppointmentTests.m; sourceTree = "<group>"; };
-		606D8A3D1D0E65610079D412 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		60C855481D027C6900C12BA3 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		718DDDF45C8F963CEB3D4D11 /* Pods_Appointment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appointment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appointment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9F2FFF213473ED0E1479D86F /* Pods-Appointment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appointment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appointment/Pods-Appointment.release.xcconfig"; sourceTree = "<group>"; };
 		BE0E4EB2143262F700F05B13 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BE4E18E3140D9EB80007F01B /* Appointment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appointment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,13 +82,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		606D8A361D0E65610079D412 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BE4E18E0140D9EB80007F01B /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -120,7 +99,7 @@
 				CAD8426817D42EDC00A584E9 /* CoreLocation.framework in Frameworks */,
 				BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */,
 				BE4E18E8140D9EB80007F01B /* UIKit.framework in Frameworks */,
-				1442BB0D678D1E33C0B996B6 /* Pods_Appointment.framework in Frameworks */,
+				49A7D4A5527ECCFF07109C64 /* Pods_Appointment.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -182,15 +161,6 @@
 			name = Appointment;
 			sourceTree = "<group>";
 		};
-		606D8A3A1D0E65610079D412 /* AppointmentTests */ = {
-			isa = PBXGroup;
-			children = (
-				606D8A3B1D0E65610079D412 /* AppointmentTests.m */,
-				606D8A3D1D0E65610079D412 /* Info.plist */,
-			);
-			path = AppointmentTests;
-			sourceTree = "<group>";
-		};
 		7EF0B098E6130A73D0C51C99 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -204,7 +174,6 @@
 			isa = PBXGroup;
 			children = (
 				BE4E18EB140D9EB80007F01B /* Appointment */,
-				606D8A3A1D0E65610079D412 /* AppointmentTests */,
 				BE4E18E6140D9EB80007F01B /* Frameworks */,
 				BE4E18E4140D9EB80007F01B /* Products */,
 				7EF0B098E6130A73D0C51C99 /* Pods */,
@@ -215,7 +184,6 @@
 			isa = PBXGroup;
 			children = (
 				BE4E18E3140D9EB80007F01B /* Appointment.app */,
-				606D8A391D0E65610079D412 /* AppointmentTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -237,7 +205,7 @@
 				CA0F3E9B17E25B0D003FE3BE /* SystemConfiguration.framework */,
 				BE4E18E7140D9EB80007F01B /* UIKit.framework */,
 				5941E395F53C4C37110ED0EA /* Pods.framework */,
-				718DDDF45C8F963CEB3D4D11 /* Pods_Appointment.framework */,
+				8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -261,24 +229,6 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		606D8A381D0E65610079D412 /* AppointmentTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 606D8A401D0E65610079D412 /* Build configuration list for PBXNativeTarget "AppointmentTests" */;
-			buildPhases = (
-				606D8A351D0E65610079D412 /* Sources */,
-				606D8A361D0E65610079D412 /* Frameworks */,
-				606D8A371D0E65610079D412 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				606D8A3F1D0E65610079D412 /* PBXTargetDependency */,
-			);
-			name = AppointmentTests;
-			productName = AppointmentTests;
-			productReference = 606D8A391D0E65610079D412 /* AppointmentTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 		BE4E18E2140D9EB80007F01B /* Appointment */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE4E18F9140D9EB80007F01B /* Build configuration list for PBXNativeTarget "Appointment" */;
@@ -289,7 +239,6 @@
 				BE4E18E1140D9EB80007F01B /* Resources */,
 				204F53FC071543748F33CAC8 /* [CP] Embed Pods Frameworks */,
 				368A817E3E7621DAC90442BA /* [CP] Copy Pods Resources */,
-				606D8A2E1D07DB530079D412 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -307,13 +256,8 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = Appointment;
-				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = "Jeff Moran";
 				TargetAttributes = {
-					606D8A381D0E65610079D412 = {
-						CreatedOnToolsVersion = 7.3;
-						TestTargetID = BE4E18E2140D9EB80007F01B;
-					};
 					BE4E18E2140D9EB80007F01B = {
 						DevelopmentTeam = TR5WFN5468;
 						SystemCapabilities = {
@@ -338,19 +282,11 @@
 			projectRoot = "";
 			targets = (
 				BE4E18E2140D9EB80007F01B /* Appointment */,
-				606D8A381D0E65610079D412 /* AppointmentTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		606D8A371D0E65610079D412 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BE4E18E1140D9EB80007F01B /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -394,19 +330,6 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Appointment/Pods-Appointment-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		606D8A2E1D07DB530079D412 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Fabric/run\" 105613d639ae9dec1d50a8217a823c6ce25fb075 660b1243d10174e71aee847d514ccc80cbeda3f25a8928f35e3d4c0d6ae5f4d2";
-		};
 		75A858E8A47948056084A926 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -419,20 +342,12 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		606D8A351D0E65610079D412 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				606D8A3C1D0E65610079D412 /* AppointmentTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		BE4E18DF140D9EB80007F01B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -452,73 +367,20 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
-/* Begin PBXTargetDependency section */
-		606D8A3F1D0E65610079D412 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = BE4E18E2140D9EB80007F01B /* Appointment */;
-			targetProxy = 606D8A3E1D0E65610079D412 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
-
 /* Begin XCBuildConfiguration section */
-		606D8A411D0E65610079D412 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				DEBUG_INFORMATION_FORMAT = dwarf;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = AppointmentTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeffmoran.AppointmentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Appointment.app/Appointment";
-			};
-			name = Debug;
-		};
-		606D8A421D0E65610079D412 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CLANG_ANALYZER_NONNULL = YES;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
-				INFOPLIST_FILE = AppointmentTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = com.jeffmoran.AppointmentTests;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Appointment.app/Appointment";
-			};
-			name = Release;
-		};
 		BE4E18F7140D9EB80007F01B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -542,7 +404,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -552,12 +414,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -573,7 +438,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -604,7 +469,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
@@ -640,7 +505,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
@@ -655,14 +520,6 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		606D8A401D0E65610079D412 /* Build configuration list for PBXNativeTarget "AppointmentTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				606D8A411D0E65610079D412 /* Debug */,
-				606D8A421D0E65610079D412 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-		};
 		BE4E18DD140D9EB80007F01B /* Build configuration list for PBXProject "Appointment" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

@@ -10,7 +10,5 @@ pod 'RNGridMenu'
 pod 'TapkuLibrary'
 pod 'DZNEmptyDataSet'
 pod 'ChameleonFramework'
-pod 'Fabric'
-pod 'Crashlytics'
 
 end

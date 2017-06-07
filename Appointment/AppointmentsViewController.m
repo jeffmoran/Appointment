@@ -51,7 +51,7 @@
 - (void)addNewAppointment {
 	Appointment *newAppointment = [[AppointmentStore sharedStore] createItem];
 	
-	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: YES];
+	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewAppointment: YES];
 	
 	detailViewController.item = newAppointment;
 	
@@ -92,7 +92,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.tableView.editing == YES) {
-		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewItem: NO];
+		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewAppointment: NO];
 		
 		NSArray *items = [[AppointmentStore sharedStore] allItems];
 		Appointment *selectedItem = items[indexPath.row];

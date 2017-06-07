@@ -13,7 +13,7 @@
 
 @synthesize item;
 
-- (instancetype)initForNewItem:(BOOL)isNew {
+- (instancetype)initForNewAppointment:(BOOL)isNew {
 	self = [super init];
 	
 	if (self) {

@@ -1,8 +1,6 @@
 #import "AppointmentAppDelegate.h"
 #import "AppointmentStore.h"
 #import <ChameleonFramework/Chameleon.h>
-#import <Fabric/Fabric.h>
-#import <Crashlytics/Crashlytics.h>
 
 @interface AppointmentAppDelegate ()
 
@@ -22,8 +20,6 @@
 	NSDictionary *attributesDict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
 	
 	[UINavigationBar appearance].titleTextAttributes = attributesDict;
-
-	[Fabric with:@[[Crashlytics class]]];
 	
 	return YES;
 }
