@@ -13,18 +13,6 @@
 
 @synthesize item;
 
-- (instancetype)initForNewAppointment:(BOOL)isNew {
-	self = [super init];
-	
-	if (self) {
-		if (isNew) {
-			NSLog(@"NEW ITEM");
-		}
-	}
-	
-	return self;
-}
-
 #pragma mark - Lifecycle
 
 - (void)viewDidLoad {
@@ -163,8 +151,8 @@
 	self.emailField.text = item.emailName;
 	self.zipCodeField.text = item.zipName;
 	
-	bedroomsStepper.value = [self.roomsField.text doubleValue];
-	bathroomsStepper.value = [self.bathsField.text doubleValue];
+	bedroomsStepper.value = self.roomsField.text.doubleValue;
+	bathroomsStepper.value = self.bathsField.text.doubleValue;
 	
 	// Change the navigation item to display name of item
 	self.navigationItem.title = item.itemName;
@@ -325,7 +313,7 @@
 	[toolbarItems addObject:space];
 	[toolbarItems addObject:doneButton];
 	
-	[toolbar setItems:toolbarItems];
+	toolbar.items = toolbarItems;
 	
 	for (UIView *view in [self allInputFields]) {
 		view.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -410,7 +398,7 @@
 	}
 	
 	if (!(fieldIndex == 0)) {
-		[[[self allInputFields]objectAtIndex:fieldIndex - 1] becomeFirstResponder];
+		[[self allInputFields][fieldIndex - 1] becomeFirstResponder];
 	}
 }
 
@@ -422,7 +410,7 @@
 	}
 	
 	if (!(fieldIndex == 14)) {
-		[[[self allInputFields]objectAtIndex:fieldIndex + 1] becomeFirstResponder];
+		[[self allInputFields][fieldIndex + 1] becomeFirstResponder];
 	}
 }
 
@@ -697,7 +685,7 @@
 	if (indexOfInput != NSNotFound && indexOfInput < [self allInputFields].count-1) {
 		UIResponder *next = [self allInputFields][(NSUInteger)(indexOfInput+1)];
 		
-		if ([next canBecomeFirstResponder]) {
+		if (next.canBecomeFirstResponder) {
 			[next becomeFirstResponder];
 			
 			return YES;

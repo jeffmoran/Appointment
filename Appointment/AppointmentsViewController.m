@@ -14,7 +14,7 @@
 	
 	self.title = @"Appointments";
 
-	self.navigationItem.leftBarButtonItem = [self editButtonItem];
+	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
 																						   target: self
 																						   action: @selector(addNewAppointment)];
@@ -47,7 +47,7 @@
 - (void)addNewAppointment {
 	Appointment *newAppointment = [[AppointmentStore sharedStore] createItem];
 	
-	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewAppointment: YES];
+	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
 	
 	detailViewController.item = newAppointment;
 	
@@ -73,7 +73,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.tableView.editing == YES) {
-		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] initForNewAppointment: NO];
+		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
 		
 		NSArray *items = [[AppointmentStore sharedStore] allItems];
 		Appointment *selectedItem = items[indexPath.row];

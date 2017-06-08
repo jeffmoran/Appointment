@@ -11,8 +11,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	[self.tableView setAllowsSelection: NO];
-	
+	self.tableView.allowsSelection = NO;
+
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"Menu"]
 																			  style: UIBarButtonItemStylePlain
 																			 target: self
@@ -114,16 +114,12 @@
 	if ([MFMailComposeViewController canSendMail]) {
 		MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
 		
-		[[controller navigationBar] setTintColor:[UIColor whiteColor]];
+		controller.navigationBar.tintColor = [UIColor whiteColor];
 		
 		controller.mailComposeDelegate = self;
 		
 		[controller setSubject: [NSString stringWithFormat: @"%@ Appointment With %@", time, name]];
-		
-		NSArray *toRecipients = @[email];
-		
-		[controller setToRecipients: toRecipients];
-		
+		[controller setToRecipients: @[email]];
 		[controller setMessageBody: _emailBodyString isHTML:YES];
 		
 		[self presentViewController: controller animated:YES completion: nil];
