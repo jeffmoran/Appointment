@@ -326,7 +326,7 @@
 	
 	NSURL *appleMapsURL = [NSURL URLWithString:[NSString stringWithFormat:@"http://maps.apple.com/?&daddr=%@", [locationAnnotation.title stringByAddingPercentEncodingWithAllowedCharacters:allowedCharacterSet]]];
 	
-	[[UIApplication sharedApplication] openURL:appleMapsURL];
+	[[UIApplication sharedApplication] openURL:appleMapsURL options:@{} completionHandler:nil];
 }
 
 //- (void)getDirectionsToMapItem:(MKMapItem *)destination {

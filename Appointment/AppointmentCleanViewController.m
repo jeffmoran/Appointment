@@ -169,7 +169,7 @@
 	UIDevice *device = [UIDevice currentDevice];
 	
 	if ([device.model isEqualToString: @"iPhone"] ) {
-		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"telprompt:%@", number]]];
+		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"telprompt:%@", number]] options:@{} completionHandler:nil];
 	}
 	else {
 		
