@@ -28,4 +28,3 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 - [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet)
 - [JVFloatLabeledTextField](https://github.com/jverdi/JVFloatLabeledTextField)
 - [RNGridMenu](https://github.com/rnystrom/RNGridMenu)
-- [TapkuLibrary](https://github.com/devinross/tapkulibrary)
