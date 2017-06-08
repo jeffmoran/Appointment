@@ -30,7 +30,6 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	const CGFloat kJVFieldWidth = self.view.frame.size.width - 83.0f;
 	self.view.tintColor = FlatTeal;
 	
 	petsArray = @[@"Yes", @"No", @"Some"];

@@ -5,22 +5,19 @@ PODS:
   - DZNEmptyDataSet (1.8.1)
   - JVFloatLabeledTextField (1.1.1)
   - RNGridMenu (0.1.3)
-  - TapkuLibrary (0.3.8)
 
 DEPENDENCIES:
   - ChameleonFramework
   - DZNEmptyDataSet
   - JVFloatLabeledTextField
   - RNGridMenu
-  - TapkuLibrary
 
 SPEC CHECKSUMS:
   ChameleonFramework: d21a3cc247abfe5e37609a283a8238b03575cf64
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   RNGridMenu: c58db81f87b5473936bb1b675dc3e947c409b51d
-  TapkuLibrary: 7a406dac46eff8595e191557eba88959f97f69b7
 
-PODFILE CHECKSUM: a59ea83a8815ff2d47b94eec233a9371b38f1cd7
+PODFILE CHECKSUM: 9a90ad9dfd38c5c86a4361c93f322ac3c9872827
 
 COCOAPODS: 1.2.1

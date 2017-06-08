@@ -38,12 +38,8 @@
 	
 }
 
-- (void)reloadData{
+- (void)reloadData {
 	[self.tableView reloadData];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
 }
 
 #pragma mark - Add new appointment

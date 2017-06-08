@@ -1,5 +1,4 @@
 #import <UIKit/UIKit.h>
-#import <TapkuLibrary/TapkuLibrary.h>
 #import "RNGridMenu.h"
 #import "Appointment.h"
 

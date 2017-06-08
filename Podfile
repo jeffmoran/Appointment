@@ -7,7 +7,6 @@ use_frameworks!
 
 pod 'JVFloatLabeledTextField'
 pod 'RNGridMenu'
-pod 'TapkuLibrary'
 pod 'DZNEmptyDataSet'
 pod 'ChameleonFramework'
 

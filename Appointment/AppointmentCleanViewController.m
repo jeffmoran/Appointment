@@ -10,59 +10,62 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
+
+	// TODO: Create reusable cell
+	// TODO: Create properties on Appointment with arrays of all other string properties and their respective "titles
+
+	UITableViewCell *nameField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:nil];
+	nameField.textLabel.text = appointment.itemName ;
+	nameField.detailTextLabel.text = @"Client Name";
 	
-	TKLabelFieldCell *nameField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	nameField.label.text = @"Client Name";
-	nameField.field.text = appointment.itemName;
+	UITableViewCell *emailField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	emailField.textLabel.text = appointment.emailName;
+	emailField.detailTextLabel.text = @"Client Email";
+
+	UITableViewCell *phoneNumberField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	phoneNumberField.detailTextLabel.text = @"Client Number";
+	phoneNumberField.textLabel.text = appointment.phoneName;
 	
-	TKLabelFieldCell *emailField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	emailField.label.text = @"Client Email";
-	emailField.field.text = appointment.emailName;
+	UITableViewCell *timeField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	timeField.detailTextLabel.text = @"Time";
+	timeField.textLabel.text = appointment.timeName;
 	
-	TKLabelFieldCell *phoneNumberField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	phoneNumberField.label.text = @"Client Number";
-	phoneNumberField.field.text = appointment.phoneName;
+	UITableViewCell *addressField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	addressField.detailTextLabel.text = @"Property Address";
+	addressField.textLabel.text = appointment.addressName;
+	addressField.textLabel.adjustsFontSizeToFitWidth = YES;
 	
-	TKLabelFieldCell *timeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	timeField.label.text = @"Time";
-	timeField.field.text = appointment.timeName;
+	UITableViewCell *zipField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	zipField.detailTextLabel.text = @"Zip/Postal Code";
+	zipField.textLabel.text = appointment.zipName;
 	
-	TKLabelFieldCell *addressField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	addressField.label.text = @"Property Address";
-	addressField.field.text = appointment.addressName;
-	addressField.field.adjustsFontSizeToFitWidth = YES;
+	UITableViewCell *moveInDateField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	moveInDateField.detailTextLabel.text = @"Move-In Date";
+	moveInDateField.textLabel.text = appointment.moveindateName;
 	
-	TKLabelFieldCell *zipField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	zipField.label.text = @"Zip/Postal Code";
-	zipField.field.text = appointment.zipName;
+	UITableViewCell *petsField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	petsField.detailTextLabel.text = @"Pets";
+	petsField.textLabel.text = appointment.petsName;
 	
-	TKLabelFieldCell *moveInDateField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	moveInDateField.label.text = @"Move-In Date";
-	moveInDateField.field.text = appointment.moveindateName;
+	UITableViewCell *priceField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	priceField.detailTextLabel.text = @"Rent";
+	priceField.textLabel.text = [NSString stringWithFormat:@"$%@ Per Month", appointment.priceName];
 	
-	TKLabelFieldCell *petsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	petsField.label.text = @"Pets";
-	petsField.field.text = appointment.petsName;
+	UITableViewCell *neighborhoodField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	neighborhoodField.detailTextLabel.text = @"City";
+	neighborhoodField.textLabel.text = appointment.neighborhoodName;
 	
-	TKLabelFieldCell *priceField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	priceField.label.text = @"Rent";
-	priceField.field.text = [NSString stringWithFormat:@"$%@ Per Month", appointment.priceName];
+	UITableViewCell *aptsizeField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	aptsizeField.detailTextLabel.text = @"Size";
+	aptsizeField.textLabel.text = [NSString stringWithFormat:@"%@ Sq. Ft.", appointment.aptsizeName];
 	
-	TKLabelFieldCell *neighborhoodField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	neighborhoodField.label.text = @"City";
-	neighborhoodField.field.text = appointment.neighborhoodName;
+	UITableViewCell *roomsField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	roomsField.detailTextLabel.text = @"Bedrooms";
+	roomsField.textLabel.text = appointment.roomsName;
 	
-	TKLabelFieldCell *aptsizeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	aptsizeField.label.text = @"Size";
-	aptsizeField.field.text = [NSString stringWithFormat:@"%@ Sq. Ft.", appointment.aptsizeName];
-	
-	TKLabelFieldCell *roomsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	roomsField.label.text = @"Bedrooms";
-	roomsField.field.text = appointment.roomsName;
-	
-	TKLabelFieldCell *bathsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	bathsField.label.text = @"Bathrooms";
-	bathsField.field.text = appointment.bathsName;
+	UITableViewCell *bathsField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
+	bathsField.detailTextLabel.text = @"Bathrooms";
+	bathsField.textLabel.text = appointment.bathsName;
 	
 	self.cells = @[nameField, emailField, phoneNumberField, timeField, addressField, zipField, neighborhoodField, moveInDateField, petsField, priceField, aptsizeField, roomsField, bathsField];
 	
@@ -79,22 +82,6 @@
 //	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", appointment.itemName, self.phoneString, appointment.timeName, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 
 	self.title = appointment.itemName;
-}
-
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear: animated];
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear: animated];
-}
-
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear: animated];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear: animated];
 }
 
 - (void)didReceiveMemoryWarning {
