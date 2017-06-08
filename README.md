@@ -1,6 +1,6 @@
 # Appointment
 
-A simple utility application for real estate to create and manage their appointments.
+A simple utility application for brokers to create and manage their appointments.
 
 ## Installation
 Provided that you have [CocoaPods](http://cocoapods.org) installed, please be sure to run
