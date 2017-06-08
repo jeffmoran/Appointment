@@ -68,21 +68,8 @@
 		AppointmentCleanViewController *destViewController = segue.destinationViewController;
 		
 		NSIndexPath *indexPath = [self.tableView  indexPathForCell: sender];
-		Appointment *appointment = [[AppointmentStore sharedStore] allItems][indexPath.row];
-		
-		destViewController.nameString = appointment.itemName;
-		destViewController.timeString = appointment.timeName;
-		destViewController.addressString = appointment.addressName;
-		destViewController.zipString = appointment.zipName;
-		destViewController.phoneString = appointment.phoneName;
-		destViewController.moveInDateString = appointment.moveindateName;
-		destViewController.priceString = appointment.priceName;
-		destViewController.neighborhoodString = appointment.neighborhoodName;
-		destViewController.aptsizeString = appointment.aptsizeName;
-		destViewController.roomsString = appointment.roomsName;
-		destViewController.bathsString = appointment.bathsName;
-		destViewController.petsString = appointment.petsName;
-		destViewController.emailString = appointment.emailName;
+
+		destViewController.appointment = [[AppointmentStore sharedStore] allItems][indexPath.row];
 	}
 }
 

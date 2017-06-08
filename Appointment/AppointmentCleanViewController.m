@@ -4,7 +4,7 @@
 
 @implementation AppointmentCleanViewController
 
-@synthesize contact, contactStore, event, eventStore;
+@synthesize contact, contactStore, event, eventStore, appointment;
 
 #pragma mark -  Lifecycle
 
@@ -13,66 +13,58 @@
 	
 	TKLabelFieldCell *nameField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	nameField.label.text = @"Client Name";
-	nameField.field.text = self.nameString;
+	nameField.field.text = appointment.itemName;
 	
 	TKLabelFieldCell *emailField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	emailField.label.text = @"Client Email";
-	emailField.field.text = self.emailString;
+	emailField.field.text = appointment.emailName;
 	
 	TKLabelFieldCell *phoneNumberField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	phoneNumberField.label.text = @"Client Number";
-	phoneNumberField.field.text = self.phoneString;
+	phoneNumberField.field.text = appointment.phoneName;
 	
 	TKLabelFieldCell *timeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	timeField.label.text = @"Time";
-	timeField.field.text = self.timeString;
+	timeField.field.text = appointment.timeName;
 	
 	TKLabelFieldCell *addressField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	addressField.label.text = @"Property Address";
-	addressField.field.text = self.addressString;
+	addressField.field.text = appointment.addressName;
 	addressField.field.adjustsFontSizeToFitWidth = YES;
 	
 	TKLabelFieldCell *zipField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	zipField.label.text = @"Zip/Postal Code";
-	zipField.field.text = self.zipString;
+	zipField.field.text = appointment.zipName;
 	
 	TKLabelFieldCell *moveInDateField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	moveInDateField.label.text = @"Move-In Date";
-	moveInDateField.field.text = self.moveInDateString;
+	moveInDateField.field.text = appointment.moveindateName;
 	
 	TKLabelFieldCell *petsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	petsField.label.text = @"Pets";
-	petsField.field.text = self.petsString;
+	petsField.field.text = appointment.petsName;
 	
 	TKLabelFieldCell *priceField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	priceField.label.text = @"Rent";
-	priceField.field.text = [NSString stringWithFormat:@"$%@ Per Month", self.priceString];
+	priceField.field.text = [NSString stringWithFormat:@"$%@ Per Month", appointment.priceName];
 	
 	TKLabelFieldCell *neighborhoodField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	neighborhoodField.label.text = @"City";
-	neighborhoodField.field.text = self.neighborhoodString;
+	neighborhoodField.field.text = appointment.neighborhoodName;
 	
 	TKLabelFieldCell *aptsizeField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	aptsizeField.label.text = @"Size";
-	aptsizeField.field.text = [NSString stringWithFormat:@"%@ Sq. Ft.", self.aptsizeString];
+	aptsizeField.field.text = [NSString stringWithFormat:@"%@ Sq. Ft.", appointment.aptsizeName];
 	
 	TKLabelFieldCell *roomsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	roomsField.label.text = @"Bedrooms";
-	roomsField.field.text = self.roomsString;
+	roomsField.field.text = appointment.roomsName;
 	
 	TKLabelFieldCell *bathsField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
 	bathsField.label.text = @"Bathrooms";
-	bathsField.field.text = self.bathsString;
+	bathsField.field.text = appointment.bathsName;
 	
-	TKLabelFieldCell *accessField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	accessField.label.text = @"Access";
-	accessField.field.text = self.accessString;
-	
-	TKLabelFieldCell *guarantorField = [[TKLabelFieldCell alloc] initWithStyle: UITableViewCellStyleDefault reuseIdentifier: nil];
-	guarantorField.label.text = @"Guarantor";
-	guarantorField.field.text = self.guarantorString;
-	
-	self.cells = @[nameField, emailField, phoneNumberField, timeField, addressField, zipField, neighborhoodField, moveInDateField, petsField, priceField, aptsizeField, roomsField, bathsField, accessField, guarantorField];
+	self.cells = @[nameField, emailField, phoneNumberField, timeField, addressField, zipField, neighborhoodField, moveInDateField, petsField, priceField, aptsizeField, roomsField, bathsField];
 	
 	[self.tableView setAllowsSelection: NO];
 	
@@ -82,11 +74,11 @@
 																			 action: @selector(showGrid)];
 	
 	
-	_calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\n Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
-	
-	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", self.nameString, self.phoneString, self.timeString, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
-	
-	self.title = self.nameString;
+//	_calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\n Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
+//	
+//	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", appointment.itemName, self.phoneString, appointment.timeName, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
+
+	self.title = appointment.itemName;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -114,10 +106,10 @@
 - (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
 	switch (itemIndex) {
 		case 0:
-			[self makeCallWithString:self.phoneString];
+			[self makeCallWithString:appointment.phoneName];
 			break;
 		case 1:
-			[self makeEmailWithEmailString:self.emailString andTimeString:self.timeString andNameString:self.nameString];
+			[self makeEmailWithEmailString:appointment.emailName andTimeString:appointment.timeName andNameString:appointment.itemName];
 			break;
 		case 2:
 			//[self segueIntoMapView];
@@ -229,7 +221,7 @@
 	eventStore = [[EKEventStore alloc] init];
 	
 	UIAlertController *alertController = [UIAlertController
-										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", self.timeString, self.nameString]
+										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.timeName, appointment.itemName]
 										  message: @"Add this appointment to your calendar?"
 										  preferredStyle: UIAlertControllerStyleAlert];
 	
@@ -272,8 +264,8 @@
 													NSLog(@"The app is authorized to access the service.");
 													
 													event = [EKEvent eventWithEventStore: eventStore];
-													event.title = [NSString stringWithFormat: @"%@ appointment with %@", self.timeString, self.nameString];
-													event.location = [NSString stringWithFormat: @"%@", self.addressString];
+													event.title = [NSString stringWithFormat: @"%@ appointment with %@", appointment.timeName, appointment.itemName];
+													event.location = [NSString stringWithFormat: @"%@", appointment.addressName];
 													event.notes = _calendarNotesString;
 													
 													static NSDateFormatter *dateFormatter = nil;
@@ -284,8 +276,8 @@
 														dateFormatter.dateFormat = @"MMMM d, yyyy h:mm aa";
 													}
 													
-													event.startDate = [dateFormatter dateFromString: self.timeString];
-													event.endDate = [NSDate dateWithTimeInterval: 3600 sinceDate:[dateFormatter dateFromString: self.timeString]];
+													event.startDate = [dateFormatter dateFromString: appointment.timeName];
+													event.endDate = [NSDate dateWithTimeInterval: 3600 sinceDate:[dateFormatter dateFromString: appointment.timeName]];
 													
 													NSLog(@"Event startDate %@", event.startDate);
 													NSLog(@"Event endDate%@",  event.endDate);
@@ -382,7 +374,7 @@
 	contact = [[CNMutableContact alloc] init];
 	
 	UIAlertController *alertController = [UIAlertController
-										  alertControllerWithTitle:[NSString stringWithFormat: @"%@", self.nameString]
+										  alertControllerWithTitle:[NSString stringWithFormat: @"%@", appointment.itemName]
 										  message: @"Add this person to your contacts?"
 										  preferredStyle: UIAlertControllerStyleAlert];
 	
@@ -427,9 +419,9 @@
 												}
 												case CNAuthorizationStatusAuthorized:
 													NSLog(@"The application is authorized to access contact data.");
-													contact.givenName = self.nameString;
-													contact.phoneNumbers = @[[CNLabeledValue labeledValueWithLabel: CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:_phoneString]]];
-													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel: CNLabelHome value:_emailString]];
+													contact.givenName = appointment.itemName;
+													contact.phoneNumbers =@[ [CNLabeledValue labeledValueWithLabel: CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:appointment.phoneName]]];
+													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel: CNLabelHome value: appointment.emailName]];
 													
 													[self saveNewContact];
 													break;
@@ -473,7 +465,7 @@
 		NSLog(@"Contact saved.");
 		
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact saved successfully.", self.nameString]
+											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact saved successfully.", appointment.itemName]
 											  message: nil
 											  preferredStyle: UIAlertControllerStyleAlert];
 		
@@ -489,7 +481,7 @@
 		NSLog(@"Contact not saved. %@", saveError);
 		
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact not saved.", self.nameString]
+											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact not saved.", appointment.itemName]
 											  message: @"Please check your Contact Permissions in Settings and try again."
 											  preferredStyle: UIAlertControllerStyleAlert];
 		
@@ -507,7 +499,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString: @"map"]) {
 		MapViewController *destViewController = segue.destinationViewController;
-		destViewController.address = [NSString stringWithFormat:@"%@ %@", self.addressString, self.zipString];
+		destViewController.address = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
 	}
 }
 
