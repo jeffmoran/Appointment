@@ -526,10 +526,7 @@
 - (void)setUpJSONWithData:(NSData *)data {
 	NSError *error;
 	NSDictionary *mainresponseDict = [NSJSONSerialization JSONObjectWithData: data options:0 error:&error];
-	NSDictionary *resultsDict = mainresponseDict[@"results"];
-	
-	NSArray *addressComponentsDict = [resultsDict valueForKey: @"address_components"][0];
-	
+
 	if (error) {
 		NSLog(@"Error parsing JSON data - %@", error.localizedDescription);
 		UIAlertController *errorAlert = [UIAlertController  alertControllerWithTitle:@"Error"
@@ -546,9 +543,15 @@
 		[self presentViewController: errorAlert animated:YES completion:nil];
 	}
 	else {
-		self.neighborhoodField.text = [addressComponentsDict[1] valueForKey:@"long_name"];
-		[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-		NSLog(@"NEIGHBORHOOD IS %@", self.neighborhoodField.text);
+		NSDictionary *resultsDict = mainresponseDict[@"results"];
+
+		NSArray *addressComponentsDict = [resultsDict valueForKey: @"address_components"];
+
+		if (addressComponentsDict.count > 0) {
+			self.neighborhoodField.text = [addressComponentsDict[0][1] valueForKey:@"long_name"];
+			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+			NSLog(@"NEIGHBORHOOD IS %@", self.neighborhoodField.text);
+		}
 	}
 }
 
