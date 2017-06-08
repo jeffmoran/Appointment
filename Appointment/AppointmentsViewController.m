@@ -81,9 +81,7 @@
 		destViewController.aptsizeString = appointment.aptsizeName;
 		destViewController.roomsString = appointment.roomsName;
 		destViewController.bathsString = appointment.bathsName;
-		destViewController.accessString = appointment.accessName;
 		destViewController.petsString = appointment.petsName;
-		destViewController.guarantorString = appointment.guarantorName;
 		destViewController.emailString = appointment.emailName;
 	}
 }

@@ -30,45 +30,40 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	const static CGFloat fieldHeight = 40.0f;
 	const CGFloat kJVFieldWidth = self.view.frame.size.width - 83.0f;
-	const static CGFloat fieldX = 63.0f;
-	
 	self.view.tintColor = FlatTeal;
 	
-	accessArray = @[@"Doorman", @"Elevator", @"Walkup"];
 	petsArray = @[@"Yes", @"No", @"Some"];
-	guarantorArray = @[@"Yes", @"No"];
-	
+
 	//Set the frame for each textfield
-	self.nameField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 22, kJVFieldWidth, fieldHeight)];
-	self.emailField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 68, kJVFieldWidth, fieldHeight)];
-	self.phoneField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 114, kJVFieldWidth, fieldHeight)];
-	self.timeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 160, kJVFieldWidth, fieldHeight)];
-	self.addressField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 206, kJVFieldWidth, fieldHeight)];
-	self.zipCodeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 252, kJVFieldWidth, fieldHeight)];
-	self.neighborhoodField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 298, kJVFieldWidth, fieldHeight)];
-	self.moveindateField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 344, kJVFieldWidth, fieldHeight)];
-	self.petsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 390, kJVFieldWidth, fieldHeight)];
-	self.priceField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 436, kJVFieldWidth, fieldHeight)];
-	self.aptsizeField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 482, kJVFieldWidth, fieldHeight)];
-	self.roomsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 528, kJVFieldWidth - 104.0 , fieldHeight)];
-	self.bathsField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 574, kJVFieldWidth - 104.0 , fieldHeight)];
-	self.accessField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 620, kJVFieldWidth, fieldHeight)];
-	self.guarantorField = [[JVFloatLabeledTextField alloc] initWithFrame: CGRectMake(fieldX, 666, kJVFieldWidth, fieldHeight)];
-	
-	bedroomsStepper = [[UIStepper alloc] initWithFrame:CGRectMake(kJVFieldWidth - 31.0, self.roomsField.frame.origin.y + 20 - 14.5, 0, 0)];
+	self.nameField = [[JVFloatLabeledTextField alloc] init];
+	self.emailField = [[JVFloatLabeledTextField alloc] init];
+	self.phoneField = [[JVFloatLabeledTextField alloc] init];
+	self.timeField = [[JVFloatLabeledTextField alloc] init];
+	self.addressField = [[JVFloatLabeledTextField alloc] init];
+	self.zipCodeField = [[JVFloatLabeledTextField alloc] init];
+	self.neighborhoodField = [[JVFloatLabeledTextField alloc] init];
+	self.moveindateField = [[JVFloatLabeledTextField alloc] init];
+	self.petsField = [[JVFloatLabeledTextField alloc] init];
+	self.priceField = [[JVFloatLabeledTextField alloc] init];
+	self.aptsizeField = [[JVFloatLabeledTextField alloc] init];
+	self.roomsField = [[JVFloatLabeledTextField alloc] init];
+	self.bathsField = [[JVFloatLabeledTextField alloc] init];
+
+	bedroomsStepper = [[UIStepper alloc] init];
+	bedroomsStepper.translatesAutoresizingMaskIntoConstraints = NO;
 	bedroomsStepper.stepValue = 0.5;
 	bedroomsStepper.minimumValue = 0.0;
 	
 	[bedroomsStepper addTarget:self action:@selector(bedBathStepper:) forControlEvents:UIControlEventValueChanged];
 	
-	bathroomsStepper = [[UIStepper alloc] initWithFrame:CGRectMake(kJVFieldWidth - 31.0, self.bathsField.frame.origin.y + 20 - 14.5, 0, 0)];
+	bathroomsStepper = [[UIStepper alloc] init];
+	bathroomsStepper.translatesAutoresizingMaskIntoConstraints = NO;
 	bathroomsStepper.stepValue = 0.5;
 	bathroomsStepper.minimumValue = 0.0;
 	
 	[bathroomsStepper addTarget:self action:@selector(bedBathStepper:) forControlEvents:UIControlEventValueChanged];
-	
+
 	//Set placeholder text for each textfield
 	self.nameField.placeholder = @" Client Name";
 	self.emailField.placeholder = @" Client Email Address";
@@ -83,8 +78,6 @@
 	self.aptsizeField.placeholder = @" Size (Sq. Ft.)";
 	self.roomsField.placeholder = @" Bedrooms";
 	self.bathsField.placeholder = @" Bathrooms";
-	self.accessField.placeholder = @" Access";
-	self.guarantorField.placeholder = @" Guarantor";
 	
 	//Image view instances
 	self.inputName = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputName"]];
@@ -100,41 +93,18 @@
 	self.inputAptSize = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputSize"]];
 	self.inputRooms = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputBedrooms"]];
 	self.inputBaths = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputBaths"]];
-	self.inputAccess = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputAccess"]];
-	self.inputGuarantor = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputGuarantor"]];
-	
-	//Set the frame for each image view
-	self.inputName.frame = CGRectMake(20.0f, self.nameField.frame.origin.y + 4, 32, 32);
-	self.inputEmail.frame = CGRectMake(20.0f, self.emailField.frame.origin.y + 4, 32, 32);
-	self.inputPhone.frame = CGRectMake(20.0f, self.phoneField.frame.origin.y + 4, 32, 32);
-	self.inputTime.frame = CGRectMake(20.0f, self.timeField.frame.origin.y + 4, 32, 32);
-	self.inputAddress.frame = CGRectMake(20.0f, self.addressField.frame.origin.y + 4, 32, 32);
-	self.inputZip.frame = CGRectMake(20.0f, self.zipCodeField.frame.origin.y + 4, 32, 32);
-	self.inputMoveInDate.frame = CGRectMake(20.0f, self.moveindateField.frame.origin.y + 4, 32, 32);
-	self.inputPets.frame = CGRectMake(20.0f, self.petsField.frame.origin.y + 4, 32, 32);
-	self.inputPrice.frame = CGRectMake(20.0f, self.priceField.frame.origin.y + 4, 32, 32);
-	self.inputNeighborhood.frame = CGRectMake(20.0f, self.neighborhoodField.frame.origin.y + 4, 32, 32);
-	self.inputAptSize.frame = CGRectMake(20.0f, self.aptsizeField.frame.origin.y + 4, 32, 32);
-	self.inputRooms.frame = CGRectMake(20.0f, self.roomsField.frame.origin.y + 4, 32, 32);
-	self.inputBaths.frame = CGRectMake(20.0f, self.bathsField.frame.origin.y + 4, 32, 32);
-	self.inputAccess.frame = CGRectMake(20.0f, self.accessField.frame.origin.y + 4, 32, 32);
-	self.inputGuarantor.frame = CGRectMake(20.0f, self.guarantorField.frame.origin.y + 4, 32, 32);
-	
+
 	//Set the frame for each pickerview/datepicker
 	CGRect pickerFrame = CGRectMake(0, 200, self.view.frame.size.width, 200);
 	self.pets_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-	self.access_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
-	self.guarantor_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.time_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	
 	//Set the inputView for textFields
 	self.timeField.inputView = self.time_picker;
 	self.moveindateField.inputView = self.movein_picker;
-	self.accessField.inputView = self.access_picker;
 	self.petsField.inputView = self.pets_picker;
-	self.guarantorField.inputView = self.guarantor_picker;
-	
+
 	self.time_picker.datePickerMode = UIDatePickerModeDateAndTime;
 	self.time_picker.minuteInterval = 5;
 	[self.time_picker addTarget: self action: @selector(setAppointmentTime) forControlEvents: UIControlEventValueChanged];
@@ -144,7 +114,7 @@
 	
 	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
 	
-	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.guarantorField.frame.origin.y + self.guarantorField.frame.size.height + 22);
+	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 5000);
 	self.scrollView.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1.0];
 	
 	[self.view addSubview:self.scrollView];
@@ -170,7 +140,8 @@
 	
 	[self.scrollView addSubview: bedroomsStepper];
 	[self.scrollView addSubview: bathroomsStepper];
-	
+
+	[self setUpConstraints];
 	//	 Dismiss keyboard on tap
 	[self.view addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(dismissKeyboardGesture)]];
 }
@@ -187,11 +158,9 @@
 	self.aptsizeField.text = item.aptsizeName;
 	self.roomsField.text = item.roomsName;
 	self.bathsField.text = item.bathsName;
-	self.accessField.text = item.accessName;
 	self.timeField.text = item.timeName;
 	self.addressField.text = item.addressName;
 	self.petsField.text = item.petsName;
-	self.guarantorField.text = item.guarantorName;
 	self.emailField.text = item.emailName;
 	self.zipCodeField.text = item.zipName;
 	
@@ -212,33 +181,124 @@
 	}
 }
 
-- (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear: animated];
-	
-	// Clear first responder
-	[self.view endEditing: YES];
-}
-
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
+}
+
+- (void) setUpConstraints {
+	[NSLayoutConstraint
+	 activateConstraints: @[
+							[self.inputName.leftAnchor constraintEqualToAnchor: self.view.leftAnchor constant:20],
+							[self.inputName.centerYAnchor constraintEqualToAnchor: self.nameField.centerYAnchor],
+
+							[self.inputEmail.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputEmail.centerYAnchor constraintEqualToAnchor: self.emailField.centerYAnchor],
+
+							[self.inputPhone.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputPhone.centerYAnchor constraintEqualToAnchor: self.phoneField.centerYAnchor],
+
+							[self.inputTime.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputTime.centerYAnchor constraintEqualToAnchor: self.timeField.centerYAnchor],
+
+							[self.inputAddress.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputAddress.centerYAnchor constraintEqualToAnchor: self.addressField.centerYAnchor],
+
+							[self.inputZip.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputZip.centerYAnchor constraintEqualToAnchor: self.zipCodeField.centerYAnchor],
+
+							[self.inputMoveInDate.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputMoveInDate.centerYAnchor constraintEqualToAnchor: self.moveindateField.centerYAnchor],
+
+							[self.inputPets.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputPets.centerYAnchor constraintEqualToAnchor: self.petsField.centerYAnchor],
+
+							[self.inputPrice.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputPrice.centerYAnchor constraintEqualToAnchor: self.priceField.centerYAnchor],
+
+							[self.inputNeighborhood.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputNeighborhood.centerYAnchor constraintEqualToAnchor: self.neighborhoodField.centerYAnchor],
+
+							[self.inputAptSize.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputAptSize.centerYAnchor constraintEqualToAnchor: self.aptsizeField.centerYAnchor],
+
+							[self.inputRooms.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputRooms.centerYAnchor constraintEqualToAnchor: self.roomsField.centerYAnchor],
+
+							[self.inputBaths.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
+							[self.inputBaths.centerYAnchor constraintEqualToAnchor: self.bathsField.centerYAnchor],
+
+							[self.nameField.leftAnchor constraintEqualToAnchor: self.inputName.rightAnchor constant:20],
+							[self.nameField.topAnchor constraintEqualToAnchor: self.scrollView.topAnchor constant:20],
+							[self.nameField.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-20],
+
+							[self.emailField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.emailField.topAnchor constraintEqualToAnchor: self.nameField.bottomAnchor constant:8],
+							[self.emailField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.phoneField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.phoneField.topAnchor constraintEqualToAnchor: self.emailField.bottomAnchor constant:8],
+							[self.phoneField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.timeField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.timeField.topAnchor constraintEqualToAnchor: self.phoneField.bottomAnchor constant:8],
+							[self.timeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.addressField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.addressField.topAnchor constraintEqualToAnchor: self.timeField.bottomAnchor constant:8],
+							[self.addressField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.zipCodeField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.zipCodeField.topAnchor constraintEqualToAnchor: self.addressField.bottomAnchor constant:8],
+							[self.zipCodeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.neighborhoodField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.neighborhoodField.topAnchor constraintEqualToAnchor: self.zipCodeField.bottomAnchor constant:8],
+							[self.neighborhoodField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.moveindateField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.moveindateField.topAnchor constraintEqualToAnchor: self.neighborhoodField.bottomAnchor constant:8],
+							[self.moveindateField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.petsField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.petsField.topAnchor constraintEqualToAnchor: self.moveindateField.bottomAnchor constant:8],
+							[self.petsField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.priceField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.priceField.topAnchor constraintEqualToAnchor: self.petsField.bottomAnchor constant:8],
+							[self.priceField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.aptsizeField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.aptsizeField.topAnchor constraintEqualToAnchor: self.priceField.bottomAnchor constant:8],
+							[self.aptsizeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[self.roomsField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.roomsField.topAnchor constraintEqualToAnchor: self.aptsizeField.bottomAnchor constant:8],
+							[self.roomsField.rightAnchor constraintEqualToAnchor: bedroomsStepper.leftAnchor constant: -8],
+
+							[self.bathsField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
+							[self.bathsField.topAnchor constraintEqualToAnchor: self.roomsField.bottomAnchor constant:8],
+							[self.bathsField.rightAnchor constraintEqualToAnchor: bathroomsStepper.leftAnchor constant:-8],
+
+							[bedroomsStepper.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
+							[bedroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+
+							[bathroomsStepper.centerYAnchor constraintEqualToAnchor:self.bathsField.centerYAnchor],
+							[bathroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+							]];
 }
 
 #pragma mark - Element Arrays and styling
 
 - (NSArray *)allInputFields {
-	return @[self.nameField, self.emailField, self.phoneField, self.timeField, self.addressField, self.zipCodeField, self.neighborhoodField, self.moveindateField, self.petsField, self.priceField, self.aptsizeField, self.roomsField, self.bathsField, self.accessField, self.guarantorField];
+	return @[self.nameField, self.emailField, self.phoneField, self.timeField, self.addressField, self.zipCodeField, self.neighborhoodField, self.moveindateField, self.petsField, self.priceField, self.aptsizeField, self.roomsField, self.bathsField];
 }
 
 - (NSArray *)allInputPickers {
-	return @[self.pets_picker, self.access_picker, self.guarantor_picker];
+	return @[self.pets_picker];
 }
 
 - (NSArray *)allImageViews {
-	return @[self.inputName, self.inputEmail, self.inputPhone, self.inputTime, self.inputAddress, self.inputZip, self.inputMoveInDate, self.inputPets, self.inputPrice, self.inputNeighborhood, self.inputAptSize, self.inputRooms, self.inputBaths, self.inputAccess, self.inputGuarantor];
+	return @[self.inputName, self.inputEmail, self.inputPhone, self.inputTime, self.inputAddress, self.inputZip, self.inputMoveInDate, self.inputPets, self.inputPrice, self.inputNeighborhood, self.inputAptSize, self.inputRooms, self.inputBaths];
 }
 
 - (void)textFieldStylingAndProperties {
@@ -276,6 +336,7 @@
 	}
 	
 	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
+		textField.translatesAutoresizingMaskIntoConstraints = NO;
 		textField.font = [UIFont fontWithName: @"HelveticaNeue-Light" size: 16];
 		textField.floatingLabelFont = [UIFont fontWithName: @"HelveticaNeue-Light" size: 11];
 		textField.floatingLabelTextColor = [UIColor grayColor];
@@ -283,7 +344,7 @@
 		textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
 		textField.autocorrectionType = UITextAutocorrectionTypeYes;
 		textField.delegate = self;
-		
+
 		textField.inputAccessoryView = toolbar;
 		
 		[self.scrollView addSubview: textField];
@@ -303,6 +364,8 @@
 		if (textField == self.roomsField || textField == self.bathsField){
 			textField.keyboardType = UIKeyboardTypeDecimalPad;
 		}
+
+		[[textField.heightAnchor constraintEqualToConstant:40] setActive:YES];
 	}
 }
 
@@ -314,8 +377,12 @@
 }
 
 - (void)imageViewStylingAndProperties {
-	for (UIImageView *image in [self allImageViews]) {
-		[self.scrollView addSubview: image];
+	for (UIImageView *imageView in [self allImageViews]) {
+		imageView.translatesAutoresizingMaskIntoConstraints = NO;
+		[[imageView.heightAnchor constraintEqualToConstant:32] setActive:YES];
+		[[imageView.widthAnchor constraintEqualToConstant:32] setActive:YES];
+
+		[self.scrollView addSubview: imageView];
 	}
 }
 
@@ -436,11 +503,9 @@
 		item.aptsizeName = self.aptsizeField.text;
 		item.roomsName = self.roomsField.text;
 		item.bathsName = self.bathsField.text;
-		item.accessName = self.accessField.text;
 		item.timeName = self.timeField.text;
 		item.addressName = self.addressField.text;
 		item.petsName = self.petsField.text;
-		item.guarantorName = self.guarantorField.text;
 		item.emailName = self.emailField.text;
 		item.zipName = self.zipCodeField.text;
 		
@@ -458,11 +523,9 @@
 	item.aptsizeName = self.aptsizeField.text;
 	item.roomsName = self.roomsField.text;
 	item.bathsName = self.bathsField.text;
-	item.accessName = self.accessField.text;
 	item.timeName = self.timeField.text;
 	item.addressName = self.addressField.text;
 	item.petsName = self.petsField.text;
-	item.guarantorName = self.guarantorField.text;
 	item.emailName = self.emailField.text;
 	item.zipName = self.zipCodeField.text;
 	
@@ -562,16 +625,8 @@
 }
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
-	if (pickerView == self.access_picker) {
-		return accessArray.count;
-	}
-	
 	if (pickerView == self.pets_picker) {
 		return petsArray.count;
-	}
-	
-	if (pickerView == self.guarantor_picker) {
-		return guarantorArray.count;
 	}
 	
 	else {
@@ -580,34 +635,18 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	if (pickerView == self.access_picker) {
-		return accessArray[row];
-	}
-	
 	if (pickerView == self.pets_picker) {
 		return petsArray[row];
 	}
-	
-	if (pickerView == self.guarantor_picker) {
-		return guarantorArray[row];
-	}
-	
+
 	else {
 		return 0;
 	}
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	if (pickerView == self.access_picker) {
-		self.accessField.text = accessArray[row];
-	}
-	
 	if (pickerView == self.pets_picker) {
 		self.petsField.text = petsArray[row];
-	}
-	
-	if (pickerView == self.guarantor_picker) {
-		self.guarantorField.text = guarantorArray[row];
 	}
 }
 

@@ -8,9 +8,7 @@
 @import ChameleonFramework;
 
 @interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
-    NSArray *accessArray;
     NSArray *petsArray;
-    NSArray *guarantorArray;
 	NSInteger fieldIndex;
 	UIStepper *bedroomsStepper;
 	UIStepper *bathroomsStepper;
@@ -19,21 +17,19 @@
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
 
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *nameField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *emailField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *phoneField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *timeField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *addressField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *zipCodeField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *moveindateField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *priceField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *neighborhoodField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *aptsizeField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *roomsField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *bathsField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *accessField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *petsField;
-@property (strong, nonatomic) IBOutlet JVFloatLabeledTextField *guarantorField;
+@property (strong, nonatomic) JVFloatLabeledTextField *nameField;
+@property (strong, nonatomic) JVFloatLabeledTextField *emailField;
+@property (strong, nonatomic) JVFloatLabeledTextField *phoneField;
+@property (strong, nonatomic) JVFloatLabeledTextField *timeField;
+@property (strong, nonatomic) JVFloatLabeledTextField *addressField;
+@property (strong, nonatomic) JVFloatLabeledTextField *zipCodeField;
+@property (strong, nonatomic) JVFloatLabeledTextField *moveindateField;
+@property (strong, nonatomic) JVFloatLabeledTextField *priceField;
+@property (strong, nonatomic) JVFloatLabeledTextField *neighborhoodField;
+@property (strong, nonatomic) JVFloatLabeledTextField *aptsizeField;
+@property (strong, nonatomic) JVFloatLabeledTextField *roomsField;
+@property (strong, nonatomic) JVFloatLabeledTextField *bathsField;
+@property (strong, nonatomic) JVFloatLabeledTextField *petsField;
 
 @property (nonatomic, strong) UIImageView *inputName;
 @property (nonatomic, strong) UIImageView *inputEmail;
@@ -45,17 +41,13 @@
 @property (nonatomic, strong) UIImageView *inputAptSize;
 @property (nonatomic, strong) UIImageView *inputRooms;
 @property (nonatomic, strong) UIImageView *inputBaths;
-@property (nonatomic, strong) UIImageView *inputAccess;
 @property (nonatomic, strong) UIImageView *inputTime;
 @property (nonatomic, strong) UIImageView *inputAddress;
 @property (nonatomic, strong) UIImageView *inputPets;
-@property (nonatomic, strong) UIImageView *inputGuarantor;
 
-@property (nonatomic, strong) IBOutlet UIPickerView *access_picker;
-@property (nonatomic, strong) IBOutlet UIPickerView *pets_picker;
-@property (nonatomic, strong) IBOutlet UIPickerView *guarantor_picker;
-@property (nonatomic, strong) IBOutlet UIDatePicker *time_picker;
-@property (nonatomic, strong) IBOutlet UIDatePicker *movein_picker;
+@property (nonatomic, strong) UIPickerView *pets_picker;
+@property (nonatomic, strong) UIDatePicker *time_picker;
+@property (nonatomic, strong) UIDatePicker *movein_picker;
 
 @property (nonatomic) BOOL isEditing;
 

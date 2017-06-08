@@ -10,11 +10,9 @@
 @dynamic aptsizeName;
 @dynamic roomsName;
 @dynamic bathsName;
-@dynamic accessName;
 @dynamic timeName;
 @dynamic addressName;
 @dynamic petsName;
-@dynamic guarantorName;
 @dynamic emailName;
 @dynamic zipName;
 
