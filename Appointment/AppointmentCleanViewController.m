@@ -11,72 +11,13 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 
-	// TODO: Create reusable cell
-	// TODO: Create properties on Appointment with arrays of all other string properties and their respective "titles
-
-	UITableViewCell *nameField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier:nil];
-	nameField.textLabel.text = appointment.itemName ;
-	nameField.detailTextLabel.text = @"Client Name";
-	
-	UITableViewCell *emailField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	emailField.textLabel.text = appointment.emailName;
-	emailField.detailTextLabel.text = @"Client Email";
-
-	UITableViewCell *phoneNumberField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	phoneNumberField.detailTextLabel.text = @"Client Number";
-	phoneNumberField.textLabel.text = appointment.phoneName;
-	
-	UITableViewCell *timeField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	timeField.detailTextLabel.text = @"Time";
-	timeField.textLabel.text = appointment.timeName;
-	
-	UITableViewCell *addressField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	addressField.detailTextLabel.text = @"Property Address";
-	addressField.textLabel.text = appointment.addressName;
-	addressField.textLabel.adjustsFontSizeToFitWidth = YES;
-	
-	UITableViewCell *zipField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	zipField.detailTextLabel.text = @"Zip/Postal Code";
-	zipField.textLabel.text = appointment.zipName;
-	
-	UITableViewCell *moveInDateField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	moveInDateField.detailTextLabel.text = @"Move-In Date";
-	moveInDateField.textLabel.text = appointment.moveindateName;
-	
-	UITableViewCell *petsField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	petsField.detailTextLabel.text = @"Pets";
-	petsField.textLabel.text = appointment.petsName;
-	
-	UITableViewCell *priceField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	priceField.detailTextLabel.text = @"Rent";
-	priceField.textLabel.text = [NSString stringWithFormat:@"$%@ Per Month", appointment.priceName];
-	
-	UITableViewCell *neighborhoodField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	neighborhoodField.detailTextLabel.text = @"City";
-	neighborhoodField.textLabel.text = appointment.neighborhoodName;
-	
-	UITableViewCell *aptsizeField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	aptsizeField.detailTextLabel.text = @"Size";
-	aptsizeField.textLabel.text = [NSString stringWithFormat:@"%@ Sq. Ft.", appointment.aptsizeName];
-	
-	UITableViewCell *roomsField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	roomsField.detailTextLabel.text = @"Bedrooms";
-	roomsField.textLabel.text = appointment.roomsName;
-	
-	UITableViewCell *bathsField = [[UITableViewCell alloc] initWithStyle: UITableViewCellStyleSubtitle reuseIdentifier: nil];
-	bathsField.detailTextLabel.text = @"Bathrooms";
-	bathsField.textLabel.text = appointment.bathsName;
-	
-	self.cells = @[nameField, emailField, phoneNumberField, timeField, addressField, zipField, neighborhoodField, moveInDateField, petsField, priceField, aptsizeField, roomsField, bathsField];
-	
 	[self.tableView setAllowsSelection: NO];
 	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"Menu"]
 																			  style: UIBarButtonItemStylePlain
 																			 target: self
 																			 action: @selector(showGrid)];
-	
-	
+
 //	_calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\n Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 //	
 //	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", appointment.itemName, self.phoneString, appointment.timeName, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
@@ -492,16 +433,22 @@
 
 #pragma mark - UITableView Delegate & DataSource
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return self.cells.count;
+	return appointment.appointmentProperties.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return self.cells[indexPath.row];
+	static NSString *cellIdentifier = @"appointmentCell";
+
+	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+
+	if (cell == nil) {
+		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
+		cell.textLabel.text = appointment.appointmentProperties[indexPath.row];
+		cell.detailTextLabel.text = appointment.appointmentPropertiesHeader[indexPath.row];
+	}
+
+	return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {

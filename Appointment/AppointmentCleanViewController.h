@@ -8,8 +8,6 @@
 
 @interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, RNGridMenuDelegate>
 
-@property (nonatomic, strong) NSArray *cells;
-
 @property (nonatomic, strong) Appointment *appointment;
 
 @property (nonatomic, strong) NSString *calendarNotesString;

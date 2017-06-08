@@ -17,4 +17,7 @@
 @property (nonatomic, retain) NSString *emailName;
 @property (nonatomic, retain) NSString *zipName;
 
+- (NSArray *)appointmentPropertiesHeader;
+- (NSArray *)appointmentProperties;
+
 @end
