@@ -14,7 +14,8 @@
 	UIStepper *bathroomsStepper;
 }
 
-@property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (strong, nonatomic) UIScrollView *scrollView;
+@property (strong, nonatomic) UIView *contentView;
 
 @property (strong, nonatomic) JVFloatLabeledTextField *nameField;
 @property (strong, nonatomic) JVFloatLabeledTextField *emailField;

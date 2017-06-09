@@ -15,7 +15,8 @@
 	[super viewDidLoad];
 	
 	self.view.tintColor = FlatTeal;
-	
+	self.view.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1.0];
+
 	petsArray = @[@"Yes", @"No", @"Some"];
 
 	//Set the frame for each textfield
@@ -95,17 +96,19 @@
 	self.movein_picker.datePickerMode = UIDatePickerModeDate;
 	[self.movein_picker addTarget:self action:@selector(setMoveInDate:) forControlEvents:UIControlEventValueChanged];
 	
-	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
-	
-	self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, 5000);
-	self.scrollView.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1.0];
-	
+	self.scrollView = [[UIScrollView alloc] init];
+	self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
+
+	self.contentView = [[UIView alloc] init];
+	self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
+	 
 	[self.view addSubview:self.scrollView];
+	[self.scrollView addSubview:self.contentView];
 	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
 																						  target:self
 																						  action:@selector(popViewController)];
-	
+
 	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
 																		  target:self
 																		  action:@selector(saveButtonPressed)];
@@ -121,11 +124,11 @@
 	[self pickerStylingAndProperties];
 	[self imageViewStylingAndProperties];
 	
-	[self.scrollView addSubview:bedroomsStepper];
-	[self.scrollView addSubview:bathroomsStepper];
+	[self.contentView addSubview:bedroomsStepper];
+	[self.contentView addSubview:bathroomsStepper];
 
 	[self setUpConstraints];
-	//	 Dismiss keyboard on tap
+
 	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboardGesture)]];
 }
 
@@ -160,103 +163,115 @@
 - (void)setUpConstraints {
 	[NSLayoutConstraint
 	 activateConstraints:@[
-							[self.inputName.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:20],
-							[self.inputName.centerYAnchor constraintEqualToAnchor:self.nameField.centerYAnchor],
+						   [self.scrollView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+						   [self.scrollView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+						   [self.scrollView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+						   [self.scrollView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
 
-							[self.inputEmail.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputEmail.centerYAnchor constraintEqualToAnchor:self.emailField.centerYAnchor],
+						   [self.contentView.leftAnchor constraintEqualToAnchor:self.scrollView.leftAnchor],
+						   [self.contentView.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor],
+						   [self.contentView.rightAnchor constraintEqualToAnchor:self.scrollView.rightAnchor],
+						   [self.contentView.bottomAnchor constraintEqualToAnchor:self.scrollView.bottomAnchor],
+						   [self.contentView.widthAnchor constraintEqualToAnchor:self.scrollView.widthAnchor],
 
-							[self.inputPhone.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputPhone.centerYAnchor constraintEqualToAnchor:self.phoneField.centerYAnchor],
+						   [self.inputName.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant:20],
+						   [self.inputName.centerYAnchor constraintEqualToAnchor:self.nameField.centerYAnchor],
 
-							[self.inputTime.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputTime.centerYAnchor constraintEqualToAnchor:self.timeField.centerYAnchor],
+						   [self.inputEmail.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputEmail.centerYAnchor constraintEqualToAnchor:self.emailField.centerYAnchor],
 
-							[self.inputAddress.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputAddress.centerYAnchor constraintEqualToAnchor:self.addressField.centerYAnchor],
+						   [self.inputPhone.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputPhone.centerYAnchor constraintEqualToAnchor:self.phoneField.centerYAnchor],
 
-							[self.inputZip.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputZip.centerYAnchor constraintEqualToAnchor:self.zipCodeField.centerYAnchor],
+						   [self.inputTime.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputTime.centerYAnchor constraintEqualToAnchor:self.timeField.centerYAnchor],
 
-							[self.inputMoveInDate.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputMoveInDate.centerYAnchor constraintEqualToAnchor:self.moveindateField.centerYAnchor],
+						   [self.inputAddress.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputAddress.centerYAnchor constraintEqualToAnchor:self.addressField.centerYAnchor],
 
-							[self.inputPets.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputPets.centerYAnchor constraintEqualToAnchor:self.petsField.centerYAnchor],
+						   [self.inputZip.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputZip.centerYAnchor constraintEqualToAnchor:self.zipCodeField.centerYAnchor],
 
-							[self.inputPrice.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputPrice.centerYAnchor constraintEqualToAnchor:self.priceField.centerYAnchor],
+						   [self.inputMoveInDate.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputMoveInDate.centerYAnchor constraintEqualToAnchor:self.moveindateField.centerYAnchor],
 
-							[self.inputNeighborhood.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputNeighborhood.centerYAnchor constraintEqualToAnchor:self.neighborhoodField.centerYAnchor],
+						   [self.inputPets.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputPets.centerYAnchor constraintEqualToAnchor:self.petsField.centerYAnchor],
 
-							[self.inputAptSize.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputAptSize.centerYAnchor constraintEqualToAnchor:self.aptsizeField.centerYAnchor],
+						   [self.inputPrice.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputPrice.centerYAnchor constraintEqualToAnchor:self.priceField.centerYAnchor],
 
-							[self.inputRooms.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputRooms.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
+						   [self.inputNeighborhood.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputNeighborhood.centerYAnchor constraintEqualToAnchor:self.neighborhoodField.centerYAnchor],
 
-							[self.inputBaths.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
-							[self.inputBaths.centerYAnchor constraintEqualToAnchor:self.bathsField.centerYAnchor],
+						   [self.inputAptSize.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputAptSize.centerYAnchor constraintEqualToAnchor:self.aptsizeField.centerYAnchor],
 
-							[self.nameField.leftAnchor constraintEqualToAnchor:self.inputName.rightAnchor constant:20],
-							[self.nameField.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor constant:20],
-							[self.nameField.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-20],
+						   [self.inputRooms.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputRooms.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
 
-							[self.emailField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.emailField.topAnchor constraintEqualToAnchor:self.nameField.bottomAnchor constant:8],
-							[self.emailField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.inputBaths.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+						   [self.inputBaths.centerYAnchor constraintEqualToAnchor:self.bathsField.centerYAnchor],
 
-							[self.phoneField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.phoneField.topAnchor constraintEqualToAnchor:self.emailField.bottomAnchor constant:8],
-							[self.phoneField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.nameField.leftAnchor constraintEqualToAnchor:self.inputName.rightAnchor constant:20],
+						   [self.nameField.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant:20],
+						   [self.nameField.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant:-20],
 
-							[self.timeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.timeField.topAnchor constraintEqualToAnchor:self.phoneField.bottomAnchor constant:8],
-							[self.timeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.emailField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.emailField.topAnchor constraintEqualToAnchor:self.nameField.bottomAnchor constant:8],
+						   [self.emailField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.addressField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.addressField.topAnchor constraintEqualToAnchor:self.timeField.bottomAnchor constant:8],
-							[self.addressField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.phoneField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.phoneField.topAnchor constraintEqualToAnchor:self.emailField.bottomAnchor constant:8],
+						   [self.phoneField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.zipCodeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.zipCodeField.topAnchor constraintEqualToAnchor:self.addressField.bottomAnchor constant:8],
-							[self.zipCodeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.timeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.timeField.topAnchor constraintEqualToAnchor:self.phoneField.bottomAnchor constant:8],
+						   [self.timeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.neighborhoodField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.neighborhoodField.topAnchor constraintEqualToAnchor:self.zipCodeField.bottomAnchor constant:8],
-							[self.neighborhoodField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.addressField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.addressField.topAnchor constraintEqualToAnchor:self.timeField.bottomAnchor constant:8],
+						   [self.addressField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.moveindateField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.moveindateField.topAnchor constraintEqualToAnchor:self.neighborhoodField.bottomAnchor constant:8],
-							[self.moveindateField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.zipCodeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.zipCodeField.topAnchor constraintEqualToAnchor:self.addressField.bottomAnchor constant:8],
+						   [self.zipCodeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.petsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.petsField.topAnchor constraintEqualToAnchor:self.moveindateField.bottomAnchor constant:8],
-							[self.petsField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.neighborhoodField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.neighborhoodField.topAnchor constraintEqualToAnchor:self.zipCodeField.bottomAnchor constant:8],
+						   [self.neighborhoodField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.priceField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.priceField.topAnchor constraintEqualToAnchor:self.petsField.bottomAnchor constant:8],
-							[self.priceField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.moveindateField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.moveindateField.topAnchor constraintEqualToAnchor:self.neighborhoodField.bottomAnchor constant:8],
+						   [self.moveindateField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.aptsizeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.aptsizeField.topAnchor constraintEqualToAnchor:self.priceField.bottomAnchor constant:8],
-							[self.aptsizeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.petsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.petsField.topAnchor constraintEqualToAnchor:self.moveindateField.bottomAnchor constant:8],
+						   [self.petsField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.roomsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.roomsField.topAnchor constraintEqualToAnchor:self.aptsizeField.bottomAnchor constant:8],
-							[self.roomsField.rightAnchor constraintEqualToAnchor:bedroomsStepper.leftAnchor constant: -8],
+						   [self.priceField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.priceField.topAnchor constraintEqualToAnchor:self.petsField.bottomAnchor constant:8],
+						   [self.priceField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.bathsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
-							[self.bathsField.topAnchor constraintEqualToAnchor:self.roomsField.bottomAnchor constant:8],
-							[self.bathsField.rightAnchor constraintEqualToAnchor:bathroomsStepper.leftAnchor constant:-8],
+						   [self.aptsizeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.aptsizeField.topAnchor constraintEqualToAnchor:self.priceField.bottomAnchor constant:8],
+						   [self.aptsizeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[bedroomsStepper.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
-							[bedroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   [self.roomsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.roomsField.topAnchor constraintEqualToAnchor:self.aptsizeField.bottomAnchor constant:8],
+						   [self.roomsField.rightAnchor constraintEqualToAnchor:bedroomsStepper.leftAnchor constant: -8],
 
-							[bathroomsStepper.centerYAnchor constraintEqualToAnchor:self.bathsField.centerYAnchor],
-							[bathroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
-							]];
+						   [self.bathsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+						   [self.bathsField.topAnchor constraintEqualToAnchor:self.roomsField.bottomAnchor constant:8],
+						   [self.bathsField.rightAnchor constraintEqualToAnchor:bathroomsStepper.leftAnchor constant:-8],
+						   [self.bathsField.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-20],
+
+						   [bedroomsStepper.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
+						   [bedroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   
+						   [bathroomsStepper.centerYAnchor constraintEqualToAnchor:self.bathsField.centerYAnchor],
+						   [bathroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
+						   ]];
 }
 
 #pragma mark - Element Arrays and styling
@@ -319,7 +334,7 @@
 
 		textField.inputAccessoryView = toolbar;
 		
-		[self.scrollView addSubview:textField];
+		[self.contentView addSubview:textField];
 		
 		if (textField == self.emailField) {
 			textField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -354,7 +369,7 @@
 		[[imageView.heightAnchor constraintEqualToConstant:32] setActive:YES];
 		[[imageView.widthAnchor constraintEqualToConstant:32] setActive:YES];
 
-		[self.scrollView addSubview:imageView];
+		[self.contentView addSubview:imageView];
 	}
 }
 
