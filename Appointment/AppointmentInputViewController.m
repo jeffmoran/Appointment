@@ -94,10 +94,10 @@
 
 	self.time_picker.datePickerMode = UIDatePickerModeDateAndTime;
 	self.time_picker.minuteInterval = 5;
-	[self.time_picker addTarget: self action: @selector(setAppointmentTime) forControlEvents: UIControlEventValueChanged];
+	[self.time_picker addTarget: self action: @selector(setAppointmentTime:) forControlEvents: UIControlEventValueChanged];
 	
 	self.movein_picker.datePickerMode = UIDatePickerModeDate;
-	[self.movein_picker addTarget: self action: @selector(setMoveInDate) forControlEvents: UIControlEventValueChanged];
+	[self.movein_picker addTarget: self action: @selector(setMoveInDate:) forControlEvents: UIControlEventValueChanged];
 	
 	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
 	
@@ -156,16 +156,6 @@
 	
 	// Change the navigation item to display name of item
 	self.navigationItem.title = item.itemName;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	if (self.isEditing) {
-		NSLog(@"IS EDITING");
-	}
-	if (!self.isEditing) {
-		NSLog(@"NOT EDITING");
-	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -408,8 +398,8 @@
 			fieldIndex = [[self allInputFields] indexOfObject:textField];
 		}
 	}
-	
-	if (!(fieldIndex == 14)) {
+
+	if (!(fieldIndex == [self allInputFields].count - 1)) {
 		[[self allInputFields][fieldIndex + 1] becomeFirstResponder];
 	}
 }
@@ -425,30 +415,26 @@
 
 #pragma mark - Picker Methods
 
-- (void)setAppointmentTime{
-	NSDate *date = self.time_picker.date;
-	
+- (void)setAppointmentTime:(UIDatePicker *)datePicker {
 	static NSDateFormatter *dateFormatterAppointmentTime = nil;
 	
 	if (!dateFormatterAppointmentTime) {
-		dateFormatterAppointmentTime =	 [[NSDateFormatter alloc] init];
+		dateFormatterAppointmentTime = [[NSDateFormatter alloc] init];
 		dateFormatterAppointmentTime.dateFormat = @"MMMM d, yyyy h:mm aa";
 	}
 	
-	self.timeField.text = [dateFormatterAppointmentTime stringFromDate: date];
+	self.timeField.text = [dateFormatterAppointmentTime stringFromDate: datePicker.date];
 }
 
-- (void)setMoveInDate {
-	NSDate *date = self.movein_picker.date;
-	
+- (void)setMoveInDate:(UIDatePicker *)datePicker {
 	static NSDateFormatter *dateFormatterMoveIn = nil;
 	
 	if (!dateFormatterMoveIn) {
-		dateFormatterMoveIn =	 [[NSDateFormatter alloc] init];
+		dateFormatterMoveIn = [[NSDateFormatter alloc] init];
 		dateFormatterMoveIn.dateStyle = NSDateFormatterLongStyle;
 	}
 	
-	self.moveindateField.text = [dateFormatterMoveIn stringFromDate: date];
+	self.moveindateField.text = [dateFormatterMoveIn stringFromDate: datePicker.date];
 }
 
 #pragma mark - Save Methods

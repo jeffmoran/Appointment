@@ -72,7 +72,7 @@
 #pragma mark - TableView Delegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.tableView.editing == YES) {
+	if (self.tableView.editing) {
 		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
 		
 		NSArray *items = [[AppointmentStore shared] allItems];
