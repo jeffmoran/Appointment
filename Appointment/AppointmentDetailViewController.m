@@ -22,6 +22,8 @@
 //	
 //	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", appointment.itemName, self.phoneString, appointment.timeName, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 
+	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:@"appointmentCell"];
+
 	self.title = appointment.itemName;
 }
 
@@ -436,13 +438,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *cellIdentifier = @"appointmentCell";
 
-	UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	AppointmentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-	if (cell == nil) {
-		cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-		cell.textLabel.text = appointment.appointmentProperties[indexPath.row];
-		cell.detailTextLabel.text = appointment.appointmentPropertiesHeader[indexPath.row];
-	}
+	cell = [[AppointmentDetailTableViewCell alloc] init];
+	cell.appointmentHeaderLabel.text = appointment.appointmentPropertiesHeader[indexPath.row];
+	cell.appointmentValueLabel.text = appointment.appointmentProperties[indexPath.row];
 
 	return cell;
 }

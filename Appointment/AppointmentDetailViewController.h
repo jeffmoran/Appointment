@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "RNGridMenu.h"
 #import "Appointment.h"
+#import "AppointmentDetailTableViewCell.h"
 
 @import Contacts;
 @import EventKit;
