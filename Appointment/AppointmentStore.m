@@ -3,25 +3,23 @@
 
 @implementation AppointmentStore
 
-+ (AppointmentStore *)sharedStore {
-	static AppointmentStore *sharedStore = nil;
-	
-	if (!sharedStore) {
-		sharedStore = [[super allocWithZone: nil] init];
-	}
-	
-	return sharedStore;
-}
++ (AppointmentStore *)shared {
+	static AppointmentStore *shared = nil;
 
-+ (id)allocWithZone:(NSZone *)zone {
-	return [self sharedStore];
+	@synchronized(self) {
+		if (shared == nil) {
+			shared = [[self alloc] init];
+		}
+	}
+
+	return shared;
 }
 
 - (instancetype)init {
 	self = [super init];
 	
 	if (self) {
-		model = [NSManagedObjectModel mergedModelFromBundles: nil];
+		NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles: nil];
 		
 		NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: model];
 		
@@ -45,13 +43,13 @@
 		// The managed object context can manage undo, but we don't need it
 		[objectContext setUndoManager: nil];
 		
-		[self loadAllItems];
+		[self loadAllItems: model];
 	}
 	
 	return self;
 }
 
-- (void)loadAllItems {
+- (void)loadAllItems:(NSManagedObjectModel *)model {
 	if (!allItems) {
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		
@@ -76,32 +74,27 @@
 }
 
 - (NSString *)itemArchivePath {
-	NSArray *documentDirectories =
-	NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,
-										NSUserDomainMask, YES);
- 
-	// Get one and only document directory from that list
-	NSString *documentDirectory = documentDirectories[0];
-	
+	NSString *documentDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+
 	return [documentDirectory stringByAppendingPathComponent:@"store.data"];
 }
 
-- (BOOL)saveChanges {
+- (void)saveChanges {
 	NSError *err = nil;
-	BOOL successful = [objectContext save: &err];
-	
-	[objectContext performBlockAndWait: ^{
-		if (!successful) {
-			NSLog(@"Error saving: %@", err.localizedDescription);
-		}
-	}];
-	
-	return successful;
+
+	if ([objectContext hasChanges]) {
+		[objectContext save: &err];
+		[objectContext performBlockAndWait: ^{
+			if (err) {
+				NSLog(@"Error saving: %@", err.localizedDescription);
+			}
+		}];
+	}
 }
 
-- (void)removeItem:(Appointment *)appt {
-	[objectContext deleteObject: appt];
-	[allItems removeObjectIdenticalTo: appt];
+- (void)removeAppointment:(Appointment *)appointment {
+	[objectContext deleteObject: appointment];
+	[allItems removeObjectIdenticalTo: appointment];
 }
 
 - (NSArray *)allItems {
@@ -109,8 +102,7 @@
 }
 
 - (Appointment *)createItem {
-	Appointment *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"Appointment"
-															inManagedObjectContext: objectContext];
+	Appointment *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"Appointment" inManagedObjectContext: objectContext];
 	
 	[allItems addObject: newItem];
 	

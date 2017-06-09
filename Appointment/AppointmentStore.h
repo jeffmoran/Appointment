@@ -6,24 +6,18 @@
 @interface AppointmentStore : NSObject {
     NSMutableArray *allItems;
     NSManagedObjectContext *objectContext;
-    NSManagedObjectModel *model;
 }
 
-+ (AppointmentStore *)sharedStore;
++ (AppointmentStore *)shared;
 
-- (void)removeItem:(Appointment *)p;
+- (void)removeAppointment:(Appointment *)appointment;
 
 - (NSArray *)allItems;
 
 - (Appointment *)createItem;
 
-//- (void)moveItemAtIndex:(NSInteger)from
-//                toIndex:(NSInteger)to;
+- (void)saveChanges;
 
-- (NSString *)itemArchivePath;
-
-- (BOOL)saveChanges;
-
-- (void)loadAllItems;
+- (void)loadAllItems:(NSManagedObjectModel *)model;
 
 @end
