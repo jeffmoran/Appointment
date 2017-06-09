@@ -22,7 +22,8 @@
 	request.naturalLanguageQuery = address;
 	request.region = mapView.region;
 	
-	MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest: request];
+	MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:request];
+
 	[localSearch startWithCompletionHandler: ^(MKLocalSearchResponse *response, NSError *error) {
 		if (!error) {
 			for (MKMapItem *locationMapItem in response.mapItems) {
@@ -56,16 +57,12 @@
 }
 
 - (void)viewDidUnload {
-	[self setMapView: nil];
+	[self setMapView:nil];
 	[super viewDidUnload];
 }
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear: animated];
-}
-
 - (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear: animated];
+	[super viewDidAppear:animated];
 	
 	[self.navigationController setToolbarHidden:NO animated:YES];
 	
@@ -75,19 +72,19 @@
 																		   target:self
 																		   action:nil];
 	
-	UIBarButtonItem *zoomToUserLocationButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"userLocation"]
+	UIBarButtonItem *zoomToUserLocationButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"userLocation"]
 																				 style:UIBarButtonItemStylePlain
 																				target:self action:@selector(zoomToUserLocation)];
 	
-	UIBarButtonItem *zoomToLocationButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"location"]
+	UIBarButtonItem *zoomToLocationButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"location"]
 																			 style:UIBarButtonItemStylePlain
 																			target:self action:@selector(zoomToLocation)];
 	
-	UIBarButtonItem *zoomToFitAnnotationsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"zoomToFitAnnotations"]
+	UIBarButtonItem *zoomToFitAnnotationsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"zoomToFitAnnotations"]
 																				   style:UIBarButtonItemStylePlain
 																				  target:self action:@selector(zoomToFitMapAnnotations)];
 	
-	UIBarButtonItem *changeMapTypeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed: @"mapType"]
+	UIBarButtonItem *changeMapTypeButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"mapType"]
 																			style:UIBarButtonItemStylePlain
 																		   target:self action:@selector(changeMapType)];
 	
@@ -99,10 +96,9 @@
 	[barItems addObject:space];
 	[barItems addObject:changeMapTypeButton];
 	
-	if (!([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)){
+	if (!([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse)) {
 		zoomToUserLocationButton.enabled = NO;
-	}
-	else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
+	} else if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse || [CLLocationManager authorizationStatus] == kCLAuthorizationStatusAuthorizedWhenInUse){
 		zoomToUserLocationButton.enabled = YES;
 	}
 	
@@ -110,13 +106,13 @@
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
-	[super viewWillDisappear: animated];
+	[super viewWillDisappear:animated];
 	[locationManager stopUpdatingLocation];
 	[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear: animated];
+	[super viewDidDisappear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -138,13 +134,14 @@
 	region.center = location;
 	
 	NSArray *selectedAnnotations = mapView.selectedAnnotations;
-	for(id annotation in selectedAnnotations) {
+
+	for (id annotation in selectedAnnotations) {
 		[mapView deselectAnnotation:annotation animated:NO];
 	}
 	
 	[mapView selectAnnotation:locationAnnotation animated:YES];
 	
-	[mapView setRegion:region animated: YES];
+	[mapView setRegion:region animated:YES];
 }
 
 - (void)zoomToUserLocation {
@@ -162,30 +159,32 @@
 	region.center = location;
 	
 	NSArray *selectedAnnotations = mapView.selectedAnnotations;
-	for(id annotation in selectedAnnotations) {
+
+	for (id annotation in selectedAnnotations) {
 		[mapView deselectAnnotation:annotation animated:NO];
 	}
 	
 	[mapView selectAnnotation:mapView.userLocation animated:YES];
 	
-	[mapView setRegion:region animated: YES];
+	[mapView setRegion:region animated:YES];
 }
 
 - (void)zoomToFitMapAnnotations {
 	NSArray *selectedAnnotations = mapView.selectedAnnotations;
-	for(id annotation in selectedAnnotations) {
+
+	for (id annotation in selectedAnnotations) {
 		[mapView deselectAnnotation:annotation animated:NO];
 	}
 	
 	[self zoomToFitMapAnnotations:mapView];
 }
 
--(void)zoomToFitMapAnnotations:(MKMapView*)aMapView {
+- (void)zoomToFitMapAnnotations:(MKMapView *)aMapView {
 	[locationManager stopUpdatingLocation];
 	dispatch_async(dispatch_get_main_queue(), ^{
 		NSLog(@"Zoom to fit map annotations");
 		
-		if(aMapView.annotations.count == 0) {
+		if (aMapView.annotations.count == 0) {
 			return;
 		}
 		
@@ -197,7 +196,7 @@
 		bottomRightCoord.latitude = 90;
 		bottomRightCoord.longitude = -180;
 		
-		for(MKPointAnnotation* annotation in aMapView.annotations) {
+		for (MKPointAnnotation *annotation in aMapView.annotations) {
 			topLeftCoord.longitude = fmin(topLeftCoord.longitude, annotation.coordinate.longitude);
 			topLeftCoord.latitude = fmax(topLeftCoord.latitude, annotation.coordinate.latitude);
 			
@@ -266,7 +265,7 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	
-	static NSString* identifier = @"MapPoint";
+	static NSString *identifier = @"MapPoint";
 	MKPinAnnotationView *annotationView = (MKPinAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
 	
 	if (!annotationView) {
@@ -275,8 +274,7 @@
 	
 	if ([annotation isKindOfClass:[MKUserLocation class]]) {
 		return nil;
-	}
-	else {
+	} else {
 		annotationView.enabled = YES;
 		annotationView.canShowCallout = YES;
 		annotationView.animatesDrop = YES;
@@ -295,7 +293,7 @@
 	
 	UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes"
 														style:UIAlertActionStyleDefault
-													  handler: ^(UIAlertAction *action) {
+													  handler:^(UIAlertAction *action) {
 														  //using dispatch_async to get rid of _BSMachError errors
 														  dispatch_async(dispatch_get_main_queue(), ^{
 															  [self openAppleMaps];
@@ -313,7 +311,7 @@
 }
 
 - (MKOverlayRenderer *)mapView:(MKMapView *)mapView rendererForOverlay:(id < MKOverlay >)overlay {
-	MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay: overlay];
+	MKPolylineRenderer *renderer = [[MKPolylineRenderer alloc] initWithOverlay:overlay];
 	renderer.strokeColor = [UIColor flatGreenColor];
 	renderer.lineWidth = 4.0;
 	
@@ -321,6 +319,7 @@
 }
 
 #pragma mark - Directions/Route
+
 - (void)openAppleMaps {
 	NSMutableCharacterSet *allowedCharacterSet = [NSMutableCharacterSet alphanumericCharacterSet];
 	
@@ -362,10 +361,10 @@
 
 - (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
 	NSLog(@"didChangeAuthorizationStatus");
+
 	if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
 		[locationManager requestLocation];
-	}
-	else {
+	} else {
 		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Cannot get location"
 																	   message:@"Please check your location permissions and try again."
 																preferredStyle:UIAlertControllerStyleAlert];

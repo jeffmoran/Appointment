@@ -155,8 +155,8 @@
 				6014238F1CD098FF0089E278 /* AppointmentCell.m */,
 				8A5280981EEA1FD9004C221B /* AppointmentDetailTableViewCell.h */,
 				8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */,
-				601423941CD098FF0089E278 /* Launch Screen.storyboard */,
 				601423961CD098FF0089E278 /* MainStoryboard.storyboard */,
+				601423941CD098FF0089E278 /* Launch Screen.storyboard */,
 			);
 			name = Views;
 			sourceTree = "<group>";

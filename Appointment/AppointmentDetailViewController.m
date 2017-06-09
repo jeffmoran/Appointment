@@ -13,10 +13,10 @@
 
 	self.tableView.allowsSelection = NO;
 
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage: [UIImage imageNamed: @"Menu"]
-																			  style: UIBarButtonItemStylePlain
-																			 target: self
-																			 action: @selector(showGrid)];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
+																			  style:UIBarButtonItemStylePlain
+																			 target:self
+																			 action:@selector(showGrid)];
 
 //	_calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\n Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 //	
@@ -45,11 +45,11 @@
 			//[self segueIntoMapView];
 			//NSTimer is temporary solution to "Unbalanced calls to begin/end appearance transitions" bug
 			//NSTimer is set to wait .26 seconds for RNGridMenu to completely dismiss.
-			[NSTimer scheduledTimerWithTimeInterval: .26
-											 target: self
-										   selector: @selector(segueIntoMapView)
-										   userInfo: nil
-											repeats: NO];
+			[NSTimer scheduledTimerWithTimeInterval:.26
+											 target:self
+										   selector:@selector(segueIntoMapView)
+										   userInfo:nil
+											repeats:NO];
 			break;
 		case 3:
 			[self createNewContact];
@@ -82,7 +82,7 @@
 	menu.delegate = self;
 	menu.highlightColor = FlatTeal;
 	menu.itemSize = CGSizeMake(128, 128);
-	[menu showInViewController: self.navigationController center: CGPointMake(self.view.bounds.size.width/2.f, self.view.bounds.size.height/2.f)];
+	[menu showInViewController: self.navigationController center: CGPointMake(self.view.bounds.size.width / 2.f, self.view.bounds.size.height / 2.f)];
 }
 
 #pragma mark - Grid methods
@@ -92,22 +92,21 @@
 	
 	if ([device.model isEqualToString: @"iPhone"] ) {
 		[[UIApplication sharedApplication] openURL:[NSURL URLWithString:[NSString stringWithFormat: @"telprompt:%@", number]] options:@{} completionHandler:nil];
-	}
-	else {
+	} else {
 		
 		UIAlertController *notPermitted = [UIAlertController
-										   alertControllerWithTitle: @"Alert"
-										   message: @"Your device doesn't support this feature."
-										   preferredStyle: UIAlertControllerStyleAlert];
+										   alertControllerWithTitle:@"Alert"
+										   message:@"Your device doesn't support this feature."
+										   preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *cancelAction = [UIAlertAction
-									   actionWithTitle: @"OK"
-									   style: UIAlertActionStyleCancel
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
 									   handler:nil];
 		
-		[notPermitted addAction: cancelAction];
+		[notPermitted addAction:cancelAction];
 		
-		[self presentViewController:notPermitted animated:YES completion: nil];
+		[self presentViewController:notPermitted animated:YES completion:nil];
 	}
 }
 
@@ -122,24 +121,23 @@
 		
 		[controller setSubject: [NSString stringWithFormat: @"%@ Appointment With %@", time, name]];
 		[controller setToRecipients: @[email]];
-		[controller setMessageBody: _emailBodyString isHTML:YES];
+		[controller setMessageBody:_emailBodyString isHTML:YES];
 		
-		[self presentViewController: controller animated:YES completion: nil];
-	}
-	else {
+		[self presentViewController:controller animated:YES completion:nil];
+	} else {
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle: @"Failure"
-											  message: @"Your device doesn't support the composer sheet"
-											  preferredStyle: UIAlertControllerStyleAlert];
+											  alertControllerWithTitle:@"Failure"
+											  message:@"Your device doesn't support the composer sheet"
+											  preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *cancelAction = [UIAlertAction
-									   actionWithTitle: @"OK"
-									   style: UIAlertActionStyleCancel
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
 									   handler:nil];
 		
-		[alertController addAction: cancelAction];
+		[alertController addAction:cancelAction];
 		
-		[self presentViewController: alertController animated:YES completion: nil];
+		[self presentViewController:alertController animated:YES completion:nil];
 	}
 }
 
@@ -149,17 +147,17 @@
 	UIAlertController *alertController = [UIAlertController
 										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.timeName, appointment.itemName]
 										  message: @"Add this appointment to your calendar?"
-										  preferredStyle: UIAlertControllerStyleAlert];
+										  preferredStyle:UIAlertControllerStyleAlert];
 	
 	UIAlertAction *cancelAction = [UIAlertAction
-								   actionWithTitle: @"Maybe later"
-								   style: UIAlertActionStyleCancel
+								   actionWithTitle:@"Maybe later"
+								   style:UIAlertActionStyleCancel
 								   handler:nil];
 	
 	UIAlertAction *yesAction = [UIAlertAction
-								actionWithTitle: @"Yes"
-								style: UIAlertActionStyleDefault
-								handler: ^(UIAlertAction *action) {
+								actionWithTitle:@"Yes"
+								style:UIAlertActionStyleDefault
+								handler:^(UIAlertAction *action) {
 									[eventStore requestAccessToEntityType:EKEntityTypeEvent completion: ^(BOOL granted, NSError *_Nullable error) {
 										EKAuthorizationStatus authorizationStatus = [EKEventStore authorizationStatusForEntityType:EKEntityTypeEvent];
 										dispatch_async(dispatch_get_main_queue(), ^{
@@ -172,38 +170,38 @@
 													NSLog(@"The app is not authorized to access the service. The user cannot change this app’s authorization status, possibly due to active restrictions such as parental controls being in place.");
 													
 													UIAlertController *alertController = [UIAlertController
-																						  alertControllerWithTitle: @"Unable to add event"
-																						  message: @"Please check your Calendar Permissions in Settings and try again."
-																						  preferredStyle: UIAlertControllerStyleAlert];
+																						  alertControllerWithTitle:@"Unable to add event"
+																						  message:@"Please check your Calendar Permissions in Settings and try again."
+																						  preferredStyle:UIAlertControllerStyleAlert];
 													
 													UIAlertAction *cancelAction = [UIAlertAction
-																				   actionWithTitle: @"OK"
-																				   style: UIAlertActionStyleCancel
+																				   actionWithTitle:@"OK"
+																				   style:UIAlertActionStyleCancel
 																				   handler:nil];
 													
-													[alertController addAction: cancelAction];
+													[alertController addAction:cancelAction];
 													
-													[self presentViewController: alertController animated:YES completion: nil];
+													[self presentViewController:alertController animated:YES completion:nil];
 												}
 													break;
 												case EKAuthorizationStatusAuthorized: {
 													NSLog(@"The app is authorized to access the service.");
 													
-													event = [EKEvent eventWithEventStore: eventStore];
+													event = [EKEvent eventWithEventStore:eventStore];
 													event.title = [NSString stringWithFormat: @"%@ appointment with %@", appointment.timeName, appointment.itemName];
 													event.location = [NSString stringWithFormat: @"%@", appointment.addressName];
 													event.notes = _calendarNotesString;
 													
 													static NSDateFormatter *dateFormatter = nil;
 													
-													if (!dateFormatter){
+													if (!dateFormatter) {
 														NSLog(@"dateFormatter alloc");
 														dateFormatter = [[NSDateFormatter alloc] init];
 														dateFormatter.dateFormat = @"MMMM d, yyyy h:mm aa";
 													}
 													
-													event.startDate = [dateFormatter dateFromString: appointment.timeName];
-													event.endDate = [NSDate dateWithTimeInterval: 3600 sinceDate:[dateFormatter dateFromString: appointment.timeName]];
+													event.startDate = [dateFormatter dateFromString:appointment.timeName];
+													event.endDate = [NSDate dateWithTimeInterval:3600 sinceDate:[dateFormatter dateFromString:appointment.timeName]];
 													
 													NSLog(@"Event startDate %@", event.startDate);
 													NSLog(@"Event endDate%@",  event.endDate);
@@ -223,18 +221,18 @@
 													NSLog(@"The user explicitly denied access to the service for the app.");
 													
 													UIAlertController *alertController = [UIAlertController
-																						  alertControllerWithTitle: @"Unable to add event"
-																						  message: @"Please check your Calendar Permissions in Settings and try again."
-																						  preferredStyle: UIAlertControllerStyleAlert];
+																						  alertControllerWithTitle:@"Unable to add event"
+																						  message:@"Please check your Calendar Permissions in Settings and try again."
+																						  preferredStyle:UIAlertControllerStyleAlert];
 													
 													UIAlertAction *cancelAction = [UIAlertAction
-																				   actionWithTitle: @"OK"
-																				   style: UIAlertActionStyleCancel
+																				   actionWithTitle:@"OK"
+																				   style:UIAlertActionStyleCancel
 																				   handler:nil];
 													
-													[alertController addAction: cancelAction];
+													[alertController addAction:cancelAction];
 													
-													[self presentViewController: alertController animated:YES completion: nil];
+													[self presentViewController:alertController animated:YES completion:nil];
 												}
 													break;
 												default:
@@ -244,9 +242,9 @@
 									}];
 								}];
 	
-	[alertController addAction: cancelAction];
-	[alertController addAction: yesAction];
-	[self presentViewController: alertController animated:YES completion: nil];
+	[alertController addAction:cancelAction];
+	[alertController addAction:yesAction];
+	[self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)saveNewEvent {
@@ -256,41 +254,40 @@
 		NSLog(@"Event saved.");
 		
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle:[NSString stringWithFormat: @"Appointment added to your calendar successfully."]
-											  message: nil
-											  preferredStyle: UIAlertControllerStyleAlert];
+											  alertControllerWithTitle:[NSString stringWithFormat:@"Appointment added to your calendar successfully."]
+											  message:nil
+											  preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *cancelAction = [UIAlertAction
-									   actionWithTitle: @"OK"
-									   style: UIAlertActionStyleCancel
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
 									   handler:nil];
 		
-		[alertController addAction: cancelAction];
-		
-		[self presentViewController: alertController animated:YES completion: nil];
-	}
-	else {
+		[alertController addAction:cancelAction];
+
+		[self presentViewController:alertController animated:YES completion:nil];
+	} else {
 		NSLog(@"Event not saved. %@", saveError);
 		
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle:[NSString stringWithFormat: @"Appointment not added to your calendar."]
-											  message: @"Please check your Calendar Permissions in Settings and try again."
-											  preferredStyle: UIAlertControllerStyleAlert];
+											  alertControllerWithTitle:[NSString stringWithFormat:@"Appointment not added to your calendar."]
+											  message:@"Please check your Calendar Permissions in Settings and try again."
+											  preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *cancelAction = [UIAlertAction
-									   actionWithTitle: @"OK"
-									   style: UIAlertActionStyleCancel
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
 									   handler:nil];
 		
-		[alertController addAction: cancelAction];
+		[alertController addAction:cancelAction];
 		
-		[self presentViewController: alertController animated:YES completion: nil];
+		[self presentViewController:alertController animated:YES completion:nil];
 	}
 }
 
 - (void)segueIntoMapView {
 	if (self.navigationController.visibleViewController == self) {
-		[self performSegueWithIdentifier: @"map" sender: self];
+		[self performSegueWithIdentifier:@"map" sender:self];
 	}
 }
 
@@ -301,23 +298,23 @@
 	
 	UIAlertController *alertController = [UIAlertController
 										  alertControllerWithTitle:[NSString stringWithFormat: @"%@", appointment.itemName]
-										  message: @"Add this person to your contacts?"
-										  preferredStyle: UIAlertControllerStyleAlert];
+										  message:@"Add this person to your contacts?"
+										  preferredStyle:UIAlertControllerStyleAlert];
 	
 	UIAlertAction *cancelAction = [UIAlertAction
-								   actionWithTitle: @"Maybe later"
-								   style: UIAlertActionStyleCancel
+								   actionWithTitle:@"Maybe later"
+								   style:UIAlertActionStyleCancel
 								   handler:nil];
 	
 	UIAlertAction *yesAction = [UIAlertAction
-								actionWithTitle: @"Yes"
-								style: UIAlertActionStyleDefault
-								handler: ^(UIAlertAction *action) {
+								actionWithTitle:@"Yes"
+								style:UIAlertActionStyleDefault
+								handler:^(UIAlertAction *action) {
 									//Request access from contactStore
 									[contactStore requestAccessForEntityType: CNEntityTypeContacts completionHandler: ^(BOOL accessGranted, NSError *_Nullable error) {
 										
 										//Create authorizationStatus and assign it to CNContactStore
-										CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType: CNEntityTypeContacts];
+										CNAuthorizationStatus authorizationStatus = [CNContactStore authorizationStatusForEntityType:CNEntityTypeContacts];
 										dispatch_async(dispatch_get_main_queue(), ^{
 											
 											switch (authorizationStatus) {
@@ -329,25 +326,25 @@
 													NSLog(@"The application is not authorized to access contact data. The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.");
 													
 													UIAlertController *alertController = [UIAlertController
-																						  alertControllerWithTitle: @"Unable to add contact"
-																						  message: @"Please check your Contact Permissions in Settings and try again."
-																						  preferredStyle: UIAlertControllerStyleAlert];
+																						  alertControllerWithTitle:@"Unable to add contact"
+																						  message:@"Please check your Contact Permissions in Settings and try again."
+																						  preferredStyle:UIAlertControllerStyleAlert];
 													
 													UIAlertAction *cancelAction = [UIAlertAction
-																				   actionWithTitle: @"OK"
-																				   style: UIAlertActionStyleCancel
+																				   actionWithTitle:@"OK"
+																				   style:UIAlertActionStyleCancel
 																				   handler:nil];
 													
-													[alertController addAction: cancelAction];
+													[alertController addAction:cancelAction];
 													
-													[self presentViewController: alertController animated:YES completion: nil];
+													[self presentViewController:alertController animated:YES completion:nil];
 													break;
 												}
 												case CNAuthorizationStatusAuthorized:
 													NSLog(@"The application is authorized to access contact data.");
 													contact.givenName = appointment.itemName;
-													contact.phoneNumbers =@[ [CNLabeledValue labeledValueWithLabel: CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:appointment.phoneName]]];
-													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel: CNLabelHome value: appointment.emailName]];
+													contact.phoneNumbers = @[[CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:appointment.phoneName]]];
+													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel:CNLabelHome value:appointment.emailName]];
 													
 													[self saveNewContact];
 													break;
@@ -355,18 +352,18 @@
 													NSLog(@"The user explicitly denied access to contact data for the application.");
 													
 													UIAlertController *alertController = [UIAlertController
-																						  alertControllerWithTitle: @"Unable to add contact"
-																						  message: @"Please check your Contact Permissions in Settings and try again."
-																						  preferredStyle: UIAlertControllerStyleAlert];
+																						  alertControllerWithTitle:@"Unable to add contact"
+																						  message:@"Please check your Contact Permissions in Settings and try again."
+																						  preferredStyle:UIAlertControllerStyleAlert];
 													
 													UIAlertAction *cancelAction = [UIAlertAction
-																				   actionWithTitle: @"OK"
-																				   style: UIAlertActionStyleCancel
+																				   actionWithTitle:@"OK"
+																				   style:UIAlertActionStyleCancel
 																				   handler:nil];
 													
-													[alertController addAction: cancelAction];
+													[alertController addAction:cancelAction];
 													
-													[self presentViewController: alertController animated:YES completion: nil];
+													[self presentViewController:alertController animated:YES completion:nil];
 													break;
 												}
 												default:
@@ -376,14 +373,14 @@
 									}];
 								}];
 	
-	[alertController addAction: cancelAction];
-	[alertController addAction: yesAction];
-	[self presentViewController: alertController animated:YES completion: nil];
+	[alertController addAction:cancelAction];
+	[alertController addAction:yesAction];
+	[self presentViewController:alertController animated:YES completion:nil];
 }
 
 - (void)saveNewContact {
 	CNSaveRequest *saveRequest = [[CNSaveRequest alloc] init];
-	[saveRequest addContact: contact toContainerWithIdentifier: nil];
+	[saveRequest addContact:contact toContainerWithIdentifier:nil];
 	
 	NSError *saveError = nil;
 	
@@ -392,33 +389,32 @@
 		
 		UIAlertController *alertController = [UIAlertController
 											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact saved successfully.", appointment.itemName]
-											  message: nil
-											  preferredStyle: UIAlertControllerStyleAlert];
+											  message:nil
+											  preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *cancelAction = [UIAlertAction
-									   actionWithTitle: @"OK"
-									   style: UIAlertActionStyleCancel
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
 									   handler:nil];
 		
-		[alertController addAction: cancelAction];
-		[self presentViewController: alertController animated:YES completion: nil];
-	}
-	else {
+		[alertController addAction:cancelAction];
+		[self presentViewController:alertController animated:YES completion:nil];
+	} else {
 		NSLog(@"Contact not saved. %@", saveError);
 		
 		UIAlertController *alertController = [UIAlertController
 											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact not saved.", appointment.itemName]
 											  message: @"Please check your Contact Permissions in Settings and try again."
-											  preferredStyle: UIAlertControllerStyleAlert];
+											  preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *cancelAction = [UIAlertAction
-									   actionWithTitle: @"OK"
-									   style: UIAlertActionStyleCancel
+									   actionWithTitle:@"OK"
+									   style:UIAlertActionStyleCancel
 									   handler:nil];
 		
-		[alertController addAction: cancelAction];
+		[alertController addAction:cancelAction];
 		
-		[self presentViewController: alertController animated:YES completion: nil];
+		[self presentViewController:alertController animated:YES completion:nil];
 	}
 }
 
@@ -472,7 +468,7 @@
 			break;
 	}
 	
-	[self dismissViewControllerAnimated:YES completion: nil];
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end

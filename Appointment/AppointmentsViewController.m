@@ -15,9 +15,9 @@
 	self.title = @"Appointments";
 
 	self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemAdd
-																						   target: self
-																						   action: @selector(addNewAppointment)];
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+																						   target:self
+																						   action:@selector(addNewAppointment)];
 	
 	self.tableView.allowsSelectionDuringEditing = YES;
 	
@@ -27,14 +27,14 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear: animated];
+	[super viewWillAppear:animated];
 	
 	//Added short timer so that DZNEmptyDataSet was properly centered on load
-	[NSTimer scheduledTimerWithTimeInterval: .01
-									 target: self
-								   selector: @selector(reloadData)
-								   userInfo: nil
-									repeats: NO];
+	[NSTimer scheduledTimerWithTimeInterval:.01
+									 target:self
+								   selector:@selector(reloadData)
+								   userInfo:nil
+									repeats:NO];
 	
 }
 
@@ -47,17 +47,17 @@
 - (void)addNewAppointment {
 	AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
 
-	[self.navigationController pushViewController: inputViewController animated: YES];
+	[self.navigationController pushViewController:inputViewController animated:YES];
 }
 
 #pragma mark - Segue
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString: @"Clean"]) {
+	if ([segue.identifier isEqualToString:@"Clean"]) {
 		
 		AppointmentDetailViewController *destViewController = segue.destinationViewController;
 		
-		NSIndexPath *indexPath = [self.tableView  indexPathForCell: sender];
+		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
 
 		destViewController.appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 	}
@@ -73,10 +73,9 @@
 		Appointment *selectedItem = items[indexPath.row];
 		detailViewController.appointment = selectedItem;
 
-		[self.navigationController pushViewController: detailViewController animated: YES];
-	}
-	else {
-		[self performSegueWithIdentifier: @"Clean" sender: [tableView cellForRowAtIndexPath: indexPath]];
+		[self.navigationController pushViewController:detailViewController animated:YES];
+	} else {
+		[self performSegueWithIdentifier:@"Clean" sender:[tableView cellForRowAtIndexPath:indexPath]];
 	}
 }
 
@@ -95,26 +94,23 @@
 
 	Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 	
-	AppointmentCell *cell = (AppointmentCell *)[tableView dequeueReusableCellWithIdentifier: cellIdentifier];
+	AppointmentCell *cell = (AppointmentCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
-	if (!([appointment.itemName isEqualToString: @""])){
+	if (!([appointment.itemName isEqualToString:@""])) {
 		cell.nameLabel.text = appointment.itemName;
-	}
-	else {
+	} else {
 		cell.nameLabel.text = @"Client name unavailable";
 	}
 	
-	if (!([appointment.timeName isEqualToString: @""])){
+	if (!([appointment.timeName isEqualToString:@""])) {
 		cell.timeLabel.text = appointment.timeName;
-	}
-	else {
+	} else {
 		cell.timeLabel.text = @"Appointment time unavailable";
 	}
 	
-	if (!([appointment.addressName isEqualToString: @""])) {
+	if (!([appointment.addressName isEqualToString:@""])) {
 		cell.addressLabel.text = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
-	}
-	else {
+	} else {
 		cell.addressLabel.text = @"Property address unavailable";
 	}
 	
@@ -134,11 +130,11 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row ];
-		[[AppointmentStore shared] removeAppointment: appointment];
+		Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
+		[[AppointmentStore shared] removeAppointment:appointment];
 
 		[self.tableView beginUpdates];
-		[tableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationFade];
+		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
 		[self.tableView endUpdates];
 
 		[self.tableView reloadData];

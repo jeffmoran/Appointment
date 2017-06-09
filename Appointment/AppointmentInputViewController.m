@@ -5,10 +5,6 @@
 
 //NSString *const googleAPIKey = @"API_KEY_HERE";
 
-@interface AppointmentInputViewController()
-
-@end
-
 @implementation AppointmentInputViewController
 
 @synthesize appointment;
@@ -67,19 +63,19 @@
 	self.bathsField.placeholder = @" Bathrooms";
 	
 	//Image view instances
-	self.inputName = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputName"]];
-	self.inputEmail = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputEmail"]];
-	self.inputPhone = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputPhone"]];
-	self.inputTime = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputTime"]];
-	self.inputAddress = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputAddress"]];
-	self.inputZip = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputZip"]];
-	self.inputNeighborhood = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputNeighborhood"]];
-	self.inputMoveInDate = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputMoveInDate"]];
-	self.inputPets = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputPets"]];
-	self.inputPrice = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputPrice"]];
-	self.inputAptSize = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputSize"]];
-	self.inputRooms = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputBedrooms"]];
-	self.inputBaths = [[UIImageView alloc] initWithImage: [UIImage imageNamed: @"inputBaths"]];
+	self.inputName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputName"]];
+	self.inputEmail = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputEmail"]];
+	self.inputPhone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputPhone"]];
+	self.inputTime = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputTime"]];
+	self.inputAddress = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputAddress"]];
+	self.inputZip = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputZip"]];
+	self.inputNeighborhood = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputNeighborhood"]];
+	self.inputMoveInDate = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputMoveInDate"]];
+	self.inputPets = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputPets"]];
+	self.inputPrice = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputPrice"]];
+	self.inputAptSize = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputSize"]];
+	self.inputRooms = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputBedrooms"]];
+	self.inputBaths = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputBaths"]];
 
 	//Set the frame for each pickerview/datepicker
 	CGRect pickerFrame = CGRectMake(0, 200, self.view.frame.size.width, 200);
@@ -94,10 +90,10 @@
 
 	self.time_picker.datePickerMode = UIDatePickerModeDateAndTime;
 	self.time_picker.minuteInterval = 5;
-	[self.time_picker addTarget: self action: @selector(setAppointmentTime:) forControlEvents: UIControlEventValueChanged];
+	[self.time_picker addTarget:self action:@selector(setAppointmentTime:) forControlEvents:UIControlEventValueChanged];
 	
 	self.movein_picker.datePickerMode = UIDatePickerModeDate;
-	[self.movein_picker addTarget: self action: @selector(setMoveInDate:) forControlEvents: UIControlEventValueChanged];
+	[self.movein_picker addTarget:self action:@selector(setMoveInDate:) forControlEvents:UIControlEventValueChanged];
 	
 	self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(self.view.frame.origin.x, self.view.frame.origin.y, self.view.frame.size.width, self.view.frame.size.height)];
 	
@@ -106,17 +102,17 @@
 	
 	[self.view addSubview:self.scrollView];
 	
-	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
-																						  target: self
-																						  action: @selector(popViewController)];
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
+																						  target:self
+																						  action:@selector(popViewController)];
 	
-	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemSave
-																		  target: self
-																		  action: @selector(saveButtonPressed)];
+	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
+																		  target:self
+																		  action:@selector(saveButtonPressed)];
 	
-	UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemTrash
-																		   target: self
-																		   action: @selector(backToTopButtonPressed)];
+	UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
+																		   target:self
+																		   action:@selector(backToTopButtonPressed)];
 	
 	self.navigationItem.rightBarButtonItems = @[save, clear];
 	
@@ -125,16 +121,16 @@
 	[self pickerStylingAndProperties];
 	[self imageViewStylingAndProperties];
 	
-	[self.scrollView addSubview: bedroomsStepper];
-	[self.scrollView addSubview: bathroomsStepper];
+	[self.scrollView addSubview:bedroomsStepper];
+	[self.scrollView addSubview:bathroomsStepper];
 
 	[self setUpConstraints];
 	//	 Dismiss keyboard on tap
-	[self.view addGestureRecognizer: [[UITapGestureRecognizer alloc] initWithTarget: self action: @selector(dismissKeyboardGesture)]];
+	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboardGesture)]];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear: animated];
+	[super viewWillAppear:animated];
 
 	self.nameField.text = appointment.itemName;
 	self.phoneField.text = appointment.phoneName;
@@ -161,99 +157,99 @@
 	[super didReceiveMemoryWarning];
 }
 
-- (void) setUpConstraints {
+- (void)setUpConstraints {
 	[NSLayoutConstraint
-	 activateConstraints: @[
-							[self.inputName.leftAnchor constraintEqualToAnchor: self.view.leftAnchor constant:20],
-							[self.inputName.centerYAnchor constraintEqualToAnchor: self.nameField.centerYAnchor],
+	 activateConstraints:@[
+							[self.inputName.leftAnchor constraintEqualToAnchor:self.view.leftAnchor constant:20],
+							[self.inputName.centerYAnchor constraintEqualToAnchor:self.nameField.centerYAnchor],
 
-							[self.inputEmail.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputEmail.centerYAnchor constraintEqualToAnchor: self.emailField.centerYAnchor],
+							[self.inputEmail.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputEmail.centerYAnchor constraintEqualToAnchor:self.emailField.centerYAnchor],
 
-							[self.inputPhone.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputPhone.centerYAnchor constraintEqualToAnchor: self.phoneField.centerYAnchor],
+							[self.inputPhone.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputPhone.centerYAnchor constraintEqualToAnchor:self.phoneField.centerYAnchor],
 
-							[self.inputTime.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputTime.centerYAnchor constraintEqualToAnchor: self.timeField.centerYAnchor],
+							[self.inputTime.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputTime.centerYAnchor constraintEqualToAnchor:self.timeField.centerYAnchor],
 
-							[self.inputAddress.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputAddress.centerYAnchor constraintEqualToAnchor: self.addressField.centerYAnchor],
+							[self.inputAddress.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputAddress.centerYAnchor constraintEqualToAnchor:self.addressField.centerYAnchor],
 
-							[self.inputZip.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputZip.centerYAnchor constraintEqualToAnchor: self.zipCodeField.centerYAnchor],
+							[self.inputZip.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputZip.centerYAnchor constraintEqualToAnchor:self.zipCodeField.centerYAnchor],
 
-							[self.inputMoveInDate.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputMoveInDate.centerYAnchor constraintEqualToAnchor: self.moveindateField.centerYAnchor],
+							[self.inputMoveInDate.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputMoveInDate.centerYAnchor constraintEqualToAnchor:self.moveindateField.centerYAnchor],
 
-							[self.inputPets.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputPets.centerYAnchor constraintEqualToAnchor: self.petsField.centerYAnchor],
+							[self.inputPets.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputPets.centerYAnchor constraintEqualToAnchor:self.petsField.centerYAnchor],
 
-							[self.inputPrice.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputPrice.centerYAnchor constraintEqualToAnchor: self.priceField.centerYAnchor],
+							[self.inputPrice.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputPrice.centerYAnchor constraintEqualToAnchor:self.priceField.centerYAnchor],
 
-							[self.inputNeighborhood.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputNeighborhood.centerYAnchor constraintEqualToAnchor: self.neighborhoodField.centerYAnchor],
+							[self.inputNeighborhood.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputNeighborhood.centerYAnchor constraintEqualToAnchor:self.neighborhoodField.centerYAnchor],
 
-							[self.inputAptSize.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputAptSize.centerYAnchor constraintEqualToAnchor: self.aptsizeField.centerYAnchor],
+							[self.inputAptSize.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputAptSize.centerYAnchor constraintEqualToAnchor:self.aptsizeField.centerYAnchor],
 
-							[self.inputRooms.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputRooms.centerYAnchor constraintEqualToAnchor: self.roomsField.centerYAnchor],
+							[self.inputRooms.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputRooms.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
 
-							[self.inputBaths.leftAnchor constraintEqualToAnchor: self.inputName.leftAnchor],
-							[self.inputBaths.centerYAnchor constraintEqualToAnchor: self.bathsField.centerYAnchor],
+							[self.inputBaths.leftAnchor constraintEqualToAnchor:self.inputName.leftAnchor],
+							[self.inputBaths.centerYAnchor constraintEqualToAnchor:self.bathsField.centerYAnchor],
 
-							[self.nameField.leftAnchor constraintEqualToAnchor: self.inputName.rightAnchor constant:20],
-							[self.nameField.topAnchor constraintEqualToAnchor: self.scrollView.topAnchor constant:20],
+							[self.nameField.leftAnchor constraintEqualToAnchor:self.inputName.rightAnchor constant:20],
+							[self.nameField.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor constant:20],
 							[self.nameField.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant:-20],
 
-							[self.emailField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.emailField.topAnchor constraintEqualToAnchor: self.nameField.bottomAnchor constant:8],
+							[self.emailField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.emailField.topAnchor constraintEqualToAnchor:self.nameField.bottomAnchor constant:8],
 							[self.emailField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.phoneField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.phoneField.topAnchor constraintEqualToAnchor: self.emailField.bottomAnchor constant:8],
+							[self.phoneField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.phoneField.topAnchor constraintEqualToAnchor:self.emailField.bottomAnchor constant:8],
 							[self.phoneField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.timeField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.timeField.topAnchor constraintEqualToAnchor: self.phoneField.bottomAnchor constant:8],
+							[self.timeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.timeField.topAnchor constraintEqualToAnchor:self.phoneField.bottomAnchor constant:8],
 							[self.timeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.addressField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.addressField.topAnchor constraintEqualToAnchor: self.timeField.bottomAnchor constant:8],
+							[self.addressField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.addressField.topAnchor constraintEqualToAnchor:self.timeField.bottomAnchor constant:8],
 							[self.addressField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.zipCodeField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.zipCodeField.topAnchor constraintEqualToAnchor: self.addressField.bottomAnchor constant:8],
+							[self.zipCodeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.zipCodeField.topAnchor constraintEqualToAnchor:self.addressField.bottomAnchor constant:8],
 							[self.zipCodeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.neighborhoodField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.neighborhoodField.topAnchor constraintEqualToAnchor: self.zipCodeField.bottomAnchor constant:8],
+							[self.neighborhoodField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.neighborhoodField.topAnchor constraintEqualToAnchor:self.zipCodeField.bottomAnchor constant:8],
 							[self.neighborhoodField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.moveindateField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.moveindateField.topAnchor constraintEqualToAnchor: self.neighborhoodField.bottomAnchor constant:8],
+							[self.moveindateField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.moveindateField.topAnchor constraintEqualToAnchor:self.neighborhoodField.bottomAnchor constant:8],
 							[self.moveindateField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.petsField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.petsField.topAnchor constraintEqualToAnchor: self.moveindateField.bottomAnchor constant:8],
+							[self.petsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.petsField.topAnchor constraintEqualToAnchor:self.moveindateField.bottomAnchor constant:8],
 							[self.petsField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.priceField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.priceField.topAnchor constraintEqualToAnchor: self.petsField.bottomAnchor constant:8],
+							[self.priceField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.priceField.topAnchor constraintEqualToAnchor:self.petsField.bottomAnchor constant:8],
 							[self.priceField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.aptsizeField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.aptsizeField.topAnchor constraintEqualToAnchor: self.priceField.bottomAnchor constant:8],
+							[self.aptsizeField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.aptsizeField.topAnchor constraintEqualToAnchor:self.priceField.bottomAnchor constant:8],
 							[self.aptsizeField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
-							[self.roomsField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.roomsField.topAnchor constraintEqualToAnchor: self.aptsizeField.bottomAnchor constant:8],
-							[self.roomsField.rightAnchor constraintEqualToAnchor: bedroomsStepper.leftAnchor constant: -8],
+							[self.roomsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.roomsField.topAnchor constraintEqualToAnchor:self.aptsizeField.bottomAnchor constant:8],
+							[self.roomsField.rightAnchor constraintEqualToAnchor:bedroomsStepper.leftAnchor constant: -8],
 
-							[self.bathsField.leftAnchor constraintEqualToAnchor: self.nameField.leftAnchor],
-							[self.bathsField.topAnchor constraintEqualToAnchor: self.roomsField.bottomAnchor constant:8],
-							[self.bathsField.rightAnchor constraintEqualToAnchor: bathroomsStepper.leftAnchor constant:-8],
+							[self.bathsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
+							[self.bathsField.topAnchor constraintEqualToAnchor:self.roomsField.bottomAnchor constant:8],
+							[self.bathsField.rightAnchor constraintEqualToAnchor:bathroomsStepper.leftAnchor constant:-8],
 
 							[bedroomsStepper.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
 							[bedroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
@@ -313,8 +309,8 @@
 	
 	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
 		textField.translatesAutoresizingMaskIntoConstraints = NO;
-		textField.font = [UIFont fontWithName: @"HelveticaNeue-Light" size: 16];
-		textField.floatingLabelFont = [UIFont fontWithName: @"HelveticaNeue-Light" size: 11];
+		textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
+		textField.floatingLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:11];
 		textField.floatingLabelTextColor = [UIColor grayColor];
 		textField.clearButtonMode = UITextFieldViewModeAlways;
 		textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
@@ -323,7 +319,7 @@
 
 		textField.inputAccessoryView = toolbar;
 		
-		[self.scrollView addSubview: textField];
+		[self.scrollView addSubview:textField];
 		
 		if (textField == self.emailField) {
 			textField.keyboardType = UIKeyboardTypeEmailAddress;
@@ -337,7 +333,7 @@
 			textField.keyboardType = UIKeyboardTypeNumberPad;
 		}
 		
-		if (textField == self.roomsField || textField == self.bathsField){
+		if (textField == self.roomsField || textField == self.bathsField) {
 			textField.keyboardType = UIKeyboardTypeDecimalPad;
 		}
 
@@ -348,7 +344,7 @@
 - (void)pickerStylingAndProperties {
 	for (UIPickerView *picker in [self allInputPickers]) {
 		picker.delegate = self;
-		[picker setShowsSelectionIndicator: YES];
+		[picker setShowsSelectionIndicator:YES];
 	}
 }
 
@@ -358,7 +354,7 @@
 		[[imageView.heightAnchor constraintEqualToConstant:32] setActive:YES];
 		[[imageView.widthAnchor constraintEqualToConstant:32] setActive:YES];
 
-		[self.scrollView addSubview: imageView];
+		[self.scrollView addSubview:imageView];
 	}
 }
 
@@ -376,7 +372,7 @@
 }
 
 - (void)dismissKeyboardGesture {
-	[self.view endEditing: YES];
+	[self.view endEditing:YES];
 }
 
 - (void)backButtonPressed {
@@ -407,6 +403,7 @@
 	if (stepper == bedroomsStepper) {
 		self.roomsField.text = [NSString stringWithFormat:@"%.1f", bedroomsStepper.value];
 	}
+
 	if (stepper == bathroomsStepper) {
 		self.bathsField.text = [NSString stringWithFormat:@"%.1f", bathroomsStepper.value];
 	}
@@ -422,7 +419,7 @@
 		dateFormatterAppointmentTime.dateFormat = @"MMMM d, yyyy h:mm aa";
 	}
 	
-	self.timeField.text = [dateFormatterAppointmentTime stringFromDate: datePicker.date];
+	self.timeField.text = [dateFormatterAppointmentTime stringFromDate:datePicker.date];
 }
 
 - (void)setMoveInDate:(UIDatePicker *)datePicker {
@@ -433,7 +430,7 @@
 		dateFormatterMoveIn.dateStyle = NSDateFormatterLongStyle;
 	}
 	
-	self.moveindateField.text = [dateFormatterMoveIn stringFromDate: datePicker.date];
+	self.moveindateField.text = [dateFormatterMoveIn stringFromDate:datePicker.date];
 }
 
 #pragma mark - Save Methods
@@ -473,7 +470,7 @@
 	if (appointment) {
 		// if an appointment exists here, we are in editing mode
 		// delete the appointment first
-		[[AppointmentStore shared] removeAppointment: appointment];
+		[[AppointmentStore shared] removeAppointment:appointment];
 	}
 
 	// create new appointment based off whatever is in the textFields
@@ -496,11 +493,11 @@
 	// save the appointment
 	[[AppointmentStore shared] saveChanges];
 
-	[self.navigationController popViewControllerAnimated: YES];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)popViewController {
-	[self.navigationController popViewControllerAnimated: YES];
+	[self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark - URL Request & JSON Parse
@@ -509,9 +506,9 @@
 	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
 		
 		NSURL *URL = [NSURL URLWithString:urlString];
-		NSURLRequest *request = [NSURLRequest requestWithURL: URL
-												 cachePolicy: NSURLRequestReturnCacheDataElseLoad
-											 timeoutInterval: 60];
+		NSURLRequest *request = [NSURLRequest requestWithURL:URL
+												 cachePolicy:NSURLRequestReturnCacheDataElseLoad
+											 timeoutInterval:60];
 		
 		NSURLSession *session = [NSURLSession sharedSession];
 		NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
@@ -520,20 +517,19 @@
 				NSLog(@"%@", error);
 				dispatch_async(dispatch_get_main_queue(), ^{
 					UIAlertController *errorAlert = [UIAlertController  alertControllerWithTitle:@"Error"
-																						 message: @"Could not automatically get neighborhood from zip/postal code. Check your internet connection or input neighborhood manually."
-																				  preferredStyle: UIAlertControllerStyleAlert];
+																						 message:@"Could not automatically get neighborhood from zip/postal code. Check your internet connection or input neighborhood manually."
+																				  preferredStyle:UIAlertControllerStyleAlert];
 					
 					UIAlertAction *action = [UIAlertAction
-											 actionWithTitle: @"OK"
-											 style: UIAlertActionStyleCancel
+											 actionWithTitle:@"OK"
+											 style:UIAlertActionStyleCancel
 											 handler:nil];
 					
-					[errorAlert addAction: action];
+					[errorAlert addAction:action];
 					
-					[self presentViewController: errorAlert animated:YES completion:nil];
+					[self presentViewController:errorAlert animated:YES completion:nil];
 				});
-			}
-			else {
+			} else {
 				[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 				dispatch_async(dispatch_get_main_queue(), ^{
 					[self setUpJSONWithData: data];
@@ -546,27 +542,26 @@
 
 - (void)setUpJSONWithData:(NSData *)data {
 	NSError *error;
-	NSDictionary *mainresponseDict = [NSJSONSerialization JSONObjectWithData: data options:0 error:&error];
+	NSDictionary *mainresponseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
 
 	if (error) {
 		NSLog(@"Error parsing JSON data - %@", error.localizedDescription);
 		UIAlertController *errorAlert = [UIAlertController  alertControllerWithTitle:@"Error"
-																			 message: @"Could not automatically get neighborhood from zip/postal code. Check your internet or input neighborhood manually."
-																	  preferredStyle: UIAlertControllerStyleAlert];
+																			 message:@"Could not automatically get neighborhood from zip/postal code. Check your internet or input neighborhood manually."
+																	  preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *action = [UIAlertAction
-								 actionWithTitle: @"OK"
-								 style: UIAlertActionStyleCancel
+								 actionWithTitle:@"OK"
+								 style:UIAlertActionStyleCancel
 								 handler:nil];
 		
-		[errorAlert addAction: action];
+		[errorAlert addAction:action];
 		
-		[self presentViewController: errorAlert animated:YES completion:nil];
-	}
-	else {
+		[self presentViewController:errorAlert animated:YES completion:nil];
+	} else {
 		NSDictionary *resultsDict = mainresponseDict[@"results"];
 
-		NSArray *addressComponentsDict = [resultsDict valueForKey: @"address_components"];
+		NSArray *addressComponentsDict = [resultsDict valueForKey:@"address_components"];
 
 		if (addressComponentsDict.count > 0) {
 			self.neighborhoodField.text = [addressComponentsDict[0][1] valueForKey:@"long_name"];
@@ -585,9 +580,7 @@
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	if (pickerView == self.pets_picker) {
 		return petsArray.count;
-	}
-	
-	else {
+	} else {
 		return 0;
 	}
 }
@@ -595,9 +588,7 @@
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	if (pickerView == self.pets_picker) {
 		return petsArray[row];
-	}
-
-	else {
+	} else {
 		return 0;
 	}
 }
@@ -612,10 +603,10 @@
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
 	if (textField.returnKeyType == UIReturnKeyDone) {
-		[self.view endEditing: YES];
+		[self.view endEditing:YES];
 	}
 	
-	return [self setNextResponder: textField] ? NO : YES;
+	return [self setNextResponder:textField] ? NO :YES;
 }
 
 - (void)textFieldDidBeginEditing:(UITextField *)textField {
@@ -634,15 +625,13 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	if (textField == self.zipCodeField) {
-		if (!([self.zipCodeField.text isEqual: @""] || [self.zipCodeField.text isEqualToString:@"Unavailable"])) {
+		if (!([self.zipCodeField.text isEqual:@""] || [self.zipCodeField.text isEqualToString:@"Unavailable"])) {
 			if (self.zipCodeField.text.length <= 5) {
 				[self requestURLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", self.zipCodeField.text, googleAPIKey]];
-			}
-			else {
+			} else {
 				NSLog(@"Zip code field is greater than or equal to 5, no JSON request");
 			}
-		}
-		else {
+		} else {
 			NSLog(@"Zip code field is blank or unavailable, no JSON request");
 		}
 	}
@@ -651,10 +640,10 @@
 }
 
 - (BOOL)setNextResponder:(UITextField *)textField {
-	NSInteger indexOfInput = [[self allInputFields] indexOfObject: textField];
+	NSInteger indexOfInput = [[self allInputFields] indexOfObject:textField];
 	
-	if (indexOfInput != NSNotFound && indexOfInput < [self allInputFields].count-1) {
-		UIResponder *next = [self allInputFields][(NSUInteger)(indexOfInput+1)];
+	if (indexOfInput != NSNotFound && indexOfInput < [self allInputFields].count - 1) {
+		UIResponder *next = [self allInputFields][(NSUInteger)(indexOfInput + 1)];
 		
 		if (next.canBecomeFirstResponder) {
 			[next becomeFirstResponder];
@@ -668,7 +657,7 @@
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 	if (textField == self.phoneField) {
-		NSUInteger length = [self getLength: textField.text];
+		NSUInteger length = [self getLength:textField.text];
 		
 		if (length == 10) {
 			if (range.length == 0) {
@@ -678,19 +667,18 @@
 		}
 		
 		if (length == 3) {
-			NSString *num = [self formatNumber: textField.text];
-			textField.text = [NSString stringWithFormat: @"%@-", num];
+			NSString *num = [self formatNumber:textField.text];
+			textField.text = [NSString stringWithFormat:@"%@-", num];
 			
 			if (range.length > 0) {
-				textField.text = [NSString stringWithFormat: @"%@", [num substringToIndex: 3]];
+				textField.text = [NSString stringWithFormat:@"%@", [num substringToIndex: 3]];
 			}
-		}
-		else if (length == 6) {
-			NSString *num = [self formatNumber: textField.text];
-			textField.text = [NSString stringWithFormat: @"%@-%@-", [num  substringToIndex: 3], [num substringFromIndex: 3]];
+		} else if (length == 6) {
+			NSString *num = [self formatNumber:textField.text];
+			textField.text = [NSString stringWithFormat:@"%@-%@-", [num  substringToIndex: 3], [num substringFromIndex: 3]];
 			
 			if (range.length > 0) {
-				textField.text = [NSString stringWithFormat: @"(%@) %@", [num substringToIndex: 3], [num substringFromIndex: 3]];
+				textField.text = [NSString stringWithFormat:@"(%@) %@", [num substringToIndex: 3], [num substringFromIndex: 3]];
 			}
 		}
 	}
@@ -701,16 +689,16 @@
 #pragma mark - Number styling
 
 - (NSString *)formatNumber:(NSString *)mobileNumber {
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"(" withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @")" withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @" " withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"-" withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"+" withString: @""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
 	
 	NSUInteger length = mobileNumber.length;
 	
 	if (length > 10) {
-		mobileNumber = [mobileNumber substringFromIndex: length-10];
+		mobileNumber = [mobileNumber substringFromIndex:length - 10];
 		
 	}
 	
@@ -718,11 +706,11 @@
 }
 
 - (NSUInteger)getLength:(NSString *)mobileNumber {
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"(" withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @")" withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @" " withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"-" withString: @""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString: @"+" withString: @""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
 	
 	NSUInteger length = mobileNumber.length;
 	

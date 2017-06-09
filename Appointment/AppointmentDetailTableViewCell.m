@@ -25,14 +25,16 @@
 
 - (instancetype)init {
 	self = [super init];
+
 	if (self) {
 		[self addSubviews];
 		[self setUpConstraints];
 	}
+
 	return self;
 }
 
-- (void)addSubviews{
+- (void)addSubviews {
 	appointmentHeaderLabel = [[UILabel alloc] init];
 	appointmentHeaderLabel.translatesAutoresizingMaskIntoConstraints = NO;
 	appointmentHeaderLabel.numberOfLines = 2;
@@ -51,7 +53,7 @@
 
 - (void)setUpConstraints {
 	[NSLayoutConstraint
-	 activateConstraints: @[
+	 activateConstraints:@[
 							[appointmentHeaderLabel.leftAnchor constraintEqualToAnchor:self.leftAnchor constant: 5],
 							[appointmentHeaderLabel.topAnchor constraintEqualToAnchor:self.topAnchor],
 							[appointmentHeaderLabel.bottomAnchor constraintEqualToAnchor:self.bottomAnchor],
