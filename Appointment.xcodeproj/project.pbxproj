@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		49A7D4A5527ECCFF07109C64 /* Pods_Appointment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */; };
 		6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 601423811CD098FF0089E278 /* Appointment.xcdatamodel */; };
-		6014239D1CD098FF0089E278 /* AppointmentCleanViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423831CD098FF0089E278 /* AppointmentCleanViewController.m */; };
+		6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423831CD098FF0089E278 /* AppointmentDetailViewController.m */; };
 		6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423851CD098FF0089E278 /* AppointmentInputViewController.m */; };
 		601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423881CD098FF0089E278 /* AppointmentsViewController.m */; };
 		601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */; };
@@ -41,8 +41,8 @@
 		5941E395F53C4C37110ED0EA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		601423801CD098FF0089E278 /* Appointment-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Appointment-Prefix.pch"; sourceTree = "<group>"; };
 		601423811CD098FF0089E278 /* Appointment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Appointment.xcdatamodel; sourceTree = "<group>"; };
-		601423821CD098FF0089E278 /* AppointmentCleanViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentCleanViewController.h; sourceTree = "<group>"; };
-		601423831CD098FF0089E278 /* AppointmentCleanViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentCleanViewController.m; sourceTree = "<group>"; };
+		601423821CD098FF0089E278 /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
+		601423831CD098FF0089E278 /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		601423841CD098FF0089E278 /* AppointmentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentInputViewController.h; sourceTree = "<group>"; };
 		601423851CD098FF0089E278 /* AppointmentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentInputViewController.m; sourceTree = "<group>"; };
 		601423871CD098FF0089E278 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
@@ -153,8 +153,8 @@
 				601423881CD098FF0089E278 /* AppointmentsViewController.m */,
 				601423841CD098FF0089E278 /* AppointmentInputViewController.h */,
 				601423851CD098FF0089E278 /* AppointmentInputViewController.m */,
-				601423821CD098FF0089E278 /* AppointmentCleanViewController.h */,
-				601423831CD098FF0089E278 /* AppointmentCleanViewController.m */,
+				601423821CD098FF0089E278 /* AppointmentDetailViewController.h */,
+				601423831CD098FF0089E278 /* AppointmentDetailViewController.m */,
 				601423971CD098FF0089E278 /* MapViewController.h */,
 				601423981CD098FF0089E278 /* MapViewController.m */,
 			);
@@ -356,7 +356,7 @@
 				6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */,
 				601423A41CD098FF0089E278 /* AppointmentCell.m in Sources */,
 				601423A61CD098FF0089E278 /* AppointmentStore.m in Sources */,
-				6014239D1CD098FF0089E278 /* AppointmentCleanViewController.m in Sources */,
+				6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */,
 				601423A31CD098FF0089E278 /* Appointment.m in Sources */,
 				6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */,
 				601423AB1CD098FF0089E278 /* MapViewController.m in Sources */,

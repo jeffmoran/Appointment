@@ -6,7 +6,7 @@
 @import EventKit;
 @import MessageUI;
 
-@interface AppointmentCleanViewController : UITableViewController <MFMailComposeViewControllerDelegate, RNGridMenuDelegate>
+@interface AppointmentDetailViewController : UITableViewController <MFMailComposeViewControllerDelegate, RNGridMenuDelegate>
 
 @property (nonatomic, strong) Appointment *appointment;
 

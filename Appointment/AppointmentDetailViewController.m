@@ -1,8 +1,8 @@
-#import "AppointmentCleanViewController.h"
+#import "AppointmentDetailViewController.h"
 #import "MapViewController.h"
 #import <ChameleonFramework/Chameleon.h>
 
-@implementation AppointmentCleanViewController
+@implementation AppointmentDetailViewController
 
 @synthesize contact, contactStore, event, eventStore, appointment;
 

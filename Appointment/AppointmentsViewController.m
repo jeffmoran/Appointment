@@ -3,7 +3,7 @@
 #import "Appointment.h"
 #import "AppointmentCell.h"
 #import "MapViewController.h"
-#import "AppointmentCleanViewController.h"
+#import "AppointmentDetailViewController.h"
 
 @implementation AppointmentsViewController
 
@@ -61,7 +61,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
 	if ([segue.identifier isEqualToString: @"Clean"]) {
 		
-		AppointmentCleanViewController *destViewController = segue.destinationViewController;
+		AppointmentDetailViewController *destViewController = segue.destinationViewController;
 		
 		NSIndexPath *indexPath = [self.tableView  indexPathForCell: sender];
 
