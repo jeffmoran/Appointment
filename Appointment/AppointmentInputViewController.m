@@ -1,5 +1,4 @@
 #import "AppointmentInputViewController.h"
-
 #import "Config.h"
 //Create a file called "Config.h" and add a NSString like so:
 
@@ -79,7 +78,7 @@
 	self.inputBaths = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputBaths"]];
 
 	//Set the frame for each pickerview/datepicker
-	CGRect pickerFrame = CGRectMake(0, 200, self.view.frame.size.width, 200);
+	CGRect pickerFrame = CGRectMake(0, 0, self.view.frame.size.width, 200);
 	self.pets_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
 	self.time_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
@@ -91,6 +90,7 @@
 
 	self.time_picker.datePickerMode = UIDatePickerModeDateAndTime;
 	self.time_picker.minuteInterval = 5;
+	self.time_picker.minimumDate = [NSDate date];
 	[self.time_picker addTarget:self action:@selector(setAppointmentTime:) forControlEvents:UIControlEventValueChanged];
 	
 	self.movein_picker.datePickerMode = UIDatePickerModeDate;
@@ -115,7 +115,7 @@
 	
 	UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
 																		   target:self
-																		   action:@selector(backToTopButtonPressed)];
+																		   action:@selector(clearButtonPressed)];
 	
 	self.navigationItem.rightBarButtonItems = @[save, clear];
 	
@@ -130,6 +130,9 @@
 	[self setUpConstraints];
 
 	[self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dismissKeyboardGesture)]];
+
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -148,12 +151,11 @@
 	self.petsField.text = appointment.petsName;
 	self.emailField.text = appointment.emailName;
 	self.zipCodeField.text = appointment.zipName;
-	
+
 	bedroomsStepper.value = self.roomsField.text.doubleValue;
 	bathroomsStepper.value = self.bathsField.text.doubleValue;
-	
-	// Change the navigation item to display name of item
-	self.navigationItem.title = appointment.itemName;
+
+	self.title = appointment.itemName;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -161,12 +163,14 @@
 }
 
 - (void)setUpConstraints {
+	self.scrollViewHeightConstraint = [self.scrollView.heightAnchor constraintEqualToConstant:self.view.frame.size.height];
+	[self.scrollViewHeightConstraint setActive:YES];
+
 	[NSLayoutConstraint
 	 activateConstraints:@[
 						   [self.scrollView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
 						   [self.scrollView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
 						   [self.scrollView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
-						   [self.scrollView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor],
 
 						   [self.contentView.leftAnchor constraintEqualToAnchor:self.scrollView.leftAnchor],
 						   [self.contentView.topAnchor constraintEqualToAnchor:self.scrollView.topAnchor],
@@ -274,6 +278,30 @@
 						   ]];
 }
 
+- (void)keyboardWillShow:(NSNotification *)notification {
+	NSDictionary *userInfo = [notification userInfo];
+
+	CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+
+	CGFloat viewHeight = self.view.frame.size.height - keyboardSize.height;
+
+	self.scrollViewHeightConstraint.constant = viewHeight;
+
+	[UIView animateWithDuration:0.2 animations:^{
+		[self.view layoutIfNeeded];
+	}];
+}
+
+- (void)keyboardWillHide:(NSNotification *)notification {
+	CGFloat viewHeight = self.view.frame.size.height;
+
+	self.scrollViewHeightConstraint.constant = viewHeight;
+
+	[UIView animateWithDuration:0.2 animations:^{
+		[self.view layoutIfNeeded];
+	}];
+}
+
 #pragma mark - Element Arrays and styling
 
 - (NSArray *)allInputFields {
@@ -375,7 +403,7 @@
 
 #pragma mark - Methods
 
-- (void)backToTopButtonPressed {
+- (void)clearButtonPressed {
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
 		textfield.text = nil;
 	}
@@ -624,20 +652,6 @@
 	return [self setNextResponder:textField] ? NO :YES;
 }
 
-- (void)textFieldDidBeginEditing:(UITextField *)textField {
-	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
-		if (textField.isFirstResponder) {
-			//works nicely (except iPhone 4S screen size) but needs to be less hardcoded
-			if (textField.frame.origin.y >= self.view.frame.size.height - 400) {
-				//same here
-				CGPoint point = CGPointMake(0, textField.frame.origin.y - 300);
-				NSLog(@"Point Height: %f", point.y);
-				[self.scrollView setContentOffset:point animated:YES];
-			}
-		}
-	}
-}
-
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	if (textField == self.zipCodeField) {
 		if (!([self.zipCodeField.text isEqual:@""] || [self.zipCodeField.text isEqualToString:@"Unavailable"])) {
@@ -650,8 +664,6 @@
 			NSLog(@"Zip code field is blank or unavailable, no JSON request");
 		}
 	}
-	
-	[self.scrollView setContentOffset: CGPointMake(0, -self.scrollView.contentInset.top) animated:YES];
 }
 
 - (BOOL)setNextResponder:(UITextField *)textField {

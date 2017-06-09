@@ -15,6 +15,8 @@
 }
 
 @property (strong, nonatomic) UIScrollView *scrollView;
+@property (strong, nonatomic) NSLayoutConstraint* scrollViewHeightConstraint;
+
 @property (strong, nonatomic) UIView *contentView;
 
 @property (strong, nonatomic) JVFloatLabeledTextField *nameField;
