@@ -12,7 +12,6 @@
 	NSInteger fieldIndex;
 	UIStepper *bedroomsStepper;
 	UIStepper *bathroomsStepper;
-	BOOL emptyFields;
 }
 
 @property (strong, nonatomic) IBOutlet UIScrollView *scrollView;
@@ -49,8 +48,6 @@
 @property (nonatomic, strong) UIDatePicker *time_picker;
 @property (nonatomic, strong) UIDatePicker *movein_picker;
 
-@property (nonatomic) BOOL isEditing;
-
-@property (nonatomic, strong) Appointment *item;
+@property (nonatomic, strong) Appointment *appointment;
 
 @end

@@ -22,8 +22,10 @@
 		NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles: nil];
 		
 		NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: model];
-		
-		NSURL *storeURL = [NSURL fileURLWithPath: [self itemArchivePath]];
+
+		NSString *documentDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
+
+		NSURL *storeURL = [NSURL fileURLWithPath: [documentDirectory stringByAppendingPathComponent:@"store.data"]];
 		
 		NSError *error = nil;
 		
@@ -32,25 +34,21 @@
 										 URL: storeURL
 									 options:@{NSMigratePersistentStoresAutomaticallyOption:@ YES, NSInferMappingModelAutomaticallyOption:@ YES}
 									   error: &error]) {
-			[NSException raise: @"Open failed"
-						format:@"Reason: %@", error.localizedDescription];
+
+			[NSException raise: @"Open failed" format:@"Reason: %@", error.localizedDescription];
 		}
 		
-		// Create the managed object context
 		objectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSMainQueueConcurrencyType];
 		objectContext.persistentStoreCoordinator = psc;
 		
-		// The managed object context can manage undo, but we don't need it
-		[objectContext setUndoManager: nil];
-		
-		[self loadAllItems: model];
+		[self loadAllAppointments: model];
 	}
 	
 	return self;
 }
 
-- (void)loadAllItems:(NSManagedObjectModel *)model {
-	if (!allItems) {
+- (void)loadAllAppointments:(NSManagedObjectModel *)model {
+	if (!allAppointments) {
 		NSFetchRequest *request = [[NSFetchRequest alloc] init];
 		
 		NSEntityDescription *entity = model.entitiesByName[@"Appointment"];
@@ -69,14 +67,8 @@
 						format:@"Reason: %@", error.localizedDescription];
 		}
 		
-		allItems = [[NSMutableArray alloc] initWithArray: result];
+		allAppointments = [[NSMutableArray alloc] initWithArray: result];
 	}
-}
-
-- (NSString *)itemArchivePath {
-	NSString *documentDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
-
-	return [documentDirectory stringByAppendingPathComponent:@"store.data"];
 }
 
 - (void)saveChanges {
@@ -94,19 +86,19 @@
 
 - (void)removeAppointment:(Appointment *)appointment {
 	[objectContext deleteObject: appointment];
-	[allItems removeObjectIdenticalTo: appointment];
+	[allAppointments removeObjectIdenticalTo: appointment];
 }
 
-- (NSArray *)allItems {
-	return allItems;
+- (NSArray *)allAppointments {
+	return allAppointments;
 }
 
-- (Appointment *)createItem {
-	Appointment *newItem = [NSEntityDescription insertNewObjectForEntityForName: @"Appointment" inManagedObjectContext: objectContext];
+- (Appointment *)createAppointment {
+	Appointment *newAppointment = [NSEntityDescription insertNewObjectForEntityForName: @"Appointment" inManagedObjectContext: objectContext];
 	
-	[allItems addObject: newItem];
+	[allAppointments addObject: newAppointment];
 	
-	return newItem;
+	return newAppointment;
 }
 
 @end

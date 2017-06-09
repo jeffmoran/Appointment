@@ -45,15 +45,9 @@
 #pragma mark - Add new appointment
 
 - (void)addNewAppointment {
-	Appointment *newAppointment = [[AppointmentStore shared] createItem];
-	
-	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
-	
-	detailViewController.item = newAppointment;
-	
-	detailViewController.isEditing = NO;
-	
-	[self.navigationController pushViewController: detailViewController animated: YES];
+	AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
+
+	[self.navigationController pushViewController: inputViewController animated: YES];
 }
 
 #pragma mark - Segue
@@ -65,7 +59,7 @@
 		
 		NSIndexPath *indexPath = [self.tableView  indexPathForCell: sender];
 
-		destViewController.appointment = [[AppointmentStore shared] allItems][indexPath.row];
+		destViewController.appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 	}
 }
 
@@ -75,10 +69,10 @@
 	if (self.tableView.editing) {
 		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
 		
-		NSArray *items = [[AppointmentStore shared] allItems];
+		NSArray *items = [[AppointmentStore shared] allAppointments];
 		Appointment *selectedItem = items[indexPath.row];
-		detailViewController.item = selectedItem;
-		detailViewController.isEditing = YES;
+		detailViewController.appointment = selectedItem;
+
 		[self.navigationController pushViewController: detailViewController animated: YES];
 	}
 	else {
@@ -92,39 +86,33 @@
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
-}
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [[AppointmentStore shared] allItems].count;
+	return [[AppointmentStore shared] allAppointments].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *CellIdentifier = @"CellIdentifier";
+	static NSString *cellIdentifier = @"appointmentCellIdentifier";
 
-	Appointment *s = [[AppointmentStore shared] allItems][indexPath.row];
+	Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 	
-	AppointmentCell *cell = (AppointmentCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-
-	NSLog(@"NEW CELL");
+	AppointmentCell *cell = (AppointmentCell *)[tableView dequeueReusableCellWithIdentifier: cellIdentifier];
 	
-	if (!([s.itemName isEqualToString: @""])){
-		cell.nameLabel.text = s.itemName;
+	if (!([appointment.itemName isEqualToString: @""])){
+		cell.nameLabel.text = appointment.itemName;
 	}
 	else {
 		cell.nameLabel.text = @"Client name unavailable";
 	}
 	
-	if (!([s.timeName isEqualToString: @""])){
-		cell.timeLabel.text = s.timeName;
+	if (!([appointment.timeName isEqualToString: @""])){
+		cell.timeLabel.text = appointment.timeName;
 	}
 	else {
 		cell.timeLabel.text = @"Appointment time unavailable";
 	}
 	
-	if (!([s.addressName isEqualToString: @""])) {
-		cell.addressLabel.text = [NSString stringWithFormat:@"%@ %@", s.addressName, s.zipName];
+	if (!([appointment.addressName isEqualToString: @""])) {
+		cell.addressLabel.text = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
 	}
 	else {
 		cell.addressLabel.text = @"Property address unavailable";
@@ -134,50 +122,27 @@
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	
-	if ([[AppointmentStore shared] allItems].count == 0) {
-		return 0;
-	}
-	else if ([[AppointmentStore shared] allItems].count == 1) {
-		switch (section) {
-			case 0:
-				return @"1 Appointment";
-				break;
-			default:
-				return @"";
-				break;
-		}
-	}
-	else {
-		switch (section) {
-			case 0:
-				return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)[[AppointmentStore shared] allItems].count];
-				break;
-			default:
-				return @"";
-				break;
-		}
+	if ([[AppointmentStore shared] allAppointments].count == 0) {
+		return @"";
+	} else if ([[AppointmentStore shared] allAppointments].count == 1) {
+		return @"1 Appointment";
+	} else {
+		return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)[[AppointmentStore shared] allAppointments].count];
+
 	}
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		AppointmentStore *itemStore = [AppointmentStore shared];
-		NSArray *items = [itemStore allItems];
-		Appointment *appointment = items[indexPath.row];
-		[itemStore removeAppointment: appointment];
-		
-		[tableView deleteRowsAtIndexPaths: @[indexPath]
-						 withRowAnimation: UITableViewRowAnimationFade];
-		
-		[self.tableView beginUpdates];
-		[self.tableView reloadData];
-		[self.tableView endUpdates];
-	}
-}
+		Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row ];
+		[[AppointmentStore shared] removeAppointment: appointment];
 
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-	return false;
+		[self.tableView beginUpdates];
+		[tableView deleteRowsAtIndexPaths: @[indexPath] withRowAnimation: UITableViewRowAnimationFade];
+		[self.tableView endUpdates];
+
+		[self.tableView reloadData];
+	}
 }
 
 #pragma mark - DZNEmptyDataSet
@@ -202,10 +167,6 @@
 								 NSParagraphStyleAttributeName: paragraph};
 	
 	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
-}
-
-- (BOOL)emptyDataSetShouldAllowScroll:(UIScrollView *)scrollView {
-	return YES;
 }
 
 @end

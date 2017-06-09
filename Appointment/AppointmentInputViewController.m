@@ -11,7 +11,7 @@
 
 @implementation AppointmentInputViewController
 
-@synthesize item;
+@synthesize appointment;
 
 #pragma mark - Lifecycle
 
@@ -108,7 +108,7 @@
 	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemCancel
 																						  target: self
-																						  action: @selector(doNotSave)];
+																						  action: @selector(popViewController)];
 	
 	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem: UIBarButtonSystemItemSave
 																		  target: self
@@ -135,27 +135,26 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear: animated];
-	
-	
-	self.nameField.text = item.itemName;
-	self.phoneField.text = item.phoneName;
-	self.moveindateField.text = item.moveindateName;
-	self.priceField.text = item.priceName;
-	self.neighborhoodField.text = item.neighborhoodName;
-	self.aptsizeField.text = item.aptsizeName;
-	self.roomsField.text = item.roomsName;
-	self.bathsField.text = item.bathsName;
-	self.timeField.text = item.timeName;
-	self.addressField.text = item.addressName;
-	self.petsField.text = item.petsName;
-	self.emailField.text = item.emailName;
-	self.zipCodeField.text = item.zipName;
+
+	self.nameField.text = appointment.itemName;
+	self.phoneField.text = appointment.phoneName;
+	self.moveindateField.text = appointment.moveindateName;
+	self.priceField.text = appointment.priceName;
+	self.neighborhoodField.text = appointment.neighborhoodName;
+	self.aptsizeField.text = appointment.aptsizeName;
+	self.roomsField.text = appointment.roomsName;
+	self.bathsField.text = appointment.bathsName;
+	self.timeField.text = appointment.timeName;
+	self.addressField.text = appointment.addressName;
+	self.petsField.text = appointment.petsName;
+	self.emailField.text = appointment.emailName;
+	self.zipCodeField.text = appointment.zipName;
 	
 	bedroomsStepper.value = self.roomsField.text.doubleValue;
 	bathroomsStepper.value = self.bathsField.text.doubleValue;
 	
 	// Change the navigation item to display name of item
-	self.navigationItem.title = item.itemName;
+	self.navigationItem.title = appointment.itemName;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -440,15 +439,15 @@
 #pragma mark - Save Methods
 
 - (void)saveButtonPressed {
+	BOOL emptyFields = NO;
+	
 	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
 		if (!((textfield.text).length > 0)) {
-			//textfield.text = @"Unavailable";
 			emptyFields = YES;
 		}
 	}
 	
 	if (emptyFields) {
-		NSLog(@"Empty fields");
 		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"You left one or more fields empty." preferredStyle:UIAlertControllerStyleAlert];
 		
 		UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save"
@@ -465,57 +464,43 @@
 		[alert addAction:cancel];
 		
 		[self presentViewController:alert animated:YES completion:nil];
-	}
-	else {
-		NSLog(@"No empty fields");
-		item.itemName = self.nameField.text;
-		item.phoneName = self.phoneField.text;
-		item.moveindateName = self.moveindateField.text;
-		item.priceName = self.priceField.text;
-		item.neighborhoodName = self.neighborhoodField.text;
-		item.aptsizeName = self.aptsizeField.text;
-		item.roomsName = self.roomsField.text;
-		item.bathsName = self.bathsField.text;
-		item.timeName = self.timeField.text;
-		item.addressName = self.addressField.text;
-		item.petsName = self.petsField.text;
-		item.emailName = self.emailField.text;
-		item.zipName = self.zipCodeField.text;
-		
-		NSLog(@"Saving appointment.");
-		[self.navigationController popViewControllerAnimated: YES];
+	} else {
+		[self save];
 	}
 }
 
 - (void)save {
-	item.itemName = self.nameField.text;
-	item.phoneName = self.phoneField.text;
-	item.moveindateName = self.moveindateField.text;
-	item.priceName = self.priceField.text;
-	item.neighborhoodName = self.neighborhoodField.text;
-	item.aptsizeName = self.aptsizeField.text;
-	item.roomsName = self.roomsField.text;
-	item.bathsName = self.bathsField.text;
-	item.timeName = self.timeField.text;
-	item.addressName = self.addressField.text;
-	item.petsName = self.petsField.text;
-	item.emailName = self.emailField.text;
-	item.zipName = self.zipCodeField.text;
+	if (appointment) {
+		// if an appointment exists here, we are in editing mode
+		// delete the appointment first
+		[[AppointmentStore shared] removeAppointment: appointment];
+	}
+
+	// create new appointment based off whatever is in the textFields
+	Appointment *newAppointment = [[AppointmentStore shared] createAppointment];
+
+	newAppointment.itemName = self.nameField.text;
+	newAppointment.phoneName = self.phoneField.text;
+	newAppointment.moveindateName = self.moveindateField.text;
+	newAppointment.priceName = self.priceField.text;
+	newAppointment.neighborhoodName = self.neighborhoodField.text;
+	newAppointment.aptsizeName = self.aptsizeField.text;
+	newAppointment.roomsName = self.roomsField.text;
+	newAppointment.bathsName = self.bathsField.text;
+	newAppointment.timeName = self.timeField.text;
+	newAppointment.addressName = self.addressField.text;
+	newAppointment.petsName = self.petsField.text;
+	newAppointment.emailName = self.emailField.text;
+	newAppointment.zipName = self.zipCodeField.text;
 	
-	NSLog(@"Saving appointment.");
+	// save the appointment
+	[[AppointmentStore shared] saveChanges];
+
 	[self.navigationController popViewControllerAnimated: YES];
 }
 
-- (void)doNotSave {
-	if (!self.isEditing) {
-		NSLog(@"New appointment, not saving");
-		[[AppointmentStore shared] removeAppointment: item];
-		[self.navigationController popViewControllerAnimated: YES];
-	}
-	else {
-		NSLog(@"Existing appointment, not saving");
-		[self.navigationController popViewControllerAnimated: YES];
-	}
+- (void)popViewController {
+	[self.navigationController popViewControllerAnimated: YES];
 }
 
 #pragma mark - URL Request & JSON Parse
