@@ -50,15 +50,10 @@
 	locationManager.desiredAccuracy = kCLLocationAccuracyBest;
 	
 	[locationManager requestWhenInUseAuthorization];
-	
+
 	self.title = address;
 	
 	firstLaunch = true;
-}
-
-- (void)viewDidUnload {
-	[self setMapView:nil];
-	[super viewDidUnload];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -111,10 +106,6 @@
 	[self.navigationController setToolbarHidden:YES animated:YES];
 }
 
-- (void)viewDidDisappear:(BOOL)animated {
-	[super viewDidDisappear:animated];
-}
-
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
 }
@@ -122,16 +113,9 @@
 #pragma mark - Toolbar methods
 
 - (void)zoomToLocation {
-	NSLog(@"Zoom to location");
-	MKCoordinateRegion region;
-	MKCoordinateSpan span;
-	span.latitudeDelta = 0.005;
-	span.longitudeDelta = 0.005;
-	CLLocationCoordinate2D location;
-	location.latitude = locationAnnotation.coordinate.latitude;
-	location.longitude = locationAnnotation.coordinate.longitude;
-	region.span = span;
-	region.center = location;
+	MKCoordinateSpan span = MKCoordinateSpanMake(0.005, 0.005);
+	CLLocationCoordinate2D location = CLLocationCoordinate2DMake(locationAnnotation.coordinate.latitude, locationAnnotation.coordinate.longitude);
+	MKCoordinateRegion region = MKCoordinateRegionMake(location, span);
 	
 	NSArray *selectedAnnotations = mapView.selectedAnnotations;
 
@@ -140,7 +124,6 @@
 	}
 	
 	[mapView selectAnnotation:locationAnnotation animated:YES];
-	
 	[mapView setRegion:region animated:YES];
 }
 
