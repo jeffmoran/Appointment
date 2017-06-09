@@ -523,7 +523,7 @@
 - (void)doNotSave {
 	if (!self.isEditing) {
 		NSLog(@"New appointment, not saving");
-		[[AppointmentStore sharedStore] removeItem: item];
+		[[AppointmentStore shared] removeAppointment: item];
 		[self.navigationController popViewControllerAnimated: YES];
 	}
 	else {

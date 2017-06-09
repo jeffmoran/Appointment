@@ -45,7 +45,7 @@
 #pragma mark - Add new appointment
 
 - (void)addNewAppointment {
-	Appointment *newAppointment = [[AppointmentStore sharedStore] createItem];
+	Appointment *newAppointment = [[AppointmentStore shared] createItem];
 	
 	AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
 	
@@ -65,7 +65,7 @@
 		
 		NSIndexPath *indexPath = [self.tableView  indexPathForCell: sender];
 
-		destViewController.appointment = [[AppointmentStore sharedStore] allItems][indexPath.row];
+		destViewController.appointment = [[AppointmentStore shared] allItems][indexPath.row];
 	}
 }
 
@@ -75,7 +75,7 @@
 	if (self.tableView.editing == YES) {
 		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
 		
-		NSArray *items = [[AppointmentStore sharedStore] allItems];
+		NSArray *items = [[AppointmentStore shared] allItems];
 		Appointment *selectedItem = items[indexPath.row];
 		detailViewController.item = selectedItem;
 		detailViewController.isEditing = YES;
@@ -97,13 +97,13 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [[AppointmentStore sharedStore] allItems].count;
+	return [[AppointmentStore shared] allItems].count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *CellIdentifier = @"CellIdentifier";
 
-	Appointment *s = [[AppointmentStore sharedStore] allItems][indexPath.row];
+	Appointment *s = [[AppointmentStore shared] allItems][indexPath.row];
 	
 	AppointmentCell *cell = (AppointmentCell *)[tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
@@ -135,10 +135,10 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
 	
-	if ([[AppointmentStore sharedStore] allItems].count == 0) {
+	if ([[AppointmentStore shared] allItems].count == 0) {
 		return 0;
 	}
-	else if ([[AppointmentStore sharedStore] allItems].count == 1) {
+	else if ([[AppointmentStore shared] allItems].count == 1) {
 		switch (section) {
 			case 0:
 				return @"1 Appointment";
@@ -151,7 +151,7 @@
 	else {
 		switch (section) {
 			case 0:
-				return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)[[AppointmentStore sharedStore] allItems].count];
+				return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)[[AppointmentStore shared] allItems].count];
 				break;
 			default:
 				return @"";
@@ -162,10 +162,10 @@
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		AppointmentStore *itemStore = [AppointmentStore sharedStore];
+		AppointmentStore *itemStore = [AppointmentStore shared];
 		NSArray *items = [itemStore allItems];
 		Appointment *appointment = items[indexPath.row];
-		[itemStore removeItem: appointment];
+		[itemStore removeAppointment: appointment];
 		
 		[tableView deleteRowsAtIndexPaths: @[indexPath]
 						 withRowAnimation: UITableViewRowAnimationFade];
