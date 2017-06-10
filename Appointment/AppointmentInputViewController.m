@@ -33,20 +33,6 @@
 	self.roomsField = [[JVFloatLabeledTextField alloc] init];
 	self.bathsField = [[JVFloatLabeledTextField alloc] init];
 
-	bedroomsStepper = [[UIStepper alloc] init];
-	bedroomsStepper.translatesAutoresizingMaskIntoConstraints = NO;
-	bedroomsStepper.stepValue = 0.5;
-	bedroomsStepper.minimumValue = 0.0;
-	
-	[bedroomsStepper addTarget:self action:@selector(bedBathStepper:) forControlEvents:UIControlEventValueChanged];
-	
-	bathroomsStepper = [[UIStepper alloc] init];
-	bathroomsStepper.translatesAutoresizingMaskIntoConstraints = NO;
-	bathroomsStepper.stepValue = 0.5;
-	bathroomsStepper.minimumValue = 0.0;
-	
-	[bathroomsStepper addTarget:self action:@selector(bedBathStepper:) forControlEvents:UIControlEventValueChanged];
-
 	//Set placeholder text for each textfield
 	self.nameField.placeholder = @" Client Name";
 	self.emailField.placeholder = @" Client Email Address";
@@ -123,9 +109,6 @@
 	[self textFieldStylingAndProperties];
 	[self pickerStylingAndProperties];
 	[self imageViewStylingAndProperties];
-	
-	[self.contentView addSubview:bedroomsStepper];
-	[self.contentView addSubview:bathroomsStepper];
 
 	[self setUpConstraints];
 
@@ -133,29 +116,26 @@
 
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillShow:) name:UIKeyboardWillShowNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(keyboardWillHide:) name:UIKeyboardWillHideNotification object:nil];
-}
 
-- (void)viewWillAppear:(BOOL)animated {
-	[super viewWillAppear:animated];
+	if (appointment) {
+		self.nameField.text = appointment.clientName;
+		self.phoneField.text = appointment.clientPhone;
+		self.moveindateField.text = appointment.moveInDate;
+		self.priceField.text = appointment.price;
+		self.neighborhoodField.text = appointment.city;
+		self.aptsizeField.text = appointment.size;
+		self.roomsField.text = appointment.roomsCount;
+		self.bathsField.text = appointment.bathsCount;
+		self.timeField.text = appointment.appointmentTime;
+		self.addressField.text = appointment.address;
+		self.petsField.text = appointment.pets;
+		self.emailField.text = appointment.clientEmail;
+		self.zipCodeField.text = appointment.zipCode;
 
-	self.nameField.text = appointment.itemName;
-	self.phoneField.text = appointment.phoneName;
-	self.moveindateField.text = appointment.moveindateName;
-	self.priceField.text = appointment.priceName;
-	self.neighborhoodField.text = appointment.neighborhoodName;
-	self.aptsizeField.text = appointment.aptsizeName;
-	self.roomsField.text = appointment.roomsName;
-	self.bathsField.text = appointment.bathsName;
-	self.timeField.text = appointment.timeName;
-	self.addressField.text = appointment.addressName;
-	self.petsField.text = appointment.petsName;
-	self.emailField.text = appointment.emailName;
-	self.zipCodeField.text = appointment.zipName;
-
-	bedroomsStepper.value = self.roomsField.text.doubleValue;
-	bathroomsStepper.value = self.bathsField.text.doubleValue;
-
-	self.title = appointment.itemName;
+		self.title = appointment.clientName;
+	} else {
+		self.title = @"New Appointment";
+	}
 }
 
 - (void)didReceiveMemoryWarning {
@@ -263,18 +243,12 @@
 
 						   [self.roomsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
 						   [self.roomsField.topAnchor constraintEqualToAnchor:self.aptsizeField.bottomAnchor constant:8],
-						   [self.roomsField.rightAnchor constraintEqualToAnchor:bedroomsStepper.leftAnchor constant: -8],
+						   [self.roomsField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 
 						   [self.bathsField.leftAnchor constraintEqualToAnchor:self.nameField.leftAnchor],
 						   [self.bathsField.topAnchor constraintEqualToAnchor:self.roomsField.bottomAnchor constant:8],
-						   [self.bathsField.rightAnchor constraintEqualToAnchor:bathroomsStepper.leftAnchor constant:-8],
+						   [self.bathsField.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 						   [self.bathsField.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor constant:-20],
-
-						   [bedroomsStepper.centerYAnchor constraintEqualToAnchor:self.roomsField.centerYAnchor],
-						   [bedroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
-						   
-						   [bathroomsStepper.centerYAnchor constraintEqualToAnchor:self.bathsField.centerYAnchor],
-						   [bathroomsStepper.rightAnchor constraintEqualToAnchor:self.nameField.rightAnchor],
 						   ]];
 }
 
@@ -408,9 +382,6 @@
 		textfield.text = nil;
 	}
 	
-	bedroomsStepper.value = 0.0;
-	bathroomsStepper.value = 0.0;
-	
 	[self.nameField becomeFirstResponder];
 }
 
@@ -439,16 +410,6 @@
 
 	if (!(fieldIndex == [self allInputFields].count - 1)) {
 		[[self allInputFields][fieldIndex + 1] becomeFirstResponder];
-	}
-}
-
-- (void)bedBathStepper:(UIStepper *)stepper {
-	if (stepper == bedroomsStepper) {
-		self.roomsField.text = [NSString stringWithFormat:@"%.1f", bedroomsStepper.value];
-	}
-
-	if (stepper == bathroomsStepper) {
-		self.bathsField.text = [NSString stringWithFormat:@"%.1f", bathroomsStepper.value];
 	}
 }
 
@@ -519,19 +480,19 @@
 	// create new appointment based off whatever is in the textFields
 	Appointment *newAppointment = [[AppointmentStore shared] createAppointment];
 
-	newAppointment.itemName = self.nameField.text;
-	newAppointment.phoneName = self.phoneField.text;
-	newAppointment.moveindateName = self.moveindateField.text;
-	newAppointment.priceName = self.priceField.text;
-	newAppointment.neighborhoodName = self.neighborhoodField.text;
-	newAppointment.aptsizeName = self.aptsizeField.text;
-	newAppointment.roomsName = self.roomsField.text;
-	newAppointment.bathsName = self.bathsField.text;
-	newAppointment.timeName = self.timeField.text;
-	newAppointment.addressName = self.addressField.text;
-	newAppointment.petsName = self.petsField.text;
-	newAppointment.emailName = self.emailField.text;
-	newAppointment.zipName = self.zipCodeField.text;
+	newAppointment.clientName = self.nameField.text;
+	newAppointment.clientPhone = self.phoneField.text;
+	newAppointment.moveInDate = self.moveindateField.text;
+	newAppointment.price = self.priceField.text;
+	newAppointment.city = self.neighborhoodField.text;
+	newAppointment.size = self.aptsizeField.text;
+	newAppointment.roomsCount = self.roomsField.text;
+	newAppointment.bathsCount = self.bathsField.text;
+	newAppointment.appointmentTime = self.timeField.text;
+	newAppointment.address = self.addressField.text;
+	newAppointment.pets = self.petsField.text;
+	newAppointment.clientEmail = self.emailField.text;
+	newAppointment.zipCode = self.zipCodeField.text;
 	
 	// save the appointment
 	[[AppointmentStore shared] saveChanges];

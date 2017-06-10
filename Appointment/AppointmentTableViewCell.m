@@ -70,20 +70,20 @@
 }
 
 - (void)setUpAppointmentValues {
-	if (!([appointment.itemName isEqualToString:@""])) {
-		appointmentClientNameLabel.text = appointment.itemName;
+	if (!([appointment.clientName isEqualToString:@""])) {
+		appointmentClientNameLabel.text = appointment.clientName;
 	} else {
 		appointmentClientNameLabel.text = @"Client name unavailable";
 	}
 
-	if (!([appointment.addressName isEqualToString:@""])) {
-		appointmentAddressLabel.text = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
+	if (!([appointment.address isEqualToString:@""])) {
+		appointmentAddressLabel.text = [NSString stringWithFormat:@"%@ %@", appointment.address, appointment.zipCode];
 	} else {
 		appointmentAddressLabel.text = @"Property address unavailable";
 	}
 
-	if (!([appointment.timeName isEqualToString:@""])) {
-		appointmentTimeLabel.text = appointment.timeName;
+	if (!([appointment.appointmentTime isEqualToString:@""])) {
+		appointmentTimeLabel.text = appointment.appointmentTime;
 	} else {
 		appointmentTimeLabel.text = @"Appointment time unavailable";
 	}

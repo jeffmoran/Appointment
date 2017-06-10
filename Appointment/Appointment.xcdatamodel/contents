@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Appointment" representedClassName="Appointment" syncable="YES">
-        <attribute name="addressName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="aptsizeName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="bathsName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="emailName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="itemName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="moveindateName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="neighborhoodName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="petsName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="phoneName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="priceName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="roomsName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="timeName" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="zipName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appointmentTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="bathsCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clientEmail" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clientName" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="clientPhone" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="moveInDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="pets" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="roomsCount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="size" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
         <element name="Appointment" positionX="0" positionY="0" width="128" height="240"/>

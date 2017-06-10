@@ -3,19 +3,19 @@
 
 @interface Appointment : NSManagedObject
 
-@property (nonatomic, retain) NSString *itemName;
-@property (nonatomic, retain) NSString *phoneName;
-@property (nonatomic, retain) NSString *moveindateName;
-@property (nonatomic, retain) NSString *priceName;
-@property (nonatomic, retain) NSString *neighborhoodName;
-@property (nonatomic, retain) NSString *aptsizeName;
-@property (nonatomic, retain) NSString *roomsName;
-@property (nonatomic, retain) NSString *bathsName;
-@property (nonatomic, retain) NSString *timeName;
-@property (nonatomic, retain) NSString *addressName;
-@property (nonatomic, retain) NSString *petsName;
-@property (nonatomic, retain) NSString *emailName;
-@property (nonatomic, retain) NSString *zipName;
+@property (nonatomic, retain) NSString *address;
+@property (nonatomic, retain) NSString *appointmentTime;
+@property (nonatomic, retain) NSString *bathsCount;
+@property (nonatomic, retain) NSString *city;
+@property (nonatomic, retain) NSString *clientEmail;
+@property (nonatomic, retain) NSString *clientName;
+@property (nonatomic, retain) NSString *clientPhone;
+@property (nonatomic, retain) NSString *moveInDate;
+@property (nonatomic, retain) NSString *pets;
+@property (nonatomic, retain) NSString *price;
+@property (nonatomic, retain) NSString *roomsCount;
+@property (nonatomic, retain) NSString *size;
+@property (nonatomic, retain) NSString *zipCode;
 
 - (NSArray *)appointmentPropertiesHeader;
 - (NSArray *)appointmentProperties;

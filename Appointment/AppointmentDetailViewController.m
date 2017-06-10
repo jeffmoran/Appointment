@@ -20,11 +20,11 @@
 
 //	_calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\n Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 //	
-//	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", appointment.itemName, self.phoneString, appointment.timeName, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
+//	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", appointment.clientName, self.phoneString, appointment.appointmentTime, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 
 	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:@"appointmentDetailCellIdentifier"];
 
-	self.title = appointment.itemName;
+	self.title = appointment.clientName;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -36,10 +36,10 @@
 - (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
 	switch (itemIndex) {
 		case 0:
-			[self makeCallWithString:appointment.phoneName];
+			[self makeCallWithString:appointment.clientPhone];
 			break;
 		case 1:
-			[self makeEmailWithEmailString:appointment.emailName andTimeString:appointment.timeName andNameString:appointment.itemName];
+			[self makeEmailWithEmailString:appointment.clientEmail andTimeString:appointment.appointmentTime andNameString:appointment.clientName];
 			break;
 		case 2:
 			//[self goToMapView];
@@ -145,7 +145,7 @@
 	eventStore = [[EKEventStore alloc] init];
 	
 	UIAlertController *alertController = [UIAlertController
-										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.timeName, appointment.itemName]
+										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentTime, appointment.clientName]
 										  message: @"Add this appointment to your calendar?"
 										  preferredStyle:UIAlertControllerStyleAlert];
 	
@@ -188,8 +188,8 @@
 													NSLog(@"The app is authorized to access the service.");
 													
 													event = [EKEvent eventWithEventStore:eventStore];
-													event.title = [NSString stringWithFormat: @"%@ appointment with %@", appointment.timeName, appointment.itemName];
-													event.location = [NSString stringWithFormat: @"%@", appointment.addressName];
+													event.title = [NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentTime, appointment.clientName];
+													event.location = [NSString stringWithFormat: @"%@", appointment.address];
 													event.notes = _calendarNotesString;
 													
 													static NSDateFormatter *dateFormatter = nil;
@@ -200,8 +200,8 @@
 														dateFormatter.dateFormat = @"MMMM d, yyyy h:mm aa";
 													}
 													
-													event.startDate = [dateFormatter dateFromString:appointment.timeName];
-													event.endDate = [NSDate dateWithTimeInterval:3600 sinceDate:[dateFormatter dateFromString:appointment.timeName]];
+													event.startDate = [dateFormatter dateFromString:appointment.appointmentTime];
+													event.endDate = [NSDate dateWithTimeInterval:3600 sinceDate:[dateFormatter dateFromString:appointment.appointmentTime]];
 													
 													NSLog(@"Event startDate %@", event.startDate);
 													NSLog(@"Event endDate%@",  event.endDate);
@@ -287,7 +287,7 @@
 
 - (void)goToMapView {
 	MapViewController *mapVC = [[MapViewController alloc] init];
-	mapVC.address = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
+	mapVC.address = [NSString stringWithFormat:@"%@ %@", appointment.address, appointment.zipCode];
 
 	[self.navigationController pushViewController:mapVC animated:YES];
 }
@@ -298,7 +298,7 @@
 	contact = [[CNMutableContact alloc] init];
 	
 	UIAlertController *alertController = [UIAlertController
-										  alertControllerWithTitle:[NSString stringWithFormat: @"%@", appointment.itemName]
+										  alertControllerWithTitle:[NSString stringWithFormat: @"%@", appointment.clientName]
 										  message:@"Add this person to your contacts?"
 										  preferredStyle:UIAlertControllerStyleAlert];
 	
@@ -343,9 +343,9 @@
 												}
 												case CNAuthorizationStatusAuthorized:
 													NSLog(@"The application is authorized to access contact data.");
-													contact.givenName = appointment.itemName;
-													contact.phoneNumbers = @[[CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:appointment.phoneName]]];
-													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel:CNLabelHome value:appointment.emailName]];
+													contact.givenName = appointment.clientName;
+													contact.phoneNumbers = @[[CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:appointment.clientPhone]]];
+													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel:CNLabelHome value:appointment.clientEmail]];
 													
 													[self saveNewContact];
 													break;
@@ -389,7 +389,7 @@
 		NSLog(@"Contact saved.");
 		
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact saved successfully.", appointment.itemName]
+											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact saved successfully.", appointment.clientName]
 											  message:nil
 											  preferredStyle:UIAlertControllerStyleAlert];
 		
@@ -404,7 +404,7 @@
 		NSLog(@"Contact not saved. %@", saveError);
 		
 		UIAlertController *alertController = [UIAlertController
-											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact not saved.", appointment.itemName]
+											  alertControllerWithTitle:[NSString stringWithFormat: @"%@ contact not saved.", appointment.clientName]
 											  message: @"Please check your Contact Permissions in Settings and try again."
 											  preferredStyle:UIAlertControllerStyleAlert];
 		

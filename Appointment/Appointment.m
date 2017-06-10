@@ -2,19 +2,19 @@
 
 @implementation Appointment
 
-@dynamic itemName;
-@dynamic emailName;
-@dynamic phoneName;
-@dynamic timeName;
-@dynamic addressName;
-@dynamic zipName;
-@dynamic neighborhoodName;
-@dynamic moveindateName;
-@dynamic petsName;
-@dynamic priceName;
-@dynamic aptsizeName;
-@dynamic roomsName;
-@dynamic bathsName;
+@dynamic address;
+@dynamic appointmentTime;
+@dynamic bathsCount;
+@dynamic city;
+@dynamic clientEmail;
+@dynamic clientName;
+@dynamic clientPhone;
+@dynamic moveInDate;
+@dynamic pets;
+@dynamic price;
+@dynamic roomsCount;
+@dynamic size;
+@dynamic zipCode;
 
 - (NSArray *)appointmentPropertiesHeader {
 	return @[@"Client Name",
@@ -33,19 +33,19 @@
 }
 
 - (NSArray *)appointmentProperties {
-	return @[self.itemName,
-			 self.emailName,
-			 self.phoneName,
-			 self.timeName,
-			 self.addressName,
-			 self.zipName,
-			 self.neighborhoodName,
-			 self.moveindateName,
-			 self.petsName,
-			 [NSString stringWithFormat:@"$%@ Per Month", self.priceName],
-			 [NSString stringWithFormat:@"%@ Sq. Ft.", self.priceName],
-			 self.roomsName,
-			 self.bathsName];
+	return @[self.clientName,
+			 self.clientEmail,
+			 self.clientPhone,
+			 self.appointmentTime,
+			 self.address,
+			 self.zipCode,
+			 self.city,
+			 self.moveInDate,
+			 self.pets,
+			 [NSString stringWithFormat:@"$%@ Per Month", self.price],
+			 [NSString stringWithFormat:@"%@ Sq. Ft.", self.size],
+			 self.roomsCount,
+			 self.bathsCount];
 }
 
 @end

@@ -19,29 +19,29 @@
 	self = [super init];
 	
 	if (self) {
-		NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles: nil];
+		NSManagedObjectModel *model = [NSManagedObjectModel mergedModelFromBundles:nil];
 		
-		NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel: model];
+		NSPersistentStoreCoordinator *psc = [[NSPersistentStoreCoordinator alloc] initWithManagedObjectModel:model];
 
 		NSString *documentDirectory = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES)[0];
 
-		NSURL *storeURL = [NSURL fileURLWithPath: [documentDirectory stringByAppendingPathComponent:@"store.data"]];
+		NSURL *storeURL = [NSURL fileURLWithPath:[documentDirectory stringByAppendingPathComponent:@"store.data"]];
 		
 		NSError *error = nil;
 		
 		if (![psc addPersistentStoreWithType:NSSQLiteStoreType
-							   configuration: nil
-										 URL: storeURL
+							   configuration:nil
+										 URL:storeURL
 									 options:@{NSMigratePersistentStoresAutomaticallyOption:@ YES, NSInferMappingModelAutomaticallyOption:@ YES}
 									   error: &error]) {
 
 			[NSException raise: @"Open failed" format:@"Reason: %@", error.localizedDescription];
 		}
 		
-		objectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType: NSMainQueueConcurrencyType];
+		objectContext = [[NSManagedObjectContext alloc] initWithConcurrencyType:NSMainQueueConcurrencyType];
 		objectContext.persistentStoreCoordinator = psc;
 		
-		[self loadAllAppointments: model];
+		[self loadAllAppointments:model];
 	}
 	
 	return self;
@@ -60,14 +60,14 @@
 		//request.sortDescriptors = @[sortDescriptor];
 		
 		NSError *error;
-		NSArray *result = [objectContext executeFetchRequest: request error:&error];
+		NSArray *result = [objectContext executeFetchRequest:request error:&error];
 		
 		if (!result) {
-			[NSException raise: @"Fetch failed"
+			[NSException raise:@"Fetch failed"
 						format:@"Reason: %@", error.localizedDescription];
 		}
 		
-		allAppointments = [[NSMutableArray alloc] initWithArray: result];
+		allAppointments = [[NSMutableArray alloc] initWithArray:result];
 	}
 }
 
@@ -75,8 +75,8 @@
 	NSError *err = nil;
 
 	if ([objectContext hasChanges]) {
-		[objectContext save: &err];
-		[objectContext performBlockAndWait: ^{
+		[objectContext save:&err];
+		[objectContext performBlockAndWait:^{
 			if (err) {
 				NSLog(@"Error saving: %@", err.localizedDescription);
 			}
@@ -85,8 +85,8 @@
 }
 
 - (void)removeAppointment:(Appointment *)appointment {
-	[objectContext deleteObject: appointment];
-	[allAppointments removeObjectIdenticalTo: appointment];
+	[objectContext deleteObject:appointment];
+	[allAppointments removeObjectIdenticalTo:appointment];
 }
 
 - (NSArray *)allAppointments {
@@ -94,9 +94,9 @@
 }
 
 - (Appointment *)createAppointment {
-	Appointment *newAppointment = [NSEntityDescription insertNewObjectForEntityForName: @"Appointment" inManagedObjectContext: objectContext];
+	Appointment *newAppointment = [NSEntityDescription insertNewObjectForEntityForName:@"Appointment" inManagedObjectContext:objectContext];
 	
-	[allAppointments addObject: newAppointment];
+	[allAppointments addObject:newAppointment];
 	
 	return newAppointment;
 }

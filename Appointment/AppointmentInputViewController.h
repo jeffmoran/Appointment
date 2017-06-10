@@ -10,8 +10,6 @@
 @interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
     NSArray *petsArray;
 	NSInteger fieldIndex;
-	UIStepper *bedroomsStepper;
-	UIStepper *bathroomsStepper;
 }
 
 @property (strong, nonatomic) UIScrollView *scrollView;
