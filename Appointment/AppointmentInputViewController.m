@@ -19,19 +19,19 @@
 	petsArray = @[@"Yes", @"No", @"Some"];
 
 	//Set the frame for each textfield
-	self.nameField = [[JVFloatLabeledTextField alloc] init];
-	self.emailField = [[JVFloatLabeledTextField alloc] init];
-	self.phoneField = [[JVFloatLabeledTextField alloc] init];
-	self.timeField = [[JVFloatLabeledTextField alloc] init];
-	self.addressField = [[JVFloatLabeledTextField alloc] init];
-	self.zipCodeField = [[JVFloatLabeledTextField alloc] init];
-	self.neighborhoodField = [[JVFloatLabeledTextField alloc] init];
-	self.moveindateField = [[JVFloatLabeledTextField alloc] init];
-	self.petsField = [[JVFloatLabeledTextField alloc] init];
-	self.priceField = [[JVFloatLabeledTextField alloc] init];
-	self.aptsizeField = [[JVFloatLabeledTextField alloc] init];
-	self.roomsField = [[JVFloatLabeledTextField alloc] init];
-	self.bathsField = [[JVFloatLabeledTextField alloc] init];
+	self.nameField = [[InputTextField alloc] init];
+	self.emailField = [[InputTextField alloc] init];
+	self.phoneField = [[InputTextField alloc] init];
+	self.timeField = [[InputTextField alloc] init];
+	self.addressField = [[InputTextField alloc] init];
+	self.zipCodeField = [[InputTextField alloc] init];
+	self.neighborhoodField = [[InputTextField alloc] init];
+	self.moveindateField = [[InputTextField alloc] init];
+	self.petsField = [[InputTextField alloc] init];
+	self.priceField = [[InputTextField alloc] init];
+	self.aptsizeField = [[InputTextField alloc] init];
+	self.roomsField = [[InputTextField alloc] init];
+	self.bathsField = [[InputTextField alloc] init];
 
 	//Set placeholder text for each textfield
 	self.nameField.placeholder = @" Client Name";
@@ -66,6 +66,9 @@
 	//Set the frame for each pickerview/datepicker
 	CGRect pickerFrame = CGRectMake(0, 0, self.view.frame.size.width, 200);
 	self.pets_picker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+	self.pets_picker.delegate = self;
+	self.pets_picker.showsSelectionIndicator = YES;
+
 	self.time_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	
@@ -107,7 +110,6 @@
 	
 	//	Styling and profiling
 	[self textFieldStylingAndProperties];
-	[self pickerStylingAndProperties];
 	[self imageViewStylingAndProperties];
 
 	[self setUpConstraints];
@@ -282,10 +284,6 @@
 	return @[self.nameField, self.emailField, self.phoneField, self.timeField, self.addressField, self.zipCodeField, self.neighborhoodField, self.moveindateField, self.petsField, self.priceField, self.aptsizeField, self.roomsField, self.bathsField];
 }
 
-- (NSArray *)allInputPickers {
-	return @[self.pets_picker];
-}
-
 - (NSArray *)allImageViews {
 	return @[self.inputName, self.inputEmail, self.inputPhone, self.inputTime, self.inputAddress, self.inputZip, self.inputMoveInDate, self.inputPets, self.inputPrice, self.inputNeighborhood, self.inputAptSize, self.inputRooms, self.inputBaths];
 }
@@ -316,24 +314,9 @@
 	[toolbarItems addObject:doneButton];
 	
 	toolbar.items = toolbarItems;
-	
-	for (UIView *view in [self allInputFields]) {
-		view.layer.borderColor = [UIColor darkGrayColor].CGColor;
-		view.layer.borderWidth = .7;
-		view.layer.cornerRadius = 5;
-		view.layer.backgroundColor = [UIColor whiteColor].CGColor;
-	}
-	
-	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
-		textField.translatesAutoresizingMaskIntoConstraints = NO;
-		textField.font = [UIFont fontWithName:@"HelveticaNeue-Light" size:16];
-		textField.floatingLabelFont = [UIFont fontWithName:@"HelveticaNeue-Light" size:11];
-		textField.floatingLabelTextColor = [UIColor grayColor];
-		textField.clearButtonMode = UITextFieldViewModeAlways;
-		textField.autocapitalizationType = UITextAutocapitalizationTypeWords;
-		textField.autocorrectionType = UITextAutocorrectionTypeYes;
-		textField.delegate = self;
 
+	for (InputTextField *textField in [self allInputFields]) {
+		textField.delegate = self;
 		textField.inputAccessoryView = toolbar;
 		
 		[self.contentView addSubview:textField];
@@ -358,27 +341,21 @@
 	}
 }
 
-- (void)pickerStylingAndProperties {
-	for (UIPickerView *picker in [self allInputPickers]) {
-		picker.delegate = self;
-		[picker setShowsSelectionIndicator:YES];
-	}
-}
-
 - (void)imageViewStylingAndProperties {
 	for (UIImageView *imageView in [self allImageViews]) {
 		imageView.translatesAutoresizingMaskIntoConstraints = NO;
-		[[imageView.heightAnchor constraintEqualToConstant:32] setActive:YES];
-		[[imageView.widthAnchor constraintEqualToConstant:32] setActive:YES];
 
 		[self.contentView addSubview:imageView];
+
+		[[imageView.heightAnchor constraintEqualToConstant:32] setActive:YES];
+		[[imageView.widthAnchor constraintEqualToConstant:32] setActive:YES];
 	}
 }
 
 #pragma mark - Methods
 
 - (void)clearButtonPressed {
-	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
+	for (InputTextField *textfield in [self allInputFields]) {
 		textfield.text = nil;
 	}
 	
@@ -390,7 +367,7 @@
 }
 
 - (void)backButtonPressed {
-	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
+	for (InputTextField *textField in [self allInputFields]) {
 		if (textField.isFirstResponder) {
 			fieldIndex = [[self allInputFields] indexOfObject:textField];
 		}
@@ -402,7 +379,7 @@
 }
 
 - (void)nextButtonPressed {
-	for (JVFloatLabeledTextField *textField in [self allInputFields]) {
+	for (InputTextField *textField in [self allInputFields]) {
 		if (textField.isFirstResponder) {
 			fieldIndex = [[self allInputFields] indexOfObject:textField];
 		}
@@ -450,7 +427,7 @@
 - (void)saveButtonPressed {
 	BOOL emptyFields = NO;
 	
-	for (JVFloatLabeledTextField *textfield in [self allInputFields]) {
+	for (InputTextField *textfield in [self allInputFields]) {
 		if (!((textfield.text).length > 0)) {
 			emptyFields = YES;
 		}

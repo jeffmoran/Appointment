@@ -1,9 +1,8 @@
 #import <UIKit/UIKit.h>
-#import "JVFloatLabeledTextField.h"
-#import "JVFloatLabeledTextView.h"
 #import "Appointment.h"
 #import "AppointmentStore.h"
 #import "AppointmentsViewController.h"
+#import "InputTextField.h"
 
 @import ChameleonFramework;
 
@@ -17,19 +16,19 @@
 
 @property (strong, nonatomic) UIView *contentView;
 
-@property (strong, nonatomic) JVFloatLabeledTextField *nameField;
-@property (strong, nonatomic) JVFloatLabeledTextField *emailField;
-@property (strong, nonatomic) JVFloatLabeledTextField *phoneField;
-@property (strong, nonatomic) JVFloatLabeledTextField *timeField;
-@property (strong, nonatomic) JVFloatLabeledTextField *addressField;
-@property (strong, nonatomic) JVFloatLabeledTextField *zipCodeField;
-@property (strong, nonatomic) JVFloatLabeledTextField *moveindateField;
-@property (strong, nonatomic) JVFloatLabeledTextField *priceField;
-@property (strong, nonatomic) JVFloatLabeledTextField *neighborhoodField;
-@property (strong, nonatomic) JVFloatLabeledTextField *aptsizeField;
-@property (strong, nonatomic) JVFloatLabeledTextField *roomsField;
-@property (strong, nonatomic) JVFloatLabeledTextField *bathsField;
-@property (strong, nonatomic) JVFloatLabeledTextField *petsField;
+@property (strong, nonatomic) InputTextField *nameField;
+@property (strong, nonatomic) InputTextField *emailField;
+@property (strong, nonatomic) InputTextField *phoneField;
+@property (strong, nonatomic) InputTextField *timeField;
+@property (strong, nonatomic) InputTextField *addressField;
+@property (strong, nonatomic) InputTextField *zipCodeField;
+@property (strong, nonatomic) InputTextField *moveindateField;
+@property (strong, nonatomic) InputTextField *priceField;
+@property (strong, nonatomic) InputTextField *neighborhoodField;
+@property (strong, nonatomic) InputTextField *aptsizeField;
+@property (strong, nonatomic) InputTextField *roomsField;
+@property (strong, nonatomic) InputTextField *bathsField;
+@property (strong, nonatomic) InputTextField *petsField;
 
 @property (nonatomic, strong) UIImageView *inputName;
 @property (nonatomic, strong) UIImageView *inputEmail;

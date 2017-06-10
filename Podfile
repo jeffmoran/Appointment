@@ -5,7 +5,6 @@ target 'Appointment' do
 inhibit_all_warnings!
 use_frameworks!
 
-pod 'JVFloatLabeledTextField'
 pod 'RNGridMenu'
 pod 'DZNEmptyDataSet'
 pod 'ChameleonFramework'
