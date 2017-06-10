@@ -4,7 +4,7 @@
 
 @implementation AppointmentDetailViewController
 
-@synthesize contact, contactStore, event, eventStore, appointment;
+@synthesize appointment;
 
 #pragma mark -  Lifecycle
 
@@ -142,7 +142,7 @@
 }
 
 - (void)createNewCalendarEvent {
-	eventStore = [[EKEventStore alloc] init];
+	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	
 	UIAlertController *alertController = [UIAlertController
 										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentTime, appointment.clientName]
@@ -187,21 +187,13 @@
 												case EKAuthorizationStatusAuthorized: {
 													NSLog(@"The app is authorized to access the service.");
 													
-													event = [EKEvent eventWithEventStore:eventStore];
+													EKEvent *event = [EKEvent eventWithEventStore:eventStore];
 													event.title = [NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentTime, appointment.clientName];
 													event.location = [NSString stringWithFormat: @"%@", appointment.address];
 													event.notes = _calendarNotesString;
-													
-													static NSDateFormatter *dateFormatter = nil;
-													
-													if (!dateFormatter) {
-														NSLog(@"dateFormatter alloc");
-														dateFormatter = [[NSDateFormatter alloc] init];
-														dateFormatter.dateFormat = @"MMMM d, yyyy h:mm aa";
-													}
-													
-													event.startDate = [dateFormatter dateFromString:appointment.appointmentTime];
-													event.endDate = [NSDate dateWithTimeInterval:3600 sinceDate:[dateFormatter dateFromString:appointment.appointmentTime]];
+
+													event.startDate = appointment.appointmentTime;
+													event.endDate = [NSDate dateWithTimeInterval:3600 sinceDate:appointment.appointmentTime];
 													
 													NSLog(@"Event startDate %@", event.startDate);
 													NSLog(@"Event endDate%@",  event.endDate);
@@ -213,8 +205,8 @@
 													
 													event.alarms = alarms;
 													event.calendar = eventStore.defaultCalendarForNewEvents;
-													
-													[self saveNewEvent];
+
+													[self saveNewEvent:event store:eventStore];
 												}
 													break;
 												case EKAuthorizationStatusDenied: {
@@ -247,7 +239,7 @@
 	[self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)saveNewEvent {
+- (void)saveNewEvent:(EKEvent *)event store:(EKEventStore *)eventStore {
 	NSError *saveError;
 	
 	if ([eventStore saveEvent:event span:EKSpanThisEvent error:&saveError]) {
@@ -293,10 +285,6 @@
 }
 
 - (void)createNewContact {
-	//Initialize contactStore and contact
-	contactStore = [[CNContactStore alloc] init];
-	contact = [[CNMutableContact alloc] init];
-	
 	UIAlertController *alertController = [UIAlertController
 										  alertControllerWithTitle:[NSString stringWithFormat: @"%@", appointment.clientName]
 										  message:@"Add this person to your contacts?"
@@ -311,7 +299,7 @@
 								actionWithTitle:@"Yes"
 								style:UIAlertActionStyleDefault
 								handler:^(UIAlertAction *action) {
-									//Request access from contactStore
+									CNContactStore *contactStore = [[CNContactStore alloc] init];
 									[contactStore requestAccessForEntityType: CNEntityTypeContacts completionHandler: ^(BOOL accessGranted, NSError *_Nullable error) {
 										
 										//Create authorizationStatus and assign it to CNContactStore
@@ -319,10 +307,11 @@
 										dispatch_async(dispatch_get_main_queue(), ^{
 											
 											switch (authorizationStatus) {
-												case CNAuthorizationStatusNotDetermined:
+												case CNAuthorizationStatusNotDetermined: {
 													NSLog(@"The user has not yet made a choice regarding whether the application may access contact data.");
 													NSLog(@"%@", error);
 													break;
+												}
 												case CNAuthorizationStatusRestricted: {
 													NSLog(@"The application is not authorized to access contact data. The user cannot change this application’s status, possibly due to active restrictions such as parental controls being in place.");
 													
@@ -341,14 +330,18 @@
 													[self presentViewController:alertController animated:YES completion:nil];
 													break;
 												}
-												case CNAuthorizationStatusAuthorized:
+												case CNAuthorizationStatusAuthorized: {
 													NSLog(@"The application is authorized to access contact data.");
+
+													CNMutableContact *contact = [[CNMutableContact alloc] init];
+
 													contact.givenName = appointment.clientName;
 													contact.phoneNumbers = @[[CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:appointment.clientPhone]]];
 													contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel:CNLabelHome value:appointment.clientEmail]];
 													
-													[self saveNewContact];
+													[self saveNewContact:contact store:contactStore];
 													break;
+												}
 												case CNAuthorizationStatusDenied: {
 													NSLog(@"The user explicitly denied access to contact data for the application.");
 													
@@ -379,7 +372,7 @@
 	[self presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)saveNewContact {
+- (void)saveNewContact:(CNMutableContact *)contact store:(CNContactStore *)contactStore {
 	CNSaveRequest *saveRequest = [[CNSaveRequest alloc] init];
 	[saveRequest addContact:contact toContainerWithIdentifier:nil];
 	

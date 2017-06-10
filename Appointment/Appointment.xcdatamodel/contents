@@ -2,13 +2,13 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="12141" systemVersion="16F73" minimumToolsVersion="Xcode 7.3" sourceLanguage="Objective-C" userDefinedModelVersionIdentifier="">
     <entity name="Appointment" representedClassName="Appointment" syncable="YES">
         <attribute name="address" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="appointmentTime" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="appointmentTime" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="bathsCount" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="city" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="clientEmail" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="clientName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="clientPhone" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="moveInDate" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="moveInDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="pets" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roomsCount" optional="YES" attributeType="String" syncable="YES"/>

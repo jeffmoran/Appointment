@@ -120,13 +120,13 @@
 	if (appointment) {
 		self.nameField.text = appointment.clientName;
 		self.phoneField.text = appointment.clientPhone;
-		self.moveindateField.text = appointment.moveInDate;
+		self.moveindateField.text = [self moveInDateString:appointment.moveInDate];
 		self.priceField.text = appointment.price;
 		self.neighborhoodField.text = appointment.city;
 		self.aptsizeField.text = appointment.size;
 		self.roomsField.text = appointment.roomsCount;
 		self.bathsField.text = appointment.bathsCount;
-		self.timeField.text = appointment.appointmentTime;
+		self.timeField.text = [self appointmentDateString:appointment.appointmentTime];
 		self.addressField.text = appointment.address;
 		self.petsField.text = appointment.pets;
 		self.emailField.text = appointment.clientEmail;
@@ -415,26 +415,34 @@
 
 #pragma mark - Picker Methods
 
-- (void)setAppointmentTime:(UIDatePicker *)datePicker {
-	static NSDateFormatter *dateFormatterAppointmentTime = nil;
-	
-	if (!dateFormatterAppointmentTime) {
-		dateFormatterAppointmentTime = [[NSDateFormatter alloc] init];
-		dateFormatterAppointmentTime.dateFormat = @"MMMM d, yyyy h:mm aa";
+- (NSString *)appointmentDateString:(NSDate *)date {
+	static NSDateFormatter *formatter = nil;
+
+	if (!formatter) {
+		formatter = [[NSDateFormatter alloc] init];
+		formatter.dateFormat = @"MMMM d, yyyy h:mm aa";
 	}
-	
-	self.timeField.text = [dateFormatterAppointmentTime stringFromDate:datePicker.date];
+
+	return [formatter stringFromDate:date];
+}
+
+- (NSString *)moveInDateString:(NSDate *)date {
+	static NSDateFormatter *formatter = nil;
+
+	if (!formatter) {
+		formatter = [[NSDateFormatter alloc] init];
+		formatter.dateStyle = NSDateFormatterLongStyle;
+	}
+
+	return [formatter stringFromDate:date];
+}
+
+- (void)setAppointmentTime:(UIDatePicker *)datePicker {
+	self.timeField.text = [self appointmentDateString:datePicker.date];
 }
 
 - (void)setMoveInDate:(UIDatePicker *)datePicker {
-	static NSDateFormatter *dateFormatterMoveIn = nil;
-	
-	if (!dateFormatterMoveIn) {
-		dateFormatterMoveIn = [[NSDateFormatter alloc] init];
-		dateFormatterMoveIn.dateStyle = NSDateFormatterLongStyle;
-	}
-	
-	self.moveindateField.text = [dateFormatterMoveIn stringFromDate:datePicker.date];
+	self.moveindateField.text = [self moveInDateString:datePicker.date];
 }
 
 #pragma mark - Save Methods
@@ -482,13 +490,13 @@
 
 	newAppointment.clientName = self.nameField.text;
 	newAppointment.clientPhone = self.phoneField.text;
-	newAppointment.moveInDate = self.moveindateField.text;
+	newAppointment.moveInDate = self.movein_picker.date;
 	newAppointment.price = self.priceField.text;
 	newAppointment.city = self.neighborhoodField.text;
 	newAppointment.size = self.aptsizeField.text;
 	newAppointment.roomsCount = self.roomsField.text;
 	newAppointment.bathsCount = self.bathsField.text;
-	newAppointment.appointmentTime = self.timeField.text;
+	newAppointment.appointmentTime = self.time_picker.date;
 	newAppointment.address = self.addressField.text;
 	newAppointment.pets = self.petsField.text;
 	newAppointment.clientEmail = self.emailField.text;
@@ -610,7 +618,7 @@
 		[self.view endEditing:YES];
 	}
 	
-	return [self setNextResponder:textField] ? NO :YES;
+	return [self setNextResponder:textField] ? NO : YES;
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

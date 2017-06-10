@@ -36,16 +36,38 @@
 	return @[self.clientName,
 			 self.clientEmail,
 			 self.clientPhone,
-			 self.appointmentTime,
+			 [self appointmentDateString:self.appointmentTime],
 			 self.address,
 			 self.zipCode,
 			 self.city,
-			 self.moveInDate,
+			 [self moveInDateString:self.moveInDate],
 			 self.pets,
 			 [NSString stringWithFormat:@"$%@ Per Month", self.price],
 			 [NSString stringWithFormat:@"%@ Sq. Ft.", self.size],
 			 self.roomsCount,
 			 self.bathsCount];
+}
+
+- (NSString *)appointmentDateString:(NSDate *)date {
+	static NSDateFormatter *formatter = nil;
+
+	if (!formatter) {
+		formatter = [[NSDateFormatter alloc] init];
+		formatter.dateFormat = @"MMMM d, yyyy h:mm aa";
+	}
+
+	return [formatter stringFromDate:date];
+}
+
+- (NSString *)moveInDateString:(NSDate *)date {
+	static NSDateFormatter *formatter = nil;
+
+	if (!formatter) {
+		formatter = [[NSDateFormatter alloc] init];
+		formatter.dateStyle = NSDateFormatterLongStyle;
+	}
+
+	return [formatter stringFromDate:date];
 }
 
 @end
