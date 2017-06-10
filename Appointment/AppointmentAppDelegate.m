@@ -1,10 +1,7 @@
 #import "AppointmentAppDelegate.h"
 #import "AppointmentStore.h"
 #import <ChameleonFramework/Chameleon.h>
-
-@interface AppointmentAppDelegate ()
-
-@end
+#import "AppointmentsViewController.h"
 
 @implementation AppointmentAppDelegate
 
@@ -20,6 +17,14 @@
 	NSDictionary *attributesDict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
 	
 	[UINavigationBar appearance].titleTextAttributes = attributesDict;
+
+	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+
+	AppointmentsViewController *mainVC = [[AppointmentsViewController alloc] init];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainVC];
+
+	self.window.rootViewController = navigationController;
+	[self.window makeKeyAndVisible];
 	
 	return YES;
 }

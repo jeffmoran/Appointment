@@ -15,6 +15,8 @@
 
 	self.title = @"Appointments";
 
+	self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+
 	UIBarButtonItem *newAppointment = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
 																					target:self
 																					action:@selector(addNewAppointment)];
@@ -27,6 +29,7 @@
 	self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: newAppointment, settings, nil];
 
 	self.tableView.allowsSelectionDuringEditing = YES;
+
 
 	self.tableView.emptyDataSetSource = self;
 	self.tableView.emptyDataSetDelegate = self;
@@ -72,32 +75,25 @@
 	[self presentViewController:navigationController animated:YES completion:nil];
 }
 
-#pragma mark - Segue
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString:@"Clean"]) {
-		
-		AppointmentDetailViewController *destViewController = segue.destinationViewController;
-		
-		NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-
-		destViewController.appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
-	}
-}
-
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.tableView.editing) {
-		AppointmentInputViewController *detailViewController = [[AppointmentInputViewController alloc] init];
+		AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
 		
 		NSArray *items = [[AppointmentStore shared] allAppointments];
 		Appointment *selectedItem = items[indexPath.row];
-		detailViewController.appointment = selectedItem;
+		inputViewController.appointment = selectedItem;
+
+		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inputViewController];
+
+		[self presentViewController:navigationController animated:YES completion:nil];
+	} else {
+		AppointmentDetailViewController *detailViewController = [[AppointmentDetailViewController alloc] init];
+
+		detailViewController.appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 
 		[self.navigationController pushViewController:detailViewController animated:YES];
-	} else {
-		[self performSegueWithIdentifier:@"Clean" sender:[tableView cellForRowAtIndexPath:indexPath]];
 	}
 }
 

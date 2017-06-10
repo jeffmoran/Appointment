@@ -1,14 +1,6 @@
 #import "MapViewController.h"
 #import <ChameleonFramework/Chameleon.h>
 
-@interface MapViewController () {
-	CLLocationManager *locationManager;
-	BOOL firstLaunch;
-	MKPointAnnotation *locationAnnotation;
-}
-
-@end
-
 @implementation MapViewController
 
 @synthesize mapView, address;
@@ -18,6 +10,8 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
+	[self setUpMapView];
+
 	MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
 	request.naturalLanguageQuery = address;
 	request.region = mapView.region;
@@ -108,6 +102,22 @@
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning];
+}
+
+- (void)setUpMapView {
+	self.mapView = [[MKMapView alloc] init];
+	self.mapView.translatesAutoresizingMaskIntoConstraints = NO;
+
+	[self.view addSubview:mapView];
+
+	[NSLayoutConstraint
+	 activateConstraints:@[
+						   [self.mapView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+						   [self.mapView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+						   [self.mapView.topAnchor constraintEqualToAnchor:self.topLayoutGuide.bottomAnchor],
+						   [self.mapView.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.topAnchor],
+						   ]];
+
 }
 
 #pragma mark - Toolbar methods

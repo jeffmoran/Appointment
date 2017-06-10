@@ -42,12 +42,12 @@
 			[self makeEmailWithEmailString:appointment.emailName andTimeString:appointment.timeName andNameString:appointment.itemName];
 			break;
 		case 2:
-			//[self segueIntoMapView];
+			//[self goToMapView];
 			//NSTimer is temporary solution to "Unbalanced calls to begin/end appearance transitions" bug
 			//NSTimer is set to wait .26 seconds for RNGridMenu to completely dismiss.
 			[NSTimer scheduledTimerWithTimeInterval:.26
 											 target:self
-										   selector:@selector(segueIntoMapView)
+										   selector:@selector(goToMapView)
 										   userInfo:nil
 											repeats:NO];
 			break;
@@ -285,10 +285,11 @@
 	}
 }
 
-- (void)segueIntoMapView {
-	if (self.navigationController.visibleViewController == self) {
-		[self performSegueWithIdentifier:@"map" sender:self];
-	}
+- (void)goToMapView {
+	MapViewController *mapVC = [[MapViewController alloc] init];
+	mapVC.address = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
+
+	[self.navigationController pushViewController:mapVC animated:YES];
 }
 
 - (void)createNewContact {
@@ -415,13 +416,6 @@
 		[alertController addAction:cancelAction];
 		
 		[self presentViewController:alertController animated:YES completion:nil];
-	}
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-	if ([segue.identifier isEqualToString: @"map"]) {
-		MapViewController *destViewController = segue.destinationViewController;
-		destViewController.address = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
 	}
 }
 
