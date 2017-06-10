@@ -1,7 +1,7 @@
 #import "AppointmentsViewController.h"
 #import "AppointmentStore.h"
 #import "Appointment.h"
-#import "AppointmentCell.h"
+#import "AppointmentTableViewCell.h"
 #import "MapViewController.h"
 #import "AppointmentDetailViewController.h"
 
@@ -14,7 +14,6 @@
 	
 	self.title = @"Appointments";
 
-	self.navigationItem.leftBarButtonItem = self.editButtonItem;
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
 																						   target:self
 																						   action:@selector(addNewAppointment)];
@@ -24,6 +23,11 @@
 	self.tableView.emptyDataSetSource = self;
 	self.tableView.emptyDataSetDelegate = self;
 	self.tableView.tableFooterView = [UIView new];
+
+	[self.tableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:@"appointmentCellIdentifier"];
+
+	self.tableView.rowHeight = UITableViewAutomaticDimension;
+	self.tableView.estimatedRowHeight = 80.0;
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -63,7 +67,7 @@
 	}
 }
 
-#pragma mark - TableView Delegate
+#pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (self.tableView.editing) {
@@ -79,13 +83,15 @@
 	}
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 75;
-}
-
-#pragma mark - Table view data source
+#pragma mark - UITableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+	if ([[AppointmentStore shared] allAppointments].count > 0) {
+		self.navigationItem.leftBarButtonItem = self.editButtonItem;
+	} else {
+		self.navigationItem.leftBarButtonItem = nil;
+	}
+
 	return [[AppointmentStore shared] allAppointments].count;
 }
 
@@ -94,26 +100,14 @@
 
 	Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 	
-	AppointmentCell *cell = (AppointmentCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+
+	cell = [[AppointmentTableViewCell alloc] init];
 	
-	if (!([appointment.itemName isEqualToString:@""])) {
-		cell.nameLabel.text = appointment.itemName;
-	} else {
-		cell.nameLabel.text = @"Client name unavailable";
-	}
-	
-	if (!([appointment.timeName isEqualToString:@""])) {
-		cell.timeLabel.text = appointment.timeName;
-	} else {
-		cell.timeLabel.text = @"Appointment time unavailable";
-	}
-	
-	if (!([appointment.addressName isEqualToString:@""])) {
-		cell.addressLabel.text = [NSString stringWithFormat:@"%@ %@", appointment.addressName, appointment.zipName];
-	} else {
-		cell.addressLabel.text = @"Property address unavailable";
-	}
-	
+	cell.appointment = appointment;
+
+	[cell setUpAppointmentValues];
+
 	return cell;
 }
 

@@ -14,7 +14,6 @@
 		601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423881CD098FF0089E278 /* AppointmentsViewController.m */; };
 		601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */; };
 		601423A31CD098FF0089E278 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238D1CD098FF0089E278 /* Appointment.m */; };
-		601423A41CD098FF0089E278 /* AppointmentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238F1CD098FF0089E278 /* AppointmentCell.m */; };
 		601423A61CD098FF0089E278 /* AppointmentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423921CD098FF0089E278 /* AppointmentStore.m */; };
 		601423A81CD098FF0089E278 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601423941CD098FF0089E278 /* Launch Screen.storyboard */; };
 		601423A91CD098FF0089E278 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423951CD098FF0089E278 /* main.m */; };
@@ -32,6 +31,7 @@
 		CA0F3EA417E25B3C003FE3BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */; };
 		CA71FDCA17DD25F000E1BFB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */; };
 		CA9CCD1017DE3FDF00F1BF90 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */; };
+		CAB523621EEB3A8400EED18C /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB523611EEB3A8400EED18C /* AppointmentTableViewCell.m */; };
 		CAD8426817D42EDC00A584E9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8426717D42EDC00A584E9 /* CoreLocation.framework */; };
 		CAD8426A17D42EE100A584E9 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAD8426917D42EE100A584E9 /* MapKit.framework */; };
 		CADF935C17D4147C00DEE67D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CADF935B17D4147B00DEE67D /* QuartzCore.framework */; };
@@ -52,8 +52,6 @@
 		6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6014238C1CD098FF0089E278 /* Appointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appointment.h; sourceTree = "<group>"; };
 		6014238D1CD098FF0089E278 /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
-		6014238E1CD098FF0089E278 /* AppointmentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentCell.h; sourceTree = "<group>"; };
-		6014238F1CD098FF0089E278 /* AppointmentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentCell.m; sourceTree = "<group>"; };
 		601423911CD098FF0089E278 /* AppointmentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppointmentStore.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		601423921CD098FF0089E278 /* AppointmentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentStore.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		601423931CD098FF0089E278 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +77,8 @@
 		CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		CAB523601EEB3A8400EED18C /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
+		CAB523611EEB3A8400EED18C /* AppointmentTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentTableViewCell.m; sourceTree = "<group>"; };
 		CAD8426717D42EDC00A584E9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CAD8426917D42EE100A584E9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CADF935B17D4147B00DEE67D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
@@ -151,8 +151,8 @@
 		8A5280961EEA1E9D004C221B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				6014238E1CD098FF0089E278 /* AppointmentCell.h */,
-				6014238F1CD098FF0089E278 /* AppointmentCell.m */,
+				CAB523601EEB3A8400EED18C /* AppointmentTableViewCell.h */,
+				CAB523611EEB3A8400EED18C /* AppointmentTableViewCell.m */,
 				8A5280981EEA1FD9004C221B /* AppointmentDetailTableViewCell.h */,
 				8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */,
 				601423961CD098FF0089E278 /* MainStoryboard.storyboard */,
@@ -357,9 +357,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAB523621EEB3A8400EED18C /* AppointmentTableViewCell.m in Sources */,
 				601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */,
 				6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */,
-				601423A41CD098FF0089E278 /* AppointmentCell.m in Sources */,
 				8A52809A1EEA1FD9004C221B /* AppointmentDetailTableViewCell.m in Sources */,
 				601423A61CD098FF0089E278 /* AppointmentStore.m in Sources */,
 				6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */,
