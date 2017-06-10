@@ -4,6 +4,7 @@
 #import "AppointmentTableViewCell.h"
 #import "MapViewController.h"
 #import "AppointmentDetailViewController.h"
+#import "SettingsViewController.h"
 
 @implementation AppointmentsViewController
 
@@ -11,15 +12,22 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+
 	self.title = @"Appointments";
 
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-																						   target:self
-																						   action:@selector(addNewAppointment)];
-	
+	UIBarButtonItem *newAppointment = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
+																					target:self
+																					action:@selector(addNewAppointment)];
+
+	UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
+																 style:UIBarButtonItemStyleDone
+																target:self
+																action:@selector(goToSettings)];
+
+	self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: newAppointment, settings, nil];
+
 	self.tableView.allowsSelectionDuringEditing = YES;
-	
+
 	self.tableView.emptyDataSetSource = self;
 	self.tableView.emptyDataSetDelegate = self;
 	self.tableView.tableFooterView = [UIView new];
@@ -42,6 +50,14 @@
 	
 }
 
+- (void)goToSettings {
+	SettingsViewController *settingsVC = [[SettingsViewController alloc] init];
+
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:settingsVC];
+
+	[self presentViewController:navigationController animated:YES completion:nil];
+}
+
 - (void)reloadData {
 	[self.tableView reloadData];
 }
@@ -51,7 +67,9 @@
 - (void)addNewAppointment {
 	AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
 
-	[self.navigationController pushViewController:inputViewController animated:YES];
+	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inputViewController];
+
+	[self presentViewController:navigationController animated:YES completion:nil];
 }
 
 #pragma mark - Segue

@@ -107,7 +107,7 @@
 	
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
 																						  target:self
-																						  action:@selector(popViewController)];
+																						  action:@selector(dismissVC)];
 
 	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
 																		  target:self
@@ -536,11 +536,11 @@
 	// save the appointment
 	[[AppointmentStore shared] saveChanges];
 
-	[self.navigationController popViewControllerAnimated:YES];
+	[self dismissVC];
 }
 
-- (void)popViewController {
-	[self.navigationController popViewControllerAnimated:YES];
+- (void)dismissVC {
+	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - URL Request & JSON Parse

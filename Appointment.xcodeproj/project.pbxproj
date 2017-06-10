@@ -21,6 +21,7 @@
 		601423AB1CD098FF0089E278 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423981CD098FF0089E278 /* MapViewController.m */; };
 		605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F92C51CCC142B00F4FC1C /* Images.xcassets */; };
 		8A52809A1EEA1FD9004C221B /* AppointmentDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */; };
+		8AAAF5481EEB7D1900C06A6A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAAF5471EEB7D1900C06A6A /* SettingsViewController.m */; };
 		BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0E4EB2143262F700F05B13 /* CoreData.framework */; };
 		BE4E18E8140D9EB80007F01B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E7140D9EB80007F01B /* UIKit.framework */; };
 		BE4E18EA140D9EB80007F01B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E9140D9EB80007F01B /* Foundation.framework */; };
@@ -65,6 +66,8 @@
 		8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appointment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5280981EEA1FD9004C221B /* AppointmentDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailTableViewCell.h; sourceTree = "<group>"; };
 		8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailTableViewCell.m; sourceTree = "<group>"; };
+		8AAAF5461EEB7D1900C06A6A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
+		8AAAF5471EEB7D1900C06A6A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		9F2FFF213473ED0E1479D86F /* Pods-Appointment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appointment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appointment/Pods-Appointment.release.xcconfig"; sourceTree = "<group>"; };
 		BE0E4EB2143262F700F05B13 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BE4E18E3140D9EB80007F01B /* Appointment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appointment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +173,8 @@
 				601423851CD098FF0089E278 /* AppointmentInputViewController.m */,
 				601423821CD098FF0089E278 /* AppointmentDetailViewController.h */,
 				601423831CD098FF0089E278 /* AppointmentDetailViewController.m */,
+				8AAAF5461EEB7D1900C06A6A /* SettingsViewController.h */,
+				8AAAF5471EEB7D1900C06A6A /* SettingsViewController.m */,
 				601423971CD098FF0089E278 /* MapViewController.h */,
 				601423981CD098FF0089E278 /* MapViewController.m */,
 			);
@@ -360,6 +365,7 @@
 				CAB523621EEB3A8400EED18C /* AppointmentTableViewCell.m in Sources */,
 				601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */,
 				6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */,
+				8AAAF5481EEB7D1900C06A6A /* SettingsViewController.m in Sources */,
 				8A52809A1EEA1FD9004C221B /* AppointmentDetailTableViewCell.m in Sources */,
 				601423A61CD098FF0089E278 /* AppointmentStore.m in Sources */,
 				6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */,
