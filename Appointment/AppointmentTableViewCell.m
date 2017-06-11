@@ -83,14 +83,7 @@
 	}
 
 	if (appointment.appointmentTime) {
-		static NSDateFormatter *dateFormatterAppointmentTime = nil;
-
-		if (!dateFormatterAppointmentTime) {
-			dateFormatterAppointmentTime = [[NSDateFormatter alloc] init];
-			dateFormatterAppointmentTime.dateFormat = @"MMMM d, yyyy h:mm aa";
-		}
-
-		appointmentTimeLabel.text = [dateFormatterAppointmentTime stringFromDate:appointment.appointmentTime] ;
+		appointmentTimeLabel.text = appointment.appointmentDateString;
 	} else {
 		appointmentTimeLabel.text = @"Appointment time unavailable";
 	}

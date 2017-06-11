@@ -19,5 +19,9 @@
 
 - (NSArray *)appointmentPropertiesHeader;
 - (NSArray *)appointmentProperties;
+- (NSString *)appointmentDateString;
+- (NSString *)moveInDateString;
+- (NSString *)calendarNotesString;
+- (NSString *)emailBodyString;
 
 @end

@@ -18,9 +18,6 @@
 																			 target:self
 																			 action:@selector(showGrid)];
 
-//	_calendarNotesString = [NSString stringWithFormat: @"Property Address: %@\n\nClient Number: %@\n\nMove-In Date: %@\n\nPets Allowed: %@\n\nProperty Price: %@\n\nNeighborhood: %@\n\n Size: %@\n\nNumber of Bedrooms: %@\n\nNumber of Bathrooms: %@\n\nAccess: %@\n\nGuarantor: %@", self.addressString, self.phoneString, self.moveInDateString, self.petsString, self.priceString, self.neighborhoodString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
-//	
-//	_emailBodyString = [NSString stringWithFormat: @"<b>Client Name:</b><br/>%@  <br/><br/> <b>Client Number:</b><br/>%@ <br/><br/><b>Appointment Time:</b><br/>%@ <br/><br/> <b>Property Address:</b><br/>%@ %@ <br/><br/>  <b>Neighborhood:</b><br/>%@ <br/><br/><b>Property Price:</b><br/>%@<br/><br/><b>Move-In Date:</b><br/>%@ <br/><br/> <b>Pets Allowed:</b><br/>%@ <br/><br/><b>Size:</b><br/>%@ Sq. Ft.<br/><br/> <b>Number of Bedrooms:</b><br/>%@ <br/><br/> <b>Number of Bathrooms:</b><br/>%@ <br/><br/> <b>Access:</b><br/>%@ <br/><br/> <b>Guarantor:</b><br/>%@", appointment.clientName, self.phoneString, appointment.appointmentTime, self.addressString, self.zipString, self.neighborhoodString, self.priceString, self.moveInDateString, self.petsString, self.aptsizeString, self.roomsString, self.bathsString, self.accessString, self.guarantorString];
 
 	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:@"appointmentDetailCellIdentifier"];
 
@@ -39,7 +36,7 @@
 			[self makeCallWithString:appointment.clientPhone];
 			break;
 		case 1:
-			[self makeEmailWithEmailString:appointment.clientEmail andTimeString:appointment.appointmentTime andNameString:appointment.clientName];
+			[self showEmailComposer];
 			break;
 		case 2:
 			//[self goToMapView];
@@ -110,8 +107,7 @@
 	}
 }
 
-- (void)makeEmailWithEmailString:(NSString *)email andTimeString:(NSString *)time andNameString:(NSString *)name {
-	
+- (void)showEmailComposer {
 	if ([MFMailComposeViewController canSendMail]) {
 		MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
 		
@@ -119,9 +115,9 @@
 		
 		controller.mailComposeDelegate = self;
 		
-		[controller setSubject: [NSString stringWithFormat: @"%@ Appointment With %@", time, name]];
-		[controller setToRecipients: @[email]];
-		[controller setMessageBody:_emailBodyString isHTML:YES];
+		[controller setSubject: [NSString stringWithFormat: @"%@ Appointment With %@", appointment.appointmentDateString, appointment.clientName]];
+		[controller setToRecipients: @[appointment.clientEmail]];
+		[controller setMessageBody:appointment.emailBodyString isHTML:YES];
 		
 		[self presentViewController:controller animated:YES completion:nil];
 	} else {
@@ -145,7 +141,7 @@
 	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	
 	UIAlertController *alertController = [UIAlertController
-										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentTime, appointment.clientName]
+										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentDateString, appointment.clientName]
 										  message: @"Add this appointment to your calendar?"
 										  preferredStyle:UIAlertControllerStyleAlert];
 	
@@ -188,9 +184,9 @@
 													NSLog(@"The app is authorized to access the service.");
 													
 													EKEvent *event = [EKEvent eventWithEventStore:eventStore];
-													event.title = [NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentTime, appointment.clientName];
+													event.title = [NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentDateString, appointment.clientName];
 													event.location = [NSString stringWithFormat: @"%@", appointment.address];
-													event.notes = _calendarNotesString;
+													event.notes = appointment.calendarNotesString;
 
 													event.startDate = appointment.appointmentTime;
 													event.endDate = [NSDate dateWithTimeInterval:3600 sinceDate:appointment.appointmentTime];

@@ -11,7 +11,4 @@
 
 @property (nonatomic, strong) Appointment *appointment;
 
-@property (nonatomic, strong) NSString *calendarNotesString;
-@property (nonatomic, strong) NSString *emailBodyString;
-
 @end
