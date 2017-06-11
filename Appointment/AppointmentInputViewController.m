@@ -1,8 +1,5 @@
 #import "AppointmentInputViewController.h"
-#import "Config.h"
-//Create a file called "Config.h" and add a NSString like so:
-
-//NSString *const googleAPIKey = @"API_KEY_HERE";
+#import "GoogleGeocodeAPI.h"
 
 @implementation AppointmentInputViewController
 
@@ -489,77 +486,6 @@
 	[self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - URL Request & JSON Parse
-
-- (void)requestURLWithString:(NSString *)urlString {
-	dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_BACKGROUND, 0), ^{
-		
-		NSURL *URL = [NSURL URLWithString:urlString];
-		NSURLRequest *request = [NSURLRequest requestWithURL:URL
-												 cachePolicy:NSURLRequestReturnCacheDataElseLoad
-											 timeoutInterval:60];
-		
-		NSURLSession *session = [NSURLSession sharedSession];
-		NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-			
-			if (error) {
-				NSLog(@"%@", error);
-				dispatch_async(dispatch_get_main_queue(), ^{
-					UIAlertController *errorAlert = [UIAlertController  alertControllerWithTitle:@"Error"
-																						 message:@"Could not automatically get neighborhood from zip/postal code. Check your internet connection or input neighborhood manually."
-																				  preferredStyle:UIAlertControllerStyleAlert];
-					
-					UIAlertAction *action = [UIAlertAction
-											 actionWithTitle:@"OK"
-											 style:UIAlertActionStyleCancel
-											 handler:nil];
-					
-					[errorAlert addAction:action];
-					
-					[self presentViewController:errorAlert animated:YES completion:nil];
-				});
-			} else {
-				[UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
-				dispatch_async(dispatch_get_main_queue(), ^{
-					[self setUpJSONWithData: data];
-				});
-			}
-		}];
-		[task resume];
-	});
-}
-
-- (void)setUpJSONWithData:(NSData *)data {
-	NSError *error;
-	NSDictionary *mainresponseDict = [NSJSONSerialization JSONObjectWithData:data options:0 error:&error];
-
-	if (error) {
-		NSLog(@"Error parsing JSON data - %@", error.localizedDescription);
-		UIAlertController *errorAlert = [UIAlertController  alertControllerWithTitle:@"Error"
-																			 message:@"Could not automatically get neighborhood from zip/postal code. Check your internet or input neighborhood manually."
-																	  preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction *action = [UIAlertAction
-								 actionWithTitle:@"OK"
-								 style:UIAlertActionStyleCancel
-								 handler:nil];
-		
-		[errorAlert addAction:action];
-		
-		[self presentViewController:errorAlert animated:YES completion:nil];
-	} else {
-		NSDictionary *resultsDict = mainresponseDict[@"results"];
-
-		NSArray *addressComponentsDict = [resultsDict valueForKey:@"address_components"];
-
-		if (addressComponentsDict.count > 0) {
-			self.neighborhoodField.text = [addressComponentsDict[0][1] valueForKey:@"long_name"];
-			[UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
-			NSLog(@"NEIGHBORHOOD IS %@", self.neighborhoodField.text);
-		}
-	}
-}
-
 #pragma mark - UIPickerView datasource
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
@@ -600,14 +526,12 @@
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
 	if (textField == self.zipCodeField) {
-		if (!([self.zipCodeField.text isEqual:@""] || [self.zipCodeField.text isEqualToString:@"Unavailable"])) {
-			if (self.zipCodeField.text.length <= 5) {
-				[self requestURLWithString:[NSString stringWithFormat:@"https://maps.googleapis.com/maps/api/geocode/json?address=%@&key=%@", self.zipCodeField.text, googleAPIKey]];
-			} else {
-				NSLog(@"Zip code field is greater than or equal to 5, no JSON request");
-			}
+		if (self.zipCodeField.text.length <= 5) {
+			[GoogleGeocodeAPI requestCityWithZipCode:self.zipCodeField.text completionHandler:^(NSString *city) {
+				self.neighborhoodField.text = city;
+			}];
 		} else {
-			NSLog(@"Zip code field is blank or unavailable, no JSON request");
+			NSLog(@"Zip code field is greater than or equal to 5, no JSON request");
 		}
 	}
 }

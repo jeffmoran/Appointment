@@ -1,7 +1,6 @@
 #import <UIKit/UIKit.h>
 #import "Appointment.h"
 #import "AppointmentStore.h"
-#import "AppointmentsViewController.h"
 #import "InputTextField.h"
 
 @import ChameleonFramework;

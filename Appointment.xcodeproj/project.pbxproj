@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 47;
+	objectVersion = 48;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -22,6 +22,7 @@
 		8A52809A1EEA1FD9004C221B /* AppointmentDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */; };
 		8AAAF5481EEB7D1900C06A6A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAAF5471EEB7D1900C06A6A /* SettingsViewController.m */; };
 		8AAAF5631EECBB7A00C06A6A /* InputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAAF5621EECBB7A00C06A6A /* InputTextField.m */; };
+		8AACE7AB1EEDA94300A05ED8 /* GoogleGeocodeAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AACE7AA1EEDA94300A05ED8 /* GoogleGeocodeAPI.m */; };
 		BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE0E4EB2143262F700F05B13 /* CoreData.framework */; };
 		BE4E18E8140D9EB80007F01B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E7140D9EB80007F01B /* UIKit.framework */; };
 		BE4E18EA140D9EB80007F01B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E9140D9EB80007F01B /* Foundation.framework */; };
@@ -69,6 +70,8 @@
 		8AAAF5471EEB7D1900C06A6A /* SettingsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsViewController.m; sourceTree = "<group>"; };
 		8AAAF5611EECBB7A00C06A6A /* InputTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextField.h; sourceTree = "<group>"; };
 		8AAAF5621EECBB7A00C06A6A /* InputTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextField.m; sourceTree = "<group>"; };
+		8AACE7A91EEDA94300A05ED8 /* GoogleGeocodeAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleGeocodeAPI.h; sourceTree = "<group>"; };
+		8AACE7AA1EEDA94300A05ED8 /* GoogleGeocodeAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleGeocodeAPI.m; sourceTree = "<group>"; };
 		9F2FFF213473ED0E1479D86F /* Pods-Appointment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appointment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appointment/Pods-Appointment.release.xcconfig"; sourceTree = "<group>"; };
 		BE0E4EB2143262F700F05B13 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BE4E18E3140D9EB80007F01B /* Appointment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appointment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +186,15 @@
 			name = Controllers;
 			sourceTree = "<group>";
 		};
+		8AACE7A81EEDA88E00A05ED8 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				8AACE7A91EEDA94300A05ED8 /* GoogleGeocodeAPI.h */,
+				8AACE7AA1EEDA94300A05ED8 /* GoogleGeocodeAPI.m */,
+			);
+			name = Utils;
+			sourceTree = "<group>";
+		};
 		BE4E18D8140D9EB80007F01B = {
 			isa = PBXGroup;
 			children = (
@@ -230,6 +242,7 @@
 				8A5280951EEA1E94004C221B /* Models */,
 				8A5280961EEA1E9D004C221B /* Views */,
 				8A5280971EEA1EA2004C221B /* Controllers */,
+				8AACE7A81EEDA88E00A05ED8 /* Utils */,
 				6014238A1CD098FF0089E278 /* AppointmentAppDelegate.h */,
 				6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */,
 				6014237F1CD098E70089E278 /* Assets */,
@@ -267,7 +280,7 @@
 		BE4E18DA140D9EB80007F01B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				CLASSPREFIX = Appointment;
+				CLASSPREFIX = "";
 				ORGANIZATIONNAME = "Jeff Moran";
 				TargetAttributes = {
 					BE4E18E2140D9EB80007F01B = {
@@ -281,7 +294,7 @@
 				};
 			};
 			buildConfigurationList = BE4E18DD140D9EB80007F01B /* Build configuration list for PBXProject "Appointment" */;
-			compatibilityVersion = "Xcode 6.3";
+			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -375,6 +388,7 @@
 				601423AB1CD098FF0089E278 /* MapViewController.m in Sources */,
 				601423A91CD098FF0089E278 /* main.m in Sources */,
 				601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */,
+				8AACE7AB1EEDA94300A05ED8 /* GoogleGeocodeAPI.m in Sources */,
 				8AAAF5631EECBB7A00C06A6A /* InputTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
