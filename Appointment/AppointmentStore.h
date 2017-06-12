@@ -4,7 +4,7 @@
 @class Appointment;
 
 @interface AppointmentStore : NSObject {
-    NSMutableArray *allAppointments;
+	NSManagedObjectModel *model;
     NSManagedObjectContext *objectContext;
 }
 
@@ -14,7 +14,7 @@
 
 - (Appointment *)createAppointment;
 - (void)removeAppointment:(Appointment *)appointment;
-
+- (void)removeAllAppointments;
 - (void)saveChanges;
 
 @end

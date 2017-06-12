@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AppointmentStore.h"
 
-@interface SettingsViewController : UIViewController
+@interface SettingsViewController : UITableViewController
 
 @end
