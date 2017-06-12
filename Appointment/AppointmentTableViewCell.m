@@ -35,6 +35,8 @@
 }
 
 - (void)addSubviews {
+	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+	
 	appointmentClientNameLabel = [[UILabel alloc] init];
 	appointmentClientNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
 

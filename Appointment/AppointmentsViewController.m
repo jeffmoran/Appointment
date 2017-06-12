@@ -15,30 +15,15 @@
 
 	self.title = @"Appointments";
 
-	self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
-
-	UIBarButtonItem *newAppointment = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd
-																					target:self
-																					action:@selector(addNewAppointment)];
-
-	UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithTitle:@"Settings"
+	UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
 																 style:UIBarButtonItemStyleDone
 																target:self
 																action:@selector(goToSettings)];
 
-	self.navigationItem.rightBarButtonItems = [NSArray arrayWithObjects: newAppointment, settings, nil];
+	self.navigationItem.rightBarButtonItem = settings;
 
-	self.tableView.allowsSelectionDuringEditing = YES;
-
-
-	self.tableView.emptyDataSetSource = self;
-	self.tableView.emptyDataSetDelegate = self;
-	self.tableView.tableFooterView = [UIView new];
-
-	[self.tableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:@"appointmentCellIdentifier"];
-
-	self.tableView.rowHeight = UITableViewAutomaticDimension;
-	self.tableView.estimatedRowHeight = 80.0;
+	[self setUpTableView];
+	[self setUpAddAppointmentButton];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -62,10 +47,62 @@
 }
 
 - (void)reloadData {
-	[self.tableView reloadData];
+	[appointmentsTableView reloadData];
+}
+
+- (void)setUpTableView {
+	appointmentsTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+	appointmentsTableView.translatesAutoresizingMaskIntoConstraints = NO;
+	appointmentsTableView.allowsSelectionDuringEditing = YES;
+	appointmentsTableView.delegate = self;
+	appointmentsTableView.dataSource = self;
+	appointmentsTableView.rowHeight = UITableViewAutomaticDimension;
+	appointmentsTableView.estimatedRowHeight = 80.0;
+
+	appointmentsTableView.emptyDataSetSource = self;
+	appointmentsTableView.emptyDataSetDelegate = self;
+	appointmentsTableView.tableFooterView = [UIView new];
+
+	[appointmentsTableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:@"appointmentCellIdentifier"];
+
+	[self.view addSubview:appointmentsTableView];
+
+	[NSLayoutConstraint
+	 activateConstraints:@[
+						   [appointmentsTableView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
+						   [appointmentsTableView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
+						   [appointmentsTableView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
+						   [appointmentsTableView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor]
+						   ]];
 }
 
 #pragma mark - Add new appointment
+
+- (void)setUpAddAppointmentButton {
+	UIButton *newAppointmentButton = [[UIButton alloc] init];
+	newAppointmentButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[newAppointmentButton setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
+	newAppointmentButton.backgroundColor = FlatTeal;
+	newAppointmentButton.tintColor = [UIColor whiteColor];
+	newAppointmentButton.layer.cornerRadius = 28.0;
+	newAppointmentButton.layer.shadowOpacity = 0.6;
+	newAppointmentButton.layer.shadowColor = [UIColor blackColor].CGColor;
+	newAppointmentButton.layer.shadowOffset = CGSizeMake(0.0, 0.0);
+	newAppointmentButton.alpha = 0.8;
+
+	[newAppointmentButton addTarget:self action:@selector(addNewAppointment) forControlEvents:UIControlEventTouchUpInside];
+	
+	[self.view addSubview:newAppointmentButton];
+
+	[NSLayoutConstraint
+	 activateConstraints:@[
+						   [newAppointmentButton.rightAnchor constraintEqualToAnchor:self.view.rightAnchor constant: -10],
+						   [newAppointmentButton.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor constant: -10],
+						   [newAppointmentButton.widthAnchor constraintEqualToConstant:56],
+						   [newAppointmentButton.heightAnchor constraintEqualToAnchor:newAppointmentButton.widthAnchor]
+						   ]];
+
+}
 
 - (void)addNewAppointment {
 	AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
@@ -78,7 +115,7 @@
 #pragma mark - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-	if (self.tableView.editing) {
+	if (tableView.editing) {
 		AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
 		
 		NSArray *items = [[AppointmentStore shared] allAppointments];
@@ -141,12 +178,16 @@
 		Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 		[[AppointmentStore shared] removeAppointment:appointment];
 
-		[self.tableView beginUpdates];
+		[tableView beginUpdates];
 		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-		[self.tableView endUpdates];
+		[tableView endUpdates];
 
-		[self.tableView reloadData];
+		[tableView reloadData];
 	}
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
+	return 76;
 }
 
 #pragma mark - DZNEmptyDataSet
