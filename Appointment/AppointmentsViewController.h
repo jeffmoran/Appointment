@@ -3,6 +3,7 @@
 #import "UIScrollView+EmptyDataSet.h"
 
 @interface AppointmentsViewController : UIViewController <DZNEmptyDataSetSource, DZNEmptyDataSetDelegate, UITableViewDataSource, UITableViewDelegate> {
+	UIButton *newAppointmentButton;
 	UITableView *appointmentsTableView;
 }
 

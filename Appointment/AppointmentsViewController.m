@@ -15,12 +15,18 @@
 
 	self.title = @"Appointments";
 
-	UIBarButtonItem *settings = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
+	UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+																   style:UIBarButtonItemStyleDone
+																  target:self
+																  action:@selector(toggleEditing)];
+
+	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
 																 style:UIBarButtonItemStyleDone
 																target:self
 																action:@selector(goToSettings)];
 
-	self.navigationItem.rightBarButtonItem = settings;
+	self.navigationItem.leftBarButtonItem = editButton;
+	self.navigationItem.rightBarButtonItem = settingsButton;
 
 	[self setUpTableView];
 	[self setUpAddAppointmentButton];
@@ -36,6 +42,13 @@
 								   userInfo:nil
 									repeats:NO];
 	
+}
+
+- (void)toggleEditing {
+	[appointmentsTableView setEditing:!appointmentsTableView.isEditing animated:YES];
+	self.navigationItem.leftBarButtonItem.title = appointmentsTableView.isEditing ? @"Done" : @"Edit";
+	newAppointmentButton.enabled = !appointmentsTableView.isEditing;
+	self.navigationItem.rightBarButtonItem.enabled = !appointmentsTableView.isEditing;
 }
 
 - (void)goToSettings {
@@ -79,8 +92,9 @@
 #pragma mark - Add new appointment
 
 - (void)setUpAddAppointmentButton {
-	UIButton *newAppointmentButton = [[UIButton alloc] init];
+	newAppointmentButton = [[UIButton alloc] init];
 	newAppointmentButton.translatesAutoresizingMaskIntoConstraints = NO;
+	[newAppointmentButton setExclusiveTouch:YES];
 	[newAppointmentButton setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
 	newAppointmentButton.backgroundColor = FlatTeal;
 	newAppointmentButton.tintColor = [UIColor whiteColor];
@@ -117,10 +131,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (tableView.editing) {
 		AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
-		
-		NSArray *items = [[AppointmentStore shared] allAppointments];
-		Appointment *selectedItem = items[indexPath.row];
-		inputViewController.appointment = selectedItem;
+
+		inputViewController.appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inputViewController];
 
@@ -137,12 +149,6 @@
 #pragma mark - UITableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	if ([[AppointmentStore shared] allAppointments].count > 0) {
-		self.navigationItem.leftBarButtonItem = self.editButtonItem;
-	} else {
-		self.navigationItem.leftBarButtonItem = nil;
-	}
-
 	return [[AppointmentStore shared] allAppointments].count;
 }
 
