@@ -52,7 +52,7 @@
 - (void)saveChanges {
 	NSError *err = nil;
 
-	if ([objectContext hasChanges]) {
+	if (objectContext.hasChanges) {
 		[objectContext save:&err];
 		[objectContext performBlockAndWait:^{
 			if (err) {
@@ -67,7 +67,7 @@
 }
 
 - (void)removeAllAppointments {
-	NSArray *stores = [objectContext.persistentStoreCoordinator persistentStores];
+	NSArray *stores = objectContext.persistentStoreCoordinator.persistentStores;
 
 	for (NSPersistentStore *store in stores) {
 		[objectContext.persistentStoreCoordinator removePersistentStore:store error:nil];

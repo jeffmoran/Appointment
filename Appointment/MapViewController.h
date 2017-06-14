@@ -4,11 +4,11 @@
 
 @interface MapViewController : UIViewController <MKMapViewDelegate, CLLocationManagerDelegate> {
 	CLLocationManager *locationManager;
-	BOOL firstLaunch;
 	MKPointAnnotation *locationAnnotation;
+	UIBarButtonItem *zoomToUserLocationButton;
+	MKMapView *mapView;
 }
 
-@property (strong, nonatomic) MKMapView *mapView;
 @property (nonatomic, strong) NSString *address;
 
 @end

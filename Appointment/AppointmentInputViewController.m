@@ -5,11 +5,11 @@
 
 @synthesize appointment;
 
-#pragma mark - Lifecycle
+// MARK: - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+
 	self.view.tintColor = FlatTeal;
 	self.view.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1.0];
 
@@ -44,7 +44,7 @@
 	self.aptsizeField.placeholder = @" Size (Sq. Ft.)";
 	self.roomsField.placeholder = @" Bedrooms";
 	self.bathsField.placeholder = @" Bathrooms";
-	
+
 	//Image view instances
 	self.inputName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputName"]];
 	self.inputEmail = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputEmail"]];
@@ -68,7 +68,7 @@
 
 	self.time_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
 	self.movein_picker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
-	
+
 	//Set the inputView for textFields
 	self.timeField.inputView = self.time_picker;
 	self.moveindateField.inputView = self.movein_picker;
@@ -78,19 +78,19 @@
 	self.time_picker.minuteInterval = 5;
 	self.time_picker.minimumDate = [NSDate date];
 	[self.time_picker addTarget:self action:@selector(setAppointmentTime:) forControlEvents:UIControlEventValueChanged];
-	
+
 	self.movein_picker.datePickerMode = UIDatePickerModeDate;
 	[self.movein_picker addTarget:self action:@selector(setMoveInDate:) forControlEvents:UIControlEventValueChanged];
-	
+
 	self.scrollView = [[UIScrollView alloc] init];
 	self.scrollView.translatesAutoresizingMaskIntoConstraints = NO;
 
 	self.contentView = [[UIView alloc] init];
 	self.contentView.translatesAutoresizingMaskIntoConstraints = NO;
-	 
+
 	[self.view addSubview:self.scrollView];
 	[self.scrollView addSubview:self.contentView];
-	
+
 	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
 																						  target:self
 																						  action:@selector(dismissVC)];
@@ -98,13 +98,13 @@
 	UIBarButtonItem *save = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
 																		  target:self
 																		  action:@selector(saveButtonPressed)];
-	
+
 	UIBarButtonItem *clear = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash
 																		   target:self
 																		   action:@selector(clearButtonPressed)];
-	
+
 	self.navigationItem.rightBarButtonItems = @[save, clear];
-	
+
 	//	Styling and profiling
 	[self textFieldStylingAndProperties];
 	[self imageViewStylingAndProperties];
@@ -252,9 +252,9 @@
 }
 
 - (void)keyboardWillShow:(NSNotification *)notification {
-	NSDictionary *userInfo = [notification userInfo];
+	NSDictionary *userInfo = notification.userInfo;
 
-	CGSize keyboardSize = [[userInfo objectForKey:UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
+	CGSize keyboardSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
 
 	CGFloat viewHeight = self.view.frame.size.height - keyboardSize.height;
 
@@ -288,48 +288,48 @@
 - (void)textFieldStylingAndProperties {
 	UIToolbar *toolbar = [[UIToolbar alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, 44)];
 	NSMutableArray *toolbarItems = [[NSMutableArray alloc] init];
-	
+
 	UIBarButtonItem *space = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace
 																		   target:self
 																		   action:nil];
-	
+
 	UIBarButtonItem *backButton = [[UIBarButtonItem alloc] initWithTitle:@"Back" style:UIBarButtonItemStylePlain
 																  target:self
 																  action:@selector(backButtonPressed)];
-	
+
 	UIBarButtonItem *nextButton = [[UIBarButtonItem alloc] initWithTitle:@"Next" style:UIBarButtonItemStylePlain
 																  target:self
 																  action:@selector(nextButtonPressed)];
-	
+
 	UIBarButtonItem *doneButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
 																				target:self
 																				action:@selector(dismissKeyboardGesture)];
-	
+
 	[toolbarItems addObject:backButton];
 	[toolbarItems addObject:nextButton];
 	[toolbarItems addObject:space];
 	[toolbarItems addObject:doneButton];
-	
+
 	toolbar.items = toolbarItems;
 
 	for (InputTextField *textField in [self allInputFields]) {
 		textField.delegate = self;
 		textField.inputAccessoryView = toolbar;
-		
+
 		[self.contentView addSubview:textField];
-		
+
 		if (textField == self.emailField) {
 			textField.keyboardType = UIKeyboardTypeEmailAddress;
 		}
-		
+
 		if (textField == self.phoneField) {
 			textField.keyboardType = UIKeyboardTypePhonePad;
 		}
-		
+
 		if (textField == self.zipCodeField || textField == self.aptsizeField || textField == self.priceField) {
 			textField.keyboardType = UIKeyboardTypeNumberPad;
 		}
-		
+
 		if (textField == self.roomsField || textField == self.bathsField) {
 			textField.keyboardType = UIKeyboardTypeDecimalPad;
 		}
@@ -355,7 +355,7 @@
 	for (InputTextField *textfield in [self allInputFields]) {
 		textfield.text = nil;
 	}
-	
+
 	[self.nameField becomeFirstResponder];
 }
 
@@ -369,7 +369,7 @@
 			fieldIndex = [[self allInputFields] indexOfObject:textField];
 		}
 	}
-	
+
 	if (!(fieldIndex == 0)) {
 		[[self allInputFields][fieldIndex - 1] becomeFirstResponder];
 	}
@@ -423,29 +423,29 @@
 
 - (void)saveButtonPressed {
 	BOOL emptyFields = NO;
-	
+
 	for (InputTextField *textfield in [self allInputFields]) {
 		if (!((textfield.text).length > 0)) {
 			emptyFields = YES;
 		}
 	}
-	
+
 	if (emptyFields) {
 		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"You left one or more fields empty." preferredStyle:UIAlertControllerStyleAlert];
-		
+
 		UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save"
 													   style:UIAlertActionStyleDefault
 													 handler:^(UIAlertAction *action){
 														 [self save];
 													 }];
-		
+
 		UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
 														 style:UIAlertActionStyleCancel
 													   handler:nil];
-		
+
 		[alert addAction:save];
 		[alert addAction:cancel];
-		
+
 		[self presentViewController:alert animated:YES completion:nil];
 	} else {
 		[self save];
@@ -475,7 +475,7 @@
 	newAppointment.pets = self.petsField.text;
 	newAppointment.clientEmail = self.emailField.text;
 	newAppointment.zipCode = self.zipCodeField.text;
-	
+
 	// save the appointment
 	[[AppointmentStore shared] saveChanges];
 
@@ -520,7 +520,7 @@
 	if (textField.returnKeyType == UIReturnKeyDone) {
 		[self.view endEditing:YES];
 	}
-	
+
 	return [self setNextResponder:textField] ? NO : YES;
 }
 
@@ -538,48 +538,48 @@
 
 - (BOOL)setNextResponder:(UITextField *)textField {
 	NSInteger indexOfInput = [[self allInputFields] indexOfObject:textField];
-	
+
 	if (indexOfInput != NSNotFound && indexOfInput < [self allInputFields].count - 1) {
 		UIResponder *next = [self allInputFields][(NSUInteger)(indexOfInput + 1)];
-		
+
 		if (next.canBecomeFirstResponder) {
 			[next becomeFirstResponder];
-			
+
 			return YES;
 		}
 	}
-	
+
 	return NO;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
 	if (textField == self.phoneField) {
 		NSUInteger length = [self getLength:textField.text];
-		
+
 		if (length == 10) {
 			if (range.length == 0) {
-				
+
 				return NO;
 			}
 		}
-		
+
 		if (length == 3) {
 			NSString *num = [self formatNumber:textField.text];
 			textField.text = [NSString stringWithFormat:@"%@-", num];
-			
+
 			if (range.length > 0) {
 				textField.text = [NSString stringWithFormat:@"%@", [num substringToIndex: 3]];
 			}
 		} else if (length == 6) {
 			NSString *num = [self formatNumber:textField.text];
 			textField.text = [NSString stringWithFormat:@"%@-%@-", [num  substringToIndex: 3], [num substringFromIndex: 3]];
-			
+
 			if (range.length > 0) {
 				textField.text = [NSString stringWithFormat:@"(%@) %@", [num substringToIndex: 3], [num substringFromIndex: 3]];
 			}
 		}
 	}
-	
+
 	return YES;
 }
 
@@ -591,14 +591,14 @@
 	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
 	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
 	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
-	
+
 	NSUInteger length = mobileNumber.length;
-	
+
 	if (length > 10) {
 		mobileNumber = [mobileNumber substringFromIndex:length - 10];
-		
+
 	}
-	
+
 	return mobileNumber;
 }
 

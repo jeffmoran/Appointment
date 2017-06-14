@@ -13,14 +13,14 @@
 @synthesize appointment;
 
 - (void)awakeFromNib {
-    [super awakeFromNib];
-    // Initialization code
+	[super awakeFromNib];
+	// Initialization code
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
+	[super setSelected:selected animated:animated];
 
-    // Configure the view for the selected state
+	// Configure the view for the selected state
 }
 
 - (instancetype)init {
@@ -36,7 +36,7 @@
 
 - (void)addSubviews {
 	self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-	
+
 	appointmentClientNameLabel = [[UILabel alloc] init];
 	appointmentClientNameLabel.translatesAutoresizingMaskIntoConstraints = NO;
 
@@ -90,7 +90,7 @@
 		appointmentTimeLabel.text = @"Appointment time unavailable";
 	}
 
-	if ([self.appointment.appointmentTime timeIntervalSinceNow] < 0.0) {
+	if (self.appointment.appointmentTime.timeIntervalSinceNow < 0.0) {
 		self.backgroundColor = [UIColor colorWithRed:255.0 / 255.0 green:0.0 blue:0.0 alpha:0.1];
 	}
 }

@@ -31,6 +31,8 @@
 		CA0F3EA017E25B22003FE3BE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3E9F17E25B22003FE3BE /* CFNetwork.framework */; };
 		CA0F3EA217E25B30003FE3BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA117E25B30003FE3BE /* Security.framework */; };
 		CA0F3EA417E25B3C003FE3BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */; };
+		CA4257CB1EEF230900927D4B /* ContactHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4257CA1EEF230900927D4B /* ContactHandler.m */; };
+		CA4257CE1EEF29C200927D4B /* CalendarEventHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = CA4257CD1EEF29C200927D4B /* CalendarEventHandler.m */; };
 		CA71FDCA17DD25F000E1BFB0 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */; };
 		CA9CCD1017DE3FDF00F1BF90 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */; };
 		CAB523621EEB3A8400EED18C /* AppointmentTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = CAB523611EEB3A8400EED18C /* AppointmentTableViewCell.m */; };
@@ -82,6 +84,10 @@
 		CA0F3E9F17E25B22003FE3BE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CA0F3EA117E25B30003FE3BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		CA4257C91EEF230900927D4B /* ContactHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactHandler.h; sourceTree = "<group>"; };
+		CA4257CA1EEF230900927D4B /* ContactHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactHandler.m; sourceTree = "<group>"; };
+		CA4257CC1EEF29C200927D4B /* CalendarEventHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalendarEventHandler.h; sourceTree = "<group>"; };
+		CA4257CD1EEF29C200927D4B /* CalendarEventHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalendarEventHandler.m; sourceTree = "<group>"; };
 		CA71FDC917DD25F000E1BFB0 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		CAB523601EEB3A8400EED18C /* AppointmentTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentTableViewCell.h; sourceTree = "<group>"; };
@@ -189,6 +195,10 @@
 		8AACE7A81EEDA88E00A05ED8 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				CA4257C91EEF230900927D4B /* ContactHandler.h */,
+				CA4257CA1EEF230900927D4B /* ContactHandler.m */,
+				CA4257CC1EEF29C200927D4B /* CalendarEventHandler.h */,
+				CA4257CD1EEF29C200927D4B /* CalendarEventHandler.m */,
 				8AACE7A91EEDA94300A05ED8 /* GoogleGeocodeAPI.h */,
 				8AACE7AA1EEDA94300A05ED8 /* GoogleGeocodeAPI.m */,
 			);
@@ -391,6 +401,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAB523621EEB3A8400EED18C /* AppointmentTableViewCell.m in Sources */,
+				CA4257CB1EEF230900927D4B /* ContactHandler.m in Sources */,
 				601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */,
 				6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */,
 				8AAAF5481EEB7D1900C06A6A /* SettingsViewController.m in Sources */,
@@ -400,6 +411,7 @@
 				601423A31CD098FF0089E278 /* Appointment.m in Sources */,
 				6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */,
 				601423AB1CD098FF0089E278 /* MapViewController.m in Sources */,
+				CA4257CE1EEF29C200927D4B /* CalendarEventHandler.m in Sources */,
 				601423A91CD098FF0089E278 /* main.m in Sources */,
 				601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */,
 				8AACE7AB1EEDA94300A05ED8 /* GoogleGeocodeAPI.m in Sources */,

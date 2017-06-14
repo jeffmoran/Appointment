@@ -15,8 +15,8 @@
 @implementation SettingsViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-    // Do any additional setup after loading the view.
+	[super viewDidLoad];
+	// Do any additional setup after loading the view.
 	self.title = @"Settings";
 
 	self.tableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
@@ -32,39 +32,112 @@
 }
 
 - (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+	[super didReceiveMemoryWarning];
+	// Dispose of any resources that can be recreated.
 }
 
 // MARK: - UITableViewDataSource
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-	return 1;
+	return 2;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return 1;
+	switch (section) {
+		case 0:
+			return 1;
+			break;
+		case 1:
+			return 1;
+			break;
+		default:
+			return 0;
+			break;
+	}
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 
-	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-	cell.textLabel.text = @"Delete all appointments";
+	UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:cellIdentifier];
+
+	switch (indexPath.section) {
+		case 0:
+			switch (indexPath.row) {
+				case 0:
+					cell.textLabel.text = @"Delete all appointments";
+					break;
+				default:
+					break;
+			}
+			break;
+		case 1:
+			switch (indexPath.row) {
+				case 0:
+					cell.textLabel.text = @"Sorting";
+					cell.detailTextLabel.text = @"Date";
+				default:
+					break;
+			}
+			break;
+		default:
+			break;
+	}
 
 	return cell;
 }
 
-- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	return @"Settings";
-}
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//	return @"Settings";
+//}
 
 // MARK: - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	[tableView deselectRowAtIndexPath:indexPath animated:YES];
 
-	[self removeAllAppointments];
+	switch (indexPath.section) {
+		case 0:
+			switch (indexPath.row) {
+				case 0:
+					[self removeAllAppointments];
+					break;
+				default:
+					break;
+			}
+			break;
+		case 1:
+			switch (indexPath.row) {
+				case 0: {
+					UIAlertController *alertController = [UIAlertController
+														  alertControllerWithTitle:nil
+														  message:@"The ascending order in which appointments are sorted."
+														  preferredStyle:UIAlertControllerStyleActionSheet];
+
+					UIAlertAction *dateAction = [UIAlertAction actionWithTitle:@"Date" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+
+					}];
+
+					UIAlertAction *nameAction = [UIAlertAction actionWithTitle:@"Name" style:UIAlertActionStyleDefault handler:^(UIAlertAction *_Nonnull action) {
+
+					}];
+
+					UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];
+
+					[alertController addAction:dateAction];
+					[alertController addAction:nameAction];
+					[alertController addAction:cancelAction];
+
+					[self presentViewController:alertController animated:YES completion:nil];
+					break;
+				}
+				default:
+					break;
+			}
+			break;
+		default:
+			break;
+	}
 }
 
 // MARK: - Functions

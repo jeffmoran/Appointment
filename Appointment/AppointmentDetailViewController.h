@@ -2,9 +2,9 @@
 #import "RNGridMenu.h"
 #import "Appointment.h"
 #import "AppointmentDetailTableViewCell.h"
+#import "ContactHandler.h"
+#import "CalendarEventHandler.h"
 
-@import Contacts;
-@import EventKit;
 @import MessageUI;
 
 @interface AppointmentDetailViewController : UITableViewController <MFMailComposeViewControllerDelegate, RNGridMenuDelegate>

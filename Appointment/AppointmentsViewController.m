@@ -8,7 +8,7 @@
 
 @implementation AppointmentsViewController
 
-#pragma mark - View lifecycle
+// MARK: - Lifecycle
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
@@ -21,9 +21,9 @@
 																  action:@selector(toggleEditing)];
 
 	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
-																 style:UIBarButtonItemStyleDone
-																target:self
-																action:@selector(goToSettings)];
+																	   style:UIBarButtonItemStyleDone
+																	  target:self
+																	  action:@selector(goToSettings)];
 
 	self.navigationItem.leftBarButtonItem = editButton;
 	self.navigationItem.rightBarButtonItem = settingsButton;
@@ -34,14 +34,14 @@
 
 - (void)viewWillAppear:(BOOL)animated {
 	[super viewWillAppear:animated];
-	
+
 	//Added short timer so that DZNEmptyDataSet was properly centered on load
 	[NSTimer scheduledTimerWithTimeInterval:.01
 									 target:self
 								   selector:@selector(reloadData)
 								   userInfo:nil
 									repeats:NO];
-	
+
 }
 
 - (void)toggleEditing {
@@ -89,8 +89,6 @@
 						   ]];
 }
 
-#pragma mark - Add new appointment
-
 - (void)setUpAddAppointmentButton {
 	newAppointmentButton = [[UIButton alloc] init];
 	newAppointmentButton.translatesAutoresizingMaskIntoConstraints = NO;
@@ -105,7 +103,7 @@
 	newAppointmentButton.alpha = 0.8;
 
 	[newAppointmentButton addTarget:self action:@selector(addNewAppointment) forControlEvents:UIControlEventTouchUpInside];
-	
+
 	[self.view addSubview:newAppointmentButton];
 
 	[NSLayoutConstraint
@@ -126,7 +124,7 @@
 	[self presentViewController:navigationController animated:YES completion:nil];
 }
 
-#pragma mark - UITableViewDelegate
+// MARK: - UITableViewDelegate
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (tableView.editing) {
@@ -146,7 +144,7 @@
 	}
 }
 
-#pragma mark - UITableViewDatasource
+// MARK: - UITableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 	return [[AppointmentStore shared] allAppointments].count;
@@ -156,11 +154,11 @@
 	static NSString *cellIdentifier = @"appointmentCellIdentifier";
 
 	Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
-	
+
 	AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
 	cell = [[AppointmentTableViewCell alloc] init];
-	
+
 	cell.appointment = appointment;
 
 	[cell setUpAppointmentValues];
@@ -196,27 +194,27 @@
 	return 76;
 }
 
-#pragma mark - DZNEmptyDataSet
+// MARK: - DZNEmptyDataSet
 
 - (NSAttributedString *)titleForEmptyDataSet:(UIScrollView *)scrollView {
 	NSString *text = @"No appointments";
 	NSDictionary *attributes = @{NSFontAttributeName: [UIFont boldSystemFontOfSize:18.0f],
 								 NSForegroundColorAttributeName: [UIColor darkGrayColor]};
-	
+
 	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
 - (NSAttributedString *)descriptionForEmptyDataSet:(UIScrollView *)scrollView {
 	NSString *text = @"Tap on the + button to create a new appointment.";
-	
+
 	NSMutableParagraphStyle *paragraph = [NSMutableParagraphStyle new];
 	paragraph.lineBreakMode = NSLineBreakByWordWrapping;
 	paragraph.alignment = NSTextAlignmentCenter;
-	
+
 	NSDictionary *attributes = @{NSFontAttributeName: [UIFont systemFontOfSize:14.0f],
 								 NSForegroundColorAttributeName: [UIColor lightGrayColor],
 								 NSParagraphStyleAttributeName: paragraph};
-	
+
 	return [[NSAttributedString alloc] initWithString:text attributes:attributes];
 }
 
