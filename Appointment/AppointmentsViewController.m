@@ -15,18 +15,15 @@
 
 	self.title = @"Appointments";
 
-	UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
-																   style:UIBarButtonItemStyleDone
-																  target:self
-																  action:@selector(toggleEditing)];
-
-	UIBarButtonItem *settingsButton = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
+	self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"settings"]
 																	   style:UIBarButtonItemStyleDone
 																	  target:self
 																	  action:@selector(goToSettings)];
 
-	self.navigationItem.leftBarButtonItem = editButton;
-	self.navigationItem.rightBarButtonItem = settingsButton;
+	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Edit"
+																   style:UIBarButtonItemStyleDone
+																  target:self
+																  action:@selector(toggleEditing)];
 
 	[self setUpTableView];
 	[self setUpAddAppointmentButton];
@@ -46,9 +43,9 @@
 
 - (void)toggleEditing {
 	[appointmentsTableView setEditing:!appointmentsTableView.isEditing animated:YES];
-	self.navigationItem.leftBarButtonItem.title = appointmentsTableView.isEditing ? @"Done" : @"Edit";
+	self.navigationItem.rightBarButtonItem.title = appointmentsTableView.isEditing ? @"Done" : @"Edit";
 	newAppointmentButton.enabled = !appointmentsTableView.isEditing;
-	self.navigationItem.rightBarButtonItem.enabled = !appointmentsTableView.isEditing;
+	self.navigationItem.leftBarButtonItem.enabled = !appointmentsTableView.isEditing;
 }
 
 - (void)goToSettings {
