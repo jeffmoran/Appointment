@@ -19,9 +19,9 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 ```
 
 ## Screenshots
-<img src="/Screenshots/1.png" width="324px" height="576px" /> <img src="/Screenshots/2.png" width="324px" height="576px" />
+<img src="/Screenshots/appointments.png" width="324px" height="576px" /> <img src="/Screenshots/detail.png" width="324px" height="576px" />
 
-<img src="/Screenshots/3.png" width="324px" height="576px" /> <img src="/Screenshots/4.png" width="324px" height="576px" />
+<img src="/Screenshots/menu.png" width="324px" height="576px" /> <img src="/Screenshots/map.png" width="324px" height="576px" />
 
 ## Open Source Libraries
 - [Chameleon](https://github.com/ViccAlexander/Chameleon)
