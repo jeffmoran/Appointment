@@ -131,6 +131,9 @@
 		self.emailField.text = appointment.clientEmail;
 		self.zipCodeField.text = appointment.zipCode;
 
+		self.time_picker.date = appointment.appointmentTime;
+		self.movein_picker.date = appointment.moveInDate;
+
 		self.title = appointment.clientName;
 	} else {
 		self.title = @"New Appointment";
