@@ -21,6 +21,9 @@
 
 	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:@"appointmentDetailCellIdentifier"];
 
+	self.tableView.rowHeight = UITableViewAutomaticDimension;
+	self.tableView.estimatedRowHeight = 50.0;
+
 	self.title = appointment.clientName;
 }
 
@@ -168,10 +171,6 @@
 	cell.appointmentValueLabel.text = appointment.appointmentProperties[indexPath.row];
 
 	return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-	return 50;
 }
 
 // MARK: - MFMailComposeViewControllerDelegate

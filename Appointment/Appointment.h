@@ -16,6 +16,8 @@
 @property (nonatomic, strong) NSString *roomsCount;
 @property (nonatomic, strong) NSString *size;
 @property (nonatomic, strong) NSString *zipCode;
+@property (nonatomic, strong) NSString *notes;
+
 
 - (NSArray *)appointmentPropertiesHeader;
 - (NSArray *)appointmentProperties;

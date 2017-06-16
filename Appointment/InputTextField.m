@@ -29,7 +29,7 @@
 }
 
 - (CGRect)textRectForBounds:(CGRect)bounds {
-	return CGRectMake(bounds.origin.x + 5, bounds.origin.y, bounds.size.width, bounds.size.height);
+	return CGRectMake(bounds.origin.x + 5, bounds.origin.y, bounds.size.width - 20, bounds.size.height);
 }
 
 - (CGRect)editingRectForBounds:(CGRect)bounds {

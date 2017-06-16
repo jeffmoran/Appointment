@@ -15,6 +15,7 @@
 @dynamic roomsCount;
 @dynamic size;
 @dynamic zipCode;
+@dynamic notes;
 
 - (NSArray *)appointmentPropertiesHeader {
 	return @[@"Client Name",
@@ -29,7 +30,8 @@
 			 @"Rent",
 			 @"Size",
 			 @"Bedrooms",
-			 @"Bathrooms"];
+			 @"Bathrooms",
+			 @"Notes"];
 }
 
 - (NSArray *)appointmentProperties {
@@ -45,7 +47,8 @@
 			 [NSString stringWithFormat:@"$%@ Per Month", self.price],
 			 [NSString stringWithFormat:@"%@ Sq. Ft.", self.size],
 			 self.roomsCount,
-			 self.bathsCount];
+			 self.bathsCount,
+			 self.notes];
 }
 
 - (NSString *)appointmentDateString {

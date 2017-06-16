@@ -9,6 +9,7 @@
         <attribute name="clientName" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="clientPhone" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="moveInDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
+        <attribute name="notes" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="pets" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="price" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="roomsCount" optional="YES" attributeType="String" syncable="YES"/>
@@ -16,6 +17,6 @@
         <attribute name="zipCode" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Appointment" positionX="0" positionY="0" width="128" height="240"/>
+        <element name="Appointment" positionX="0" positionY="0" width="128" height="255"/>
     </elements>
 </model>
