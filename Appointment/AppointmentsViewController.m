@@ -8,6 +8,8 @@
 
 @implementation AppointmentsViewController
 
+static NSString *cellIdentifier = @"appointmentCellIdentifier";
+
 // MARK: - Lifecycle
 
 - (void)viewDidLoad {
@@ -73,7 +75,7 @@
 	appointmentsTableView.emptyDataSetDelegate = self;
 	appointmentsTableView.tableFooterView = [UIView new];
 
-	[appointmentsTableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:@"appointmentCellIdentifier"];
+	[appointmentsTableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:cellIdentifier];
 
 	[self.view addSubview:appointmentsTableView];
 
@@ -148,8 +150,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellIdentifier = @"appointmentCellIdentifier";
-
 	Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
 
 	AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];

@@ -6,6 +6,8 @@
 
 @synthesize appointment;
 
+static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
+
 // MARK: - Lifecycle
 
 - (void)viewDidLoad {
@@ -19,7 +21,7 @@
 																			 action:@selector(showGrid)];
 
 
-	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:@"appointmentDetailCellIdentifier"];
+	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:cellIdentifier];
 
 	self.tableView.rowHeight = UITableViewAutomaticDimension;
 	self.tableView.estimatedRowHeight = 50.0;
@@ -162,8 +164,6 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
-
 	AppointmentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
 	cell = [[AppointmentDetailTableViewCell alloc] init];
