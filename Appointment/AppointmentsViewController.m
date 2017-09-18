@@ -154,11 +154,7 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 
 	AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-	cell = [[AppointmentTableViewCell alloc] init];
-
-	cell.appointment = appointment;
-
-	[cell setUpAppointmentValues];
+	[cell setAppointment:appointment];
 
 	return cell;
 }

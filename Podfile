@@ -7,6 +7,5 @@ use_frameworks!
 
 pod 'RNGridMenu'
 pod 'DZNEmptyDataSet'
-pod 'ChameleonFramework'
 
 end

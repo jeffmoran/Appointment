@@ -16,8 +16,6 @@
 	Appointment *appointment;
 }
 
-@property (nonatomic, strong) Appointment *appointment;
-
-- (void)setUpAppointmentValues;
+- (void)setAppointment:(Appointment *)anAppointment;
 
 @end

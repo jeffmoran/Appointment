@@ -1,6 +1,5 @@
 #import "AppointmentAppDelegate.h"
 #import "AppointmentStore.h"
-#import <ChameleonFramework/Chameleon.h>
 #import "AppointmentsViewController.h"
 
 @implementation AppointmentAppDelegate

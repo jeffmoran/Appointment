@@ -10,8 +10,6 @@
 
 @implementation AppointmentTableViewCell
 
-@synthesize appointment;
-
 - (void)awakeFromNib {
 	[super awakeFromNib];
 	// Initialization code
@@ -23,8 +21,14 @@
 	// Configure the view for the selected state
 }
 
-- (instancetype)init {
-	self = [super init];
+- (void)setAppointment:(Appointment *)anAppointment {
+	appointment = anAppointment;
+
+	[self setUpAppointmentValues];
+}
+
+- (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
+	self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
 
 	if (self) {
 		[self addSubviews];

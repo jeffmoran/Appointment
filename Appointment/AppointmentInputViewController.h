@@ -2,7 +2,6 @@
 #import "Appointment.h"
 #import "AppointmentStore.h"
 #import "InputTextField.h"
-#import <ChameleonFramework/Chameleon.h>
 
 @interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
 	NSArray *petsArray;

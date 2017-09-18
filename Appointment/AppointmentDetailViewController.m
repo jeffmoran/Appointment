@@ -1,6 +1,5 @@
 #import "AppointmentDetailViewController.h"
 #import "MapViewController.h"
-#import <ChameleonFramework/Chameleon.h>
 
 @implementation AppointmentDetailViewController
 
