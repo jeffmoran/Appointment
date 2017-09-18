@@ -7,7 +7,6 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "Appointment.h"
 
 @import EventKit;
 

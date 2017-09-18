@@ -1,6 +1,5 @@
 #import "AppointmentsViewController.h"
 #import "AppointmentStore.h"
-#import "Appointment.h"
 #import "AppointmentTableViewCell.h"
 #import "MapViewController.h"
 #import "AppointmentDetailViewController.h"

@@ -1,5 +1,4 @@
 #import <UIKit/UIKit.h>
-#import "Appointment.h"
 #import "AppointmentStore.h"
 #import "InputTextField.h"
 

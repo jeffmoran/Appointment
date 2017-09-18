@@ -13,7 +13,6 @@
 	UILabel *appointmentValueLabel;
 }
 
-@property (nonatomic, strong) UILabel *appointmentHeaderLabel;
-@property (nonatomic, strong) UILabel *appointmentValueLabel;
+- (void)setAppointment:(Appointment *)anAppointment with:(NSIndexPath *)indexPath;
 
 @end

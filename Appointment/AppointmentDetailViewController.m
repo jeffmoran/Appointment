@@ -165,9 +165,7 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	AppointmentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 
-	cell = [[AppointmentDetailTableViewCell alloc] init];
-	cell.appointmentHeaderLabel.text = appointment.appointmentPropertiesHeader[indexPath.row];
-	cell.appointmentValueLabel.text = appointment.appointmentProperties[indexPath.row];
+	[cell setAppointment:appointment with:indexPath];
 
 	return cell;
 }

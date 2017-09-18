@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "Appointment.h"
 
 @interface AppointmentTableViewCell : UITableViewCell {
 	UILabel *appointmentClientNameLabel;

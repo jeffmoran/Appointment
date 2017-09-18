@@ -12,7 +12,7 @@
 
 - (instancetype)init {
 	self = [super init];
-
+	
 	if (self) {
 		self.translatesAutoresizingMaskIntoConstraints = NO;
 		self.layer.borderColor = [UIColor darkGrayColor].CGColor;
@@ -24,7 +24,7 @@
 		self.autocapitalizationType = UITextAutocapitalizationTypeWords;
 		self.autocorrectionType = UITextAutocorrectionTypeYes;
 	}
-
+	
 	return self;
 }
 

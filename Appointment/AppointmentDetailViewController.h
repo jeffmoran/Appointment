@@ -1,6 +1,5 @@
 #import <UIKit/UIKit.h>
 #import "RNGridMenu.h"
-#import "Appointment.h"
 #import "AppointmentDetailTableViewCell.h"
 #import "ContactHandler.h"
 #import "CalendarEventHandler.h"
