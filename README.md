@@ -24,6 +24,5 @@ NSString *const googleAPIKey = @"API_KEY_HERE";
 <img src="/Screenshots/menu.png" width="324px" height="576px" /> <img src="/Screenshots/map.png" width="324px" height="576px" />
 
 ## Open Source Libraries
-- [Chameleon](https://github.com/ViccAlexander/Chameleon)
 - [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet)
 - [RNGridMenu](https://github.com/rnystrom/RNGridMenu)
