@@ -76,27 +76,13 @@
 }
 
 - (void)setUpAppointmentValues {
-	if (!([appointment.clientName isEqualToString:@""])) {
-		appointmentClientNameLabel.text = appointment.clientName;
-	} else {
-		appointmentClientNameLabel.text = @"Client name unavailable";
-	}
+	appointmentClientNameLabel.text = !([appointment.clientName isEqualToString:@""]) ? appointment.clientName : @"Client name unavailable";
 	
-	if (!([appointment.address isEqualToString:@""])) {
-		appointmentAddressLabel.text = [NSString stringWithFormat:@"%@ %@", appointment.address, appointment.zipCode];
-	} else {
-		appointmentAddressLabel.text = @"Property address unavailable";
-	}
+	appointmentAddressLabel.text = !([appointment.address isEqualToString:@""]) ? [NSString stringWithFormat:@"%@ %@", appointment.address, appointment.zipCode] : @"Property address unavailable";
 	
-	if (appointment.appointmentTime) {
-		appointmentTimeLabel.text = appointment.appointmentDateString;
-	} else {
-		appointmentTimeLabel.text = @"Appointment time unavailable";
-	}
+	appointmentTimeLabel.text = appointment.appointmentTime ? appointment.appointmentDateString : @"Appointment time unavailable";
 	
-	if (appointment.appointmentTime.timeIntervalSinceNow < 0.0) {
-		self.backgroundColor = [UIColor colorWithRed:255.0 / 255.0 green:0.0 blue:0.0 alpha:0.1];
-	}
+	self.backgroundColor = appointment.appointmentTime.timeIntervalSinceNow < 0.0 ? [UIColor colorWithRed:255.0 / 255.0 green:0.0 blue:0.0 alpha:0.1] : [UIColor whiteColor];
 }
 
 @end

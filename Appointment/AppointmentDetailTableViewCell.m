@@ -49,9 +49,13 @@
 }
 
 - (void)setUpConstraints {
+	NSLayoutConstraint *heightAnchor = [self.contentView.heightAnchor constraintGreaterThanOrEqualToConstant:50];
+	
+	heightAnchor.priority = 999;
+	
 	[NSLayoutConstraint
 	 activateConstraints:@[
-						   [self.contentView.heightAnchor constraintGreaterThanOrEqualToConstant:50],
+						   heightAnchor,
 						   
 						   [appointmentHeaderLabel.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant: 5],
 						   [appointmentHeaderLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],

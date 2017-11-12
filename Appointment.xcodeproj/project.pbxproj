@@ -298,7 +298,6 @@
 				ORGANIZATIONNAME = "Jeff Moran";
 				TargetAttributes = {
 					BE4E18E2140D9EB80007F01B = {
-						DevelopmentTeam = TR5WFN5468;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -531,6 +530,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = TR5WFN5468;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/\"",
@@ -545,7 +545,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
@@ -566,6 +566,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEVELOPMENT_TEAM = TR5WFN5468;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"${PODS_ROOT}/Headers/\"",
@@ -580,7 +581,7 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;

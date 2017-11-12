@@ -5,24 +5,30 @@
 @implementation AppointmentAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-
-	//[Chameleon setGlobalThemeUsingPrimaryColor: FlatRed withContentStyle:UIContentStyleContrast];
-	
 	[UINavigationBar appearance].barTintColor = FlatTeal;
 	[UINavigationBar appearance].tintColor = [UIColor whiteColor];
 	[UIToolbar appearance].barTintColor =  FlatTeal;
 	[UIToolbar appearance].tintColor = [UIColor whiteColor];
 	
-	NSDictionary *attributesDict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
-	
-	[UINavigationBar appearance].titleTextAttributes = attributesDict;
+    NSDictionary *attributesDict = @{NSForegroundColorAttributeName:[UIColor whiteColor]};
+
+    if (@available(iOS 11.0, *)) {
+        [UINavigationBar appearance].largeTitleTextAttributes = attributesDict;
+    }
+
+    [UINavigationBar appearance].titleTextAttributes = attributesDict;
 
 	self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
 
 	AppointmentsViewController *mainVC = [[AppointmentsViewController alloc] init];
 	UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainVC];
 
+    if (@available(iOS 11.0, *)) {
+       navigationController.navigationBar.prefersLargeTitles = YES;
+    }
+    
 	self.window.rootViewController = navigationController;
+    
 	[self.window makeKeyAndVisible];
 	
 	return YES;
