@@ -402,7 +402,7 @@
 		}
 	}
 	
-	if (!(fieldIndex == 0)) {
+	if (fieldIndex != 0) {
 		[[self allInputFields][fieldIndex - 1] becomeFirstResponder];
 	} else {
 		[[self allInputFields][[self allInputFields].count - 1] becomeFirstResponder];
@@ -416,7 +416,7 @@
 		}
 	}
 	
-	if (!(fieldIndex == [self allInputFields].count - 1)) {
+	if ([self allInputFields].count - 1 != fieldIndex) {
 		[[self allInputFields][fieldIndex + 1] becomeFirstResponder];
 	} else {
 		[[self allInputFields][0] becomeFirstResponder];
@@ -457,35 +457,31 @@
 
 // MARK: - Save Methods
 
-- (void)saveButtonPressed {
-	BOOL emptyFields = NO;
-	
+- (void)saveButtonPressed {	
 	for (InputTextField *textfield in [self allInputFields]) {
-		if (!((textfield.text).length > 0)) {
-			emptyFields = YES;
+		if ((textfield.text).length <= 0) {
+			UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"You left one or more fields empty." preferredStyle:UIAlertControllerStyleAlert];
+			
+			UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save"
+														   style:UIAlertActionStyleDefault
+														 handler:^(UIAlertAction *action){
+															 [self save];
+														 }];
+			
+			UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
+															 style:UIAlertActionStyleCancel
+														   handler:nil];
+			
+			[alert addAction:save];
+			[alert addAction:cancel];
+			
+			[self presentViewController:alert animated:YES completion:nil];
+			
+			return;
 		}
 	}
 	
-	if (emptyFields) {
-		UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Are you sure?" message:@"You left one or more fields empty." preferredStyle:UIAlertControllerStyleAlert];
-		
-		UIAlertAction *save = [UIAlertAction actionWithTitle:@"Save"
-													   style:UIAlertActionStyleDefault
-													 handler:^(UIAlertAction *action){
-														 [self save];
-													 }];
-		
-		UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"Cancel"
-														 style:UIAlertActionStyleCancel
-													   handler:nil];
-		
-		[alert addAction:save];
-		[alert addAction:cancel];
-		
-		[self presentViewController:alert animated:YES completion:nil];
-	} else {
-		[self save];
-	}
+	[self save];
 }
 
 - (void)save {
@@ -558,7 +554,7 @@
 		[self.view endEditing:YES];
 	}
 	
-	return [self setNextResponder:textField] ? NO : YES;
+	return ![self setNextResponder:textField];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {

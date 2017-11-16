@@ -9,7 +9,7 @@
 #import "AppointmentAppDelegate.h"
 
 int main(int argc, char *argv[]) {
-    @autoreleasepool {
-        return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppointmentAppDelegate class]));
-    }
+	@autoreleasepool {
+		return UIApplicationMain(argc, argv, nil, NSStringFromClass([AppointmentAppDelegate class]));
+	}
 }

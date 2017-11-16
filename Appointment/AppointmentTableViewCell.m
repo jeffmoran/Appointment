@@ -82,7 +82,7 @@
 	
 	appointmentTimeLabel.text = appointment.appointmentTime ? appointment.appointmentDateString : @"Appointment time unavailable";
 	
-	self.backgroundColor = appointment.appointmentTime.timeIntervalSinceNow < 0.0 ? [UIColor colorWithRed:255.0 / 255.0 green:0.0 blue:0.0 alpha:0.1] : [UIColor whiteColor];
+	self.backgroundColor = appointment.appointmentTime.timeIntervalSinceNow < 0.0 ? [UIColor colorWithRed:1.0 green:0.0 blue:0.0 alpha:0.1] : [UIColor whiteColor];
 }
 
 @end

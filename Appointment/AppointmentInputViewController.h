@@ -5,12 +5,12 @@
 @interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
 	NSArray *petsArray;
 	NSInteger fieldIndex;
-
+	
 	UIScrollView *scrollView;
 	UIView *contentView;
-
+	
 	NSLayoutConstraint *scrollViewHeightConstraint;
-
+	
 	InputTextField *nameField;
 	InputTextField *emailField;
 	InputTextField *phoneField;
@@ -24,13 +24,13 @@
 	InputTextField *roomsField;
 	InputTextField *bathsField;
 	InputTextField *petsField;
-
+	
 	UITextView *notesTextView;
-
+	
 	UIPickerView *petsPicker;
 	UIDatePicker *timePicker;
 	UIDatePicker *moveInPicker;
-
+	
 	UIImageView *inputName;
 	UIImageView *inputEmail;
 	UIImageView *inputPhone;

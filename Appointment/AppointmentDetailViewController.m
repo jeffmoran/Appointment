@@ -11,20 +11,20 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-
+	
 	self.tableView.allowsSelection = NO;
-
+	
 	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
 																			  style:UIBarButtonItemStylePlain
 																			 target:self
 																			 action:@selector(showGrid)];
-
-
+	
+	
 	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:cellIdentifier];
-
+	
 	self.tableView.rowHeight = UITableViewAutomaticDimension;
 	self.tableView.estimatedRowHeight = 50.0;
-
+	
 	self.title = appointment.clientName;
 }
 
@@ -43,13 +43,13 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"calendar"] title: @"Calendar"],
 					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"cancel"] title: @"Cancel"],
 					   ];
-
+	
 	RNGridMenu *menu = [[RNGridMenu alloc] initWithItems:items];
-
+	
 	menu.delegate = self;
 	menu.highlightColor = FlatTeal;
 	menu.itemSize = CGSizeMake(128, 128);
-
+	
 	[menu showInViewController:self.navigationController center:self.view.center];
 }
 
@@ -89,22 +89,22 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 
 - (void)callContact {
 	NSURL *phoneURL = [NSURL URLWithString:[NSString stringWithFormat: @"telprompt:%@", appointment.clientPhone]];
-
+	
 	if ([[UIApplication sharedApplication] canOpenURL:phoneURL]) {
 		[[UIApplication sharedApplication] openURL:phoneURL options:@{} completionHandler:nil];
 	} else {
 		UIAlertController *alertController = [UIAlertController
-										   alertControllerWithTitle:@"Error"
-										   message:@"Your device cannot make calls."
-										   preferredStyle:UIAlertControllerStyleAlert];
-
+											  alertControllerWithTitle:@"Error"
+											  message:@"Your device cannot make calls."
+											  preferredStyle:UIAlertControllerStyleAlert];
+		
 		UIAlertAction *dismissAction = [UIAlertAction
 										actionWithTitle:@"Dismiss"
 										style:UIAlertActionStyleCancel
 										handler:nil];
-
+		
 		[alertController addAction:dismissAction];
-
+		
 		[self presentViewController:alertController animated:YES completion:nil];
 	}
 }
@@ -112,29 +112,29 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 - (void)showEmailComposer {
 	if ([MFMailComposeViewController canSendMail]) {
 		MFMailComposeViewController *controller = [[MFMailComposeViewController alloc] init];
-
+		
 		controller.navigationBar.tintColor = [UIColor whiteColor];
-
+		
 		controller.mailComposeDelegate = self;
-
+		
 		[controller setSubject: [NSString stringWithFormat: @"%@ Appointment With %@", appointment.appointmentDateString, appointment.clientName]];
 		[controller setToRecipients: @[appointment.clientEmail]];
 		[controller setMessageBody:appointment.emailBodyString isHTML:YES];
-
+		
 		[self presentViewController:controller animated:YES completion:nil];
 	} else {
 		UIAlertController *alertController = [UIAlertController
 											  alertControllerWithTitle:@"Failure"
 											  message:@"Your device doesn't support the composer sheet"
 											  preferredStyle:UIAlertControllerStyleAlert];
-
+		
 		UIAlertAction *cancelAction = [UIAlertAction
 									   actionWithTitle:@"OK"
 									   style:UIAlertActionStyleCancel
 									   handler:nil];
-
+		
 		[alertController addAction:cancelAction];
-
+		
 		[self presentViewController:alertController animated:YES completion:nil];
 	}
 }
@@ -142,7 +142,7 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 - (void)goToMapView {
 	MapViewController *mapVC = [[MapViewController alloc] init];
 	mapVC.address = [NSString stringWithFormat:@"%@ %@", appointment.address, appointment.zipCode];
-
+	
 	[self.navigationController pushViewController:mapVC animated:YES];
 }
 
@@ -164,9 +164,9 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	AppointmentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-
+	
 	[cell setAppointment:appointment with:indexPath];
-
+	
 	return cell;
 }
 
