@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		49A7D4A5527ECCFF07109C64 /* Pods_Appointment.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */; };
 		6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 601423811CD098FF0089E278 /* Appointment.xcdatamodel */; };
 		6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423831CD098FF0089E278 /* AppointmentDetailViewController.m */; };
 		6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423851CD098FF0089E278 /* AppointmentInputViewController.m */; };
@@ -19,6 +18,7 @@
 		601423A91CD098FF0089E278 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423951CD098FF0089E278 /* main.m */; };
 		601423AB1CD098FF0089E278 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423981CD098FF0089E278 /* MapViewController.m */; };
 		605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F92C51CCC142B00F4FC1C /* Images.xcassets */; };
+		63F8538FA5AE80DA9D5DE534 /* libPods-Appointment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7CDE32D79148AC520CA2312 /* libPods-Appointment.a */; };
 		8A52809A1EEA1FD9004C221B /* AppointmentDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */; };
 		8AAAF5481EEB7D1900C06A6A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAAF5471EEB7D1900C06A6A /* SettingsViewController.m */; };
 		8AAAF5631EECBB7A00C06A6A /* InputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAAF5621EECBB7A00C06A6A /* InputTextField.m */; };
@@ -65,7 +65,6 @@
 		601423981CD098FF0089E278 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		605F92C51CCC142B00F4FC1C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		60C855481D027C6900C12BA3 /* Config.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Config.h; sourceTree = "<group>"; };
-		8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Appointment.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A5280981EEA1FD9004C221B /* AppointmentDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailTableViewCell.h; sourceTree = "<group>"; };
 		8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailTableViewCell.m; sourceTree = "<group>"; };
 		8AAAF5461EEB7D1900C06A6A /* SettingsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsViewController.h; sourceTree = "<group>"; };
@@ -96,6 +95,7 @@
 		CAD8426717D42EDC00A584E9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CAD8426917D42EE100A584E9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CADF935B17D4147B00DEE67D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		E7CDE32D79148AC520CA2312 /* libPods-Appointment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Appointment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,7 +116,7 @@
 				CAD8426817D42EDC00A584E9 /* CoreLocation.framework in Frameworks */,
 				BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */,
 				BE4E18E8140D9EB80007F01B /* UIKit.framework in Frameworks */,
-				49A7D4A5527ECCFF07109C64 /* Pods_Appointment.framework in Frameworks */,
+				63F8538FA5AE80DA9D5DE534 /* libPods-Appointment.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,7 +242,7 @@
 				CA0F3E9B17E25B0D003FE3BE /* SystemConfiguration.framework */,
 				BE4E18E7140D9EB80007F01B /* UIKit.framework */,
 				5941E395F53C4C37110ED0EA /* Pods.framework */,
-				8A00614B94178A6FE5302DB0 /* Pods_Appointment.framework */,
+				E7CDE32D79148AC520CA2312 /* libPods-Appointment.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -474,7 +474,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 			};
@@ -514,7 +514,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -546,7 +546,6 @@
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
 				PROVISIONING_PROFILE = "";
@@ -582,7 +581,6 @@
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
-				LIBRARY_SEARCH_PATHS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
 				PROVISIONING_PROFILE = "";

@@ -7,15 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Contacts/Contacts.h>
 
-@import Contacts;
+@interface ContactHandler : NSObject
 
-@interface ContactHandler : NSObject {
-	Appointment *appointment;
-	UIViewController *controller;
-}
-
-- (instancetype)initWithAppointment:(Appointment *)anAppointment;
-- (void)createNewContact;
++ (void)createNewContactWith:(Appointment *)appointment on:(UIViewController *)controller;
 
 @end

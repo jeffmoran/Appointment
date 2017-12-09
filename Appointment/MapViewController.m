@@ -2,8 +2,6 @@
 
 @implementation MapViewController
 
-@synthesize address;
-
 // MARK: - Lifecycle
 
 - (void)viewDidLoad {
@@ -12,7 +10,7 @@
 	[self setUpMapView];
 	
 	MKLocalSearchRequest *request = [[MKLocalSearchRequest alloc] init];
-	request.naturalLanguageQuery = address;
+	request.naturalLanguageQuery = self.addressString;
 	request.region = mapView.region;
 	
 	MKLocalSearch *localSearch = [[MKLocalSearch alloc] initWithRequest:request];
@@ -36,22 +34,14 @@
 	locationManager.delegate = self;
 	[locationManager requestWhenInUseAuthorization];
 	
-	self.title = address;
-}
+	self.title = self.addressString;
 
-- (void)viewDidAppear:(BOOL)animated {
-	[super viewDidAppear:animated];
-	
 	[self setUpToolbar];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
 	[super viewWillDisappear:animated];
 	[self.navigationController setToolbarHidden:YES animated:YES];
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
 }
 
 - (void)setUpMapView {
@@ -105,8 +95,8 @@
 	[barItems addObject:zoomToLocationButton];
 	[barItems addObject:space];
 	[barItems addObject:changeMapTypeButton];
-	
-	[self.navigationController.toolbar setItems:barItems animated:YES];
+
+	self.toolbarItems = barItems;
 }
 
 - (void)deselectAllAnnotations {
@@ -202,7 +192,7 @@
 	[actionView addAction:hybrid];
 	[actionView addAction:cancel];
 	
-	[self.navigationController presentViewController:actionView animated:YES completion:nil];
+	[self presentViewController:actionView animated:YES completion:nil];
 }
 
 // MARK: - MKMapViewDelegate

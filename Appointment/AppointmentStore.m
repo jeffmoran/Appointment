@@ -49,13 +49,13 @@
 }
 
 - (void)saveChanges {
-	NSError *err = nil;
+	NSError *error = nil;
 	
 	if (objectContext.hasChanges) {
-		[objectContext save:&err];
+		[objectContext save:&error];
 		[objectContext performBlockAndWait:^{
-			if (err) {
-				NSLog(@"Error saving: %@", err.localizedDescription);
+			if (error) {
+				NSLog(@"Error saving: %@", error.localizedDescription);
 			}
 		}];
 	}

@@ -589,11 +589,8 @@
 	if (textField == phoneField) {
 		NSUInteger length = [self getLength:textField.text];
 		
-		if (length == 10) {
-			if (range.length == 0) {
-				
-				return NO;
-			}
+		if (length == 10 && range.length == 0) {
+			return NO;
 		}
 		
 		if (length == 3) {

@@ -7,15 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <EventKit/EventKit.h>
 
-@import EventKit;
+@interface CalendarEventHandler : NSObject
 
-@interface CalendarEventHandler : NSObject {
-	Appointment *appointment;
-	UIViewController *controller;
-}
-
-- (instancetype)initWithAppointment:(Appointment *)anAppointment;
-- (void)createNewCalendarEvent;
++ (void)createNewCalendarEventWith:(Appointment *)appointment on:(UIViewController *)controller;
 
 @end

@@ -10,19 +10,7 @@
 
 @implementation CalendarEventHandler
 
-- (instancetype)initWithAppointment:(Appointment *)anAppointment {
-	self = [super init];
-	
-	if (self) {
-		appointment = anAppointment;
-		controller = [UIApplication sharedApplication].keyWindow.rootViewController;
-	}
-	
-	return self;
-}
-
-- (void)createNewCalendarEvent {
-	
++ (void)createNewCalendarEventWith:(Appointment *)appointment on:(UIViewController *)controller {
 	UIAlertController *alertController = [UIAlertController
 										  alertControllerWithTitle:[NSString stringWithFormat: @"%@ appointment with %@", appointment.appointmentDateString, appointment.clientName]
 										  message: @"Add this appointment to your calendar?"
@@ -37,15 +25,16 @@
 								actionWithTitle:@"Yes"
 								style:UIAlertActionStyleDefault
 								handler:^(UIAlertAction *action) {
-									[self authorizeEventStore];
+									[self authorizeEventStoreWith:appointment on:controller];
 								}];
 	
 	[alertController addAction:cancelAction];
 	[alertController addAction:yesAction];
+	
 	[controller presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)authorizeEventStore {
++ (void)authorizeEventStoreWith:(Appointment *)appointment on:(UIViewController *)controller {
 	EKEventStore *eventStore = [[EKEventStore alloc] init];
 	
 	[eventStore requestAccessToEntityType:EKEntityTypeEvent completion: ^(BOOL granted, NSError *_Nullable error) {
@@ -78,7 +67,7 @@
 					event.alarms = alarms;
 					event.calendar = eventStore.defaultCalendarForNewEvents;
 					
-					[self saveNewEvent:event store:eventStore];
+					[self saveNewEvent:event store:eventStore with:appointment on:controller];
 					break;
 				}
 				default: {
@@ -103,7 +92,7 @@
 	
 }
 
-- (void)saveNewEvent:(EKEvent *)event store:(EKEventStore *)eventStore {
++ (void)saveNewEvent:(EKEvent *)event store:(EKEventStore *)eventStore with:(Appointment *)appointment on:(UIViewController *)controller {
 	NSError *saveError;
 	
 	UIAlertController *alertController = nil;

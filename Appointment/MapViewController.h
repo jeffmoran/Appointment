@@ -9,6 +9,6 @@
 	MKMapView *mapView;
 }
 
-@property (nonatomic, strong) NSString *address;
+@property (nonatomic, strong) NSString *addressString;
 
 @end

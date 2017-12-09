@@ -141,19 +141,17 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 
 - (void)goToMapView {
 	MapViewController *mapVC = [[MapViewController alloc] init];
-	mapVC.address = [NSString stringWithFormat:@"%@ %@", appointment.address, appointment.zipCode];
+	mapVC.addressString = [NSString stringWithFormat:@"%@ %@", appointment.address, appointment.zipCode];
 	
 	[self.navigationController pushViewController:mapVC animated:YES];
 }
 
 - (void)createNewContact {
-	ContactHandler *handler = [[ContactHandler alloc] initWithAppointment:appointment];
-	[handler createNewContact];
+	[ContactHandler createNewContactWith:appointment on:self];
 }
 
 - (void)createNewCalendarEvent {
-	CalendarEventHandler *handler = [[CalendarEventHandler alloc] initWithAppointment:appointment];
-	[handler createNewCalendarEvent];
+	[CalendarEventHandler createNewCalendarEventWith:appointment on:self];
 }
 
 // MARK: - UITableViewDataSource

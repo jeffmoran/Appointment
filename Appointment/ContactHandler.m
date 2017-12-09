@@ -10,18 +10,7 @@
 
 @implementation ContactHandler
 
-- (instancetype)initWithAppointment:(Appointment *)anAppointment {
-	self = [super init];
-	
-	if (self) {
-		appointment = anAppointment;
-		controller = [UIApplication sharedApplication].keyWindow.rootViewController;
-	}
-	
-	return self;
-}
-
-- (void)createNewContact {
++ (void)createNewContactWith:(Appointment *)appointment on:(UIViewController *)controller {
 	UIAlertController *alertController = [UIAlertController
 										  alertControllerWithTitle:[NSString stringWithFormat: @"%@", appointment.clientName]
 										  message:@"Add this person to your contacts?"
@@ -36,7 +25,7 @@
 								actionWithTitle:@"Yes"
 								style:UIAlertActionStyleDefault
 								handler:^(UIAlertAction *action) {
-									[self authorizeContactStore];
+									[self authorizeContactStore:appointment on:controller];
 								}];
 	
 	[alertController addAction:cancelAction];
@@ -45,7 +34,7 @@
 	[controller presentViewController:alertController animated:YES completion:nil];
 }
 
-- (void)authorizeContactStore {
++ (void)authorizeContactStore:(Appointment *)appointment on:(UIViewController *)controller {
 	CNContactStore *contactStore = [[CNContactStore alloc] init];
 	
 	[contactStore requestAccessForEntityType: CNEntityTypeContacts completionHandler: ^(BOOL accessGranted, NSError *_Nullable error) {
@@ -65,7 +54,7 @@
 					contact.phoneNumbers = @[[CNLabeledValue labeledValueWithLabel:CNLabelPhoneNumberiPhone value:[CNPhoneNumber phoneNumberWithStringValue:appointment.clientPhone]]];
 					contact.emailAddresses = @[[CNLabeledValue labeledValueWithLabel:CNLabelHome value:appointment.clientEmail]];
 					
-					[self saveNewContact:contact store:contactStore];
+					[self saveNewContact:contact store:contactStore with:appointment on:controller];
 					break;
 				}
 				default: {
@@ -91,7 +80,7 @@
 	}];
 }
 
-- (void)saveNewContact:(CNMutableContact *)contact store:(CNContactStore *)contactStore {
++ (void)saveNewContact:(CNMutableContact *)contact store:(CNContactStore *)contactStore with:(Appointment *)appointment on:(UIViewController *)controller {
 	CNSaveRequest *saveRequest = [[CNSaveRequest alloc] init];
 	[saveRequest addContact:contact toContainerWithIdentifier:nil];
 	
