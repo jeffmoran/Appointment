@@ -9,7 +9,7 @@
 	UIScrollView *scrollView;
 	UIView *contentView;
 	
-	NSLayoutConstraint *scrollViewHeightConstraint;
+	NSLayoutConstraint *scrollViewBottomConstraint;
 	
 	InputTextField *nameField;
 	InputTextField *emailField;

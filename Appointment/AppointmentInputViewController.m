@@ -143,20 +143,16 @@
 	}
 }
 
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-}
-
 - (void)setUpConstraints {
-	scrollViewHeightConstraint = [scrollView.heightAnchor constraintEqualToConstant:self.view.frame.size.height];
-	[scrollViewHeightConstraint setActive:YES];
-	
+	scrollViewBottomConstraint = [scrollView.bottomAnchor constraintEqualToAnchor:self.view.bottomAnchor];
+
 	[NSLayoutConstraint
 	 activateConstraints:@[
 						   [scrollView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
 						   [scrollView.topAnchor constraintEqualToAnchor:self.view.topAnchor],
 						   [scrollView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
-						   
+						   scrollViewBottomConstraint,
+
 						   [contentView.leftAnchor constraintEqualToAnchor:scrollView.leftAnchor],
 						   [contentView.topAnchor constraintEqualToAnchor:scrollView.topAnchor],
 						   [contentView.rightAnchor constraintEqualToAnchor:scrollView.rightAnchor],
@@ -268,11 +264,9 @@
 - (void)keyboardWillShow:(NSNotification *)notification {
 	NSDictionary *userInfo = notification.userInfo;
 	
-	CGSize keyboardSize = [userInfo[UIKeyboardFrameBeginUserInfoKey] CGRectValue].size;
-	
-	CGFloat viewHeight = self.view.frame.size.height - keyboardSize.height;
-	
-	scrollViewHeightConstraint.constant = viewHeight;
+	CGFloat keyboardHeight = [userInfo[UIKeyboardFrameEndUserInfoKey] CGRectValue].size.height;
+
+	scrollViewBottomConstraint.constant = -keyboardHeight;
 	
 	[UIView animateWithDuration:0.2 animations:^{
 		[self.view layoutIfNeeded];
@@ -280,9 +274,8 @@
 }
 
 - (void)keyboardWillHide:(NSNotification *)notification {
-	CGFloat viewHeight = self.view.frame.size.height;
-	
-	scrollViewHeightConstraint.constant = viewHeight;
+
+	scrollViewBottomConstraint.constant = 0.0;
 	
 	[UIView animateWithDuration:0.2 animations:^{
 		[self.view layoutIfNeeded];
@@ -405,7 +398,7 @@
 	if (fieldIndex != 0) {
 		[[self allInputFields][fieldIndex - 1] becomeFirstResponder];
 	} else {
-		[[self allInputFields][[self allInputFields].count - 1] becomeFirstResponder];
+		[self.view endEditing:YES];
 	}
 }
 
@@ -419,7 +412,7 @@
 	if ([self allInputFields].count - 1 != fieldIndex) {
 		[[self allInputFields][fieldIndex + 1] becomeFirstResponder];
 	} else {
-		[[self allInputFields][0] becomeFirstResponder];
+		[self.view endEditing:YES];
 	}
 }
 
