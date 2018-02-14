@@ -10,6 +10,16 @@
 
 @implementation InputTextField
 
+- (instancetype)initWithPlaceholder:(NSString *)placeholder {
+	self = [self init];
+
+	if (self) {
+		self.placeholder = placeholder;
+	}
+
+	return self;
+}
+
 - (instancetype)init {
 	self = [super init];
 	

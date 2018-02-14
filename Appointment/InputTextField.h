@@ -10,4 +10,6 @@
 
 @interface InputTextField : UITextField
 
+- (instancetype)initWithPlaceholder:(NSString *)placeholder;
+
 @end

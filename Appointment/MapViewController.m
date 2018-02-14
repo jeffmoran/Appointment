@@ -254,7 +254,6 @@
 	
 	if (status == kCLAuthorizationStatusNotDetermined) {
 		zoomToUserLocationButton.enabled = NO;
-		return;
 	} else if (status == kCLAuthorizationStatusAuthorizedWhenInUse) {
 		zoomToUserLocationButton.enabled = YES;
 	} else {

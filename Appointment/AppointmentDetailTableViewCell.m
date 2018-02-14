@@ -57,7 +57,7 @@
 	 activateConstraints:@[
 						   heightAnchor,
 						   
-						   [appointmentHeaderLabel.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant: 5],
+						   [appointmentHeaderLabel.leftAnchor constraintEqualToAnchor:self.contentView.layoutMarginsGuide.leftAnchor],
 						   [appointmentHeaderLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor],
 						   [appointmentHeaderLabel.bottomAnchor constraintEqualToAnchor:self.contentView.bottomAnchor],
 						   [appointmentHeaderLabel.widthAnchor constraintEqualToConstant:80],

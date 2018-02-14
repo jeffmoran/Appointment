@@ -60,7 +60,7 @@
 - (void)setUpConstraints {
 	[NSLayoutConstraint
 	 activateConstraints:@[
-						   [appointmentClientNameLabel.leftAnchor constraintEqualToAnchor:self.contentView.leftAnchor constant: 15],
+						   [appointmentClientNameLabel.leftAnchor constraintEqualToAnchor:self.contentView.layoutMarginsGuide.leftAnchor],
 						   [appointmentClientNameLabel.topAnchor constraintEqualToAnchor:self.contentView.topAnchor constant: 5],
 						   [appointmentClientNameLabel.rightAnchor constraintEqualToAnchor:self.contentView.rightAnchor constant: -15],
 						   

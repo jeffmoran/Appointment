@@ -19,34 +19,20 @@
 	
 	petsArray = @[@"Yes", @"No", @"Some"];
 	
-	nameField = [[InputTextField alloc] init];
-	emailField = [[InputTextField alloc] init];
-	phoneField = [[InputTextField alloc] init];
-	timeField = [[InputTextField alloc] init];
-	addressField = [[InputTextField alloc] init];
-	zipCodeField = [[InputTextField alloc] init];
-	neighborhoodField = [[InputTextField alloc] init];
-	moveindateField = [[InputTextField alloc] init];
-	petsField = [[InputTextField alloc] init];
-	priceField = [[InputTextField alloc] init];
-	aptsizeField = [[InputTextField alloc] init];
-	roomsField = [[InputTextField alloc] init];
-	bathsField = [[InputTextField alloc] init];
-	
-	nameField.placeholder = @" Client Name";
-	emailField.placeholder = @" Client Email Address";
-	phoneField.placeholder = @" Client Phone Number";
-	timeField.placeholder = @" Appointment Time";
-	addressField.placeholder = @" Property Address";
-	zipCodeField.placeholder = @" Zip/Postal Code";
-	neighborhoodField.placeholder = @" City";
-	moveindateField.placeholder = @" Move-In Date";
-	petsField.placeholder = @" Pets";
-	priceField.placeholder = @" Price ($ Per Month)";
-	aptsizeField.placeholder = @" Size (Sq. Ft.)";
-	roomsField.placeholder = @" Bedrooms";
-	bathsField.placeholder = @" Bathrooms";
-	
+	nameField = [[InputTextField alloc] initWithPlaceholder:@"Client Name"];
+	emailField = [[InputTextField alloc] initWithPlaceholder:@"Client Email Address"];
+	phoneField = [[InputTextField alloc] initWithPlaceholder:@"Client Phone Number"];
+	timeField = [[InputTextField alloc] initWithPlaceholder:@"Appointment Time"];
+	addressField = [[InputTextField alloc] initWithPlaceholder:@"Property Address"];
+	zipCodeField = [[InputTextField alloc] initWithPlaceholder:@"Zip/Postal Code"];
+	neighborhoodField = [[InputTextField alloc] initWithPlaceholder:@"City"];
+	moveindateField = [[InputTextField alloc] initWithPlaceholder:@"Move-In Date"];
+	petsField = [[InputTextField alloc] initWithPlaceholder:@"Pets"];
+	priceField = [[InputTextField alloc] initWithPlaceholder:@"Price ($ Per Month)"];
+	aptsizeField = [[InputTextField alloc] initWithPlaceholder:@"Size (Sq. Ft.)"];
+	roomsField = [[InputTextField alloc] initWithPlaceholder:@"Bedrooms"];
+	bathsField = [[InputTextField alloc] initWithPlaceholder:@"Bathrooms"];
+
 	inputName = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputName"]];
 	inputEmail = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputEmail"]];
 	inputPhone = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputPhone"]];
@@ -514,24 +500,20 @@
 
 // MARK: - UIPickerViewDataSource
 
-- (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView {
-	return 1;
-}
-
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
 	if (pickerView == petsPicker) {
 		return petsArray.count;
-	} else {
-		return 0;
 	}
+
+	return 0;
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
 	if (pickerView == petsPicker) {
 		return petsArray[row];
-	} else {
-		return 0;
 	}
+
+	return 0;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
