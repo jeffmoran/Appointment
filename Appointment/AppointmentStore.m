@@ -95,10 +95,10 @@
 	return [[NSMutableArray alloc] initWithArray:result];
 }
 
-- (Appointment *)createAppointment {
-	Appointment *newAppointment = [NSEntityDescription insertNewObjectForEntityForName:@"Appointment" inManagedObjectContext:objectContext];
+- (Appointment *)emptyAppointment {
+	Appointment *emptyAppointment = [NSEntityDescription insertNewObjectForEntityForName:@"Appointment" inManagedObjectContext:objectContext];
 	
-	return newAppointment;
+	return emptyAppointment;
 }
 
 @end

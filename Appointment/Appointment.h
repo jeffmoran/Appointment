@@ -19,11 +19,11 @@
 @property (nonatomic, strong) NSString *notes;
 
 
-- (NSArray *)appointmentPropertiesHeader;
-- (NSArray *)appointmentProperties;
-- (NSString *)appointmentDateString;
-- (NSString *)moveInDateString;
-- (NSString *)calendarNotesString;
-- (NSString *)emailBodyString;
+@property (nonatomic, readonly, copy) NSArray *appointmentPropertiesHeader;
+@property (nonatomic, readonly, copy) NSArray *appointmentProperties;
+@property (nonatomic, readonly, copy) NSString *appointmentDateString;
+@property (nonatomic, readonly, copy) NSString *moveInDateString;
+@property (nonatomic, readonly, copy) NSString *calendarNotesString;
+@property (nonatomic, readonly, copy) NSString *emailBodyString;
 
 @end

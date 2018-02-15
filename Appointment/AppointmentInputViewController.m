@@ -471,8 +471,8 @@
 	}
 	
 	// create new appointment based off whatever is in the textFields
-	Appointment *newAppointment = [[AppointmentStore shared] createAppointment];
-	
+	Appointment *newAppointment = AppointmentStore.shared.emptyAppointment;
+
 	newAppointment.clientName = nameField.text;
 	newAppointment.clientPhone = phoneField.text;
 	newAppointment.moveInDate = moveInPicker.date;
