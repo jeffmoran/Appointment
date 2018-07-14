@@ -150,7 +150,7 @@
 										  preferredStyle:UIAlertControllerStyleAlert];
 	
 	UIAlertAction *yesAction = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDestructive handler:^(UIAlertAction *_Nonnull action) {
-		[[AppointmentStore shared] removeAllAppointments];
+		[AppointmentStore.shared removeAllAppointments];
 	}];
 	
 	UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:nil];

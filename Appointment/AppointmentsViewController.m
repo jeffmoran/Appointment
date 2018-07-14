@@ -66,8 +66,10 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 	appointmentsTableView.delegate = self;
 	appointmentsTableView.dataSource = self;
 	appointmentsTableView.rowHeight = UITableViewAutomaticDimension;
+	appointmentsTableView.sectionHeaderHeight = UITableViewAutomaticDimension;
 	appointmentsTableView.estimatedRowHeight = 80.0;
-	
+	appointmentsTableView.estimatedSectionHeaderHeight = 30.0;
+
 	appointmentsTableView.emptyDataSetSource = self;
 	appointmentsTableView.emptyDataSetDelegate = self;
 	appointmentsTableView.tableFooterView = [UIView new];
@@ -88,7 +90,7 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 - (void)setUpAddAppointmentButton {
 	newAppointmentButton = [[UIButton alloc] init];
 	newAppointmentButton.translatesAutoresizingMaskIntoConstraints = NO;
-	[newAppointmentButton setExclusiveTouch:YES];
+	newAppointmentButton.exclusiveTouch = YES;
 	[newAppointmentButton setBackgroundImage:[UIImage imageNamed:@"add"] forState:UIControlStateNormal];
 	newAppointmentButton.backgroundColor = FlatTeal;
 	newAppointmentButton.tintColor = [UIColor whiteColor];
@@ -126,7 +128,7 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 	if (tableView.editing) {
 		AppointmentInputViewController *inputViewController = [[AppointmentInputViewController alloc] init];
 		
-		inputViewController.appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
+		inputViewController.appointment = AppointmentStore.shared.allAppointments[indexPath.row];
 		
 		UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:inputViewController];
 		
@@ -134,7 +136,7 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 	} else {
 		AppointmentDetailViewController *detailViewController = [[AppointmentDetailViewController alloc] init];
 		
-		detailViewController.appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
+		detailViewController.appointment = AppointmentStore.shared.allAppointments[indexPath.row];
 		
 		[self.navigationController pushViewController:detailViewController animated:YES];
 	}
@@ -143,11 +145,11 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 // MARK: - UITableViewDatasource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-	return [[AppointmentStore shared] allAppointments].count;
+	return AppointmentStore.shared.allAppointments.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
+	Appointment *appointment = AppointmentStore.shared.allAppointments[indexPath.row];
 	
 	AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	
@@ -157,20 +159,20 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
-	if ([[AppointmentStore shared] allAppointments].count == 0) {
+	if (AppointmentStore.shared.allAppointments.count == 0) {
 		return @"";
-	} else if ([[AppointmentStore shared] allAppointments].count == 1) {
+	} else if (AppointmentStore.shared.allAppointments.count == 1) {
 		return @"1 Appointment";
 	} else {
-		return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)[[AppointmentStore shared] allAppointments].count];
+		return [NSString stringWithFormat:@"%lu Appointments", (unsigned long)AppointmentStore.shared.allAppointments.count];
 		
 	}
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
 	if (editingStyle == UITableViewCellEditingStyleDelete) {
-		Appointment *appointment = [[AppointmentStore shared] allAppointments][indexPath.row];
-		[[AppointmentStore shared] removeAppointment:appointment];
+		Appointment *appointment = AppointmentStore.shared.allAppointments[indexPath.row];
+		[AppointmentStore.shared removeAppointment:appointment];
 		
 		[tableView beginUpdates];
 		[tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -178,10 +180,6 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 		
 		[tableView reloadData];
 	}
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForFooterInSection:(NSInteger)section {
-	return 76;
 }
 
 // MARK: - DZNEmptyDataSet

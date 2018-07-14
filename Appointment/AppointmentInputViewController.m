@@ -363,11 +363,11 @@
 // MARK: - Methods
 
 - (void)clearButtonPressed {
-	for (InputTextField *textfield in [self allInputFields]) {
+	for (InputTextField *textfield in self.allInputFields) {
 		textfield.text = nil;
 	}
 	
-	[[self allInputFields][0] becomeFirstResponder];
+	[self.allInputFields.firstObject becomeFirstResponder];
 }
 
 - (void)dismissKeyboardGesture {
@@ -467,7 +467,7 @@
 	if (appointment) {
 		// if an appointment exists here, we are in editing mode
 		// delete the appointment first
-		[[AppointmentStore shared] removeAppointment:appointment];
+		[AppointmentStore.shared removeAppointment:appointment];
 	}
 	
 	// create new appointment based off whatever is in the textFields
@@ -489,7 +489,7 @@
 	newAppointment.notes = notesTextView.text;
 	
 	// save the appointment
-	[[AppointmentStore shared] saveChanges];
+	[AppointmentStore.shared saveChanges];
 	
 	[self dismissVC];
 }
