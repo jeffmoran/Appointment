@@ -2,7 +2,7 @@
 #import "AppointmentStore.h"
 #import "InputTextField.h"
 
-@interface AppointmentInputViewController : UIViewController <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>{
+@interface AppointmentInputViewController : UIViewController  {
 	NSArray *petsArray;
 	NSInteger fieldIndex;
 	

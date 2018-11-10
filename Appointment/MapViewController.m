@@ -56,8 +56,8 @@
 	 activateConstraints:@[
 						   [mapView.leftAnchor constraintEqualToAnchor:self.view.leftAnchor],
 						   [mapView.rightAnchor constraintEqualToAnchor:self.view.rightAnchor],
-						   [mapView.topAnchor constraintEqualToAnchor:self.topLayoutGuide.bottomAnchor],
-						   [mapView.bottomAnchor constraintEqualToAnchor:self.bottomLayoutGuide.topAnchor],
+						   [mapView.topAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.topAnchor],
+						   [mapView.bottomAnchor constraintEqualToAnchor:self.view.safeAreaLayoutGuide.bottomAnchor],
 						   ]];
 }
 

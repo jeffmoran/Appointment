@@ -1,6 +1,10 @@
 #import "AppointmentInputViewController.h"
 #import "GoogleGeocodeAPI.h"
 
+@interface AppointmentInputViewController() <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
+
+@end
+
 @implementation AppointmentInputViewController
 
 @synthesize appointment;
@@ -10,9 +14,7 @@
 - (void)viewDidLoad {
 	[super viewDidLoad];
 	
-	if (@available(iOS 11.0, *)) {
-		self.navigationController.navigationBar.prefersLargeTitles = YES;
-	}
+    self.navigationController.navigationBar.prefersLargeTitles = YES;
 	
 	self.view.tintColor = FlatTeal;
 	self.view.backgroundColor = [UIColor colorWithRed:0.937255 green:0.937255 blue:0.956863 alpha:1.0];
@@ -47,15 +49,14 @@
 	inputRooms = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputBedrooms"]];
 	inputBaths = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputBaths"]];
 	inputNotes = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"inputNotes"]];
-	
-	//Set the frame for each pickerview/datepicker
-	CGRect pickerFrame = CGRectMake(0, 0, self.view.frame.size.width, 200);
-	petsPicker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+
+    petsPicker = [[UIPickerView alloc] init];
 	petsPicker.delegate = self;
+
 	petsPicker.showsSelectionIndicator = YES;
 	
-	timePicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
-	moveInPicker = [[UIDatePicker alloc] initWithFrame:pickerFrame];
+    timePicker = [[UIDatePicker alloc] init];
+    moveInPicker = [[UIDatePicker alloc] init];
 	
 	//Set the inputView for textFields
 	timeField.inputView = timePicker;
@@ -508,114 +509,120 @@
 	return 0;
 }
 
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
-	if (pickerView == petsPicker) {
-		return petsArray[row];
-	}
-
-	return 0;
+- (NSInteger)numberOfComponentsInPickerView:(nonnull UIPickerView *)pickerView {
+    return 1;
 }
 
+- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component {
+    if (pickerView == petsPicker) {
+        return petsArray[row];
+    }
+    
+    return 0;
+}
+
+// MARK: - UIPickerViewDelegate
+
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component {
-	if (pickerView == petsPicker) {
-		petsField.text = petsArray[row];
-	}
+    if (pickerView == petsPicker) {
+        petsField.text = petsArray[row];
+    }
 }
 
 // MARK: - UITextFieldDelegate
 
 - (BOOL)textFieldShouldReturn:(UITextField *)textField {
-	if (textField.returnKeyType == UIReturnKeyDone) {
-		[self.view endEditing:YES];
-	}
-	
-	return ![self setNextResponder:textField];
+    if (textField.returnKeyType == UIReturnKeyDone) {
+        [self.view endEditing:YES];
+    }
+    
+    return ![self setNextResponder:textField];
 }
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
-	if (textField == zipCodeField) {
-		if (zipCodeField.text.length <= 5) {
-			[GoogleGeocodeAPI requestCityWithZipCode:zipCodeField.text completionHandler:^(NSString *city) {
-				neighborhoodField.text = city;
-			}];
-		} else {
-			NSLog(@"Zip code field is greater than 5, no JSON request");
-		}
-	}
+    if (textField == zipCodeField) {
+        if (zipCodeField.text.length <= 5) {
+            [GoogleGeocodeAPI requestCityWithZipCode:zipCodeField.text completionHandler:^(NSString *city) {
+                neighborhoodField.text = city;
+            }];
+        } else {
+            NSLog(@"Zip code field is greater than 5, no JSON request");
+        }
+    }
 }
 
 - (BOOL)setNextResponder:(UITextField *)textField {
-	NSInteger indexOfInput = [[self allInputFields] indexOfObject:textField];
-	
-	if (indexOfInput != NSNotFound && indexOfInput < [self allInputFields].count - 1) {
-		UIResponder *next = [self allInputFields][(NSUInteger)(indexOfInput + 1)];
-		
-		if (next.canBecomeFirstResponder) {
-			[next becomeFirstResponder];
-			
-			return YES;
-		}
-	}
-	
-	return NO;
+    NSInteger indexOfInput = [[self allInputFields] indexOfObject:textField];
+    
+    if (indexOfInput != NSNotFound && indexOfInput < [self allInputFields].count - 1) {
+        UIResponder *next = [self allInputFields][(NSUInteger)(indexOfInput + 1)];
+        
+        if (next.canBecomeFirstResponder) {
+            [next becomeFirstResponder];
+            
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
-	if (textField == phoneField) {
-		NSUInteger length = [self getLength:textField.text];
-		
-		if (length == 10 && range.length == 0) {
-			return NO;
-		}
-		
-		if (length == 3) {
-			NSString *num = [self formatNumber:textField.text];
-			textField.text = [NSString stringWithFormat:@"%@-", num];
-			
-			if (range.length > 0) {
-				textField.text = [NSString stringWithFormat:@"%@", [num substringToIndex: 3]];
-			}
-		} else if (length == 6) {
-			NSString *num = [self formatNumber:textField.text];
-			textField.text = [NSString stringWithFormat:@"%@-%@-", [num  substringToIndex: 3], [num substringFromIndex: 3]];
-			
-			if (range.length > 0) {
-				textField.text = [NSString stringWithFormat:@"(%@) %@", [num substringToIndex: 3], [num substringFromIndex: 3]];
-			}
-		}
-	}
-	
-	return YES;
+    if (textField == phoneField) {
+        NSUInteger length = [self getLength:textField.text];
+        
+        if (length == 10 && range.length == 0) {
+            return NO;
+        }
+        
+        if (length == 3) {
+            NSString *num = [self formatNumber:textField.text];
+            textField.text = [NSString stringWithFormat:@"%@-", num];
+            
+            if (range.length > 0) {
+                textField.text = [NSString stringWithFormat:@"%@", [num substringToIndex: 3]];
+            }
+        } else if (length == 6) {
+            NSString *num = [self formatNumber:textField.text];
+            textField.text = [NSString stringWithFormat:@"%@-%@-", [num  substringToIndex: 3], [num substringFromIndex: 3]];
+            
+            if (range.length > 0) {
+                textField.text = [NSString stringWithFormat:@"(%@) %@", [num substringToIndex: 3], [num substringFromIndex: 3]];
+            }
+        }
+    }
+    
+    return YES;
 }
 
 // MARK: - Number styling
 
 - (NSString *)formatNumber:(NSString *)mobileNumber {
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
-	
-	NSUInteger length = mobileNumber.length;
-	
-	if (length > 10) {
-		mobileNumber = [mobileNumber substringFromIndex:length - 10];
-	}
-	
-	return mobileNumber;
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    
+    NSUInteger length = mobileNumber.length;
+    
+    if (length > 10) {
+        mobileNumber = [mobileNumber substringFromIndex:length - 10];
+    }
+    
+    return mobileNumber;
 }
 
 - (NSUInteger)getLength:(NSString *)mobileNumber {
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
-	mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
-	
-	NSUInteger length = mobileNumber.length;
-	
-	return length;
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@")" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@" " withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"-" withString:@""];
+    mobileNumber = [mobileNumber stringByReplacingOccurrencesOfString:@"+" withString:@""];
+    
+    NSUInteger length = mobileNumber.length;
+    
+    return length;
 }
 
 @end
