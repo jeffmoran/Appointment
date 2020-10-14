@@ -1,5 +1,4 @@
 #import "AppointmentInputViewController.h"
-#import "GoogleGeocodeAPI.h"
 
 @interface AppointmentInputViewController() <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
@@ -52,8 +51,6 @@
 
     petsPicker = [[UIPickerView alloc] init];
 	petsPicker.delegate = self;
-
-	petsPicker.showsSelectionIndicator = YES;
 	
     timePicker = [[UIDatePicker alloc] init];
     moveInPicker = [[UIDatePicker alloc] init];
@@ -537,18 +534,6 @@
     }
     
     return ![self setNextResponder:textField];
-}
-
-- (void)textFieldDidEndEditing:(UITextField *)textField {
-    if (textField == zipCodeField) {
-        if (zipCodeField.text.length <= 5) {
-            [GoogleGeocodeAPI requestCityWithZipCode:zipCodeField.text completionHandler:^(NSString *city) {
-                neighborhoodField.text = city;
-            }];
-        } else {
-            NSLog(@"Zip code field is greater than 5, no JSON request");
-        }
-    }
 }
 
 - (BOOL)setNextResponder:(UITextField *)textField {
