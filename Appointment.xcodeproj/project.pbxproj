@@ -267,8 +267,6 @@
 				BE4E18DF140D9EB80007F01B /* Sources */,
 				BE4E18E0140D9EB80007F01B /* Frameworks */,
 				BE4E18E1140D9EB80007F01B /* Resources */,
-				204F53FC071543748F33CAC8 /* [CP] Embed Pods Frameworks */,
-				368A817E3E7621DAC90442BA /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -329,41 +327,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		204F53FC071543748F33CAC8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Appointment/Pods-Appointment-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
-				"${BUILT_PRODUCTS_DIR}/RNGridMenu/RNGridMenu.framework",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RNGridMenu.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Appointment/Pods-Appointment-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		368A817E3E7621DAC90442BA /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Appointment/Pods-Appointment-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		75A858E8A47948056084A926 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;

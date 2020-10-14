@@ -70,10 +70,6 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 	appointmentsTableView.estimatedRowHeight = 80.0;
 	appointmentsTableView.estimatedSectionHeaderHeight = 30.0;
 
-	appointmentsTableView.emptyDataSetSource = self;
-	appointmentsTableView.emptyDataSetDelegate = self;
-	appointmentsTableView.tableFooterView = [UIView new];
-	
 	[appointmentsTableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:cellIdentifier];
 	
 	[self.view addSubview:appointmentsTableView];
