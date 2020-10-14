@@ -2,6 +2,7 @@
 #import "AppointmentTableViewCell.h"
 #import "AppointmentDetailViewController.h"
 #import "SettingsViewController.h"
+#import "AppointmentInputViewController.h"
 
 @implementation AppointmentsViewController
 

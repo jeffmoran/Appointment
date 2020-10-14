@@ -1,0 +1,50 @@
+opt_in_rules:
+- anyobject_protocol
+- array_init
+- closure_end_indentation
+- closure_spacing
+- contains_over_first_not_nil
+- discouraged_optional_boolean
+- empty_count
+- empty_string
+- explicit_init
+- fallthrough
+- fatal_error_message
+- first_where
+- force_unwrapping
+- function_default_parameter_at_end
+- identical_operands
+- implicit_return
+- joined_default_parameter
+- legacy_random
+- let_var_whitespace
+- literal_expression_end_indentation
+- lower_acl_than_parent
+- missing_docs
+- modifier_order
+- multiline_parameters
+- operator_usage_whitespace
+- overridden_super_call
+- private_action
+- private_outlet
+- prohibited_super_call
+- redundant_nil_coalescing
+- sorted_first_last
+- sorted_imports
+- static_operator
+- toggle_bool
+- trailing_closure
+- type_contents_order
+- unavailable_function
+- unneeded_parentheses_in_closure_argument
+- untyped_error_in_catch
+- unused_import
+- vertical_parameter_alignment_on_call
+- yoda_condition
+
+implicit_return:
+  included: 
+    - closure
+
+disabled_rules:
+- line_length

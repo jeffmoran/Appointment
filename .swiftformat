@@ -1,0 +1,14 @@
+# format options
+
+--stripunusedargs closure-only
+--swiftversion 5.0
+--commas inline
+
+# rules
+
+--enable isEmpty
+
+--disable indent
+--disable andOperator
+--disable hoistPatternLet
+--disable blankLinesAtStartOfScope

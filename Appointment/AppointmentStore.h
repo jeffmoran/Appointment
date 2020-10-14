@@ -1,6 +1,8 @@
 #import <Foundation/Foundation.h>
 #import <CoreData/CoreData.h>
 
+@class Appointment;
+
 @interface AppointmentStore : NSObject {
 	NSManagedObjectModel *model;
 	NSManagedObjectContext *objectContext;

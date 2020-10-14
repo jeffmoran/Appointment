@@ -11,12 +11,12 @@
 		6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423831CD098FF0089E278 /* AppointmentDetailViewController.m */; };
 		6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423851CD098FF0089E278 /* AppointmentInputViewController.m */; };
 		601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423881CD098FF0089E278 /* AppointmentsViewController.m */; };
-		601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */; };
 		601423A31CD098FF0089E278 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238D1CD098FF0089E278 /* Appointment.m */; };
 		601423A61CD098FF0089E278 /* AppointmentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423921CD098FF0089E278 /* AppointmentStore.m */; };
 		601423A81CD098FF0089E278 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601423941CD098FF0089E278 /* Launch Screen.storyboard */; };
-		601423A91CD098FF0089E278 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423951CD098FF0089E278 /* main.m */; };
 		601423AB1CD098FF0089E278 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423981CD098FF0089E278 /* MapViewController.m */; };
+		605A55A62537B6DF002B29D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A55A42537B6DF002B29D3 /* SceneDelegate.swift */; };
+		605A55D12537B742002B29D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A55D02537B742002B29D3 /* AppDelegate.swift */; };
 		605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F92C51CCC142B00F4FC1C /* Images.xcassets */; };
 		63F8538FA5AE80DA9D5DE534 /* libPods-Appointment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7CDE32D79148AC520CA2312 /* libPods-Appointment.a */; };
 		8A52809A1EEA1FD9004C221B /* AppointmentDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */; };
@@ -51,17 +51,17 @@
 		601423851CD098FF0089E278 /* AppointmentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentInputViewController.m; sourceTree = "<group>"; };
 		601423871CD098FF0089E278 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
 		601423881CD098FF0089E278 /* AppointmentsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentsViewController.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
-		6014238A1CD098FF0089E278 /* AppointmentAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppointmentAppDelegate.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
-		6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		6014238C1CD098FF0089E278 /* Appointment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Appointment.h; sourceTree = "<group>"; };
 		6014238D1CD098FF0089E278 /* Appointment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Appointment.m; sourceTree = "<group>"; };
 		601423911CD098FF0089E278 /* AppointmentStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = AppointmentStore.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		601423921CD098FF0089E278 /* AppointmentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentStore.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		601423931CD098FF0089E278 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		601423941CD098FF0089E278 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		601423951CD098FF0089E278 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = main.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		601423971CD098FF0089E278 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		601423981CD098FF0089E278 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		605A55552537B682002B29D3 /* Appointment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appointment-Bridging-Header.h"; sourceTree = "<group>"; };
+		605A55A42537B6DF002B29D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		605A55D02537B742002B29D3 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		605F92C51CCC142B00F4FC1C /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		8A5280981EEA1FD9004C221B /* AppointmentDetailTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailTableViewCell.h; sourceTree = "<group>"; };
 		8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailTableViewCell.m; sourceTree = "<group>"; };
@@ -131,7 +131,6 @@
 			isa = PBXGroup;
 			children = (
 				601423801CD098FF0089E278 /* Appointment-Prefix.pch */,
-				601423951CD098FF0089E278 /* main.m */,
 				601423931CD098FF0089E278 /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -248,10 +247,11 @@
 				8A5280961EEA1E9D004C221B /* Views */,
 				8A5280971EEA1EA2004C221B /* Controllers */,
 				8AACE7A81EEDA88E00A05ED8 /* Utils */,
-				6014238A1CD098FF0089E278 /* AppointmentAppDelegate.h */,
-				6014238B1CD098FF0089E278 /* AppointmentAppDelegate.m */,
 				6014237F1CD098E70089E278 /* Assets */,
 				601423AF1CD099270089E278 /* Supporting Files */,
+				605A55D02537B742002B29D3 /* AppDelegate.swift */,
+				605A55A42537B6DF002B29D3 /* SceneDelegate.swift */,
+				605A55552537B682002B29D3 /* Appointment-Bridging-Header.h */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -288,6 +288,7 @@
 				ORGANIZATIONNAME = "Jeff Moran";
 				TargetAttributes = {
 					BE4E18E2140D9EB80007F01B = {
+						LastSwiftMigration = 1220;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
 								enabled = 0;
@@ -362,10 +363,10 @@
 				6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */,
 				601423A31CD098FF0089E278 /* Appointment.m in Sources */,
 				6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */,
+				605A55A62537B6DF002B29D3 /* SceneDelegate.swift in Sources */,
 				601423AB1CD098FF0089E278 /* MapViewController.m in Sources */,
 				CA4257CE1EEF29C200927D4B /* CalendarEventHandler.m in Sources */,
-				601423A91CD098FF0089E278 /* main.m in Sources */,
-				601423A21CD098FF0089E278 /* AppointmentAppDelegate.m in Sources */,
+				605A55D12537B742002B29D3 /* AppDelegate.swift in Sources */,
 				8AAAF5631EECBB7A00C06A6A /* InputTextField.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -492,10 +493,14 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Appointment/Appointment-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;
@@ -526,10 +531,13 @@
 					"\"$(SRCROOT)\"",
 				);
 				INFOPLIST_FILE = Appointment/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
 				PROVISIONING_PROFILE = "";
 				SDKROOT = iphoneos;
+				SWIFT_OBJC_BRIDGING_HEADER = "Appointment/Appointment-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
 				WRAPPER_EXTENSION = app;

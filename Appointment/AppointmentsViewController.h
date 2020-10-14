@@ -1,5 +1,5 @@
 #import <Foundation/Foundation.h>
-#import "AppointmentInputViewController.h"
+#import <UIKit/UIKit.h>
 
 @interface AppointmentsViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
 	UIButton *newAppointmentButton;
