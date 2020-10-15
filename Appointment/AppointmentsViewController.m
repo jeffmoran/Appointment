@@ -1,12 +1,11 @@
 #import "AppointmentsViewController.h"
-#import "AppointmentTableViewCell.h"
 #import "AppointmentDetailViewController.h"
 #import "SettingsViewController.h"
 #import "AppointmentInputViewController.h"
 
-@implementation AppointmentsViewController
+#import "Appointment-Swift.h"
 
-static NSString *cellIdentifier = @"appointmentCellIdentifier";
+@implementation AppointmentsViewController
 
 // MARK: - Lifecycle
 
@@ -71,7 +70,7 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 	appointmentsTableView.estimatedRowHeight = 80.0;
 	appointmentsTableView.estimatedSectionHeaderHeight = 30.0;
 
-	[appointmentsTableView registerClass:[AppointmentTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+	[appointmentsTableView registerClass:AppointmentTableViewCell.class forCellReuseIdentifier:AppointmentTableViewCell.reuseIdentifier];
 	
 	[self.view addSubview:appointmentsTableView];
 	
@@ -148,10 +147,10 @@ static NSString *cellIdentifier = @"appointmentCellIdentifier";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
 	Appointment *appointment = AppointmentStore.shared.allAppointments[indexPath.row];
 	
-	AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+	AppointmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AppointmentTableViewCell.reuseIdentifier];
 	
-	[cell setAppointment:appointment];
-	
+    [cell styleWith:appointment];
+
 	return cell;
 }
 

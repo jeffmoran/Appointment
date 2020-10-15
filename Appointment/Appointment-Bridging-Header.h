@@ -4,3 +4,4 @@
 
 #import "AppointmentsViewController.h"
 #import "AppointmentStore.h"
+#import "Appointment.h"
