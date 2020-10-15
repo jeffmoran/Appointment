@@ -18,7 +18,6 @@
 		605A55A62537B6DF002B29D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A55A42537B6DF002B29D3 /* SceneDelegate.swift */; };
 		605A55D12537B742002B29D3 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A55D02537B742002B29D3 /* AppDelegate.swift */; };
 		605F92C61CCC142B00F4FC1C /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 605F92C51CCC142B00F4FC1C /* Images.xcassets */; };
-		63F8538FA5AE80DA9D5DE534 /* libPods-Appointment.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E7CDE32D79148AC520CA2312 /* libPods-Appointment.a */; };
 		8A52809A1EEA1FD9004C221B /* AppointmentDetailTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8A5280991EEA1FD9004C221B /* AppointmentDetailTableViewCell.m */; };
 		8AAAF5481EEB7D1900C06A6A /* SettingsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAAF5471EEB7D1900C06A6A /* SettingsViewController.m */; };
 		8AAAF5631EECBB7A00C06A6A /* InputTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 8AAAF5621EECBB7A00C06A6A /* InputTextField.m */; };
@@ -26,7 +25,6 @@
 		BE4E18E8140D9EB80007F01B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E7140D9EB80007F01B /* UIKit.framework */; };
 		BE4E18EA140D9EB80007F01B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE4E18E9140D9EB80007F01B /* Foundation.framework */; };
 		CA0F3E9C17E25B0D003FE3BE /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3E9B17E25B0D003FE3BE /* SystemConfiguration.framework */; };
-		CA0F3E9E17E25B1A003FE3BE /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3E9D17E25B1A003FE3BE /* MobileCoreServices.framework */; };
 		CA0F3EA017E25B22003FE3BE /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3E9F17E25B22003FE3BE /* CFNetwork.framework */; };
 		CA0F3EA217E25B30003FE3BE /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA117E25B30003FE3BE /* Security.framework */; };
 		CA0F3EA417E25B3C003FE3BE /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */; };
@@ -41,7 +39,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		3B1EF0D9AD42CD1E7D5F413A /* Pods-Appointment.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appointment.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Appointment/Pods-Appointment.debug.xcconfig"; sourceTree = "<group>"; };
 		5941E395F53C4C37110ED0EA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		601423801CD098FF0089E278 /* Appointment-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Appointment-Prefix.pch"; sourceTree = "<group>"; };
 		601423811CD098FF0089E278 /* Appointment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Appointment.xcdatamodel; sourceTree = "<group>"; };
@@ -70,13 +67,11 @@
 		8AAAF5611EECBB7A00C06A6A /* InputTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InputTextField.h; sourceTree = "<group>"; };
 		8AAAF5621EECBB7A00C06A6A /* InputTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InputTextField.m; sourceTree = "<group>"; };
 		8AF2E19F1F6F5F9C00E068B2 /* Macros.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
-		9F2FFF213473ED0E1479D86F /* Pods-Appointment.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Appointment.release.xcconfig"; path = "Pods/Target Support Files/Pods-Appointment/Pods-Appointment.release.xcconfig"; sourceTree = "<group>"; };
 		BE0E4EB2143262F700F05B13 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		BE4E18E3140D9EB80007F01B /* Appointment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appointment.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE4E18E7140D9EB80007F01B /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		BE4E18E9140D9EB80007F01B /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		CA0F3E9B17E25B0D003FE3BE /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		CA0F3E9D17E25B1A003FE3BE /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		CA0F3E9F17E25B22003FE3BE /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		CA0F3EA117E25B30003FE3BE /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		CA0F3EA317E25B3C003FE3BE /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
@@ -91,7 +86,6 @@
 		CAD8426717D42EDC00A584E9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		CAD8426917D42EE100A584E9 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		CADF935B17D4147B00DEE67D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		E7CDE32D79148AC520CA2312 /* libPods-Appointment.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Appointment.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +96,6 @@
 				CA0F3EA417E25B3C003FE3BE /* AudioToolbox.framework in Frameworks */,
 				CA0F3EA217E25B30003FE3BE /* Security.framework in Frameworks */,
 				CA0F3EA017E25B22003FE3BE /* CFNetwork.framework in Frameworks */,
-				CA0F3E9E17E25B1A003FE3BE /* MobileCoreServices.framework in Frameworks */,
 				CA0F3E9C17E25B0D003FE3BE /* SystemConfiguration.framework in Frameworks */,
 				CA9CCD1017DE3FDF00F1BF90 /* MessageUI.framework in Frameworks */,
 				CA71FDCA17DD25F000E1BFB0 /* CoreGraphics.framework in Frameworks */,
@@ -112,7 +105,6 @@
 				CAD8426817D42EDC00A584E9 /* CoreLocation.framework in Frameworks */,
 				BE0E4EB3143262F700F05B13 /* CoreData.framework in Frameworks */,
 				BE4E18E8140D9EB80007F01B /* UIKit.framework in Frameworks */,
-				63F8538FA5AE80DA9D5DE534 /* libPods-Appointment.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -134,15 +126,6 @@
 				601423931CD098FF0089E278 /* Info.plist */,
 			);
 			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		7EF0B098E6130A73D0C51C99 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				3B1EF0D9AD42CD1E7D5F413A /* Pods-Appointment.debug.xcconfig */,
-				9F2FFF213473ED0E1479D86F /* Pods-Appointment.release.xcconfig */,
-			);
-			name = Pods;
 			sourceTree = "<group>";
 		};
 		8A5280951EEA1E94004C221B /* Models */ = {
@@ -206,7 +189,6 @@
 				BE4E18EB140D9EB80007F01B /* Appointment */,
 				BE4E18E6140D9EB80007F01B /* Frameworks */,
 				BE4E18E4140D9EB80007F01B /* Products */,
-				7EF0B098E6130A73D0C51C99 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -229,13 +211,11 @@
 				BE4E18E9140D9EB80007F01B /* Foundation.framework */,
 				CAD8426917D42EE100A584E9 /* MapKit.framework */,
 				CA9CCD0F17DE3FDF00F1BF90 /* MessageUI.framework */,
-				CA0F3E9D17E25B1A003FE3BE /* MobileCoreServices.framework */,
 				CADF935B17D4147B00DEE67D /* QuartzCore.framework */,
 				CA0F3EA117E25B30003FE3BE /* Security.framework */,
 				CA0F3E9B17E25B0D003FE3BE /* SystemConfiguration.framework */,
 				BE4E18E7140D9EB80007F01B /* UIKit.framework */,
 				5941E395F53C4C37110ED0EA /* Pods.framework */,
-				E7CDE32D79148AC520CA2312 /* libPods-Appointment.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -263,7 +243,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = BE4E18F9140D9EB80007F01B /* Build configuration list for PBXNativeTarget "Appointment" */;
 			buildPhases = (
-				75A858E8A47948056084A926 /* [CP] Check Pods Manifest.lock */,
 				BE4E18DF140D9EB80007F01B /* Sources */,
 				BE4E18E0140D9EB80007F01B /* Frameworks */,
 				BE4E18E1140D9EB80007F01B /* Resources */,
@@ -326,27 +305,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		75A858E8A47948056084A926 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Appointment-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		BE4E18DF140D9EB80007F01B /* Sources */ = {
@@ -471,7 +429,6 @@
 		};
 		BE4E18FA140D9EB80007F01B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3B1EF0D9AD42CD1E7D5F413A /* Pods-Appointment.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -481,7 +438,6 @@
 				DEVELOPMENT_TEAM = TR5WFN5468;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/\"",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -509,7 +465,6 @@
 		};
 		BE4E18FB140D9EB80007F01B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9F2FFF213473ED0E1479D86F /* Pods-Appointment.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -519,7 +474,6 @@
 				DEVELOPMENT_TEAM = TR5WFN5468;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"${PODS_ROOT}/Headers/\"",
 					"\"$(SRCROOT)\"",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;

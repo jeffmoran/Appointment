@@ -13,13 +13,9 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 	[super viewDidLoad];
 	
 	self.tableView.allowsSelection = NO;
-	
-	self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"Menu"]
-																			  style:UIBarButtonItemStylePlain
-																			 target:self
-																			 action:@selector(showGrid)];
-	
-	
+
+    [self setUpMenu];
+
 	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:cellIdentifier];
 	
 	self.tableView.rowHeight = UITableViewAutomaticDimension;
@@ -28,63 +24,32 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 	self.title = appointment.clientName;
 }
 
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-}
+// MARK: - Menu Actions
 
-// MARK: - Grid
+- (void)setUpMenu {
+    UIAction *phoneAction = [UIAction actionWithTitle:@"Call client" image:[UIImage systemImageNamed:@"phone"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self callContact];
+    }];
+    
+    UIAction *emailAction = [UIAction actionWithTitle:@"Email client" image:[UIImage systemImageNamed:@"envelope"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self showEmailComposer];
+    }];
 
-- (void)showGrid {
-	NSArray *items = @[
-					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"phone128"] title: @"Call client"],
-					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"email128"] title: @"Email client"],
-					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"map128"] title: @"Find on map"],
-					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"contact128"] title: @"Add contact"],
-					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"calendar"] title: @"Calendar"],
-					   [[RNGridMenuItem alloc] initWithImage:[UIImage imageNamed: @"cancel"] title: @"Cancel"],
-					   ];
-	
-	RNGridMenu *menu = [[RNGridMenu alloc] initWithItems:items];
-	
-	menu.delegate = self;
-	menu.highlightColor = FlatTeal;
-	menu.itemSize = CGSizeMake(128, 128);
-	
-	[menu showInViewController:self.navigationController center:self.view.center];
-}
+    UIAction *mapAction = [UIAction actionWithTitle:@"Find on map" image:[UIImage systemImageNamed:@"mappin.and.ellipse"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self goToMapView];
+    }];
 
-// MARK: - RNGridMenuDelegate
+    UIAction *addContactAction = [UIAction actionWithTitle:@"Add contact" image:[UIImage systemImageNamed:@"person.crop.circle.badge.plus"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self createNewContact];
+    }];
 
-- (void)gridMenu:(RNGridMenu *)gridMenu willDismissWithSelectedItem:(RNGridMenuItem *)item atIndex:(NSInteger)itemIndex {
-	switch (itemIndex) {
-		case 0:
-			[self callContact];
-			break;
-		case 1:
-			[self showEmailComposer];
-			break;
-		case 2:
-			//[self goToMapView];
-			//NSTimer is temporary solution to "Unbalanced calls to begin/end appearance transitions" bug
-			//NSTimer is set to wait .26 seconds for RNGridMenu to completely dismiss.
-			[NSTimer scheduledTimerWithTimeInterval:.26
-											 target:self
-										   selector:@selector(goToMapView)
-										   userInfo:nil
-											repeats:NO];
-			break;
-		case 3:
-			[self createNewContact];
-			break;
-		case 4:
-			[self createNewCalendarEvent];
-			break;
-		case 5:
-			NSLog(@"Cancelled");
-			break;
-		default:
-			break;
-	}
+    UIAction *calendarAction = [UIAction actionWithTitle:@"Calendar" image:[UIImage systemImageNamed:@"calendar.badge.plus"] identifier:nil handler:^(__kindof UIAction * _Nonnull action) {
+        [self createNewCalendarEvent];
+    }];
+
+    UIMenu *menu = [UIMenu menuWithTitle:@"" children:@[ phoneAction, emailAction, mapAction, addContactAction, calendarAction]];
+
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithImage:[UIImage systemImageNamed:@"ellipsis.circle"] menu:menu];
 }
 
 - (void)callContact {
