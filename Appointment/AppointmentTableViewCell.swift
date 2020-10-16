@@ -8,11 +8,11 @@
 
 import UIKit
 
-@objc public class AppointmentTableViewCell: UITableViewCell {
+class AppointmentTableViewCell: UITableViewCell {
 
     // MARK: - Static Constants
 
-    @objc public static let reuseIdentifier = "appointmentTableViewCellIdentifier"
+    @objc static let reuseIdentifier = "appointmentTableViewCellIdentifier"
 
     // MARK: - Private Properties
 
@@ -83,7 +83,7 @@ import UIKit
 
     // MARK: - Public Methods
 
-    @objc public func style(with appointment: Appointment) {
+    @objc func style(with appointment: Appointment) {
         #warning("Rewritten from Obj-C -- clean this up")
 
         appointmentClientNameLabel.text = !appointment.clientName.isEmpty ? appointment.clientName : "Client name unavailable"

@@ -1,5 +1,4 @@
 #import "AppointmentsViewController.h"
-#import "AppointmentDetailViewController.h"
 #import "AppointmentInputViewController.h"
 
 #import "Appointment-Swift.h"
@@ -129,10 +128,10 @@
 		
 		[self presentViewController:navigationController animated:YES completion:nil];
 	} else {
-		AppointmentDetailViewController *detailViewController = [[AppointmentDetailViewController alloc] init];
-		
-		detailViewController.appointment = AppointmentStore.shared.allAppointments[indexPath.row];
-		
+        Appointment *appointment = AppointmentStore.shared.allAppointments[indexPath.row];
+
+        AppointmentDetailViewController *detailViewController = [[AppointmentDetailViewController alloc] initWith:appointment];
+
 		[self.navigationController pushViewController:detailViewController animated:YES];
 	}
 }

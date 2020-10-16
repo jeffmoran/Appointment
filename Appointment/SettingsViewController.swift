@@ -8,13 +8,13 @@
 
 import UIKit
 
-@objc public class SettingsViewController: UITableViewController {
+class SettingsViewController: UITableViewController {
 
     // MARK: - Static Constants
 
     private static let tableViewCellIdentifier = "appointmentDetailCellIdentifier"
 
-    public override init(style: UITableView.Style) {
+    override init(style: UITableView.Style) {
         super.init(style: .grouped)
 
         title = "Settings"
@@ -40,9 +40,9 @@ import UIKit
             preferredStyle: .alert
         )
 
-        let yesAction = UIAlertAction(title: "Yes", style: .destructive, handler: { _ in
+        let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
             AppointmentStore.shared().removeAllAppointments()
-        })
+        }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
 

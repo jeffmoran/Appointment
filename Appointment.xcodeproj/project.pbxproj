@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */ = {isa = PBXBuildFile; fileRef = 601423811CD098FF0089E278 /* Appointment.xcdatamodel */; };
-		6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423831CD098FF0089E278 /* AppointmentDetailViewController.m */; };
 		6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423851CD098FF0089E278 /* AppointmentInputViewController.m */; };
 		601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423881CD098FF0089E278 /* AppointmentsViewController.m */; };
 		601423A31CD098FF0089E278 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238D1CD098FF0089E278 /* Appointment.m */; };
@@ -16,6 +15,7 @@
 		601423A81CD098FF0089E278 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601423941CD098FF0089E278 /* Launch Screen.storyboard */; };
 		601423AB1CD098FF0089E278 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423981CD098FF0089E278 /* MapViewController.m */; };
 		60152007253935EE004894B5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60152006253935EE004894B5 /* SettingsViewController.swift */; };
+		6015200C25393D30004894B5 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6015200B25393D30004894B5 /* AppointmentDetailViewController.swift */; };
 		605703352537EC3500AA7BF6 /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605703342537EC3500AA7BF6 /* AppointmentTableViewCell.swift */; };
 		605703452538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605703442538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift */; };
 		605A55A62537B6DF002B29D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A55A42537B6DF002B29D3 /* SceneDelegate.swift */; };
@@ -42,8 +42,6 @@
 		5941E395F53C4C37110ED0EA /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		601423801CD098FF0089E278 /* Appointment-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Appointment-Prefix.pch"; sourceTree = "<group>"; };
 		601423811CD098FF0089E278 /* Appointment.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Appointment.xcdatamodel; sourceTree = "<group>"; };
-		601423821CD098FF0089E278 /* AppointmentDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentDetailViewController.h; sourceTree = "<group>"; };
-		601423831CD098FF0089E278 /* AppointmentDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentDetailViewController.m; sourceTree = "<group>"; };
 		601423841CD098FF0089E278 /* AppointmentInputViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentInputViewController.h; sourceTree = "<group>"; };
 		601423851CD098FF0089E278 /* AppointmentInputViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppointmentInputViewController.m; sourceTree = "<group>"; };
 		601423871CD098FF0089E278 /* AppointmentsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppointmentsViewController.h; sourceTree = "<group>"; };
@@ -57,6 +55,7 @@
 		601423971CD098FF0089E278 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		601423981CD098FF0089E278 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		60152006253935EE004894B5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		6015200B25393D30004894B5 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		605703342537EC3500AA7BF6 /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		605703442538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailTableViewCell.swift; sourceTree = "<group>"; };
 		605A55552537B682002B29D3 /* Appointment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appointment-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -156,8 +155,7 @@
 				601423881CD098FF0089E278 /* AppointmentsViewController.m */,
 				601423841CD098FF0089E278 /* AppointmentInputViewController.h */,
 				601423851CD098FF0089E278 /* AppointmentInputViewController.m */,
-				601423821CD098FF0089E278 /* AppointmentDetailViewController.h */,
-				601423831CD098FF0089E278 /* AppointmentDetailViewController.m */,
+				6015200B25393D30004894B5 /* AppointmentDetailViewController.swift */,
 				60152006253935EE004894B5 /* SettingsViewController.swift */,
 				601423971CD098FF0089E278 /* MapViewController.h */,
 				601423981CD098FF0089E278 /* MapViewController.m */,
@@ -240,6 +238,7 @@
 				BE4E18DF140D9EB80007F01B /* Sources */,
 				BE4E18E0140D9EB80007F01B /* Frameworks */,
 				BE4E18E1140D9EB80007F01B /* Resources */,
+				6015200F253950EB004894B5 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -300,17 +299,38 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		6015200F253950EB004894B5 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		BE4E18DF140D9EB80007F01B /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				CA4257CB1EEF230900927D4B /* ContactHandler.m in Sources */,
+				6015200C25393D30004894B5 /* AppointmentDetailViewController.swift in Sources */,
 				605703452538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift in Sources */,
 				601423A01CD098FF0089E278 /* AppointmentsViewController.m in Sources */,
 				6014239E1CD098FF0089E278 /* AppointmentInputViewController.m in Sources */,
 				601423A61CD098FF0089E278 /* AppointmentStore.m in Sources */,
-				6014239D1CD098FF0089E278 /* AppointmentDetailViewController.m in Sources */,
 				60152007253935EE004894B5 /* SettingsViewController.swift in Sources */,
 				601423A31CD098FF0089E278 /* Appointment.m in Sources */,
 				6014239C1CD098FF0089E278 /* Appointment.xcdatamodel in Sources */,

@@ -8,11 +8,11 @@
 
 import UIKit
 
-@objc public class AppointmentDetailTableViewCell: UITableViewCell {
+class AppointmentDetailTableViewCell: UITableViewCell {
 
     // MARK: - Static Constants
 
-    @objc public static let reuseIdentifier = "appointmentDetailTableViewCellIdentifier"
+    static let reuseIdentifier = "appointmentDetailTableViewCellIdentifier"
 
     // MARK: - Private Properties
 
@@ -78,7 +78,7 @@ import UIKit
 
     // MARK: - Public Methods
 
-    @objc public func style(with appointment: Appointment, index: Int) {
+    func style(with appointment: Appointment, index: Int) {
         #warning("Rewritten from Obj-C -- clean this up to not use this dictionary mapping")
 
         appointmentHeaderLabel.text = appointment.appointmentPropertiesHeader[index] as? String
