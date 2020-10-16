@@ -275,13 +275,4 @@
 	}
 }
 
-- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
-	//CLLocation *location = locations.firstObject;
-	//NSLog(@"First location: %@", location);
-}
-
-- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-	NSLog(@"%@", error);
-}
-
 @end

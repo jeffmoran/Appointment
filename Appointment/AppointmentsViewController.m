@@ -1,6 +1,5 @@
 #import "AppointmentsViewController.h"
 #import "AppointmentDetailViewController.h"
-#import "SettingsViewController.h"
 #import "AppointmentInputViewController.h"
 
 #import "Appointment-Swift.h"
@@ -60,7 +59,7 @@
 }
 
 - (void)setUpTableView {
-	appointmentsTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleGrouped];
+	appointmentsTableView = [[UITableView alloc] initWithFrame:self.view.bounds style:UITableViewStyleInsetGrouped];
 	appointmentsTableView.translatesAutoresizingMaskIntoConstraints = NO;
 	appointmentsTableView.allowsSelectionDuringEditing = YES;
 	appointmentsTableView.delegate = self;

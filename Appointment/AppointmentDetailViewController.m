@@ -24,6 +24,16 @@
 	self.title = appointment.clientName;
 }
 
+- (instancetype)init
+{
+    self = [super initWithStyle:UITableViewStyleInsetGrouped];
+    if (self) {
+
+    }
+    return self;
+}
+
+
 // MARK: - Menu Actions
 
 - (void)setUpMenu {
