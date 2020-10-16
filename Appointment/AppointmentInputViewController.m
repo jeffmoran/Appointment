@@ -1,5 +1,7 @@
 #import "AppointmentInputViewController.h"
 
+#import "Appointment-Swift.h"
+
 @interface AppointmentInputViewController() <UITextFieldDelegate, UIPickerViewDelegate, UIPickerViewDataSource>
 
 @end

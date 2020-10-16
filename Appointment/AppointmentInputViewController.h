@@ -1,6 +1,7 @@
 #import <UIKit/UIKit.h>
 #import "AppointmentStore.h"
-#import "InputTextField.h"
+
+@class InputTextField;
 
 @interface AppointmentInputViewController : UIViewController  {
 	NSArray *petsArray;
