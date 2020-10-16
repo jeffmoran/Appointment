@@ -1,11 +1,11 @@
 #import "AppointmentDetailViewController.h"
 #import "MapViewController.h"
 
+#import "Appointment-Swift.h"
+
 @implementation AppointmentDetailViewController
 
 @synthesize appointment;
-
-static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 
 // MARK: - Lifecycle
 
@@ -16,7 +16,7 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 
     [self setUpMenu];
 
-	[self.tableView registerClass:[AppointmentDetailTableViewCell class] forCellReuseIdentifier:cellIdentifier];
+    [self.tableView registerClass:AppointmentDetailTableViewCell.class forCellReuseIdentifier:AppointmentDetailTableViewCell.reuseIdentifier];
 	
 	self.tableView.rowHeight = UITableViewAutomaticDimension;
 	self.tableView.estimatedRowHeight = 50.0;
@@ -126,10 +126,10 @@ static NSString *cellIdentifier = @"appointmentDetailCellIdentifier";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-	AppointmentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-	
-	[cell setAppointment:appointment with:indexPath];
-	
+	AppointmentDetailTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:AppointmentDetailTableViewCell.reuseIdentifier];
+
+    [cell styleWith:appointment index:indexPath.row];
+
 	return cell;
 }
 

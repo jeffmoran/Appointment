@@ -36,6 +36,9 @@
 	
 	self.title = self.addressString;
 
+    self.view.backgroundColor = UIColor.whiteColor;
+    self.navigationItem.largeTitleDisplayMode = UINavigationItemLargeTitleDisplayModeNever;
+
 	[self setUpToolbar];
 }
 
