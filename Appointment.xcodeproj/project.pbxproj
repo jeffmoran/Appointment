@@ -13,10 +13,10 @@
 		601423A31CD098FF0089E278 /* Appointment.m in Sources */ = {isa = PBXBuildFile; fileRef = 6014238D1CD098FF0089E278 /* Appointment.m */; };
 		601423A61CD098FF0089E278 /* AppointmentStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423921CD098FF0089E278 /* AppointmentStore.m */; };
 		601423A81CD098FF0089E278 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 601423941CD098FF0089E278 /* Launch Screen.storyboard */; };
-		601423AB1CD098FF0089E278 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 601423981CD098FF0089E278 /* MapViewController.m */; };
 		60152007253935EE004894B5 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60152006253935EE004894B5 /* SettingsViewController.swift */; };
 		6015200C25393D30004894B5 /* AppointmentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6015200B25393D30004894B5 /* AppointmentDetailViewController.swift */; };
 		601520152539DD2A004894B5 /* InputTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601520142539DD2A004894B5 /* InputTextField.swift */; };
+		60152018253A63E2004894B5 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60152017253A63E2004894B5 /* MapViewController.swift */; };
 		605703352537EC3500AA7BF6 /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605703342537EC3500AA7BF6 /* AppointmentTableViewCell.swift */; };
 		605703452538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605703442538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift */; };
 		605A55A62537B6DF002B29D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A55A42537B6DF002B29D3 /* SceneDelegate.swift */; };
@@ -52,11 +52,10 @@
 		601423921CD098FF0089E278 /* AppointmentStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = AppointmentStore.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		601423931CD098FF0089E278 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		601423941CD098FF0089E278 /* Launch Screen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
-		601423971CD098FF0089E278 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
-		601423981CD098FF0089E278 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
 		60152006253935EE004894B5 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		6015200B25393D30004894B5 /* AppointmentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailViewController.swift; sourceTree = "<group>"; };
 		601520142539DD2A004894B5 /* InputTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputTextField.swift; sourceTree = "<group>"; };
+		60152017253A63E2004894B5 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		605703342537EC3500AA7BF6 /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		605703442538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailTableViewCell.swift; sourceTree = "<group>"; };
 		605A55552537B682002B29D3 /* Appointment-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Appointment-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -155,8 +154,7 @@
 				601423851CD098FF0089E278 /* AppointmentInputViewController.m */,
 				6015200B25393D30004894B5 /* AppointmentDetailViewController.swift */,
 				60152006253935EE004894B5 /* SettingsViewController.swift */,
-				601423971CD098FF0089E278 /* MapViewController.h */,
-				601423981CD098FF0089E278 /* MapViewController.m */,
+				60152017253A63E2004894B5 /* MapViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -335,9 +333,9 @@
 				605A55A62537B6DF002B29D3 /* SceneDelegate.swift in Sources */,
 				601520152539DD2A004894B5 /* InputTextField.swift in Sources */,
 				605703352537EC3500AA7BF6 /* AppointmentTableViewCell.swift in Sources */,
-				601423AB1CD098FF0089E278 /* MapViewController.m in Sources */,
 				CA4257CE1EEF29C200927D4B /* CalendarEventHandler.m in Sources */,
 				605A55D12537B742002B29D3 /* AppDelegate.swift in Sources */,
+				60152018253A63E2004894B5 /* MapViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

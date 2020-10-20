@@ -5,6 +5,5 @@
 #import "AppointmentsViewController.h"
 #import "AppointmentStore.h"
 #import "Appointment.h"
-#import "MapViewController.h"
 #import "ContactHandler.h"
 #import "CalendarEventHandler.h"

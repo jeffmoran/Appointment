@@ -117,8 +117,9 @@ class AppointmentDetailViewController: UITableViewController {
     }
 
     private func goToMapView() {
-        let mapViewController = MapViewController()
-        mapViewController.addressString = "\(appointment.address ?? "") \(appointment.zipCode ?? "")"
+        let addressString = "\(appointment.address ?? "") \(appointment.zipCode ?? "")"
+
+        let mapViewController = MapViewController(with: addressString)
 
         navigationController?.pushViewController(mapViewController, animated: true)
     }
