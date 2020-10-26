@@ -14,7 +14,9 @@
 
 - (void)viewDidLoad {
 	[super viewDidLoad];
-	
+
+    self.modalInPresentation = YES;
+
     self.navigationController.navigationBar.prefersLargeTitles = YES;
 	
 	self.view.tintColor = FlatTeal;
@@ -492,6 +494,7 @@
 	[AppointmentStore.shared saveChanges];
 	
 	[self dismissVC];
+    [self.delegate refreshAppointmentList];
 }
 
 - (void)dismissVC {

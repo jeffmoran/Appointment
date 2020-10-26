@@ -16,7 +16,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window = UIWindow(windowScene: windowScene)
 
-        let navigationController = UINavigationController(rootViewController: AppointmentsViewController())
+        let navigationController = UINavigationController(rootViewController: AppointmentListViewController())
 
         navigationController.navigationBar.prefersLargeTitles = true
 

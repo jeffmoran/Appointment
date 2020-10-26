@@ -14,7 +14,7 @@ class SettingsViewController: UITableViewController {
 
     private static let tableViewCellIdentifier = "appointmentDetailCellIdentifier"
 
-    override init(style: UITableView.Style) {
+    init() {
         super.init(style: .grouped)
 
         title = "Settings"

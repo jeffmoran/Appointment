@@ -10,7 +10,7 @@
 
 + (AppointmentStore *)shared;
 
-@property (nonatomic, readonly, copy) NSArray *allAppointments;
+@property (nonatomic, readonly, copy) NSArray<Appointment *> *allAppointments;
 @property (nonatomic, readonly, strong) Appointment *emptyAppointment;
 
 - (void)removeAppointment:(Appointment *)appointment;

@@ -125,7 +125,7 @@ class AppointmentDetailViewController: UITableViewController {
     }
 
     private func createNewContact() {
-        ContactHandler.createNewContact(with: appointment, on: self)
+        ContactHandler.createContact(with: appointment, viewController: self)
     }
 
     private func createNewCalendarEvent() {

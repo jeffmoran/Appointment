@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <EventKit/EventKit.h>
+#import <UIKit/UIKit.h>
 
 @interface CalendarEventHandler : NSObject
 

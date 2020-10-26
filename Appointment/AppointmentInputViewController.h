@@ -3,6 +3,8 @@
 
 @class InputTextField;
 
+@protocol AppointmentListViewControllerDelegate;
+
 @interface AppointmentInputViewController : UIViewController  {
 	NSArray *petsArray;
 	NSInteger fieldIndex;
@@ -49,5 +51,6 @@
 }
 
 @property (nonatomic, strong) Appointment *appointment;
+@property (nonatomic, weak) id<AppointmentListViewControllerDelegate> delegate;
 
 @end
