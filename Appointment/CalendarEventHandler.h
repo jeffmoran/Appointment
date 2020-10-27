@@ -10,6 +10,8 @@
 #import <EventKit/EventKit.h>
 #import <UIKit/UIKit.h>
 
+@class Appointment;
+
 @interface CalendarEventHandler : NSObject
 
 + (void)createNewCalendarEventWith:(Appointment *)appointment on:(UIViewController *)controller;

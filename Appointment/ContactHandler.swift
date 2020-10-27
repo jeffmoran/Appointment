@@ -11,7 +11,7 @@ import Foundation
 
 enum ContactHandler {
     static func createContact(with appointment: Appointment, viewController: UIViewController) {
-        viewController.presentAlert(message: "Add \(appointment.clientName ?? "") to Contacts?", dismissActionTitle: "Maybe later", defaultActionTitle: "Yes") {
+        viewController.presentAlert(message: "Add \(appointment.clientName) to Contacts?", dismissActionTitle: "Maybe later", defaultActionTitle: "Yes") {
             authorizeContactStore(with: appointment, viewController: viewController)
         }
     }
@@ -55,7 +55,7 @@ enum ContactHandler {
         do {
             try store.execute(saveRequest)
             alertTitle = nil
-            alertMessage = "\(appointment.clientName ?? "") saved to Contacts!"
+            alertMessage = "\(appointment.clientName) saved to Contacts!"
         } catch {
             alertTitle = "Contact not Saved"
             alertMessage = error.localizedDescription

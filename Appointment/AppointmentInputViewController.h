@@ -1,6 +1,6 @@
 #import <UIKit/UIKit.h>
-#import "AppointmentStore.h"
 
+@class Appointment;
 @class InputTextField;
 
 @protocol AppointmentListViewControllerDelegate;

@@ -466,32 +466,29 @@
 }
 
 - (void)save {
-	if (appointment) {
-		// if an appointment exists here, we are in editing mode
-		// delete the appointment first
-		[AppointmentStore.shared removeAppointment:appointment];
-	}
-	
-	// create new appointment based off whatever is in the textFields
-	Appointment *newAppointment = AppointmentStore.shared.emptyAppointment;
+    Appointment *appointmentToSave = appointment;
 
-	newAppointment.clientName = nameField.text;
-	newAppointment.clientPhone = phoneField.text;
-	newAppointment.moveInDate = moveInPicker.date;
-	newAppointment.price = priceField.text;
-	newAppointment.city = neighborhoodField.text;
-	newAppointment.size = aptsizeField.text;
-	newAppointment.roomsCount = roomsField.text;
-	newAppointment.bathsCount = bathsField.text;
-	newAppointment.appointmentTime = timePicker.date;
-	newAppointment.address = addressField.text;
-	newAppointment.pets = petsField.text;
-	newAppointment.clientEmail = emailField.text;
-	newAppointment.zipCode = zipCodeField.text;
-	newAppointment.notes = notesTextView.text;
+    if (!appointmentToSave) {
+        appointmentToSave = AppointmentStore.shared.emptyAppointment;
+    }
+
+	appointmentToSave.clientName = nameField.text;
+	appointmentToSave.clientPhone = phoneField.text;
+	appointmentToSave.moveInDate = moveInPicker.date;
+	appointmentToSave.price = priceField.text;
+	appointmentToSave.city = neighborhoodField.text;
+	appointmentToSave.size = aptsizeField.text;
+	appointmentToSave.roomsCount = roomsField.text;
+	appointmentToSave.bathsCount = bathsField.text;
+	appointmentToSave.appointmentTime = timePicker.date;
+	appointmentToSave.address = addressField.text;
+	appointmentToSave.pets = petsField.text;
+	appointmentToSave.clientEmail = emailField.text;
+	appointmentToSave.zipCode = zipCodeField.text;
+	appointmentToSave.notes = notesTextView.text;
 	
 	// save the appointment
-	[AppointmentStore.shared saveChanges];
+	[AppointmentStore.shared save];
 	
 	[self dismissVC];
     [self.delegate refreshAppointmentList];

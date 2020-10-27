@@ -14,6 +14,12 @@ class SettingsViewController: UITableViewController {
 
     private static let tableViewCellIdentifier = "appointmentDetailCellIdentifier"
 
+    // MARK: - Internal Properties
+
+    weak var delegate: AppointmentListViewControllerDelegate?
+
+    // MARK: - Initializers
+
     init() {
         super.init(style: .grouped)
 
@@ -41,7 +47,8 @@ class SettingsViewController: UITableViewController {
         )
 
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-            AppointmentStore.shared().removeAllAppointments()
+            AppointmentStore.shared.deleteAll()
+            self.delegate?.refreshAppointmentList()
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

@@ -79,9 +79,9 @@ class AppointmentDetailTableViewCell: UITableViewCell {
     // MARK: - Public Methods
 
     func style(with appointment: Appointment, index: Int) {
-        #warning("Rewritten from Obj-C -- clean this up to not use this dictionary mapping")
+        let appointmentDetail = AppointmentDetail(rawValue: index)
 
-        appointmentHeaderLabel.text = appointment.appointmentPropertiesHeader[index] as? String
-        appointmentValueLabel.text = appointment.appointmentProperties[index] as? String
+        appointmentHeaderLabel.text = appointmentDetail?.headerValue
+        appointmentValueLabel.text = appointmentDetail?.detailValue(for: appointment)
     }
 }

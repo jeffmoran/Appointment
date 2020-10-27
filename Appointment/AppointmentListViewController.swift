@@ -13,7 +13,7 @@ class AppointmentListViewController: UITableViewController {
     // MARK: - Private Properties
 
     private var appointments: [Appointment?] {
-        return AppointmentStore.shared()?.allAppointments ?? [Appointment]()
+        return AppointmentStore.shared.allAppointments
     }
 
     // MARK: - Initializers
@@ -49,6 +49,7 @@ class AppointmentListViewController: UITableViewController {
 
     @objc private func goToSettings() {
         let viewController = SettingsViewController()
+        viewController.delegate = self
         let navigationController = UINavigationController(rootViewController: viewController)
 
         present(navigationController, animated: true)
@@ -74,7 +75,7 @@ class AppointmentListViewController: UITableViewController {
 
 extension AppointmentListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AppointmentStore.shared()?.allAppointments.count ?? 0
+        return AppointmentStore.shared.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -90,19 +91,22 @@ extension AppointmentListViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if appointments.isEmpty {
-            return ""
-        } else if appointments.count == 1 {
+        let count = AppointmentStore.shared.count
+
+        if count < 1 {
+            return nil
+        } else if count == 1 {
             return "1 Appointment"
         } else {
-            return "\(appointments.count) Appointments"
+            return "\(count) Appointments"
         }
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            let appointment = appointments[indexPath.row]
-            AppointmentStore.shared()?.remove(appointment)
+            guard let appointment = appointments[indexPath.row] else { return }
+
+            AppointmentStore.shared.delete(appointment)
 
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)

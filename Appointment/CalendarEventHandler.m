@@ -8,6 +8,8 @@
 
 #import "CalendarEventHandler.h"
 
+#import "Appointment-Swift.h"
+
 @implementation CalendarEventHandler
 
 + (void)createNewCalendarEventWith:(Appointment *)appointment on:(UIViewController *)controller {

@@ -26,6 +26,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     }
 
     func sceneWillResignActive(_ scene: UIScene) {
-        AppointmentStore.shared()?.saveChanges()
+        AppointmentStore.shared.save()
     }
 }

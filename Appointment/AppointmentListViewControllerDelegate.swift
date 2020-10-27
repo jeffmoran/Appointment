@@ -8,6 +8,6 @@
 
 import Foundation
 
-@objc public protocol AppointmentListViewControllerDelegate: AnyObject {
+@objc protocol AppointmentListViewControllerDelegate: AnyObject {
     func refreshAppointmentList()
 }

@@ -16,7 +16,7 @@ class AppointmentDetailViewController: UITableViewController {
     private var appointment: Appointment
 
     private var phoneUrl: URL? {
-        let phoneNumber = (appointment.clientPhone ?? "").filter("0123456789.".contains)
+        let phoneNumber = appointment.clientPhone.filter("0123456789.".contains)
 
         return URL(string: "telprompt:\(phoneNumber)")
     }
@@ -29,7 +29,7 @@ class AppointmentDetailViewController: UITableViewController {
 
     // MARK: - Initializers
 
-    @objc init(with appointment: Appointment) {
+    init(with appointment: Appointment) {
         self.appointment = appointment
 
         super.init(style: .grouped)
@@ -56,24 +56,24 @@ class AppointmentDetailViewController: UITableViewController {
     // MARK: - Private Methods
 
     private func setUpMenu() {
-        let phoneAction = UIAction(title: "Call Client", image: UIImage(systemName: "phone")) { _ in
-            self.callContact()
+        let phoneAction = UIAction(title: "Call Client", image: UIImage(systemName: "phone")) { [weak self] _ in
+            self?.callContact()
         }
 
-        let emailAction = UIAction(title: "Email client", image: UIImage(systemName: "envelope")) { _ in
-            self.showEmailComposer()
+        let emailAction = UIAction(title: "Email client", image: UIImage(systemName: "envelope")) {  [weak self] _ in
+            self?.showEmailComposer()
         }
 
-        let mapAction = UIAction(title: "Find on map", image: UIImage(systemName: "mappin.and.ellipse")) { _ in
-            self.goToMapView()
+        let mapAction = UIAction(title: "Find on map", image: UIImage(systemName: "mappin.and.ellipse")) {  [weak self] _ in
+            self?.goToMapView()
         }
 
-        let addContactAction = UIAction(title: "Add contact", image: UIImage(systemName: "person.crop.circle.badge.plus")) { _ in
-            self.createNewContact()
+        let addContactAction = UIAction(title: "Add contact", image: UIImage(systemName: "person.crop.circle.badge.plus")) {  [weak self] _ in
+            self?.createNewContact()
         }
 
-        let calendarAction = UIAction(title: "Add to Calendar", image: UIImage(systemName: "calendar.badge.plus")) { _ in
-            self.createNewCalendarEvent()
+        let calendarAction = UIAction(title: "Add to Calendar", image: UIImage(systemName: "calendar.badge.plus")) {  [weak self] _ in
+            self?.createNewCalendarEvent()
         }
 
         var actions = [UIAction]()
@@ -106,10 +106,10 @@ class AppointmentDetailViewController: UITableViewController {
 
         controller.mailComposeDelegate = self
 
-        let subject = "\(appointment.appointmentDateString ?? "") Appointment with \(appointment.clientName ?? "")"
+        let subject = "\(appointment.appointmentDateString) Appointment with \(appointment.clientName)"
         controller.setSubject(subject)
 
-        controller.setToRecipients([appointment.clientEmail ?? ""])
+        controller.setToRecipients([appointment.clientEmail])
 
         controller.setMessageBody(appointment.emailBodyString, isHTML: true)
 
@@ -117,7 +117,7 @@ class AppointmentDetailViewController: UITableViewController {
     }
 
     private func goToMapView() {
-        let addressString = "\(appointment.address ?? "") \(appointment.zipCode ?? "")"
+        let addressString = "\(appointment.address) \(appointment.zipCode)"
 
         let mapViewController = MapViewController(with: addressString)
 
@@ -137,7 +137,7 @@ class AppointmentDetailViewController: UITableViewController {
 
 extension AppointmentDetailViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appointment.appointmentProperties.count
+        return AppointmentDetail.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

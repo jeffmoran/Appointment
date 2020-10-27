@@ -12,7 +12,7 @@ class AppointmentTableViewCell: UITableViewCell {
 
     // MARK: - Static Constants
 
-    @objc static let reuseIdentifier = "appointmentTableViewCellIdentifier"
+    static let reuseIdentifier = "appointmentTableViewCellIdentifier"
 
     // MARK: - Private Properties
 
@@ -83,12 +83,12 @@ class AppointmentTableViewCell: UITableViewCell {
 
     // MARK: - Public Methods
 
-    @objc func style(with appointment: Appointment) {
+    func style(with appointment: Appointment) {
         #warning("Rewritten from Obj-C -- clean this up")
 
         appointmentClientNameLabel.text = !appointment.clientName.isEmpty ? appointment.clientName : "Client name unavailable"
 
-        let address = "\(appointment.address ?? "")\(appointment.zipCode ?? "")"
+        let address = "\(appointment.address)\(appointment.zipCode)"
         appointmentAddressLabel.text = !address.isEmpty ? address : "Property address unavailable"
 
         appointmentTimeLabel.text = appointment.appointmentDateString
