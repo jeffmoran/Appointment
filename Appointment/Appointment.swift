@@ -7,7 +7,6 @@
 //
 
 import CoreData
-import Foundation
 
 class Appointment: NSManagedObject {
 
@@ -42,15 +41,15 @@ class Appointment: NSManagedObject {
     @NSManaged var zipCode: String
     @NSManaged var notes: String
 
-    @objc var appointmentDateString: String {
+    var appointmentDateString: String {
         return Appointment.timeFormatter.string(from: appointmentTime)
     }
 
-    @objc var moveInDateString: String {
+    var moveInDateString: String {
         return Appointment.dateFormatter.string(from: moveInDate)
     }
 
     #warning("Implement")
-    @objc var calendarNotesString: String = ""
-    @objc var emailBodyString: String = ""
+    var calendarNotesString: String = ""
+    var emailBodyString: String = ""
 }

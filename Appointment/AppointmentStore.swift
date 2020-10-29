@@ -7,13 +7,12 @@
 //
 
 import CoreData
-import Foundation
 
 class AppointmentStore: NSObject {
 
     // MARK: - Static Properties
 
-    @objc static var shared = AppointmentStore()
+    static var shared = AppointmentStore()
 
     // MARK: - Private Properties
 
@@ -70,15 +69,17 @@ class AppointmentStore: NSObject {
         }
     }
 
-    @objc var emptyAppointment: Appointment? {
+    var emptyAppointment: Appointment {
         let appointment = NSEntityDescription.insertNewObject(forEntityName: "Appointment", into: objectContext)
 
-        return appointment as? Appointment
+        // swiftlint:disable force_cast
+        return appointment as! Appointment
+        // swiftlint:enable force_cast
     }
 
     // MARK: - Internal Methods
 
-    @objc func save() {
+    func save() {
         do {
             if objectContext.hasChanges {
                 try objectContext.save()

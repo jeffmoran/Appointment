@@ -27,6 +27,10 @@ class AppointmentDetailViewController: UITableViewController {
         return UIApplication.shared.canOpenURL(phoneUrl)
     }
 
+    private var shouldShowEmailAction: Bool {
+        return MFMailComposeViewController.canSendMail()
+    }
+
     // MARK: - Initializers
 
     init(with appointment: Appointment) {
@@ -60,19 +64,19 @@ class AppointmentDetailViewController: UITableViewController {
             self?.callContact()
         }
 
-        let emailAction = UIAction(title: "Email client", image: UIImage(systemName: "envelope")) {  [weak self] _ in
+        let emailAction = UIAction(title: "Email client", image: UIImage(systemName: "envelope")) { [weak self] _ in
             self?.showEmailComposer()
         }
 
-        let mapAction = UIAction(title: "Find on map", image: UIImage(systemName: "mappin.and.ellipse")) {  [weak self] _ in
+        let mapAction = UIAction(title: "Find on map", image: UIImage(systemName: "mappin.and.ellipse")) { [weak self] _ in
             self?.goToMapView()
         }
 
-        let addContactAction = UIAction(title: "Add contact", image: UIImage(systemName: "person.crop.circle.badge.plus")) {  [weak self] _ in
+        let addContactAction = UIAction(title: "Add contact", image: UIImage(systemName: "person.crop.circle.badge.plus")) { [weak self] _ in
             self?.createNewContact()
         }
 
-        let calendarAction = UIAction(title: "Add to Calendar", image: UIImage(systemName: "calendar.badge.plus")) {  [weak self] _ in
+        let calendarAction = UIAction(title: "Add to Calendar", image: UIImage(systemName: "calendar.badge.plus")) { [weak self] _ in
             self?.createNewCalendarEvent()
         }
 
@@ -82,7 +86,7 @@ class AppointmentDetailViewController: UITableViewController {
             actions.append(phoneAction)
         }
 
-        if MFMailComposeViewController.canSendMail() {
+        if shouldShowEmailAction {
             actions.append(emailAction)
         }
 
@@ -129,7 +133,7 @@ class AppointmentDetailViewController: UITableViewController {
     }
 
     private func createNewCalendarEvent() {
-        CalendarEventHandler.createNewCalendarEvent(with: appointment, on: self)
+        CalendarHandler.createContact(with: appointment, viewController: self)
     }
 }
 

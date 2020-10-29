@@ -6,8 +6,6 @@
 //  Copyright © 2020 Jeff Moran. All rights reserved.
 //
 
-import Foundation
-
 enum AppointmentDetail: Int, CaseIterable {
     case name
     case email
@@ -57,7 +55,42 @@ enum AppointmentDetail: Int, CaseIterable {
         }
     }
 
-    func detailValue(for appointment: Appointment) -> String? {
+    var placeholderValue: String {
+        switch self {
+        case .name:
+            return "John Appleseed"
+        case .email:
+            return "john@email.com"
+        case .phoneNumber:
+            return "555-555-5555"
+        case .time:
+            return ""
+        case .address:
+            return "826 Apple Street"
+        case .zipCode:
+            return "02128"
+        case .city:
+            return "Boston"
+        case .moveInDate:
+            return ""
+        case .pets:
+            return "Yes"
+        case .rent:
+            return "$2500"
+        case .size:
+            return "747"
+        case .bedrooms:
+            return "2"
+        case .bathrooms:
+            return "1"
+        case .notes:
+            return "Notes"
+        }
+    }
+
+    func detailValue(for appointment: Appointment?) -> String? {
+        guard let appointment = appointment else { return nil }
+
         switch self {
         case .name:
             return appointment.clientName
@@ -78,9 +111,21 @@ enum AppointmentDetail: Int, CaseIterable {
         case .pets:
             return appointment.pets
         case .rent:
-            return "$\(appointment.price) Per Month"
+            let price = appointment.price
+
+            if !price.isEmpty {
+                return "$\(price) Per Month"
+            } else {
+                return nil
+            }
         case .size:
-            return "\(appointment.size) Sq. Ft."
+            let size = appointment.size
+
+            if !size.isEmpty {
+                return "\(size) Sq. Ft."
+            } else {
+                return nil
+            }
         case .bedrooms:
             return appointment.roomsCount
         case .bathrooms:

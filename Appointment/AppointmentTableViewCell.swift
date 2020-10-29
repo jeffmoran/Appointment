@@ -81,7 +81,7 @@ class AppointmentTableViewCell: UITableViewCell {
         ])
     }
 
-    // MARK: - Public Methods
+    // MARK: - Internal
 
     func style(with appointment: Appointment) {
         #warning("Rewritten from Obj-C -- clean this up")

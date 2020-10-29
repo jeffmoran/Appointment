@@ -66,7 +66,7 @@ class AppointmentDetailTableViewCell: UITableViewCell {
 
     private func setUpConstraints() {
         NSLayoutConstraint.activate([
-            appointmentHeaderLabel.widthAnchor.constraint(equalToConstant: 80),
+            appointmentHeaderLabel.widthAnchor.constraint(equalToConstant: 90),
 
             stackView.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor),
             stackView.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor),
@@ -76,7 +76,7 @@ class AppointmentDetailTableViewCell: UITableViewCell {
         ])
     }
 
-    // MARK: - Public Methods
+    // MARK: - Internal Methods
 
     func style(with appointment: Appointment, index: Int) {
         let appointmentDetail = AppointmentDetail(rawValue: index)

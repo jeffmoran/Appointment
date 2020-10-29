@@ -68,7 +68,7 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
 
         title = addressString
-        view.backgroundColor = .white
+        view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
 
         locationManager.requestWhenInUseAuthorization()

@@ -63,15 +63,15 @@ class SettingsViewController: UITableViewController {
 // MARK: - UITableViewDataSource
 
 extension SettingsViewController {
-    override public func numberOfSections(in tableView: UITableView) -> Int {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
 
-    override public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }
 
-    override public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         #warning("Rewritten from Obj-C -- clean this up")
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: SettingsViewController.tableViewCellIdentifier)
@@ -103,7 +103,7 @@ extension SettingsViewController {
 // MARK: - UITableViewDelegate
 
 extension SettingsViewController {
-    override public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         #warning("Rewritten from Obj-C -- clean this up")
 
         tableView.deselectRow(at: indexPath, animated: true)

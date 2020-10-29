@@ -7,7 +7,7 @@
 //
 
 import Contacts
-import Foundation
+import UIKit
 
 enum ContactHandler {
     static func createContact(with appointment: Appointment, viewController: UIViewController) {
@@ -61,6 +61,8 @@ enum ContactHandler {
             alertMessage = error.localizedDescription
         }
 
-        viewController.presentAlert(title: alertTitle, message: alertMessage)
+        DispatchQueue.main.async {
+            viewController.presentAlert(title: alertTitle, message: alertMessage)
+        }
     }
 }
