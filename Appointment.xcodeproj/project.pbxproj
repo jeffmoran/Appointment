@@ -67,43 +67,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		6014237F1CD098E70089E278 /* Assets */ = {
-			isa = PBXGroup;
-			children = (
-				605F92C51CCC142B00F4FC1C /* Images.xcassets */,
-			);
-			name = Assets;
-			sourceTree = "<group>";
-		};
-		601423AF1CD099270089E278 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				601423941CD098FF0089E278 /* Launch Screen.storyboard */,
-				601423931CD098FF0089E278 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		60152029254664E0004894B5 /* Protocols */ = {
+		60E58221254B7E1A0074917B /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
 				608A4964254B278000D8E782 /* AppointmentInputTableViewCellDelegate.swift */,
 				6015202A254664EA004894B5 /* AppointmentListViewControllerDelegate.swift */,
 			);
-			name = Protocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
-		8A5280951EEA1E94004C221B /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				6015202D25467D2A004894B5 /* Appointment.swift */,
-				601520322547AD70004894B5 /* AppointmentStore.swift */,
-				601423811CD098FF0089E278 /* Appointment.xcdatamodel */,
-			);
-			name = Models;
-			sourceTree = "<group>";
-		};
-		8A5280961EEA1E9D004C221B /* Views */ = {
+		60E58223254B7E420074917B /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				60DAEB012547C92700BAC232 /* AppointmentDetail.swift */,
@@ -111,10 +84,10 @@
 				608999E62548F093008053C6 /* AppointmentInputTableViewCell.swift */,
 				605703342537EC3500AA7BF6 /* AppointmentTableViewCell.swift */,
 			);
-			name = Views;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		8A5280971EEA1EA2004C221B /* Controllers */ = {
+		60E58224254B7E530074917B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				6015200B25393D30004894B5 /* AppointmentDetailViewController.swift */,
@@ -123,17 +96,53 @@
 				60152017253A63E2004894B5 /* MapViewController.swift */,
 				60152006253935EE004894B5 /* SettingsViewController.swift */,
 			);
-			name = Controllers;
+			path = Controllers;
 			sourceTree = "<group>";
 		};
-		8AACE7A81EEDA88E00A05ED8 /* Utils */ = {
+		60E58225254B7E700074917B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6015202625422AF3004894B5 /* UIViewController+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		60E58226254B7E7C0074917B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				601423941CD098FF0089E278 /* Launch Screen.storyboard */,
+				601423931CD098FF0089E278 /* Info.plist */,
+				605A55D02537B742002B29D3 /* AppDelegate.swift */,
+				605A55A42537B6DF002B29D3 /* SceneDelegate.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		60E58227254B7E910074917B /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				605F92C51CCC142B00F4FC1C /* Images.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		60E58228254B7E9E0074917B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6015202D25467D2A004894B5 /* Appointment.swift */,
+				601520322547AD70004894B5 /* AppointmentStore.swift */,
+				601423811CD098FF0089E278 /* Appointment.xcdatamodel */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		60E58229254B7EBB0074917B /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
 				608999DC2548C4B6008053C6 /* CalendarHandler.swift */,
 				6015202225421721004894B5 /* ContactHandler.swift */,
-				6015202625422AF3004894B5 /* UIViewController+Extensions.swift */,
 			);
-			name = Utils;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		BE4E18D8140D9EB80007F01B = {
@@ -155,15 +164,14 @@
 		BE4E18EB140D9EB80007F01B /* Appointment */ = {
 			isa = PBXGroup;
 			children = (
-				60152029254664E0004894B5 /* Protocols */,
-				8A5280951EEA1E94004C221B /* Models */,
-				8A5280961EEA1E9D004C221B /* Views */,
-				8A5280971EEA1EA2004C221B /* Controllers */,
-				8AACE7A81EEDA88E00A05ED8 /* Utils */,
-				6014237F1CD098E70089E278 /* Assets */,
-				601423AF1CD099270089E278 /* Supporting Files */,
-				605A55D02537B742002B29D3 /* AppDelegate.swift */,
-				605A55A42537B6DF002B29D3 /* SceneDelegate.swift */,
+				60E58226254B7E7C0074917B /* Core */,
+				60E58227254B7E910074917B /* Assets */,
+				60E58228254B7E9E0074917B /* Models */,
+				60E58223254B7E420074917B /* Views */,
+				60E58221254B7E1A0074917B /* Protocols */,
+				60E58224254B7E530074917B /* Controllers */,
+				60E58225254B7E700074917B /* Extensions */,
+				60E58229254B7EBB0074917B /* Helpers */,
 			);
 			path = Appointment;
 			sourceTree = "<group>";
@@ -390,7 +398,7 @@
 				DEVELOPMENT_TEAM = TR5WFN5468;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = Appointment/Info.plist;
+				INFOPLIST_FILE = Appointment/Core/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
@@ -412,7 +420,7 @@
 				DEVELOPMENT_TEAM = TR5WFN5468;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_VERSION = "";
-				INFOPLIST_FILE = Appointment/Info.plist;
+				INFOPLIST_FILE = Appointment/Core/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.jeffreymoran.Appointment;
 				PRODUCT_NAME = Appointment;
