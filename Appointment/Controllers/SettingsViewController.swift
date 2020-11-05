@@ -63,37 +63,43 @@ class SettingsViewController: UITableViewController {
 // MARK: - UITableViewDataSource
 
 extension SettingsViewController {
+
+    private func settingsSection(at index: Int) -> SettingsSection {
+        guard let section = SettingsSection(rawValue: index) else {
+            fatalError("Unable to create section!")
+        }
+
+        return section
+    }
+
     override func numberOfSections(in tableView: UITableView) -> Int {
-        return 2
+        return SettingsSection.allCases.count
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return settingsSection(at: section).numberOfRows
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return settingsSection(at: section).titleForHeader
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        #warning("Rewritten from Obj-C -- clean this up")
+        let section = settingsSection(at: indexPath.section)
 
         let cell = UITableViewCell(style: .value1, reuseIdentifier: SettingsViewController.tableViewCellIdentifier)
 
-        switch indexPath.section {
-        case 0:
-            switch indexPath.row {
-            case 0:
-                cell.textLabel?.text = "Delete all appointments"
-            default:
-                break
-            }
-        case 1:
-            switch indexPath.row {
-            case 0:
-                cell.textLabel?.text = "Sorting"
-                cell.detailTextLabel?.text = "Date"
-            default:
-                break
-            }
-        default:
+        let row = section.rows[indexPath.row]
+
+        cell.textLabel?.text = row.title
+
+        switch row {
+        case SettingsDeleteSectionRow.delete:
             break
+        case let row as SettingsSortSectionRow:
+            row.update(cell)
+        default:
+            fatalError("Unimplemented row!")
         }
 
         return cell
@@ -104,45 +110,35 @@ extension SettingsViewController {
 
 extension SettingsViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        #warning("Rewritten from Obj-C -- clean this up")
+        guard let section = SettingsSection(rawValue: indexPath.section) else {
+            fatalError("Unable to create section!")
+        }
 
         tableView.deselectRow(at: indexPath, animated: true)
 
-        switch indexPath.section {
-        case 0:
-            switch indexPath.row {
-            case 0:
+        let row = section.rows[indexPath.row]
+
+        switch row {
+        case let row as SettingsDeleteSectionRow:
+            switch row {
+            case .delete:
                 removeAllAppointments()
-            default:
-                break
             }
-        case 1:
-            switch indexPath.row {
-            case 0:
+        case let row as SettingsSortSectionRow:
+            let updateSorting: ((String) -> Void) = { value in
+                UserDefaults.standard.setValue(value, forKey: "sortDescriptor")
+                tableView.reloadSections([indexPath.section], with: .automatic)
+                self.delegate?.refreshAppointmentList()
+            }
 
-                #warning("Implement, use UIMenu")
-
-                let alertController = UIAlertController(title: nil, message: "The ascending order in which appointments are sorted.", preferredStyle: .actionSheet)
-
-                let dateAction = UIAlertAction(title: "Date", style: .default, handler: { _ in
-
-                })
-
-                let nameAction = UIAlertAction(title: "Name", style: .default, handler: { _ in
-                })
-
-                let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
-
-                alertController.addAction(dateAction)
-                alertController.addAction(nameAction)
-                alertController.addAction(cancelAction)
-
-                present(alertController, animated: true)
-            default:
-                break
+            switch row {
+            case .time:
+                updateSorting("appointmentTime")
+            case .name:
+                updateSorting("clientName")
             }
         default:
-            break
+            fatalError("Unimplemented row!")
         }
     }
 }

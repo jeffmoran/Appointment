@@ -58,14 +58,21 @@ class AppointmentStore: NSObject {
     }
 
     var allAppointments: [Appointment] {
-        #warning("Add ability to fetch with sort")
+        let fetchRequest = Appointment.fetchRequest()
+
+        #warning("Make UserDefaults access type safe")
+        if let value = UserDefaults.standard.string(forKey: "sortDescriptor") {
+            let sortDescriptor = NSSortDescriptor(key: value, ascending: true)
+            fetchRequest.sortDescriptors = [sortDescriptor]
+        }
 
         do {
             // swiftlint:disable force_cast
-            return try objectContext.fetch(Appointment.fetchRequest() as NSFetchRequest<NSFetchRequestResult>) as! [Appointment]
+            return try objectContext.fetch(fetchRequest) as! [Appointment]
             // swiftlint:enable force_cast
         } catch {
-            fatalError(error.localizedDescription)
+            print(error.localizedDescription)
+            return [Appointment]()
         }
     }
 
