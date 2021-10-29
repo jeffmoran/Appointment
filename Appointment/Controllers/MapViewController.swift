@@ -7,7 +7,6 @@
 //
 
 import MapKit
-import UIKit
 
 class MapViewController: UIViewController {
 

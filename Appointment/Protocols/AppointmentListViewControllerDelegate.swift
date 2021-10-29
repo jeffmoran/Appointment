@@ -6,8 +6,7 @@
 //  Copyright © 2020 Jeff Moran. All rights reserved.
 //
 
-import Foundation
-
 protocol AppointmentListViewControllerDelegate: AnyObject {
+    func didDeleteAllAppointments()
     func refreshAppointmentList()
 }

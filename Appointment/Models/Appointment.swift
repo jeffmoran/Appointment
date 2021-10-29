@@ -9,7 +9,6 @@
 import CoreData
 
 class Appointment: NSManagedObject {
-
     #warning("Move these date formatters to somewhere more reasonable")
 
     static var timeFormatter: DateFormatter {

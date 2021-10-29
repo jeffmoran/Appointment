@@ -14,6 +14,8 @@ class AppointmentInputViewController: UITableViewController {
 
     private var appointment: Appointment?
 
+    private var store: CoreData<Appointment>
+
     private var valueMapping = [AppointmentDetail: Any?]()
 
     // MARK: - Internal Properties
@@ -22,8 +24,9 @@ class AppointmentInputViewController: UITableViewController {
 
     // MARK: - Initializers
 
-    init(with appointment: Appointment?) {
+    init(with appointment: Appointment?, store: CoreData<Appointment>) {
         self.appointment = appointment
+        self.store = store
 
         valueMapping = [
             .name: appointment?.clientName,
@@ -69,8 +72,8 @@ class AppointmentInputViewController: UITableViewController {
     private func setUpNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        if appointment != nil {
-            title = appointment?.clientName
+        if let appointment = appointment {
+            title = appointment.clientName
         } else {
             title = "New Appointment"
         }
@@ -96,7 +99,7 @@ class AppointmentInputViewController: UITableViewController {
         if let appointment = appointment {
             appointmentToSave = appointment
         } else {
-            appointmentToSave = AppointmentStore.shared.emptyAppointment
+            appointmentToSave = store.newObject
         }
 
         AppointmentDetail.allCases.forEach {
@@ -137,7 +140,7 @@ class AppointmentInputViewController: UITableViewController {
             }
         }
 
-        AppointmentStore.shared.save()
+        store.save()
         dismissViewController()
         delegate?.refreshAppointmentList()
     }

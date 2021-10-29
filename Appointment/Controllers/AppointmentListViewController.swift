@@ -12,8 +12,10 @@ class AppointmentListViewController: UITableViewController {
 
     // MARK: - Private Properties
 
+    private lazy var store = CoreData<Appointment>()
+
     private var appointments: [Appointment?] {
-        return AppointmentStore.shared.allAppointments
+        return store.allObjects
     }
 
     // MARK: - Initializers
@@ -48,10 +50,9 @@ class AppointmentListViewController: UITableViewController {
     // MARK: - Private Methods
 
     @objc private func goToSettings() {
-        let viewController = SettingsViewController()
-        viewController.delegate = self
-        let navigationController = UINavigationController(rootViewController: viewController)
+        let viewController = SettingsViewController(store: store, delegate: self)
 
+        let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true)
     }
 
@@ -59,10 +60,11 @@ class AppointmentListViewController: UITableViewController {
         tableView.setEditing(!tableView.isEditing, animated: true)
 
         navigationItem.leftBarButtonItem?.isEnabled = !tableView.isEditing
+        navigationItem.rightBarButtonItem?.isEnabled = !tableView.isEditing
     }
 
     @objc private func addNewAppointment() {
-        let viewController = AppointmentInputViewController(with: nil)
+        let viewController = AppointmentInputViewController(with: nil, store: store)
         viewController.delegate = self
 
         let navigationController = UINavigationController(rootViewController: viewController)
@@ -75,7 +77,7 @@ class AppointmentListViewController: UITableViewController {
 
 extension AppointmentListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AppointmentStore.shared.count
+        return store.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,7 +93,7 @@ extension AppointmentListViewController {
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let count = AppointmentStore.shared.count
+        let count = store.count
 
         if count < 1 {
             return nil
@@ -106,7 +108,7 @@ extension AppointmentListViewController {
         if editingStyle == .delete {
             guard let appointment = appointments[indexPath.row] else { return }
 
-            AppointmentStore.shared.delete(appointment)
+            store.delete(appointment)
 
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -122,7 +124,7 @@ extension AppointmentListViewController {
         guard let appointment = appointments[indexPath.row] else { return }
 
         if tableView.isEditing {
-            let viewController = AppointmentInputViewController(with: appointment)
+            let viewController = AppointmentInputViewController(with: appointment, store: store)
             viewController.delegate = self
 
             let navigationController = UINavigationController(rootViewController: viewController)
@@ -139,6 +141,11 @@ extension AppointmentListViewController {
 // MARK: - AppointmentListViewControllerDelegate
 
 extension AppointmentListViewController: AppointmentListViewControllerDelegate {
+    func didDeleteAllAppointments() {
+        store.deleteAll()
+        tableView.reloadData()
+    }
+
     func refreshAppointmentList() {
         tableView.reloadData()
     }

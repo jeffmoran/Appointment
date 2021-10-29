@@ -14,13 +14,17 @@ class SettingsViewController: UITableViewController {
 
     private static let tableViewCellIdentifier = "appointmentDetailCellIdentifier"
 
-    // MARK: - Internal Properties
+    // MARK: - Private Properties
 
-    weak var delegate: AppointmentListViewControllerDelegate?
+    private var store: CoreData<Appointment>
+    private weak var delegate: AppointmentListViewControllerDelegate?
 
     // MARK: - Initializers
 
-    init() {
+    init(store: CoreData<Appointment>, delegate: AppointmentListViewControllerDelegate) {
+        self.store = store
+        self.delegate = delegate
+
         super.init(style: .grouped)
 
         title = "Settings"
@@ -47,8 +51,8 @@ class SettingsViewController: UITableViewController {
         )
 
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-            AppointmentStore.shared.deleteAll()
-            self.delegate?.refreshAppointmentList()
+            self.store.deleteAll()
+            self.delegate?.didDeleteAllAppointments()
         }
 
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)

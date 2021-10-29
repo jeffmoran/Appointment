@@ -16,7 +16,7 @@
 		6015202325421721004894B5 /* ContactHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6015202225421721004894B5 /* ContactHandler.swift */; };
 		6015202725422AF3004894B5 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6015202625422AF3004894B5 /* UIViewController+Extensions.swift */; };
 		6015202B254664EA004894B5 /* AppointmentListViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6015202A254664EA004894B5 /* AppointmentListViewControllerDelegate.swift */; };
-		601520332547AD70004894B5 /* AppointmentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601520322547AD70004894B5 /* AppointmentStore.swift */; };
+		601520332547AD70004894B5 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 601520322547AD70004894B5 /* CoreDataStore.swift */; };
 		605703352537EC3500AA7BF6 /* AppointmentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605703342537EC3500AA7BF6 /* AppointmentTableViewCell.swift */; };
 		605703452538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605703442538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift */; };
 		605A55A62537B6DF002B29D3 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 605A55A42537B6DF002B29D3 /* SceneDelegate.swift */; };
@@ -43,7 +43,7 @@
 		6015202625422AF3004894B5 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		6015202A254664EA004894B5 /* AppointmentListViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentListViewControllerDelegate.swift; sourceTree = "<group>"; };
 		6015202D25467D2A004894B5 /* Appointment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Appointment.swift; sourceTree = "<group>"; };
-		601520322547AD70004894B5 /* AppointmentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentStore.swift; sourceTree = "<group>"; };
+		601520322547AD70004894B5 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		605703342537EC3500AA7BF6 /* AppointmentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentTableViewCell.swift; sourceTree = "<group>"; };
 		605703442538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailTableViewCell.swift; sourceTree = "<group>"; };
 		605A55A42537B6DF002B29D3 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -133,7 +133,7 @@
 			isa = PBXGroup;
 			children = (
 				6015202D25467D2A004894B5 /* Appointment.swift */,
-				601520322547AD70004894B5 /* AppointmentStore.swift */,
+				601520322547AD70004894B5 /* CoreDataStore.swift */,
 				601423811CD098FF0089E278 /* Appointment.xcdatamodel */,
 			);
 			path = Models;
@@ -207,7 +207,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = "";
-				LastUpgradeCheck = 1220;
+				LastUpgradeCheck = 1310;
 				ORGANIZATIONNAME = "Jeff Moran";
 				TargetAttributes = {
 					BE4E18E2140D9EB80007F01B = {
@@ -279,7 +279,7 @@
 				6015200C25393D30004894B5 /* AppointmentDetailViewController.swift in Sources */,
 				608999E32548E690008053C6 /* AppointmentInputViewController.swift in Sources */,
 				605703452538B3C800AA7BF6 /* AppointmentDetailTableViewCell.swift in Sources */,
-				601520332547AD70004894B5 /* AppointmentStore.swift in Sources */,
+				601520332547AD70004894B5 /* CoreDataStore.swift in Sources */,
 				60152007253935EE004894B5 /* SettingsViewController.swift in Sources */,
 				60E5822E25538F9C0074917B /* SettingsViewController+Sections.swift in Sources */,
 				6015201E253F2051004894B5 /* AppointmentListViewController.swift in Sources */,
@@ -388,6 +388,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
