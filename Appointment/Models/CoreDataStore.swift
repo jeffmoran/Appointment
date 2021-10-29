@@ -65,7 +65,7 @@ class CoreData<T: NSManagedObject> {
 
     var newObject: T {
         // swiftlint:disable force_cast
-        return NSEntityDescription.insertNewObject(forEntityName: T.description(), into: objectContext) as! T
+        return NSEntityDescription.insertNewObject(forEntityName: T.entity().name ?? "", into: objectContext) as! T
         // swiftlint:enable force_cast
     }
 
