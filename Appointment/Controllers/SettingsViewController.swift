@@ -129,20 +129,17 @@ extension SettingsViewController {
                 removeAllAppointments()
             }
         case let row as SettingsSortSectionRow:
-            let updateSorting: ((String) -> Void) = { value in
-                UserDefaults.standard.setValue(value, forKey: "sortDescriptor")
-                tableView.reloadSections([indexPath.section], with: .automatic)
-                self.delegate?.refreshAppointmentList()
-            }
-
-            switch row {
-            case .time:
-                updateSorting("appointmentTime")
-            case .name:
-                updateSorting("clientName")
-            }
+            updateAppointmentSorting(row, indexPath: indexPath)
         default:
             fatalError("Unimplemented row!")
         }
+    }
+
+    private func updateAppointmentSorting(_ row: SettingsSortSectionRow, indexPath: IndexPath) {
+        Config.appointmentSortingType = row.sortingType
+
+        tableView.reloadSections([indexPath.section], with: .automatic)
+
+        delegate?.refreshAppointmentList()
     }
 }

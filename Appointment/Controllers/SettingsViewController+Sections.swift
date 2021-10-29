@@ -70,17 +70,25 @@ extension SettingsViewController {
             }
         }
 
+        var sortingType: AppointmentSortingType {
+            switch self {
+            case .time:
+                return .timeAscending
+            case .name:
+                return .name
+            }
+        }
+
         func update(_ cell: UITableViewCell) {
-            #warning("Make UserDefaults access type safe")
-            let value = UserDefaults.standard.string(forKey: "sortDescriptor") ?? ""
+            let sorting = Config.appointmentSortingType
 
             switch self {
             case .time:
-                if value == "appointmentTime" {
+                if sorting == .timeAscending {
                     cell.accessoryType = .checkmark
                 }
             case .name:
-                if value == "clientName" {
+                if sorting == .name {
                     cell.accessoryType = .checkmark
                 }
             }
