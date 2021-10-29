@@ -152,4 +152,12 @@ extension AppointmentInputTableViewCell: UITextFieldDelegate {
 
         delegate?.didUpdateCell(with: textField.text ?? "", appointmentDetail: appointmentDetail)
     }
+
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        guard let delegate = appointmentDetail?.textFieldDelegate else {
+            return true
+        }
+
+        return delegate.textField(textField, shouldChangeCharactersIn: range, replacementString: string)
+    }
 }

@@ -88,6 +88,17 @@ enum AppointmentDetail: Int, CaseIterable {
         }
     }
 
+    var textFieldDelegate: AppointmentDetailTextFieldDelegate? {
+        switch self {
+        case .phoneNumber:
+            return PhoneNumberTextFieldDelegate()
+        case .zipCode:
+            return ZipCodeTextFieldDelegate()
+        default:
+            return nil
+        }
+    }
+
     func detailValue(for appointment: Appointment?) -> String? {
         guard let appointment = appointment else { return nil }
 
