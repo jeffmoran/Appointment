@@ -12,43 +12,34 @@ class CoreData<T: NSManagedObject> {
 
     // MARK: - Private Properties
 
-    private lazy var storeCoordinator: NSPersistentStoreCoordinator = {
-        guard let model = NSManagedObjectModel.mergedModel(from: nil) else {
-            fatalError("Model not created?")
+    private var entityName: String {
+        return String(describing: T.self)
+    }
+
+    private var fetchRequest: NSFetchRequest<T> {
+        return NSFetchRequest<T>(entityName: entityName)
+    }
+
+    private lazy var persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: entityName)
+        container.loadPersistentStores { _, error in
+            if let error = error as NSError? {
+                fatalError("Unresolved error \(error), \(error.userInfo)")
+            }
         }
 
-        let storeCoordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
-
-        do {
-            let options = [
-                NSMigratePersistentStoresAutomaticallyOption: true,
-                NSInferMappingModelAutomaticallyOption: true
-            ]
-
-            let url = try FileManager.default.url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false).appendingPathComponent("store.data")
-
-            try storeCoordinator.addPersistentStore(ofType: NSSQLiteStoreType, configurationName: nil, at: url, options: options)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-
-        return storeCoordinator
+        return container
     }()
 
     private lazy var objectContext: NSManagedObjectContext = {
-        let context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        context.persistentStoreCoordinator = storeCoordinator
-
-        return context
+        persistentContainer.viewContext
     }()
 
-    var allObjects: [T] {
-        let fetchRequest = T.fetchRequest()
+    // MARK: - Internal Properties
 
+    var allObjects: [T] {
         do {
-            // swiftlint:disable force_cast
-            return try objectContext.fetch(fetchRequest) as! [T]
-            // swiftlint:enable force_cast
+            return try objectContext.fetch(fetchRequest)
         } catch {
             print(error.localizedDescription)
             return [T]()
@@ -57,7 +48,7 @@ class CoreData<T: NSManagedObject> {
 
     var count: Int {
         do {
-            return try objectContext.count(for: T.fetchRequest() as NSFetchRequest<NSFetchRequestResult>)
+            return try objectContext.count(for: fetchRequest)
         } catch {
             fatalError(error.localizedDescription)
         }
@@ -65,9 +56,11 @@ class CoreData<T: NSManagedObject> {
 
     var newObject: T {
         // swiftlint:disable force_cast
-        return NSEntityDescription.insertNewObject(forEntityName: T.entity().name ?? "", into: objectContext) as! T
+        return NSEntityDescription.insertNewObject(forEntityName: entityName, into: objectContext) as! T
         // swiftlint:enable force_cast
     }
+
+    // MARK: - Internal Methods
 
     func save() {
         do {
@@ -80,8 +73,7 @@ class CoreData<T: NSManagedObject> {
     }
 
     func deleteAll() {
-        let fetchRequest: NSFetchRequest<NSFetchRequestResult> = T.fetchRequest()
-        let deleteRequest = NSBatchDeleteRequest(fetchRequest: fetchRequest)
+        let deleteRequest = NSBatchDeleteRequest(fetchRequest: T.fetchRequest())
 
         do {
             try objectContext.execute(deleteRequest)

@@ -12,7 +12,7 @@ class AppointmentListViewController: UITableViewController {
 
     // MARK: - Private Properties
 
-    private lazy var store = CoreData<Appointment>()
+    private let store = CoreData<Appointment>()
 
     private var appointments: [Appointment?] {
         return store.allObjects

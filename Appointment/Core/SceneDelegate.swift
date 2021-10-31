@@ -24,9 +24,4 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
         window?.makeKeyAndVisible()
     }
-
-    func sceneWillResignActive(_ scene: UIScene) {
-        let store = CoreData<Appointment>()
-        store.save()
-    }
 }
