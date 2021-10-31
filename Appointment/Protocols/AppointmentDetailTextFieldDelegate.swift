@@ -8,6 +8,6 @@
 
 import UIKit
 
-protocol AppointmentDetailTextFieldDelegate {
+protocol AppointmentDetailTextFieldDelegate: AnyObject {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool
 }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct PhoneNumberTextFieldDelegate: AppointmentDetailTextFieldDelegate {
+class PhoneNumberTextFieldDelegate: AppointmentDetailTextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? ""
         let textCount = currentText.firstTenDigits.count

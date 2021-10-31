@@ -64,8 +64,7 @@ class AppointmentListViewController: UITableViewController {
     }
 
     @objc private func addNewAppointment() {
-        let viewController = AppointmentInputViewController(with: nil, store: store)
-        viewController.delegate = self
+        let viewController = AppointmentInputViewController(appointment: nil, store: store, delegate: self)
 
         let navigationController = UINavigationController(rootViewController: viewController)
 
@@ -124,8 +123,7 @@ extension AppointmentListViewController {
         guard let appointment = appointments[indexPath.row] else { return }
 
         if tableView.isEditing {
-            let viewController = AppointmentInputViewController(with: appointment, store: store)
-            viewController.delegate = self
+            let viewController = AppointmentInputViewController(appointment: appointment, store: store, delegate: self)
 
             let navigationController = UINavigationController(rootViewController: viewController)
 

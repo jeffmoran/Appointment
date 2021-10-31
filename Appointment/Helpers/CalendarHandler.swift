@@ -33,7 +33,7 @@ enum CalendarHandler {
                 let event = EKEvent(eventStore: eventStore)
                 event.title = "\(appointment.appointmentDateString) appointment with \(appointment.clientName)"
                 event.location = appointment.address
-                event.notes = appointment.calendarNotesString
+                event.notes = appointment.detailsString
                 event.startDate = appointment.appointmentTime
                 event.endDate = Date(timeInterval: 3600, since: appointment.appointmentTime)
                 event.calendar = eventStore.defaultCalendarForNewEvents

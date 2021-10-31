@@ -115,7 +115,7 @@ class AppointmentDetailViewController: UITableViewController {
 
         controller.setToRecipients([appointment.clientEmail])
 
-        controller.setMessageBody(appointment.emailBodyString, isHTML: true)
+        controller.setMessageBody(appointment.detailsString, isHTML: true)
 
         present(controller, animated: true)
     }

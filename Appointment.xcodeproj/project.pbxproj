@@ -33,6 +33,7 @@
 		60A98F8D272C68D9007E2CD3 /* UserDefault.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A98F8C272C68D9007E2CD3 /* UserDefault.swift */; };
 		60A98F8F272C6DDC007E2CD3 /* AppointmentSortingType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A98F8E272C6DDC007E2CD3 /* AppointmentSortingType.swift */; };
 		60A98F91272C6E5D007E2CD3 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A98F90272C6E5D007E2CD3 /* Config.swift */; };
+		60A98FB8272E3559007E2CD3 /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60A98FB7272E3559007E2CD3 /* DateFormatter+Extensions.swift */; };
 		60DAEAFF2547BD8100BAC232 /* Appointment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6015202D25467D2A004894B5 /* Appointment.swift */; };
 		60DAEB022547C92700BAC232 /* AppointmentDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60DAEB012547C92700BAC232 /* AppointmentDetail.swift */; };
 		60E5822E25538F9C0074917B /* SettingsViewController+Sections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 60E5822D25538F9C0074917B /* SettingsViewController+Sections.swift */; };
@@ -67,6 +68,7 @@
 		60A98F8C272C68D9007E2CD3 /* UserDefault.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefault.swift; sourceTree = "<group>"; };
 		60A98F8E272C6DDC007E2CD3 /* AppointmentSortingType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentSortingType.swift; sourceTree = "<group>"; };
 		60A98F90272C6E5D007E2CD3 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		60A98FB7272E3559007E2CD3 /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		60DAEB012547C92700BAC232 /* AppointmentDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetail.swift; sourceTree = "<group>"; };
 		60E5822D25538F9C0074917B /* SettingsViewController+Sections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SettingsViewController+Sections.swift"; sourceTree = "<group>"; };
 		BE4E18E3140D9EB80007F01B /* Appointment.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Appointment.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -123,6 +125,7 @@
 			children = (
 				60A98F8A272C56FB007E2CD3 /* String+Extensions.swift */,
 				6015202625422AF3004894B5 /* UIViewController+Extensions.swift */,
+				60A98FB7272E3559007E2CD3 /* DateFormatter+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 			files = (
 				6015200C25393D30004894B5 /* AppointmentDetailViewController.swift in Sources */,
 				608999E32548E690008053C6 /* AppointmentInputViewController.swift in Sources */,
+				60A98FB8272E3559007E2CD3 /* DateFormatter+Extensions.swift in Sources */,
 				60A98F91272C6E5D007E2CD3 /* Config.swift in Sources */,
 				601AC6C22553B31C008EBFD2 /* AppointmentDetailTextFieldDelegate.swift in Sources */,
 				601AC6C62555077D008EBFD2 /* PhoneNumberTextFieldDelegate.swift in Sources */,

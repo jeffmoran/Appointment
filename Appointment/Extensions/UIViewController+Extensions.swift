@@ -9,12 +9,13 @@
 import UIKit
 
 extension UIViewController {
-    func presentAlert(title: String? = nil,
-                      message: String? = "",
-                      dismissActionTitle: String? = "Dismiss",
-                      defaultActionTitle: String? = nil,
-                      defaultActionAction: (() -> Void)? = nil)
-    {
+    func presentAlert(
+        title: String? = nil,
+        message: String? = "",
+        dismissActionTitle: String? = "Dismiss",
+        defaultActionTitle: String? = nil,
+        defaultActionAction: (() -> Void)? = nil
+    ) {
         let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
 
         if let defaultActionTitle = defaultActionTitle {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-struct ZipCodeTextFieldDelegate: AppointmentDetailTextFieldDelegate {
+class ZipCodeTextFieldDelegate: AppointmentDetailTextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         // If the replacement string is empty (like when deleting a character), return true.
         if string.isEmpty {

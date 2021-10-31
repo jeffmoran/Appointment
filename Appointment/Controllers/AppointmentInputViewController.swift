@@ -18,15 +18,14 @@ class AppointmentInputViewController: UITableViewController {
 
     private var valueMapping = [AppointmentDetail: Any?]()
 
-    // MARK: - Internal Properties
-
-    weak var delegate: AppointmentListViewControllerDelegate?
+    private weak var delegate: AppointmentListViewControllerDelegate?
 
     // MARK: - Initializers
 
-    init(with appointment: Appointment?, store: CoreData<Appointment>) {
+    init(appointment: Appointment?, store: CoreData<Appointment>, delegate: AppointmentListViewControllerDelegate) {
         self.appointment = appointment
         self.store = store
+        self.delegate = delegate
 
         valueMapping = [
             .name: appointment?.clientName,

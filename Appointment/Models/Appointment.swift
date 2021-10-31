@@ -9,22 +9,6 @@
 import CoreData
 
 class Appointment: NSManagedObject {
-    #warning("Move these date formatters to somewhere more reasonable")
-
-    static var timeFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM d, yyyy h:mm aa"
-
-        return formatter
-    }
-
-    static var dateFormatter: DateFormatter {
-        let formatter = DateFormatter()
-        formatter.dateStyle = .long
-
-        return formatter
-    }
-
     @NSManaged var address: String
     @NSManaged var appointmentTime: Date
     @NSManaged var bathsCount: String
@@ -41,14 +25,26 @@ class Appointment: NSManagedObject {
     @NSManaged var notes: String
 
     var appointmentDateString: String {
-        return Appointment.timeFormatter.string(from: appointmentTime)
+        return DateFormatter.timeFormatter.string(from: appointmentTime)
     }
 
     var moveInDateString: String {
-        return Appointment.dateFormatter.string(from: moveInDate)
+        return DateFormatter.dateFormatter.string(from: moveInDate)
     }
 
-    #warning("Implement")
-    var calendarNotesString: String = ""
-    var emailBodyString: String = ""
+    var detailsString: String {
+        return """
+Client Name: \(clientName)
+Client Number: \(clientPhone)
+Appointment Time \(appointmentDateString)
+Property Address: \(address)
+City: \(city)
+Property Price: \(price)
+Move-In Date:\(moveInDateString)
+Pets Allowed: \(pets)
+Size: \(size) Sq. Ft.
+Number of Bedrooms:\(roomsCount)
+Number of Bathrooms:\(bathsCount)
+"""
+    }
 }
