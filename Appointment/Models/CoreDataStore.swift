@@ -8,7 +8,7 @@
 
 import CoreData
 
-class CoreData<T: NSManagedObject> {
+class CoreDataStore<T: NSManagedObject> {
 
     // MARK: - Private Properties
 
@@ -37,23 +37,6 @@ class CoreData<T: NSManagedObject> {
 
     // MARK: - Internal Properties
 
-    var allObjects: [T] {
-        do {
-            return try objectContext.fetch(fetchRequest)
-        } catch {
-            print(error.localizedDescription)
-            return [T]()
-        }
-    }
-
-    var count: Int {
-        do {
-            return try objectContext.count(for: fetchRequest)
-        } catch {
-            fatalError(error.localizedDescription)
-        }
-    }
-
     var newObject: T {
         // swiftlint:disable force_cast
         return NSEntityDescription.insertNewObject(forEntityName: entityName, into: objectContext) as! T
@@ -62,13 +45,20 @@ class CoreData<T: NSManagedObject> {
 
     // MARK: - Internal Methods
 
-    func save() {
+    func fetchAllObjects(with sortDescriptors: [NSSortDescriptor]) -> [T] {
         do {
-            if objectContext.hasChanges {
-                try objectContext.save()
-            }
+            let request = fetchRequest
+            request.sortDescriptors = sortDescriptors
+            return try objectContext.fetch(request)
         } catch {
-            fatalError(error.localizedDescription)
+            print(error.localizedDescription)
+            return [T]()
+        }
+    }
+
+    func saveContext() throws {
+        if objectContext.hasChanges {
+            try objectContext.save()
         }
     }
 

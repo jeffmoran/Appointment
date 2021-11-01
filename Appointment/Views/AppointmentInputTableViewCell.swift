@@ -16,6 +16,8 @@ class AppointmentInputTableViewCell: UITableViewCell {
 
     // MARK: - Private Properties
 
+    private var viewModel: AppointmentInputCellViewModel?
+
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.translatesAutoresizingMaskIntoConstraints = false
@@ -52,11 +54,9 @@ class AppointmentInputTableViewCell: UITableViewCell {
         return datePicker
     }()
 
-    private var appointmentDetail: AppointmentDetail?
-
     // MARK: - Internal Properties
 
-    weak var delegate: AppointmentInputTableViewCellDelegate?
+    weak var delegate: AppointmentInputCellViewModelDelegate?
 
     // MARK: - Initializers
 
@@ -94,50 +94,40 @@ class AppointmentInputTableViewCell: UITableViewCell {
     }
 
     @objc private func didSelectTime(_ datePicker: UIDatePicker) {
-        guard let appointmentDetail = appointmentDetail else {
-            fatalError("appointmentDetail should not be nil!")
+        guard let detailType = viewModel?.detailType else {
+            fatalError("detailType should not be nil!")
         }
 
-        delegate?.didUpdateCell(with: datePicker.date, appointmentDetail: appointmentDetail)
+        delegate?.didUpdate(with: datePicker.date, type: detailType)
     }
 
     // MARK: - Internal Methods
 
-    func style(with appointmentDetail: AppointmentDetail, value: Any?) {
-        self.appointmentDetail = appointmentDetail
+    func setUp(with viewModel: AppointmentInputCellViewModel) {
+        self.viewModel = viewModel
+        delegate = viewModel
 
-        appointmentHeaderLabel.text = appointmentDetail.headerValue
-        appointmentTextField.placeholder = appointmentDetail.placeholderValue
-        appointmentTextField.keyboardType = .default
+        appointmentHeaderLabel.text = viewModel.headerValue
+        appointmentTextField.placeholder = viewModel.placeholderValue
+        appointmentTextField.keyboardType = viewModel.keyboardType
 
-        if let value = value as? String {
+        if let value = viewModel.value as? String {
             appointmentTextField.text = value
-        } else {
-            appointmentTextField.text = nil
+        } else if let value = viewModel.value as? Date {
+            datePicker.date = value
         }
 
-        switch appointmentDetail {
-        case .time, .moveInDate:
+        switch viewModel.displayMode {
+        case .textField:
+            datePicker.removeFromSuperview()
+            stackView.addArrangedSubview(appointmentTextField)
+        case .datePicker:
             appointmentTextField.removeFromSuperview()
             stackView.addArrangedSubview(datePicker)
+        }
 
-            if appointmentDetail == .moveInDate {
-                datePicker.datePickerMode = .date
-            }
-
-            if let value = value as? Date {
-                datePicker.date = value
-            } else {
-                datePicker.date = Date()
-            }
-        case .bedrooms, .bathrooms, .rent, .size, .zipCode:
-            appointmentTextField.keyboardType = .numberPad
-        case .phoneNumber:
-            appointmentTextField.keyboardType = .phonePad
-        case .email:
-            appointmentTextField.keyboardType = .emailAddress
-        default:
-            break
+        if let datePickerMode = viewModel.datePickerMode {
+            datePicker.datePickerMode = datePickerMode
         }
     }
 }
@@ -146,15 +136,15 @@ class AppointmentInputTableViewCell: UITableViewCell {
 
 extension AppointmentInputTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let appointmentDetail = appointmentDetail else {
-            fatalError("appointmentDetail should not be nil!")
+        guard let detailType = viewModel?.detailType else {
+            fatalError("detailType should not be nil!")
         }
 
-        delegate?.didUpdateCell(with: textField.text ?? "", appointmentDetail: appointmentDetail)
+        delegate?.didUpdate(with: textField.text ?? "", type: detailType)
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        guard let delegate = appointmentDetail?.textFieldDelegate else {
+        guard let delegate = viewModel?.textFieldDelegate else {
             return true
         }
 

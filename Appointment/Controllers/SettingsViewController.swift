@@ -16,13 +16,11 @@ class SettingsViewController: UITableViewController {
 
     // MARK: - Private Properties
 
-    private var store: CoreData<Appointment>
     private weak var delegate: AppointmentListViewControllerDelegate?
 
     // MARK: - Initializers
 
-    init(store: CoreData<Appointment>, delegate: AppointmentListViewControllerDelegate) {
-        self.store = store
+    init(delegate: AppointmentListViewControllerDelegate) {
         self.delegate = delegate
 
         super.init(style: .grouped)
@@ -51,7 +49,6 @@ class SettingsViewController: UITableViewController {
         )
 
         let yesAction = UIAlertAction(title: "Yes", style: .destructive) { _ in
-            self.store.deleteAll()
             self.delegate?.didDeleteAllAppointments()
         }
 

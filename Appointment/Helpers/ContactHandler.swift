@@ -10,18 +10,22 @@ import Contacts
 import UIKit
 
 enum ContactHandler {
-    static func createContact(with appointment: Appointment, viewController: UIViewController) {
-        viewController.presentAlert(message: "Add \(appointment.clientName) to Contacts?", dismissActionTitle: "Maybe later", defaultActionTitle: "Yes") {
-            authorizeContactStore(with: appointment, viewController: viewController)
+    static func createContact(with viewModel: ContactViewModel, from viewController: UIViewController) {
+        viewController.presentAlert(
+            message: "Add \(viewModel.contactName) to Contacts?",
+            dismissActionTitle: "Maybe later",
+            defaultActionTitle: "Yes"
+        ) {
+                authorizeContactStore(with: viewModel, viewController: viewController)
         }
     }
 
-    private static func authorizeContactStore(with appointment: Appointment, viewController: UIViewController) {
+    private static func authorizeContactStore(with viewModel: ContactViewModel, viewController: UIViewController) {
         let contactStore = CNContactStore()
 
         contactStore.requestAccess(for: .contacts) { _, _ in
             switch CNContactStore.authorizationStatus(for: .contacts) {
-            #warning("Handle error state")
+#warning("Handle error state")
             case .notDetermined:
                 break
             case .restricted:
@@ -30,22 +34,22 @@ enum ContactHandler {
                 break
             case .authorized:
                 let contact = CNMutableContact()
-                contact.givenName = appointment.clientName
+                contact.givenName = viewModel.contactName
 
-                let phoneNumber = CNLabeledValue(label: CNLabelPhoneNumberMobile, value: CNPhoneNumber(stringValue: appointment.clientPhone))
+                let phoneNumber = CNLabeledValue(label: CNLabelPhoneNumberMobile, value: CNPhoneNumber(stringValue: viewModel.contactPhone))
                 contact.phoneNumbers = [phoneNumber]
 
-                let emailAddress = CNLabeledValue(label: CNLabelHome, value: appointment.clientEmail as NSString)
+                let emailAddress = CNLabeledValue(label: CNLabelHome, value: viewModel.contactEmail as NSString)
                 contact.emailAddresses = [emailAddress]
 
-                saveContact(contact: contact, store: contactStore, appointment: appointment, viewController: viewController)
+                saveContact(contact: contact, store: contactStore, viewModel: viewModel, viewController: viewController)
             @unknown default:
                 break
             }
         }
     }
 
-    private static func saveContact(contact: CNMutableContact, store: CNContactStore, appointment: Appointment, viewController: UIViewController) {
+    private static func saveContact(contact: CNMutableContact, store: CNContactStore, viewModel: ContactViewModel, viewController: UIViewController) {
         let saveRequest = CNSaveRequest()
         saveRequest.add(contact, toContainerWithIdentifier: nil)
 
@@ -55,9 +59,9 @@ enum ContactHandler {
         do {
             try store.execute(saveRequest)
             alertTitle = nil
-            alertMessage = "\(appointment.clientName) saved to Contacts!"
+            alertMessage = viewModel.successText
         } catch {
-            alertTitle = "Contact not Saved"
+            alertTitle = viewModel.failureText
             alertMessage = error.localizedDescription
         }
 

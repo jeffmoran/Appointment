@@ -23,28 +23,4 @@ class Appointment: NSManagedObject {
     @NSManaged var size: String
     @NSManaged var zipCode: String
     @NSManaged var notes: String
-
-    var appointmentDateString: String {
-        return DateFormatter.timeFormatter.string(from: appointmentTime)
-    }
-
-    var moveInDateString: String {
-        return DateFormatter.dateFormatter.string(from: moveInDate)
-    }
-
-    var detailsString: String {
-        return """
-Client Name: \(clientName)
-Client Number: \(clientPhone)
-Appointment Time \(appointmentDateString)
-Property Address: \(address)
-City: \(city)
-Property Price: \(price)
-Move-In Date:\(moveInDateString)
-Pets Allowed: \(pets)
-Size: \(size) Sq. Ft.
-Number of Bedrooms:\(roomsCount)
-Number of Bathrooms:\(bathsCount)
-"""
-    }
 }

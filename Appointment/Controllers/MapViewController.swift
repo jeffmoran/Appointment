@@ -12,6 +12,8 @@ class MapViewController: UIViewController {
 
     // MARK: - Private Properties
 
+    private let viewModel: MapViewModel
+
     private lazy var mapView: MKMapView = {
         let mapView = MKMapView()
         mapView.translatesAutoresizingMaskIntoConstraints = false
@@ -46,12 +48,10 @@ class MapViewController: UIViewController {
         return UIMenu(title: "Map Type", children: actions)
     }()
 
-    private var addressString: String
-
     // MARK: - Initializers
 
-    init(with addressString: String) {
-        self.addressString = addressString
+    init(with viewModel: MapViewModel) {
+        self.viewModel = viewModel
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -66,7 +66,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = addressString
+        title = viewModel.addressString
         view.backgroundColor = .systemBackground
         navigationItem.largeTitleDisplayMode = .never
 
@@ -133,7 +133,7 @@ class MapViewController: UIViewController {
 
     private func performAddressSearchRequest() {
         let request = MKLocalSearch.Request()
-        request.naturalLanguageQuery = addressString
+        request.naturalLanguageQuery = viewModel.addressString
         request.region = mapView.region
 
         MKLocalSearch(request: request).start { response, error in

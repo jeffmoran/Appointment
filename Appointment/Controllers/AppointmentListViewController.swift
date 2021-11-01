@@ -12,11 +12,7 @@ class AppointmentListViewController: UITableViewController {
 
     // MARK: - Private Properties
 
-    private let store = CoreData<Appointment>()
-
-    private var appointments: [Appointment?] {
-        return store.allObjects
-    }
+    private let appointmentListViewModel = AppointmentListViewModel()
 
     // MARK: - Initializers
 
@@ -34,7 +30,7 @@ class AppointmentListViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "Appointments"
+        title = appointmentListViewModel.title
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "gear"), style: .done, target: self, action: #selector(goToSettings))
 
@@ -50,7 +46,7 @@ class AppointmentListViewController: UITableViewController {
     // MARK: - Private Methods
 
     @objc private func goToSettings() {
-        let viewController = SettingsViewController(store: store, delegate: self)
+        let viewController = SettingsViewController(delegate: self)
 
         let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true)
@@ -64,7 +60,9 @@ class AppointmentListViewController: UITableViewController {
     }
 
     @objc private func addNewAppointment() {
-        let viewController = AppointmentInputViewController(appointment: nil, store: store, delegate: self)
+        let viewModel = appointmentListViewModel.inputViewModel(for: nil)
+
+        let viewController = AppointmentInputViewController(viewModel, delegate: self)
 
         let navigationController = UINavigationController(rootViewController: viewController)
 
@@ -76,7 +74,7 @@ class AppointmentListViewController: UITableViewController {
 
 extension AppointmentListViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return store.count
+        return appointmentListViewModel.numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,30 +82,19 @@ extension AppointmentListViewController {
             fatalError("Wrong cell type!")
         }
 
-        if let appointment = appointments[indexPath.row] {
-            cell.style(with: appointment)
-        }
+        let viewModel = appointmentListViewModel.cellViewModels[indexPath.row]
+        cell.style(with: viewModel)
 
         return cell
     }
 
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        let count = store.count
-
-        if count < 1 {
-            return nil
-        } else if count == 1 {
-            return "1 Appointment"
-        } else {
-            return "\(count) Appointments"
-        }
+        return appointmentListViewModel.titleForHeader
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            guard let appointment = appointments[indexPath.row] else { return }
-
-            store.delete(appointment)
+            appointmentListViewModel.deleteAppointment(at: indexPath.row)
 
             tableView.beginUpdates()
             tableView.deleteRows(at: [indexPath], with: .fade)
@@ -120,16 +107,16 @@ extension AppointmentListViewController {
 
 extension AppointmentListViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let appointment = appointments[indexPath.row] else { return }
-
         if tableView.isEditing {
-            let viewController = AppointmentInputViewController(appointment: appointment, store: store, delegate: self)
+            let viewModel = appointmentListViewModel.inputViewModel(for: indexPath.row)
+            let viewController = AppointmentInputViewController(viewModel, delegate: self)
 
             let navigationController = UINavigationController(rootViewController: viewController)
 
             present(navigationController, animated: true)
         } else {
-            let viewController = AppointmentDetailViewController(with: appointment)
+            let viewModel = appointmentListViewModel.detailViewModel(for: indexPath.row)
+            let viewController = AppointmentDetailViewController(viewModel)
 
             navigationController?.pushViewController(viewController, animated: true)
         }
@@ -140,11 +127,12 @@ extension AppointmentListViewController {
 
 extension AppointmentListViewController: AppointmentListViewControllerDelegate {
     func didDeleteAllAppointments() {
-        store.deleteAll()
+        appointmentListViewModel.deleteAllAppointments()
         tableView.reloadData()
     }
 
     func refreshAppointmentList() {
+        appointmentListViewModel.refreshAppointments()
         tableView.reloadData()
     }
 }

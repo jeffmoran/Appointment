@@ -1,29 +1,25 @@
 //
-//  AppointmentDetail.swift
+//  AppointmentDetailCellViewModel.swift
 //  Appointment
 //
-//  Created by Jeffrey Moran on 10/26/20.
-//  Copyright © 2020 Jeff Moran. All rights reserved.
+//  Created by Jeffrey Moran on 10/31/21.
+//  Copyright © 2021 Jeff Moran. All rights reserved.
 //
 
-enum AppointmentDetail: Int, CaseIterable {
-    case name
-    case email
-    case phoneNumber
-    case time
-    case address
-    case zipCode
-    case city
-    case moveInDate
-    case pets
-    case rent
-    case size
-    case bedrooms
-    case bathrooms
-    case notes
+import Foundation
+
+class AppointmentDetailCellViewModel {
+
+    // MARK: - Private Properties
+
+    private let appointment: Appointment?
+
+    // MARK: - Internal Properties
+
+    let detailType: AppointmentDetailType
 
     var headerValue: String {
-        switch self {
+        switch detailType {
         case .name:
             return "Client Name"
         case .email:
@@ -55,54 +51,12 @@ enum AppointmentDetail: Int, CaseIterable {
         }
     }
 
-    var placeholderValue: String {
-        switch self {
-        case .name:
-            return "John Appleseed"
-        case .email:
-            return "john@email.com"
-        case .phoneNumber:
-            return "555-555-5555"
-        case .time:
+    var value: Any {
+        guard let appointment = appointment else {
             return ""
-        case .address:
-            return "826 Apple Street"
-        case .zipCode:
-            return "02128"
-        case .city:
-            return "Boston"
-        case .moveInDate:
-            return ""
-        case .pets:
-            return "Yes"
-        case .rent:
-            return "$2500"
-        case .size:
-            return "747"
-        case .bedrooms:
-            return "2"
-        case .bathrooms:
-            return "1"
-        case .notes:
-            return "Notes"
         }
-    }
 
-    var textFieldDelegate: AppointmentDetailTextFieldDelegate? {
-        switch self {
-        case .phoneNumber:
-            return PhoneNumberTextFieldDelegate()
-        case .zipCode:
-            return ZipCodeTextFieldDelegate()
-        default:
-            return nil
-        }
-    }
-
-    func detailValue(for appointment: Appointment?) -> String? {
-        guard let appointment = appointment else { return nil }
-
-        switch self {
+        switch detailType {
         case .name:
             return appointment.clientName
         case .email:
@@ -110,7 +64,7 @@ enum AppointmentDetail: Int, CaseIterable {
         case .phoneNumber:
             return appointment.clientPhone
         case .time:
-            return appointment.appointmentDateString
+            return appointment.appointmentTime
         case .address:
             return appointment.address
         case .zipCode:
@@ -118,7 +72,7 @@ enum AppointmentDetail: Int, CaseIterable {
         case .city:
             return appointment.city
         case .moveInDate:
-            return appointment.moveInDateString
+            return appointment.moveInDate
         case .pets:
             return appointment.pets
         case .rent:
@@ -127,7 +81,7 @@ enum AppointmentDetail: Int, CaseIterable {
             if !price.isEmpty {
                 return "$\(price) Per Month"
             } else {
-                return nil
+                return ""
             }
         case .size:
             let size = appointment.size
@@ -135,7 +89,7 @@ enum AppointmentDetail: Int, CaseIterable {
             if !size.isEmpty {
                 return "\(size) Sq. Ft."
             } else {
-                return nil
+                return ""
             }
         case .bedrooms:
             return appointment.roomsCount
@@ -144,5 +98,12 @@ enum AppointmentDetail: Int, CaseIterable {
         case .notes:
             return appointment.notes
         }
+    }
+
+    // MARK: - Initializers
+
+    init(_ appointment: Appointment?, type: AppointmentDetailType) {
+        self.appointment = appointment
+        detailType = type
     }
 }

@@ -83,14 +83,9 @@ class AppointmentTableViewCell: UITableViewCell {
 
     // MARK: - Internal
 
-    func style(with appointment: Appointment) {
-        #warning("Rewritten from Obj-C -- clean this up")
-
-        appointmentClientNameLabel.text = !appointment.clientName.isEmpty ? appointment.clientName : "Client name unavailable"
-
-        let address = "\(appointment.address)\(appointment.zipCode)"
-        appointmentAddressLabel.text = !address.isEmpty ? address : "Property address unavailable"
-
-        appointmentTimeLabel.text = appointment.appointmentDateString
+    func style(with viewModel: AppointmentListCellViewModel) {
+        appointmentClientNameLabel.text = viewModel.name
+        appointmentAddressLabel.text = viewModel.address
+        appointmentTimeLabel.text = viewModel.time
     }
 }

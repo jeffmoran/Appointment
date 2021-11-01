@@ -12,39 +12,20 @@ class AppointmentInputViewController: UITableViewController {
 
     // MARK: - Private Properties
 
-    private var appointment: Appointment?
-
-    private var store: CoreData<Appointment>
-
-    private var valueMapping = [AppointmentDetail: Any?]()
+    private let viewModel: AppointmentInputViewModel
 
     private weak var delegate: AppointmentListViewControllerDelegate?
 
     // MARK: - Initializers
 
-    init(appointment: Appointment?, store: CoreData<Appointment>, delegate: AppointmentListViewControllerDelegate) {
-        self.appointment = appointment
-        self.store = store
+    init(_ viewModel: AppointmentInputViewModel, delegate: AppointmentListViewControllerDelegate) {
         self.delegate = delegate
 
-        valueMapping = [
-            .name: appointment?.clientName,
-            .email: appointment?.clientEmail,
-            .phoneNumber: appointment?.clientPhone,
-            .time: appointment?.appointmentTime,
-            .address: appointment?.address,
-            .zipCode: appointment?.zipCode,
-            .city: appointment?.city,
-            .moveInDate: appointment?.moveInDate,
-            .pets: appointment?.pets,
-            .rent: appointment?.price,
-            .size: appointment?.size,
-            .bedrooms: appointment?.roomsCount,
-            .bathrooms: appointment?.bathsCount,
-            .notes: appointment?.notes
-        ]
+        self.viewModel = viewModel
 
         super.init(style: .grouped)
+
+        viewModel.delegate = self
     }
 
     @available(*, unavailable)
@@ -71,19 +52,11 @@ class AppointmentInputViewController: UITableViewController {
     private func setUpNavigationBar() {
         navigationController?.navigationBar.prefersLargeTitles = true
 
-        if let appointment = appointment {
-            title = appointment.clientName
-        } else {
-            title = "New Appointment"
-        }
+        title = viewModel.title
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissViewController))
 
-        let saveButton = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
-
-        let clearButton = UIBarButtonItem(barButtonSystemItem: .trash, target: self, action: #selector(clearButtonPressed))
-
-        navigationItem.rightBarButtonItems = [saveButton, clearButton]
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
     }
 
     @objc private func dismissViewController() {
@@ -93,61 +66,7 @@ class AppointmentInputViewController: UITableViewController {
     @objc private func saveButtonPressed() {
         view.endEditing(true)
 
-        let appointmentToSave: Appointment
-
-        if let appointment = appointment {
-            appointmentToSave = appointment
-        } else {
-            appointmentToSave = store.newObject
-        }
-
-        AppointmentDetail.allCases.forEach {
-            let value = (valueMapping[$0] ?? "")
-
-            let stringValue = (value as? String) ?? ""
-            let dateValue = (value as? Date) ?? Date()
-
-            switch $0 {
-            case .name:
-                appointmentToSave.clientName = stringValue
-            case .email:
-                appointmentToSave.clientEmail = stringValue
-            case .phoneNumber:
-                appointmentToSave.clientPhone = stringValue
-            case .time:
-                appointmentToSave.appointmentTime = dateValue
-            case .address:
-                appointmentToSave.address = stringValue
-            case .zipCode:
-                appointmentToSave.zipCode = stringValue
-            case .city:
-                appointmentToSave.city = stringValue
-            case .moveInDate:
-                appointmentToSave.moveInDate = dateValue
-            case .pets:
-                appointmentToSave.pets = stringValue
-            case .rent:
-                appointmentToSave.price = stringValue
-            case .size:
-                appointmentToSave.size = stringValue
-            case .bedrooms:
-                appointmentToSave.roomsCount = stringValue
-            case .bathrooms:
-                appointmentToSave.bathsCount = stringValue
-            case .notes:
-                appointmentToSave.notes = stringValue
-            }
-        }
-
-        store.save()
-        dismissViewController()
-        delegate?.refreshAppointmentList()
-    }
-
-    @objc private func clearButtonPressed() {
-        view.endEditing(true)
-        valueMapping = [AppointmentDetail: Any]()
-        tableView.reloadData()
+        viewModel.save()
     }
 }
 
@@ -155,7 +74,7 @@ class AppointmentInputViewController: UITableViewController {
 
 extension AppointmentInputViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AppointmentDetail.allCases.count
+        return viewModel.numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -163,23 +82,25 @@ extension AppointmentInputViewController {
             fatalError("Wrong cell type!")
         }
 
-        guard let appointmentDetail = AppointmentDetail(rawValue: indexPath.row) else {
-            fatalError("Out of bounds error!")
-        }
-
-        let value = valueMapping[appointmentDetail] ?? ""
-
-        cell.style(with: appointmentDetail, value: value)
-        cell.delegate = self
+        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        cell.setUp(with: cellViewModel)
 
         return cell
     }
 }
 
-// MARK: - AppointmentInputTableViewCellDelegate
+// MARK: - AppointmentInputCellViewModelDelegate
 
-extension AppointmentInputViewController: AppointmentInputTableViewCellDelegate {
-    func didUpdateCell(with value: Any, appointmentDetail: AppointmentDetail) {
-        valueMapping[appointmentDetail] = value
+extension AppointmentInputViewController: AppointmentInputViewModelDelegate {
+    func didSuccesfullySave() {
+        dismissViewController()
+        delegate?.refreshAppointmentList()
+    }
+
+    func didFailToSave(error: Error) {
+        presentAlert(
+            title: "Error saving",
+            message: "Please try again. \(error.localizedDescription)"
+        )
     }
 }

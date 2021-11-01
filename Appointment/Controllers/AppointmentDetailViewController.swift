@@ -13,28 +13,12 @@ class AppointmentDetailViewController: UITableViewController {
 
     // MARK: - Private Properties
 
-    private var appointment: Appointment
-
-    private var phoneUrl: URL? {
-        let phoneNumber = appointment.clientPhone.filter("0123456789.".contains)
-
-        return URL(string: "telprompt:\(phoneNumber)")
-    }
-
-    private var shouldShowPhoneAction: Bool {
-        guard let phoneUrl = phoneUrl else { return false }
-
-        return UIApplication.shared.canOpenURL(phoneUrl)
-    }
-
-    private var shouldShowEmailAction: Bool {
-        return MFMailComposeViewController.canSendMail()
-    }
+    private let viewModel: AppointmentDetailViewModel
 
     // MARK: - Initializers
 
-    init(with appointment: Appointment) {
-        self.appointment = appointment
+    init(_ viewModel: AppointmentDetailViewModel) {
+        self.viewModel = viewModel
 
         super.init(style: .grouped)
     }
@@ -49,7 +33,7 @@ class AppointmentDetailViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = appointment.clientName
+        title = viewModel.title
 
         tableView.allowsSelection = false
         tableView.register(AppointmentDetailTableViewCell.self, forCellReuseIdentifier: AppointmentDetailTableViewCell.reuseIdentifier)
@@ -69,7 +53,7 @@ class AppointmentDetailViewController: UITableViewController {
         }
 
         let mapAction = UIAction(title: "Find on map", image: UIImage(systemName: "mappin.and.ellipse")) { [weak self] _ in
-            self?.goToMapView()
+            self?.showMapView()
         }
 
         let addContactAction = UIAction(title: "Add contact", image: UIImage(systemName: "person.crop.circle.badge.plus")) { [weak self] _ in
@@ -82,11 +66,11 @@ class AppointmentDetailViewController: UITableViewController {
 
         var actions = [UIAction]()
 
-        if shouldShowPhoneAction {
+        if viewModel.shouldShowPhoneAction {
             actions.append(phoneAction)
         }
 
-        if shouldShowEmailAction {
+        if viewModel.shouldShowEmailAction {
             actions.append(emailAction)
         }
 
@@ -98,42 +82,27 @@ class AppointmentDetailViewController: UITableViewController {
     }
 
     private func callContact() {
-        guard let phoneUrl = phoneUrl else { return }
+        guard let phoneUrl = viewModel.phoneUrl else { return }
 
         UIApplication.shared.open(phoneUrl)
     }
 
     private func showEmailComposer() {
-        let controller: MFMailComposeViewController! = MFMailComposeViewController()
-
-        controller.navigationBar.tintColor = .white
-
-        controller.mailComposeDelegate = self
-
-        let subject = "\(appointment.appointmentDateString) Appointment with \(appointment.clientName)"
-        controller.setSubject(subject)
-
-        controller.setToRecipients([appointment.clientEmail])
-
-        controller.setMessageBody(appointment.detailsString, isHTML: true)
-
-        present(controller, animated: true)
+        EmailHandler.presentEmailComposer(viewModel: viewModel.calendarEmailViewModel, from: self)
     }
 
-    private func goToMapView() {
-        let addressString = "\(appointment.address) \(appointment.zipCode)"
-
-        let mapViewController = MapViewController(with: addressString)
+    private func showMapView() {
+        let mapViewController = MapViewController(with: viewModel.mapViewModel)
 
         navigationController?.pushViewController(mapViewController, animated: true)
     }
 
     private func createNewContact() {
-        ContactHandler.createContact(with: appointment, viewController: self)
+        ContactHandler.createContact(with: viewModel.contactViewModel, from: self)
     }
 
     private func createNewCalendarEvent() {
-        CalendarHandler.createContact(with: appointment, viewController: self)
+        CalendarHandler.createEvent(with: viewModel.calendarEmailViewModel, from: self)
     }
 }
 
@@ -141,7 +110,7 @@ class AppointmentDetailViewController: UITableViewController {
 
 extension AppointmentDetailViewController {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return AppointmentDetail.allCases.count
+        return viewModel.numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -149,7 +118,8 @@ extension AppointmentDetailViewController {
             fatalError("Wrong cell type!")
         }
 
-        cell.style(with: appointment, index: indexPath.row)
+        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        cell.setUp(with: cellViewModel)
 
         return cell
     }

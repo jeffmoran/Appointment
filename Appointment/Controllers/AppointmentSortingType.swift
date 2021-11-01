@@ -9,6 +9,6 @@
 import Foundation
 
 enum AppointmentSortingType: String {
-    case timeAscending
-    case name
+    case timeAscending = "appointmentTime"
+    case name = "clientName"
 }

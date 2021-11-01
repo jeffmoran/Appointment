@@ -78,10 +78,8 @@ class AppointmentDetailTableViewCell: UITableViewCell {
 
     // MARK: - Internal Methods
 
-    func style(with appointment: Appointment, index: Int) {
-        let appointmentDetail = AppointmentDetail(rawValue: index)
-
-        appointmentHeaderLabel.text = appointmentDetail?.headerValue
-        appointmentValueLabel.text = appointmentDetail?.detailValue(for: appointment)
+    func setUp(with viewModel: AppointmentDetailCellViewModel) {
+        appointmentHeaderLabel.text = viewModel.headerValue
+        appointmentValueLabel.text = viewModel.value as? String
     }
 }
