@@ -17,19 +17,19 @@ class ContactViewModel {
     // MARK: - Internal Properties
 
     var contactName: String {
-        return appointment.clientName
+        return appointment.client.name
     }
 
     var contactPhone: String {
-        return appointment.clientPhone
+        return appointment.client.phoneNumber
     }
 
     var contactEmail: String {
-        return appointment.clientEmail
+        return appointment.client.emailAddress
     }
 
     var successText: String {
-        return "\(appointment.clientName) saved to Contacts!"
+        return "\(appointment.client.name) saved to Contacts!"
     }
 
     var failureText: String {

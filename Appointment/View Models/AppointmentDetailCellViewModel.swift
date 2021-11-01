@@ -36,8 +36,6 @@ class AppointmentDetailCellViewModel {
             return "City"
         case .moveInDate:
             return "Move-In Date"
-        case .pets:
-            return "Pets"
         case .rent:
             return "Rent"
         case .size:
@@ -58,25 +56,23 @@ class AppointmentDetailCellViewModel {
 
         switch detailType {
         case .name:
-            return appointment.clientName
+            return appointment.client.name
         case .email:
-            return appointment.clientEmail
+            return appointment.client.emailAddress
         case .phoneNumber:
-            return appointment.clientPhone
+            return appointment.client.phoneNumber
         case .time:
-            return appointment.appointmentTime
+            return appointment.time
         case .address:
-            return appointment.address
+            return appointment.property.addressOne
         case .zipCode:
-            return appointment.zipCode
+            return appointment.property.zipCode
         case .city:
-            return appointment.city
+            return appointment.property.city
         case .moveInDate:
             return appointment.moveInDate
-        case .pets:
-            return appointment.pets
         case .rent:
-            let price = appointment.price
+            let price = appointment.property.price
 
             if !price.isEmpty {
                 return "$\(price) Per Month"
@@ -84,7 +80,7 @@ class AppointmentDetailCellViewModel {
                 return ""
             }
         case .size:
-            let size = appointment.size
+            let size = appointment.property.size
 
             if !size.isEmpty {
                 return "\(size) Sq. Ft."
@@ -92,9 +88,9 @@ class AppointmentDetailCellViewModel {
                 return ""
             }
         case .bedrooms:
-            return appointment.roomsCount
+            return appointment.property.numberOfBedrooms
         case .bathrooms:
-            return appointment.bathsCount
+            return appointment.property.numberOfBathrooms
         case .notes:
             return appointment.notes
         }

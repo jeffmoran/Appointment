@@ -35,7 +35,7 @@ class AppointmentDetailViewModel {
     }()
 
     var title: String {
-        return appointment.clientName
+        return appointment.client.name
     }
 
     var numberOfRows: Int {
@@ -43,7 +43,7 @@ class AppointmentDetailViewModel {
     }
 
     var phoneUrl: URL? {
-        let phoneNumber = appointment.clientPhone.filter("0123456789.".contains)
+        let phoneNumber = appointment.client.phoneNumber.filter("0123456789.".contains)
 
         guard !phoneNumber.isEmpty else { return nil }
 

@@ -42,8 +42,6 @@ class AppointmentInputCellViewModel: AppointmentDetailCellViewModel {
             return "Boston"
         case .moveInDate:
             return ""
-        case .pets:
-            return "Yes"
         case .rent:
             return "$2500"
         case .size:
@@ -84,8 +82,6 @@ class AppointmentInputCellViewModel: AppointmentDetailCellViewModel {
         case .bathrooms:
             return .textField
         case .notes:
-            return .textField
-        case .pets:
             return .textField
         }
     }

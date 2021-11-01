@@ -17,38 +17,37 @@ class CalendarEmailViewModel {
     // MARK: - Internal Properties
 
     var eventTitle: String {
-        return "\(DateFormatter.timeFormatter.string(from: appointment.appointmentTime)) appointment with \(appointment.clientName)"
+        return "\(DateFormatter.timeFormatter.string(from: appointment.time)) appointment with \(appointment.client.name)"
     }
 
     var eventLocation: String {
-        return appointment.address
+        return appointment.property.addressOne
     }
 
     var eventStartDate: Date {
-        appointment.appointmentTime
+        appointment.time
     }
 
     var eventEndDate: Date {
-        Date(timeInterval: 3600, since: appointment.appointmentTime)
+        Date(timeInterval: 3600, since: appointment.time)
     }
 
     var emailAddress: String {
-        return appointment.clientEmail
+        return appointment.client.emailAddress
     }
 
     var eventDetailsString: String {
         return """
-    Client Name: \(appointment.clientName)
-    Client Number: \(appointment.clientPhone)
-    Appointment Time \(appointment.appointmentTime)
-    Property Address: \(appointment.address)
-    City: \(appointment.city)
-    Property Price: \(appointment.price)
+    Client Name: \(appointment.client.name)
+    Client Number: \(appointment.client.phoneNumber)
+    Appointment Time \(appointment.time)
+    Property Address: \(appointment.property.addressOne)
+    City: \(appointment.property.city)
+    Property Price: \(appointment.property.price)
     Move-In Date:\(appointment.moveInDate)
-    Pets Allowed: \(appointment.pets)
-    Size: \(appointment.size) Sq. Ft.
-    Number of Bedrooms:\(appointment.roomsCount)
-    Number of Bathrooms:\(appointment.bathsCount)
+    Size: \(appointment.property.size) Sq. Ft.
+    Number of Bedrooms:\(appointment.property.numberOfBedrooms)
+    Number of Bathrooms:\(appointment.property.numberOfBathrooms)
     """
     }
 

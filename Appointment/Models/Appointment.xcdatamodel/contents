@@ -1,22 +1,33 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17507" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="19461" systemVersion="20G165" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Appointment" representedClassName=".Appointment" syncable="YES">
-        <attribute name="address" optional="YES" attributeType="String"/>
-        <attribute name="appointmentTime" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <attribute name="bathsCount" optional="YES" attributeType="String"/>
-        <attribute name="city" optional="YES" attributeType="String"/>
-        <attribute name="clientEmail" optional="YES" attributeType="String"/>
-        <attribute name="clientName" optional="YES" attributeType="String"/>
-        <attribute name="clientPhone" optional="YES" attributeType="String"/>
         <attribute name="moveInDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
-        <attribute name="pets" optional="YES" attributeType="String"/>
+        <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <relationship name="client" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="appointment" inverseEntity="Client"/>
+        <relationship name="property" maxCount="1" deletionRule="Nullify" destinationEntity="Property" inverseName="appointment" inverseEntity="Property"/>
+    </entity>
+    <entity name="Client" representedClassName=".Client" syncable="YES">
+        <attribute name="emailAddress" optional="YES" attributeType="String"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="phoneNumber" optional="YES" attributeType="String"/>
+        <relationship name="appointment" maxCount="1" deletionRule="Nullify" destinationEntity="Appointment" inverseName="client" inverseEntity="Appointment"/>
+    </entity>
+    <entity name="Property" representedClassName=".Property" syncable="YES">
+        <attribute name="addressOne" optional="YES" attributeType="String"/>
+        <attribute name="addressTwo" optional="YES" attributeType="String"/>
+        <attribute name="city" optional="YES" attributeType="String"/>
+        <attribute name="numberOfBathrooms" optional="YES" attributeType="String"/>
+        <attribute name="numberOfBedrooms" optional="YES" attributeType="String"/>
         <attribute name="price" optional="YES" attributeType="String"/>
-        <attribute name="roomsCount" optional="YES" attributeType="String"/>
         <attribute name="size" optional="YES" attributeType="String"/>
+        <attribute name="state" optional="YES" attributeType="String"/>
         <attribute name="zipCode" optional="YES" attributeType="String"/>
+        <relationship name="appointment" maxCount="1" deletionRule="Nullify" destinationEntity="Appointment" inverseName="property" inverseEntity="Appointment"/>
     </entity>
     <elements>
-        <element name="Appointment" positionX="0" positionY="0" width="128" height="253"/>
+        <element name="Appointment" positionX="0" positionY="0" width="128" height="104"/>
+        <element name="Client" positionX="9" positionY="117" width="128" height="89"/>
+        <element name="Property" positionX="18" positionY="126" width="128" height="179"/>
     </elements>
 </model>

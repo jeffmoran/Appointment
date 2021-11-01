@@ -16,17 +16,17 @@ class AppointmentListCellViewModel {
 
     // MARK: - Internal Properties
 
-    var name: String {
-        !appointment.clientName.isEmpty ? appointment.clientName : "Client name unavailable"
+    var name: String? {
+        !appointment.client.name.isEmpty ? appointment.client.name : "Client name unavailable"
     }
 
     var time: String {
-        return DateFormatter.timeFormatter.string(from: appointment.appointmentTime)
+        return DateFormatter.timeFormatter.string(from: appointment.time)
     }
 
-    var address: String {
-        let address = "\(appointment.address) \(appointment.zipCode)"
-        return !address.isEmpty ? address : "Property address unavailable"
+    var address: String? {
+        let address = "\(appointment.property.addressOne) \(appointment.property.zipCode)"
+        return !address.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ? address : nil
     }
 
     // MARK: - Initializers

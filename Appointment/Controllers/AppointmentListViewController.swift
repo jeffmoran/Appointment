@@ -83,7 +83,7 @@ extension AppointmentListViewController {
         }
 
         let viewModel = appointmentListViewModel.cellViewModels[indexPath.row]
-        cell.style(with: viewModel)
+        cell.setUp(with: viewModel)
 
         return cell
     }

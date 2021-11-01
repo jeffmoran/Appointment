@@ -17,7 +17,7 @@ class MapViewModel {
     // MARK: - Internal Properties
 
     var addressString: String {
-        return "\(appointment.address) \(appointment.zipCode)"
+        return "\(appointment.property.addressOne) \(appointment.property.zipCode)"
     }
 
     // MARK: - Initializers

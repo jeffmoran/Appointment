@@ -24,7 +24,7 @@ class AppointmentInputViewModel {
     }
 
     var title: String {
-        return appointment?.clientName ?? "New Appointment"
+        return appointment?.client.name ?? "New Appointment"
     }
 
     var numberOfRows: Int {
@@ -60,20 +60,23 @@ extension AppointmentInputViewModel: AppointmentInputCellViewModelDelegate {
             appointmentToSave = appointment
         } else {
             appointmentToSave = store.newObject
-            appointmentToSave.clientName = ""
-            appointmentToSave.clientEmail = ""
-            appointmentToSave.clientPhone = ""
-            appointmentToSave.appointmentTime = Date()
-            appointmentToSave.address = ""
-            appointmentToSave.zipCode = ""
-            appointmentToSave.city = ""
-            appointmentToSave.moveInDate = Date()
-            appointmentToSave.pets = ""
-            appointmentToSave.price = ""
-            appointmentToSave.size = ""
-            appointmentToSave.roomsCount = ""
-            appointmentToSave.bathsCount = ""
+            appointmentToSave.time = Date()
             appointmentToSave.notes = ""
+            appointmentToSave.moveInDate = Date()
+
+            appointmentToSave.client = Client(context: appointmentToSave.managedObjectContext!)
+            appointmentToSave.client.name = ""
+            appointmentToSave.client.emailAddress = ""
+            appointmentToSave.client.phoneNumber = ""
+
+            appointmentToSave.property = Property(context: appointmentToSave.managedObjectContext!)
+            appointmentToSave.property.addressOne = ""
+            appointmentToSave.property.zipCode = ""
+            appointmentToSave.property.city = ""
+            appointmentToSave.property.price = ""
+            appointmentToSave.property.size = ""
+            appointmentToSave.property.numberOfBedrooms = ""
+            appointmentToSave.property.numberOfBathrooms = ""
         }
 
         return appointmentToSave
@@ -87,31 +90,29 @@ extension AppointmentInputViewModel: AppointmentInputCellViewModelDelegate {
 
         switch type {
         case .name:
-            appointmentToSave.clientName = stringValue
+            appointmentToSave.client.name = stringValue
         case .email:
-            appointmentToSave.clientEmail = stringValue
+            appointmentToSave.client.emailAddress = stringValue
         case .phoneNumber:
-            appointmentToSave.clientPhone = stringValue
+            appointmentToSave.client.phoneNumber = stringValue
         case .time:
-            appointmentToSave.appointmentTime = dateValue
+            appointmentToSave.time = dateValue
         case .address:
-            appointmentToSave.address = stringValue
+            appointmentToSave.property.addressOne = stringValue
         case .zipCode:
-            appointmentToSave.zipCode = stringValue
+            appointmentToSave.property.zipCode = stringValue
         case .city:
-            appointmentToSave.city = stringValue
+            appointmentToSave.property.city = stringValue
         case .moveInDate:
             appointmentToSave.moveInDate = dateValue
-        case .pets:
-            appointmentToSave.pets = stringValue
         case .rent:
-            appointmentToSave.price = stringValue
+            appointmentToSave.property.price = stringValue
         case .size:
-            appointmentToSave.size = stringValue
+            appointmentToSave.property.size = stringValue
         case .bedrooms:
-            appointmentToSave.roomsCount = stringValue
+            appointmentToSave.property.numberOfBedrooms = stringValue
         case .bathrooms:
-            appointmentToSave.bathsCount = stringValue
+            appointmentToSave.property.numberOfBathrooms = stringValue
         case .notes:
             appointmentToSave.notes = stringValue
         }

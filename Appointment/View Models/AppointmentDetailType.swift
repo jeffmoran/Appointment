@@ -17,7 +17,6 @@ enum AppointmentDetailType: Int, CaseIterable {
     case zipCode
     case city
     case moveInDate
-    case pets
     case rent
     case size
     case bedrooms

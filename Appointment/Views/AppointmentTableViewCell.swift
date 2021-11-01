@@ -81,9 +81,9 @@ class AppointmentTableViewCell: UITableViewCell {
         ])
     }
 
-    // MARK: - Internal
+    // MARK: - Internal Methods
 
-    func style(with viewModel: AppointmentListCellViewModel) {
+    func setUp(with viewModel: AppointmentListCellViewModel) {
         appointmentClientNameLabel.text = viewModel.name
         appointmentAddressLabel.text = viewModel.address
         appointmentTimeLabel.text = viewModel.time
