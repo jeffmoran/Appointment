@@ -78,7 +78,7 @@ class AppointmentDetailTableViewCell: UITableViewCell {
 
     // MARK: - Internal Methods
 
-    func setUp(with viewModel: AppointmentDetailCellViewModel) {
+    func setUp(with viewModel: AppointmentDetailRowViewModel) {
         appointmentHeaderLabel.text = viewModel.headerValue
         appointmentValueLabel.text = viewModel.value as? String
     }

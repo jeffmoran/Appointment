@@ -52,9 +52,9 @@ class AppointmentListViewModel {
         cellViewModels = appointments.map { AppointmentListCellViewModel($0) }
     }
 
-    func deleteAppointment(at index: Int) {
+    func deleteAppointment(at index: Int) throws {
         let appointment = appointments[index]
-        store.delete(appointment)
+        try store.delete(appointment)
         refreshAppointments()
     }
 

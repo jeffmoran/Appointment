@@ -16,7 +16,7 @@ enum ContactHandler {
             dismissActionTitle: "Maybe later",
             defaultActionTitle: "Yes"
         ) {
-                authorizeContactStore(with: viewModel, viewController: viewController)
+            authorizeContactStore(with: viewModel, viewController: viewController)
         }
     }
 
@@ -25,7 +25,6 @@ enum ContactHandler {
 
         contactStore.requestAccess(for: .contacts) { _, _ in
             switch CNContactStore.authorizationStatus(for: .contacts) {
-#warning("Handle error state")
             case .notDetermined:
                 break
             case .restricted:

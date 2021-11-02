@@ -94,11 +94,18 @@ extension AppointmentListViewController {
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            appointmentListViewModel.deleteAppointment(at: indexPath.row)
+            do {
+                try appointmentListViewModel.deleteAppointment(at: indexPath.row)
 
-            tableView.beginUpdates()
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            tableView.endUpdates()
+                tableView.performBatchUpdates {
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
+                }
+            } catch {
+                presentAlert(
+                    title: "Error Deleting Appointment",
+                    message: error.localizedDescription
+                )
+            }
         }
     }
 }

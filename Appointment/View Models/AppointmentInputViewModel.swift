@@ -17,18 +17,16 @@ class AppointmentInputViewModel {
 
     // MARK: - Internal Properties
 
-    weak var delegate: AppointmentInputViewModelDelegate?
-
-    lazy var cellViewModels: [AppointmentInputCellViewModel] = AppointmentDetailType.allCases.map {
-        AppointmentInputCellViewModel(appointment, type: $0, delegate: self)
+    lazy var sectionViewModels: [AppointmentInputSectionViewModel] = AppointmentDetailSection.allCases.map {
+        AppointmentInputSectionViewModel(appointment, section: $0, delegate: self)
     }
 
     var title: String {
         return appointment?.client.name ?? "New Appointment"
     }
 
-    var numberOfRows: Int {
-        return cellViewModels.count
+    var numberOfSections: Int {
+        return sectionViewModels.count
     }
 
     // MARK: - Initializers
@@ -40,13 +38,23 @@ class AppointmentInputViewModel {
 
     // MARK: - Internal Methods
 
-    func save() {
+    func cellViewModel(for sectionIndex: Int, rowIndex: Int) -> AppointmentInputRowViewModel {
+        let section = sectionViewModels[sectionIndex]
+        return section.rowViewModels[rowIndex]
+    }
+
+    func save(_ completion: (Result<Void, Error>) -> Void) {
         do {
             try store.saveContext()
-            delegate?.didSuccesfullySave()
+
+            completion(.success(()))
         } catch {
-            delegate?.didFailToSave(error: error)
+            completion(.failure(error))
         }
+    }
+
+    func rollback() {
+        store.rollbackContext()
     }
 }
 
@@ -60,16 +68,19 @@ extension AppointmentInputViewModel: AppointmentInputCellViewModelDelegate {
             appointmentToSave = appointment
         } else {
             appointmentToSave = store.newObject
+            // swiftlint:disable force_unwrapping
+            appointmentToSave.client = Client(context: appointmentToSave.managedObjectContext!)
+            appointmentToSave.property = Property(context: appointmentToSave.managedObjectContext!)
+            // swiftlint:enable force_unwrapping
+
             appointmentToSave.time = Date()
             appointmentToSave.notes = ""
             appointmentToSave.moveInDate = Date()
 
-            appointmentToSave.client = Client(context: appointmentToSave.managedObjectContext!)
             appointmentToSave.client.name = ""
             appointmentToSave.client.emailAddress = ""
             appointmentToSave.client.phoneNumber = ""
 
-            appointmentToSave.property = Property(context: appointmentToSave.managedObjectContext!)
             appointmentToSave.property.addressOne = ""
             appointmentToSave.property.zipCode = ""
             appointmentToSave.property.city = ""
@@ -82,40 +93,13 @@ extension AppointmentInputViewModel: AppointmentInputCellViewModelDelegate {
         return appointmentToSave
     }
 
-    func didUpdate(with value: Any, type: AppointmentDetailType) {
+    func didUpdate(with value: Any, row: AppointmentDetailSectionRow) {
         let appointmentToSave: Appointment = appointmentToSave
 
         let stringValue = (value as? String) ?? ""
         let dateValue = (value as? Date) ?? Date()
 
-        switch type {
-        case .name:
-            appointmentToSave.client.name = stringValue
-        case .email:
-            appointmentToSave.client.emailAddress = stringValue
-        case .phoneNumber:
-            appointmentToSave.client.phoneNumber = stringValue
-        case .time:
-            appointmentToSave.time = dateValue
-        case .address:
-            appointmentToSave.property.addressOne = stringValue
-        case .zipCode:
-            appointmentToSave.property.zipCode = stringValue
-        case .city:
-            appointmentToSave.property.city = stringValue
-        case .moveInDate:
-            appointmentToSave.moveInDate = dateValue
-        case .rent:
-            appointmentToSave.property.price = stringValue
-        case .size:
-            appointmentToSave.property.size = stringValue
-        case .bedrooms:
-            appointmentToSave.property.numberOfBedrooms = stringValue
-        case .bathrooms:
-            appointmentToSave.property.numberOfBathrooms = stringValue
-        case .notes:
-            appointmentToSave.notes = stringValue
-        }
+        row.update(appointment: appointmentToSave, stringValue: stringValue, dateValue: dateValue)
 
         appointment = appointmentToSave
     }

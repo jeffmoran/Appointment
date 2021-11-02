@@ -19,13 +19,10 @@ class AppointmentInputViewController: UITableViewController {
     // MARK: - Initializers
 
     init(_ viewModel: AppointmentInputViewModel, delegate: AppointmentListViewControllerDelegate) {
+        self.viewModel = viewModel
         self.delegate = delegate
 
-        self.viewModel = viewModel
-
         super.init(style: .grouped)
-
-        viewModel.delegate = self
     }
 
     @available(*, unavailable)
@@ -54,27 +51,51 @@ class AppointmentInputViewController: UITableViewController {
 
         title = viewModel.title
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(dismissViewController))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelButtonTapped))
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonPressed))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .save, target: self, action: #selector(saveButtonTapped))
     }
 
     @objc private func dismissViewController() {
         dismiss(animated: true)
     }
 
-    @objc private func saveButtonPressed() {
+    @objc private func cancelButtonTapped() {
+        viewModel.rollback()
+        dismissViewController()
+    }
+
+    @objc private func saveButtonTapped() {
         view.endEditing(true)
 
-        viewModel.save()
+        viewModel.save { result in
+            switch result {
+            case .success:
+                dismissViewController()
+                delegate?.refreshAppointmentList()
+            case .failure(let error):
+                presentAlert(
+                    title: "Error saving",
+                    message: error.localizedDescription
+                )
+            }
+        }
     }
 }
 
 // MARK: - UITableViewDataSource
 
 extension AppointmentInputViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.sectionViewModels[section].title
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows
+        return viewModel.sectionViewModels[section].numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,25 +103,9 @@ extension AppointmentInputViewController {
             fatalError("Wrong cell type!")
         }
 
-        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        let cellViewModel = viewModel.cellViewModel(for: indexPath.section, rowIndex: indexPath.row)
         cell.setUp(with: cellViewModel)
 
         return cell
-    }
-}
-
-// MARK: - AppointmentInputCellViewModelDelegate
-
-extension AppointmentInputViewController: AppointmentInputViewModelDelegate {
-    func didSuccesfullySave() {
-        dismissViewController()
-        delegate?.refreshAppointmentList()
-    }
-
-    func didFailToSave(error: Error) {
-        presentAlert(
-            title: "Error saving",
-            message: "Please try again. \(error.localizedDescription)"
-        )
     }
 }

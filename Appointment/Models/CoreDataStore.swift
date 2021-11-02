@@ -62,6 +62,11 @@ class CoreDataStore<T: NSManagedObject> {
         }
     }
 
+    func rollbackContext() {
+        objectContext.rollback()
+        objectContext.refreshAllObjects()
+    }
+
     func deleteAll() {
         let deleteRequest = NSBatchDeleteRequest(fetchRequest: T.fetchRequest())
 
@@ -72,7 +77,8 @@ class CoreDataStore<T: NSManagedObject> {
         }
     }
 
-    func delete(_ object: T) {
+    func delete(_ object: T) throws {
         objectContext.delete(object)
+        try saveContext()
     }
 }

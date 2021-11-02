@@ -18,8 +18,8 @@ class AppointmentDetailViewModel {
 
     // MARK: - Internal Properties
 
-    lazy var cellViewModels: [AppointmentDetailCellViewModel] = AppointmentDetailType.allCases.map {
-        AppointmentDetailCellViewModel(appointment, type: $0)
+    lazy var sectionViewModels: [AppointmentDetailSectionViewModel] = AppointmentDetailSection.allCases.map {
+        AppointmentDetailSectionViewModel(appointment, section: $0)
     }
 
     lazy var mapViewModel: MapViewModel = {
@@ -38,8 +38,8 @@ class AppointmentDetailViewModel {
         return appointment.client.name
     }
 
-    var numberOfRows: Int {
-        return cellViewModels.count
+    var numberOfSections: Int {
+        return sectionViewModels.count
     }
 
     var phoneUrl: URL? {
@@ -64,5 +64,12 @@ class AppointmentDetailViewModel {
 
     init(_ appointment: Appointment) {
         self.appointment = appointment
+    }
+
+    // MARK: - Internal Methods
+
+    func cellViewModel(for sectionIndex: Int, rowIndex: Int) -> AppointmentDetailRowViewModel {
+        let section = sectionViewModels[sectionIndex]
+        return section.rowViewModels[rowIndex]
     }
 }

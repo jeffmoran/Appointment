@@ -4,8 +4,8 @@
         <attribute name="moveInDate" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="notes" optional="YES" attributeType="String"/>
         <attribute name="time" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-        <relationship name="client" maxCount="1" deletionRule="Nullify" destinationEntity="Client" inverseName="appointment" inverseEntity="Client"/>
-        <relationship name="property" maxCount="1" deletionRule="Nullify" destinationEntity="Property" inverseName="appointment" inverseEntity="Property"/>
+        <relationship name="client" maxCount="1" deletionRule="Cascade" destinationEntity="Client" inverseName="appointment" inverseEntity="Client"/>
+        <relationship name="property" maxCount="1" deletionRule="Cascade" destinationEntity="Property" inverseName="appointment" inverseEntity="Property"/>
     </entity>
     <entity name="Client" representedClassName=".Client" syncable="YES">
         <attribute name="emailAddress" optional="YES" attributeType="String"/>

@@ -7,5 +7,5 @@
 //
 
 protocol AppointmentInputCellViewModelDelegate: AnyObject {
-    func didUpdate(with value: Any, type: AppointmentDetailType)
+    func didUpdate(with value: Any, row: AppointmentDetailSectionRow)
 }

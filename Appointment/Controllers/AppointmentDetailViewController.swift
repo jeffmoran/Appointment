@@ -109,8 +109,16 @@ class AppointmentDetailViewController: UITableViewController {
 // MARK: - UITableViewDataSource
 
 extension AppointmentDetailViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.numberOfSections
+    }
+
+    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return viewModel.sectionViewModels[section].title
+    }
+
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.numberOfRows
+        return viewModel.sectionViewModels[section].numberOfRows
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -118,7 +126,7 @@ extension AppointmentDetailViewController {
             fatalError("Wrong cell type!")
         }
 
-        let cellViewModel = viewModel.cellViewModels[indexPath.row]
+        let cellViewModel = viewModel.cellViewModel(for: indexPath.section, rowIndex: indexPath.row)
         cell.setUp(with: cellViewModel)
 
         return cell

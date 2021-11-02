@@ -16,7 +16,7 @@ enum CalendarHandler {
             dismissActionTitle: "Maybe later",
             defaultActionTitle: "Yes"
         ) {
-                authorizeEventStore(with: viewModel, viewController: viewController)
+            authorizeEventStore(with: viewModel, viewController: viewController)
         }
     }
 
@@ -25,8 +25,6 @@ enum CalendarHandler {
 
         eventStore.requestAccess(to: .event) { _, _ in
             switch EKEventStore.authorizationStatus(for: .event) {
-#warning("Handle error state")
-
             case .notDetermined:
                 break
             case .restricted:

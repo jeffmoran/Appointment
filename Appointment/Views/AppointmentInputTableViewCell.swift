@@ -16,7 +16,7 @@ class AppointmentInputTableViewCell: UITableViewCell {
 
     // MARK: - Private Properties
 
-    private var viewModel: AppointmentInputCellViewModel?
+    private var viewModel: AppointmentInputRowViewModel?
 
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
@@ -94,22 +94,21 @@ class AppointmentInputTableViewCell: UITableViewCell {
     }
 
     @objc private func didSelectTime(_ datePicker: UIDatePicker) {
-        guard let detailType = viewModel?.detailType else {
-            fatalError("detailType should not be nil!")
+        guard let row = viewModel?.row else {
+            fatalError("row should not be nil!")
         }
 
-        delegate?.didUpdate(with: datePicker.date, type: detailType)
+        delegate?.didUpdate(with: datePicker.date, row: row)
     }
 
     // MARK: - Internal Methods
 
-    func setUp(with viewModel: AppointmentInputCellViewModel) {
+    func setUp(with viewModel: AppointmentInputRowViewModel) {
         self.viewModel = viewModel
         delegate = viewModel
 
         appointmentHeaderLabel.text = viewModel.headerValue
         appointmentTextField.placeholder = viewModel.placeholderValue
-        appointmentTextField.keyboardType = viewModel.keyboardType
 
         if let value = viewModel.value as? String {
             appointmentTextField.text = value
@@ -118,15 +117,15 @@ class AppointmentInputTableViewCell: UITableViewCell {
         }
 
         switch viewModel.displayMode {
-        case .textField:
+        case .textField(let keyboardType):
             datePicker.removeFromSuperview()
             stackView.addArrangedSubview(appointmentTextField)
-        case .datePicker:
+
+            appointmentTextField.keyboardType = keyboardType
+        case .datePicker(let datePickerMode):
             appointmentTextField.removeFromSuperview()
             stackView.addArrangedSubview(datePicker)
-        }
 
-        if let datePickerMode = viewModel.datePickerMode {
             datePicker.datePickerMode = datePickerMode
         }
     }
@@ -136,11 +135,11 @@ class AppointmentInputTableViewCell: UITableViewCell {
 
 extension AppointmentInputTableViewCell: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        guard let detailType = viewModel?.detailType else {
-            fatalError("detailType should not be nil!")
+        guard let row = viewModel?.row else {
+            fatalError("row should not be nil!")
         }
 
-        delegate?.didUpdate(with: textField.text ?? "", type: detailType)
+        delegate?.didUpdate(with: textField.text ?? "", row: row)
     }
 
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
