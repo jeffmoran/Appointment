@@ -20,7 +20,7 @@ class AppointmentInputRowViewModel: AppointmentDetailRowViewModel {
 
     // MARK: - Private Properties
 
-    private weak var delegate: AppointmentInputCellViewModelDelegate?
+    private weak var delegate: AppointmentInputRowViewModelDelegate?
 
     // MARK: - Internal Properties
 
@@ -38,16 +38,16 @@ class AppointmentInputRowViewModel: AppointmentDetailRowViewModel {
 
     // MARK: - Initializers
 
-    init(_ appointment: Appointment?, row: AppointmentDetailSectionRow, delegate: AppointmentInputCellViewModelDelegate) {
+    init(_ appointment: Appointment?, row: AppointmentDetailSectionRow, delegate: AppointmentInputRowViewModelDelegate) {
         super.init(appointment, row: row)
 
         self.delegate = delegate
     }
 }
 
-// MARK: - AppointmentInputCellViewModelDelegate
+// MARK: - AppointmentInputRowViewModelDelegate
 
-extension AppointmentInputRowViewModel: AppointmentInputCellViewModelDelegate {
+extension AppointmentInputRowViewModel: AppointmentInputRowViewModelDelegate {
     func didUpdate(with value: Any, row: AppointmentDetailSectionRow) {
         delegate?.didUpdate(with: value, row: row)
     }

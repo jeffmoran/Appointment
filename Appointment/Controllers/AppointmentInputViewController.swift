@@ -22,7 +22,7 @@ class AppointmentInputViewController: UITableViewController {
         self.viewModel = viewModel
         self.delegate = delegate
 
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
     }
 
     @available(*, unavailable)

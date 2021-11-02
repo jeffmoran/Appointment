@@ -10,8 +10,8 @@ import Foundation
 
 enum AppointmentDetailSectionAppointmentRow: Int, CaseIterable, AppointmentDetailSectionRow {
     case time
-    case notes
     case moveInDate
+    case notes
 
     var headerValue: String {
         switch self {
@@ -44,14 +44,14 @@ enum AppointmentDetailSectionAppointmentRow: Int, CaseIterable, AppointmentDetai
         }
     }
 
-    func value(for appointment: Appointment) -> Any {
+    func value(with appointment: Appointment) -> AppointmentDetailValueType {
         switch self {
         case .time:
-            return appointment.time
+            return .date(appointment.time, .timeFormatter)
         case .notes:
-            return appointment.notes
+            return .string(appointment.notes)
         case .moveInDate:
-            return appointment.moveInDate
+            return .date(appointment.moveInDate, .dateFormatter)
         }
     }
 

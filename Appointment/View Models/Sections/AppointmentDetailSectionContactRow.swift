@@ -55,14 +55,14 @@ enum AppointmentDetailSectionContactRow: Int, CaseIterable, AppointmentDetailSec
         }
     }
 
-    func value(for appointment: Appointment) -> Any {
+    func value(with appointment: Appointment) -> AppointmentDetailValueType {
         switch self {
         case .name:
-            return appointment.client.name
+            return .string(appointment.client.name)
         case .email:
-            return appointment.client.emailAddress
+            return .string(appointment.client.emailAddress)
         case .phoneNumber:
-            return appointment.client.phoneNumber
+            return .string(appointment.client.phoneNumber)
         }
     }
 

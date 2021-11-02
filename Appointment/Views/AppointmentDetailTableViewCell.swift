@@ -80,6 +80,12 @@ class AppointmentDetailTableViewCell: UITableViewCell {
 
     func setUp(with viewModel: AppointmentDetailRowViewModel) {
         appointmentHeaderLabel.text = viewModel.headerValue
-        appointmentValueLabel.text = viewModel.value as? String
+
+        switch viewModel.value {
+        case .string(let string):
+            appointmentValueLabel.text = string
+        case .date(let date, let formatter):
+            appointmentValueLabel.text = formatter.string(from: date)
+        }
     }
 }

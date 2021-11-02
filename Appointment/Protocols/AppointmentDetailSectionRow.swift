@@ -8,13 +8,18 @@
 
 import Foundation
 
+enum AppointmentDetailValueType {
+    case string(String)
+    case date(Date, DateFormatter)
+}
+
 protocol AppointmentDetailSectionRow {
     var headerValue: String { get }
     var placeholder: String? { get }
     var displayMode: AppointmentInputRowViewModel.DisplayMode { get }
     var textFieldDelegate: AppointmentDetailTextFieldDelegate? { get }
 
-    func value(for appointment: Appointment) -> Any
+    func value(with appointment: Appointment) -> AppointmentDetailValueType
     func update(appointment: Appointment, stringValue: String, dateValue: Date)
 }
 

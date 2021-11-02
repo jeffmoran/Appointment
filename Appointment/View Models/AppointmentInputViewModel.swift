@@ -58,9 +58,9 @@ class AppointmentInputViewModel {
     }
 }
 
-// MARK: - AppointmentInputCellViewModelDelegate
+// MARK: - AppointmentInputRowViewModelDelegate
 
-extension AppointmentInputViewModel: AppointmentInputCellViewModelDelegate {
+extension AppointmentInputViewModel: AppointmentInputRowViewModelDelegate {
     private var appointmentToSave: Appointment {
         var appointmentToSave: Appointment
 

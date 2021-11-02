@@ -22,12 +22,12 @@ class AppointmentDetailRowViewModel {
         return row.headerValue
     }
 
-    var value: Any {
+    var value: AppointmentDetailValueType {
         guard let appointment = appointment else {
-            return ""
+            return .string("")
         }
 
-        return row.value(for: appointment)
+        return row.value(with: appointment)
     }
 
     // MARK: - Initializers

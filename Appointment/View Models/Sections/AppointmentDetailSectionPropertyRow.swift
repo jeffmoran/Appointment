@@ -83,18 +83,18 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
         }
     }
 
-    func value(for appointment: Appointment) -> Any {
+    func value(with appointment: Appointment) -> AppointmentDetailValueType {
         switch self {
         case .addressOne:
-            return appointment.property.addressOne
+            return .string(appointment.property.addressOne)
         case .addressTwo:
-            return appointment.property.addressTwo
+            return .string(appointment.property.addressTwo)
         case .city:
-            return appointment.property.city
+            return .string(appointment.property.city)
         case .state:
-            return appointment.property.state
+            return .string(appointment.property.state)
         case .zipCode:
-            return appointment.property.zipCode
+            return .string(appointment.property.zipCode)
         case .rent:
             var price = appointment.property.price
 
@@ -102,7 +102,7 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
                 price = "0"
             }
 
-            return "$\(price) Per Month"
+            return .string("$\(price) Per Month")
         case .size:
             var size = appointment.property.size
 
@@ -110,11 +110,11 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
                 size = "0"
             }
 
-            return "\(size) Sq. Ft."
+            return .string("\(size) Sq. Ft.")
         case .bedrooms:
-            return appointment.property.numberOfBedrooms
+            return .string(appointment.property.numberOfBedrooms)
         case .bathrooms:
-            return appointment.property.numberOfBathrooms
+            return .string(appointment.property.numberOfBathrooms)
         }
     }
 

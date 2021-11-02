@@ -9,9 +9,14 @@
 import Foundation
 
 class AppointmentInputSectionViewModel {
+
+    // MARK: - Private Properties
+
     private let appointment: Appointment?
     private let section: AppointmentDetailSection
-    private weak var delegate: AppointmentInputCellViewModelDelegate?
+    private weak var delegate: AppointmentInputRowViewModelDelegate?
+
+    // MARK: - Internal Properties
 
     lazy var rowViewModels: [AppointmentInputRowViewModel] = {
         section.rows.map {
@@ -27,16 +32,18 @@ class AppointmentInputSectionViewModel {
         return rowViewModels.count
     }
 
-    init(_ appointment: Appointment?, section: AppointmentDetailSection, delegate: AppointmentInputCellViewModelDelegate) {
+    // MARK: - Initializers
+
+    init(_ appointment: Appointment?, section: AppointmentDetailSection, delegate: AppointmentInputRowViewModelDelegate) {
         self.appointment = appointment
         self.section = section
         self.delegate = delegate
     }
 }
 
-// MARK: - AppointmentInputCellViewModelDelegate
+// MARK: - AppointmentInputRowViewModelDelegate
 
-extension AppointmentInputSectionViewModel: AppointmentInputCellViewModelDelegate {
+extension AppointmentInputSectionViewModel: AppointmentInputRowViewModelDelegate {
     func didUpdate(with value: Any, row: AppointmentDetailSectionRow) {
         delegate?.didUpdate(with: value, row: row)
     }

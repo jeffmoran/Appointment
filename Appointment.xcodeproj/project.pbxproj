@@ -28,7 +28,7 @@
 		608999DD2548C4B6008053C6 /* CalendarHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608999DC2548C4B6008053C6 /* CalendarHandler.swift */; };
 		608999E32548E690008053C6 /* AppointmentInputViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608999E22548E690008053C6 /* AppointmentInputViewController.swift */; };
 		608999E72548F093008053C6 /* AppointmentInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608999E62548F093008053C6 /* AppointmentInputTableViewCell.swift */; };
-		608A4965254B278000D8E782 /* AppointmentInputCellViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A4964254B278000D8E782 /* AppointmentInputCellViewModelDelegate.swift */; };
+		608A4965254B278000D8E782 /* AppointmentInputRowViewModelDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 608A4964254B278000D8E782 /* AppointmentInputRowViewModelDelegate.swift */; };
 		6094FA6A273086AB008A2985 /* AppointmentInputSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094FA69273086AB008A2985 /* AppointmentInputSectionViewModel.swift */; };
 		6094FA6C273086DC008A2985 /* AppointmentDetailSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094FA6B273086DC008A2985 /* AppointmentDetailSectionViewModel.swift */; };
 		6094FA6F27309758008A2985 /* AppointmentDetailSectionContactRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6094FA6E27309758008A2985 /* AppointmentDetailSectionContactRow.swift */; };
@@ -81,7 +81,7 @@
 		608999DC2548C4B6008053C6 /* CalendarHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHandler.swift; sourceTree = "<group>"; };
 		608999E22548E690008053C6 /* AppointmentInputViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentInputViewController.swift; sourceTree = "<group>"; };
 		608999E62548F093008053C6 /* AppointmentInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentInputTableViewCell.swift; sourceTree = "<group>"; };
-		608A4964254B278000D8E782 /* AppointmentInputCellViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentInputCellViewModelDelegate.swift; sourceTree = "<group>"; };
+		608A4964254B278000D8E782 /* AppointmentInputRowViewModelDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentInputRowViewModelDelegate.swift; sourceTree = "<group>"; };
 		6094FA69273086AB008A2985 /* AppointmentInputSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentInputSectionViewModel.swift; sourceTree = "<group>"; };
 		6094FA6B273086DC008A2985 /* AppointmentDetailSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailSectionViewModel.swift; sourceTree = "<group>"; };
 		6094FA6E27309758008A2985 /* AppointmentDetailSectionContactRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppointmentDetailSectionContactRow.swift; sourceTree = "<group>"; };
@@ -155,7 +155,7 @@
 			isa = PBXGroup;
 			children = (
 				601AC6C12553B31C008EBFD2 /* AppointmentDetailTextFieldDelegate.swift */,
-				608A4964254B278000D8E782 /* AppointmentInputCellViewModelDelegate.swift */,
+				608A4964254B278000D8E782 /* AppointmentInputRowViewModelDelegate.swift */,
 				6015202A254664EA004894B5 /* AppointmentListViewControllerDelegate.swift */,
 				6094FA772730A85F008A2985 /* AppointmentDetailSectionRow.swift */,
 			);
@@ -407,7 +407,7 @@
 				6015202725422AF3004894B5 /* UIViewController+Extensions.swift in Sources */,
 				605A55D12537B742002B29D3 /* AppDelegate.swift in Sources */,
 				60A98FC9272F59FF007E2CD3 /* AppointmentDetailSection.swift in Sources */,
-				608A4965254B278000D8E782 /* AppointmentInputCellViewModelDelegate.swift in Sources */,
+				608A4965254B278000D8E782 /* AppointmentInputRowViewModelDelegate.swift in Sources */,
 				6094FA782730A85F008A2985 /* AppointmentDetailSectionRow.swift in Sources */,
 				60A98FCF272F676B007E2CD3 /* CalendarEmailViewModel.swift in Sources */,
 				60DAEAFF2547BD8100BAC232 /* Appointment.swift in Sources */,

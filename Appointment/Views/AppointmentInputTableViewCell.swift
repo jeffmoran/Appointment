@@ -56,7 +56,7 @@ class AppointmentInputTableViewCell: UITableViewCell {
 
     // MARK: - Internal Properties
 
-    weak var delegate: AppointmentInputCellViewModelDelegate?
+    weak var delegate: AppointmentInputRowViewModelDelegate?
 
     // MARK: - Initializers
 
@@ -110,10 +110,11 @@ class AppointmentInputTableViewCell: UITableViewCell {
         appointmentHeaderLabel.text = viewModel.headerValue
         appointmentTextField.placeholder = viewModel.placeholderValue
 
-        if let value = viewModel.value as? String {
-            appointmentTextField.text = value
-        } else if let value = viewModel.value as? Date {
-            datePicker.date = value
+        switch viewModel.value {
+        case .string(let string):
+            appointmentTextField.text = string
+        case .date(let date, _):
+            datePicker.date = date
         }
 
         switch viewModel.displayMode {

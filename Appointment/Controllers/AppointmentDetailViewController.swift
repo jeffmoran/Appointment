@@ -20,7 +20,7 @@ class AppointmentDetailViewController: UITableViewController {
     init(_ viewModel: AppointmentDetailViewModel) {
         self.viewModel = viewModel
 
-        super.init(style: .grouped)
+        super.init(style: .insetGrouped)
     }
 
     @available(*, unavailable)
@@ -44,11 +44,11 @@ class AppointmentDetailViewController: UITableViewController {
     // MARK: - Private Methods
 
     private func setUpMenu() {
-        let phoneAction = UIAction(title: "Call Client", image: UIImage(systemName: "phone")) { [weak self] _ in
+        let phoneAction = UIAction(title: "Call", image: UIImage(systemName: "phone")) { [weak self] _ in
             self?.callContact()
         }
 
-        let emailAction = UIAction(title: "Email client", image: UIImage(systemName: "envelope")) { [weak self] _ in
+        let emailAction = UIAction(title: "Email", image: UIImage(systemName: "envelope")) { [weak self] _ in
             self?.showEmailComposer()
         }
 
@@ -56,7 +56,7 @@ class AppointmentDetailViewController: UITableViewController {
             self?.showMapView()
         }
 
-        let addContactAction = UIAction(title: "Add contact", image: UIImage(systemName: "person.crop.circle.badge.plus")) { [weak self] _ in
+        let addContactAction = UIAction(title: "Add to Contacts", image: UIImage(systemName: "person.crop.circle.badge.plus")) { [weak self] _ in
             self?.createNewContact()
         }
 
