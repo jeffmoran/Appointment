@@ -9,9 +9,11 @@
 import Foundation
 
 enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSectionRow {
-    case address
-    case zipCode
+    case addressOne
+    case addressTwo
     case city
+    case state
+    case zipCode
     case rent
     case size
     case bedrooms
@@ -19,12 +21,16 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
 
     var headerValue: String {
         switch self {
-        case .address:
-            return "Property Address"
-        case .zipCode:
-            return "Zip / Postal Code"
+        case .addressOne:
+            return "Address 1"
+        case .addressTwo:
+            return "Address 2"
         case .city:
             return "City"
+        case .state:
+            return "State"
+        case .zipCode:
+            return "Zip / Postal Code"
         case .rent:
             return "Rent"
         case .size:
@@ -38,12 +44,16 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
 
     var placeholder: String? {
         switch self {
-        case .address:
-            return "826 Apple Street"
-        case .zipCode:
-            return "02128"
+        case .addressOne:
+            return "Apple Street"
+        case .addressTwo:
+            return "APT. 826"
         case .city:
             return "Boston"
+        case .state:
+            return "Massachusetts"
+        case .zipCode:
+            return "02128"
         case .rent:
             return "$2500"
         case .size:
@@ -57,7 +67,7 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
 
     var displayMode: AppointmentInputRowViewModel.DisplayMode {
         switch self {
-        case .address, .city:
+        case .addressOne, .addressTwo, .city, .state:
             return .textField(keyboardType: .default)
         case .zipCode, .rent, .size, .bedrooms, .bathrooms:
             return .textField(keyboardType: .numberPad)
@@ -75,12 +85,16 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
 
     func value(for appointment: Appointment) -> Any {
         switch self {
-        case .address:
+        case .addressOne:
             return appointment.property.addressOne
-        case .zipCode:
-            return appointment.property.zipCode
+        case .addressTwo:
+            return appointment.property.addressTwo
         case .city:
             return appointment.property.city
+        case .state:
+            return appointment.property.state
+        case .zipCode:
+            return appointment.property.zipCode
         case .rent:
             var price = appointment.property.price
 
@@ -106,12 +120,16 @@ enum AppointmentDetailSectionPropertyRow: Int, CaseIterable, AppointmentDetailSe
 
     func update(appointment: Appointment, stringValue: String, dateValue: Date) {
         switch self {
-        case .address:
+        case .addressOne:
             appointment.property.addressOne = stringValue
-        case .zipCode:
-            appointment.property.zipCode = stringValue
+        case .addressTwo:
+            appointment.property.addressTwo = stringValue
         case .city:
             appointment.property.city = stringValue
+        case .state:
+            appointment.property.state = stringValue
+        case .zipCode:
+            appointment.property.zipCode = stringValue
         case .rent:
             appointment.property.price = stringValue
         case .size:
