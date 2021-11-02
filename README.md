@@ -1,28 +1,10 @@
 # Appointment
 
-A simple utility application for brokers to create and manage their appointments.
-
-## Installation
-Provided that you have [CocoaPods](http://cocoapods.org) installed, please be sure to run
-
-```bash
-$ pod install
-```
-to install the libraries used in this project.
-
-A Google Maps Geocoding API key is needed for automatically obtaining city information from a postal code. You can get one [here](https://developers.google.com/maps/documentation/geocoding/start).
-
-Once obtained, create a header file titled `Config.h` and create a `NSString *const` like so.
-
-```Objective-C
-NSString *const googleAPIKey = @"API_KEY_HERE";
-```
+An app for creating and tracking appointments. Originally built in Objective-C and rewritten in Swift, it implements the MVVM design pattern, is backed by a Core Data stack for persistence, makes network calls with URLSession, and uses other fun APIs.
 
 ## Screenshots
-<img src="/Screenshots/appointments.png" width="324px" height="576px" /> <img src="/Screenshots/detail.png" width="324px" height="576px" />
+<img src="/Screenshots/1.png" width="324px" height="701px" /> <img src="/Screenshots/2.png" width="324px" height="701px" />
 
-<img src="/Screenshots/menu.png" width="324px" height="576px" /> <img src="/Screenshots/map.png" width="324px" height="576px" />
+<img src="/Screenshots/3.png" width="324px" height="701px" /> <img src="/Screenshots/4.png" width="324px" height="701px" />
 
-## Open Source Libraries
-- [DZNEmptyDataSet](https://github.com/dzenbot/DZNEmptyDataSet)
-- [RNGridMenu](https://github.com/rnystrom/RNGridMenu)
+<img src="/Screenshots/5.png" width="324px" height="701px" />

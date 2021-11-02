@@ -17,7 +17,8 @@ class AppointmentListCellViewModel {
     // MARK: - Internal Properties
 
     var name: String? {
-        !appointment.client.name.isEmpty ? appointment.client.name : "Client name unavailable"
+        let name = appointment.client.name
+        return !name.isEmpty ? name : "Contact name unavailable"
     }
 
     var time: String {
